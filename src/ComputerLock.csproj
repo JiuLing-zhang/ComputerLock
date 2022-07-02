@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Authors>九零</Authors>
+		<Product>透明锁屏</Product>
+		<Version>1.0.1</Version>
+		
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<ApplicationIcon>icon.ico</ApplicationIcon>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="JiuLing.CommonLibs" Version="1.2.6" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="首次运行请看这里！！！.txt">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+</Project>

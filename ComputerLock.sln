@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32611.2
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputerLock", "src\ComputerLock.csproj", "{DBCC7339-3EB6-402B-9EC8-BD7014CC1CE1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBCC7339-3EB6-402B-9EC8-BD7014CC1CE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBCC7339-3EB6-402B-9EC8-BD7014CC1CE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBCC7339-3EB6-402B-9EC8-BD7014CC1CE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBCC7339-3EB6-402B-9EC8-BD7014CC1CE1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EEFBE141-C21A-447B-9B6D-BB2A5EFB69FB}
+	EndGlobalSection
+EndGlobal

@@ -13,10 +13,19 @@ namespace ComputerLock
         {
             InitializeComponent();
         }
-
+        private static System.Threading.Mutex _mutex;
         private void FmMain_Load(object sender, EventArgs e)
         {
             MessageBoxUtils.SetTitle(AppBase.Name);
+
+            _mutex = new System.Threading.Mutex(true, AppBase.FriendlyName);
+            if (!_mutex.WaitOne(0, false))
+            {
+                MessageBoxUtils.ShowError("程序已经运行");
+                Application.Exit();
+                return;
+            }
+
             LoadAppConfig();
             AppConfigToUi();
         }

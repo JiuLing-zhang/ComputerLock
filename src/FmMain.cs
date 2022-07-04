@@ -1,4 +1,7 @@
-﻿using JiuLing.Controls.WinForms;
+﻿using ComputerLock.Hooks;
+using JiuLing.CommonLibs.ExtensionMethods;
+using JiuLing.CommonLibs.Text;
+using JiuLing.Controls.WinForms;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -13,9 +16,12 @@ namespace ComputerLock
         {
             InitializeComponent();
         }
+
         private static System.Threading.Mutex _mutex;
+        private KeyboardHook _keyboardHook = new KeyboardHook();
         private void FmMain_Load(object sender, EventArgs e)
         {
+            this.Text = $"{AppBase.Name} v{AppBase.Version}";
             MessageBoxUtils.SetTitle(AppBase.Name);
 
             _mutex = new System.Threading.Mutex(true, AppBase.FriendlyName);
@@ -26,9 +32,17 @@ namespace ComputerLock
                 return;
             }
 
+            _keyboardHook.KeyPressed += _keyboardHook_KeyPressed;
+
             LoadAppConfig();
             AppConfigToUi();
         }
+
+        private void _keyboardHook_KeyPressed(object sender, KeyPressedEventArgs e)
+        {
+            DoLock();
+        }
+
         private void FmMain_Shown(object sender, EventArgs e)
         {
             this.WindowState = AppBase.Config.IsHideWindowWhenLaunch ? FormWindowState.Minimized : FormWindowState.Normal;
@@ -63,12 +77,64 @@ namespace ComputerLock
             ChkIsHideWindowWhenClose.Checked = AppBase.Config.IsHideWindowWhenClose;
             ChkIsAutoMoveMouse.Checked = AppBase.Config.IsAutoMoveMouse;
             UpdatePasswordTip();
+            UpdateShortcutKeyForLock();
         }
         private void UpdatePasswordTip()
         {
             if (AppBase.Config.IsPasswordChanged)
             {
                 LblPasswordTip.Visible = false;
+            }
+        }
+
+        public void UpdateShortcutKeyForLock()
+        {
+            if (AppBase.Config.ShortcutKeyForLock.IsEmpty())
+            {
+                try
+                {
+                    _keyboardHook.UnregisterHotKey();
+                }
+                catch (Exception ex)
+                {
+                    //MessageBoxUtils.ShowError($"取消快捷键失败：{ex.Message}");
+                }
+
+                LblShortcutKeyForLock.Text = "未设置";
+            }
+            else
+            {
+                try
+                {
+                    ModifierKeys keys = 0;
+                    if (AppBase.Config.ShortcutKeyForLock.IndexOf("Ctrl") >= 0)
+                    {
+                        keys = keys | Hooks.ModifierKeys.Control;
+                    }
+                    if (AppBase.Config.ShortcutKeyForLock.IndexOf("Shift") >= 0)
+                    {
+                        keys = keys | Hooks.ModifierKeys.Shift;
+                    }
+                    if (AppBase.Config.ShortcutKeyForLock.IndexOf("Alt") >= 0)
+                    {
+                        keys = keys | Hooks.ModifierKeys.Alt;
+                    }
+
+                    var result = RegexUtils.GetFirst(AppBase.Config.ShortcutKeyForLock, @"\d+");
+                    if (result.success == false)
+                    {
+                        throw new Exception("快捷键配置异常");
+                    }
+
+                    Keys key = (Keys)Convert.ToInt32(result.result);
+                    _keyboardHook.RegisterHotKey(keys, key);
+
+                    LblShortcutKeyForLock.Text = AppBase.Config.ShortcutKeyDisplayForLock;
+                }
+                catch (Exception ex)
+                {
+                    MessageBoxUtils.ShowError($"锁屏快捷键注册失败：{ex.Message}");
+                }
             }
         }
 
@@ -87,8 +153,10 @@ namespace ComputerLock
                 {
                     this.WindowState = FormWindowState.Minimized;
                     e.Cancel = true;
+                    return;
                 }
             }
+            _keyboardHook.Dispose();
         }
         private void Tray_Click(object sender, EventArgs e)
         {
@@ -118,9 +186,14 @@ namespace ComputerLock
 
         private void 锁定ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            DoLock();
+        }
+
+        private void DoLock()
+        {
             if (Screen.AllScreens.Length == 1)
             {
-                new FmLockScreen().Show();
+                new FmLockScreen().ShowDialog();
             }
             else
             {
@@ -182,7 +255,32 @@ namespace ComputerLock
             SaveAppConfig();
             UpdatePasswordTip();
             MessageBoxUtils.ShowInfo("修改成功");
-            return;
+        }
+
+        private void LblShortcutKeyForLock_Click(object sender, EventArgs e)
+        {
+            var fmShortcutKeySetting = new FmShortcutKeySetting();
+            if (fmShortcutKeySetting.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            AppBase.Config.ShortcutKeyForLock = fmShortcutKeySetting.ShortcutKey;
+            AppBase.Config.ShortcutKeyDisplayForLock = fmShortcutKeySetting.ShortcutKeyDisplay;
+            SaveAppConfig();
+            UpdateShortcutKeyForLock();
+        }
+
+        private void BtnClearShortcutKeyForLock_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("确定要删除锁屏快捷键吗", AppBase.Name, MessageBoxButtons.OKCancel) != DialogResult.OK)
+            {
+                return;
+            }
+            AppBase.Config.ShortcutKeyForLock = "";
+            AppBase.Config.ShortcutKeyDisplayForLock = "";
+            SaveAppConfig();
+            UpdateShortcutKeyForLock();
         }
     }
 }

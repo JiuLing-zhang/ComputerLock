@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using JiuLing.CommonLibs.ExtensionMethods;
+using JiuLing.Controls.WinForms;
 
 namespace ComputerLock
 {
@@ -32,19 +33,19 @@ namespace ComputerLock
             var passwordNew = TxtPasswordNew.Text;
             if (passwordNew.IsEmpty())
             {
-                MessageBox.Show("密码不能为空");
+                MessageBoxUtils.ShowError("密码不能为空");
                 return;
             }
 
             if (passwordNew != TxtPasswordNew2.Text)
             {
-                MessageBox.Show("新密码与确认密码不一致");
+                MessageBoxUtils.ShowError("新密码与确认密码不一致");
                 return;
             }
 
             if (AppBase.Config.Password != JiuLing.CommonLibs.Security.MD5Utils.GetStringValueToLower(password))
             {
-                MessageBox.Show("密码错误");
+                MessageBoxUtils.ShowError("密码错误");
                 return;
             }
 

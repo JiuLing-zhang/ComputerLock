@@ -48,7 +48,7 @@ namespace ComputerLock
             // 
             this.Tray.ContextMenuStrip = this.TrayMenu;
             this.Tray.Icon = ((System.Drawing.Icon)(resources.GetObject("Tray.Icon")));
-            this.Tray.Text = "透明锁屏";
+            this.Tray.Text = AppBase.Name;
             this.Tray.Visible = true;
             this.Tray.Click += new System.EventHandler(this.Tray_Click);
             this.Tray.DoubleClick += new System.EventHandler(this.Tray_DoubleClick);
@@ -149,7 +149,7 @@ namespace ComputerLock
             this.MaximizeBox = false;
             this.Name = "FmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "透明锁屏";
+            this.Text = AppBase.Name;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FmMain_FormClosing);
             this.Load += new System.EventHandler(this.FmMain_Load);
             this.Shown += new System.EventHandler(this.FmMain_Shown);

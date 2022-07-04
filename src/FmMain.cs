@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JiuLing.Controls.WinForms;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -15,6 +16,7 @@ namespace ComputerLock
 
         private void FmMain_Load(object sender, EventArgs e)
         {
+            MessageBoxUtils.SetTitle(AppBase.Name);
             LoadAppConfig();
             AppConfigToUi();
         }
@@ -170,7 +172,7 @@ namespace ComputerLock
             AppBase.Config.IsPasswordChanged = true;
             SaveAppConfig();
             UpdatePasswordTip();
-            MessageBox.Show("修改成功");
+            MessageBoxUtils.ShowInfo("修改成功");
             return;
         }
     }

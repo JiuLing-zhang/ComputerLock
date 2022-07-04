@@ -84,6 +84,7 @@ namespace ComputerLock
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FmLockScreen";
+            this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FmLockScreen_FormClosing);
             this.Load += new System.EventHandler(this.FmLockScreen_Load);

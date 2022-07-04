@@ -32,5 +32,14 @@ namespace ComputerLock
         /// 初始密码已修改
         /// </summary>
         public bool IsPasswordChanged { get; set; } = false;
+
+        /// <summary>
+        /// 锁屏快捷键
+        /// </summary>
+        public string ShortcutKeyForLock { get; set; }
+        /// <summary>
+        /// 锁屏快捷键
+        /// </summary>
+        public string ShortcutKeyDisplayForLock { get; set; }
     }
 }

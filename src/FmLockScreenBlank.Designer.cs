@@ -42,6 +42,7 @@ namespace ComputerLock
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FmLockScreenBlank";
+            this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FmLockScreenBlank_Load);
             this.ResumeLayout(false);

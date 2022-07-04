@@ -13,8 +13,8 @@ namespace ComputerLock
         /// App名称
         /// </summary>
         public static string Name { get; set; } = "透明锁屏";
- 
-        private static string FriendlyName { get; set; } = AppDomain.CurrentDomain.FriendlyName;
+
+        public static string FriendlyName { get; set; } = AppDomain.CurrentDomain.FriendlyName;
 
         /// <summary>
         /// App Data文件夹路径

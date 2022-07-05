@@ -21,7 +21,7 @@ namespace ComputerLock
         /// <summary>
         /// 自动移动鼠标
         /// </summary>
-        public bool IsAutoMoveMouse { get; set; } = true;
+        public bool IsDisableWindowsLock { get; set; } = true;
 
         /// <summary>
         /// 默认密码 1
@@ -41,5 +41,10 @@ namespace ComputerLock
         /// 锁屏快捷键
         /// </summary>
         public string ShortcutKeyDisplayForLock { get; set; }
+
+        /// <summary>
+        /// 自动检查更新
+        /// </summary>
+        public bool IsAutoCheckUpdate { get; set; } = false;
     }
 }

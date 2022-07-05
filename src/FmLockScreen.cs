@@ -102,7 +102,7 @@ namespace ComputerLock
         {
             try
             {
-                if (!AppBase.Config.IsAutoMoveMouse)
+                if (!AppBase.Config.IsDisableWindowsLock)
                 {
                     return;
                 }

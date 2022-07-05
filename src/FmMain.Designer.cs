@@ -37,13 +37,15 @@ namespace ComputerLock
             this.锁定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ChkIsHideWindowWhenLaunch = new System.Windows.Forms.CheckBox();
-            this.ChkIsAutoMoveMouse = new System.Windows.Forms.CheckBox();
+            this.ChkIsDisableWindowsLock = new System.Windows.Forms.CheckBox();
             this.ChkIsHideWindowWhenClose = new System.Windows.Forms.CheckBox();
             this.BtnPassword = new System.Windows.Forms.Button();
             this.LblPasswordTip = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnClearShortcutKeyForLock = new System.Windows.Forms.Button();
             this.LblShortcutKeyForLock = new System.Windows.Forms.Label();
+            this.ChkIsAutoCheckUpdate = new System.Windows.Forms.CheckBox();
+            this.LblCheckUpdate = new System.Windows.Forms.Label();
             this.TrayMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,16 +99,16 @@ namespace ComputerLock
             this.ChkIsHideWindowWhenLaunch.UseVisualStyleBackColor = true;
             this.ChkIsHideWindowWhenLaunch.CheckedChanged += new System.EventHandler(this.ChkIsHideWindowWhenLaunch_CheckedChanged);
             // 
-            // ChkIsAutoMoveMouse
+            // ChkIsDisableWindowsLock
             // 
-            this.ChkIsAutoMoveMouse.AutoSize = true;
-            this.ChkIsAutoMoveMouse.Location = new System.Drawing.Point(12, 66);
-            this.ChkIsAutoMoveMouse.Name = "ChkIsAutoMoveMouse";
-            this.ChkIsAutoMoveMouse.Size = new System.Drawing.Size(128, 21);
-            this.ChkIsAutoMoveMouse.TabIndex = 2;
-            this.ChkIsAutoMoveMouse.Text = "禁用Windows锁屏";
-            this.ChkIsAutoMoveMouse.UseVisualStyleBackColor = true;
-            this.ChkIsAutoMoveMouse.CheckedChanged += new System.EventHandler(this.ChkIsAutoMoveMouse_CheckedChanged);
+            this.ChkIsDisableWindowsLock.AutoSize = true;
+            this.ChkIsDisableWindowsLock.Location = new System.Drawing.Point(12, 66);
+            this.ChkIsDisableWindowsLock.Name = "ChkIsDisableWindowsLock";
+            this.ChkIsDisableWindowsLock.Size = new System.Drawing.Size(128, 21);
+            this.ChkIsDisableWindowsLock.TabIndex = 2;
+            this.ChkIsDisableWindowsLock.Text = "禁用Windows锁屏";
+            this.ChkIsDisableWindowsLock.UseVisualStyleBackColor = true;
+            this.ChkIsDisableWindowsLock.CheckedChanged += new System.EventHandler(this.ChkIsDisableWindowsLock_CheckedChanged);
             // 
             // ChkIsHideWindowWhenClose
             // 
@@ -121,18 +123,18 @@ namespace ComputerLock
             // 
             // BtnPassword
             // 
-            this.BtnPassword.Location = new System.Drawing.Point(12, 132);
+            this.BtnPassword.Location = new System.Drawing.Point(227, 146);
             this.BtnPassword.Name = "BtnPassword";
             this.BtnPassword.Size = new System.Drawing.Size(75, 23);
             this.BtnPassword.TabIndex = 3;
-            this.BtnPassword.Text = "设置密码";
+            this.BtnPassword.Text = "解锁密码";
             this.BtnPassword.UseVisualStyleBackColor = true;
             this.BtnPassword.Click += new System.EventHandler(this.BtnPassword_Click);
             // 
             // LblPasswordTip
             // 
             this.LblPasswordTip.AutoSize = true;
-            this.LblPasswordTip.Location = new System.Drawing.Point(93, 135);
+            this.LblPasswordTip.Location = new System.Drawing.Point(146, 149);
             this.LblPasswordTip.Name = "LblPasswordTip";
             this.LblPasswordTip.Size = new System.Drawing.Size(75, 17);
             this.LblPasswordTip.TabIndex = 4;
@@ -141,7 +143,7 @@ namespace ComputerLock
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 97);
+            this.label1.Location = new System.Drawing.Point(10, 120);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 17);
             this.label1.TabIndex = 5;
@@ -150,9 +152,9 @@ namespace ComputerLock
             // BtnClearShortcutKeyForLock
             // 
             this.BtnClearShortcutKeyForLock.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnClearShortcutKeyForLock.Location = new System.Drawing.Point(230, 94);
+            this.BtnClearShortcutKeyForLock.Location = new System.Drawing.Point(227, 117);
             this.BtnClearShortcutKeyForLock.Name = "BtnClearShortcutKeyForLock";
-            this.BtnClearShortcutKeyForLock.Size = new System.Drawing.Size(57, 23);
+            this.BtnClearShortcutKeyForLock.Size = new System.Drawing.Size(75, 23);
             this.BtnClearShortcutKeyForLock.TabIndex = 7;
             this.BtnClearShortcutKeyForLock.Text = "清除";
             this.BtnClearShortcutKeyForLock.UseVisualStyleBackColor = true;
@@ -160,12 +162,10 @@ namespace ComputerLock
             // 
             // LblShortcutKeyForLock
             // 
-            this.LblShortcutKeyForLock.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.LblShortcutKeyForLock.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.LblShortcutKeyForLock.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LblShortcutKeyForLock.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.LblShortcutKeyForLock.Location = new System.Drawing.Point(86, 97);
+            this.LblShortcutKeyForLock.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.LblShortcutKeyForLock.Location = new System.Drawing.Point(84, 120);
             this.LblShortcutKeyForLock.Name = "LblShortcutKeyForLock";
             this.LblShortcutKeyForLock.Size = new System.Drawing.Size(138, 17);
             this.LblShortcutKeyForLock.TabIndex = 8;
@@ -173,18 +173,43 @@ namespace ComputerLock
             this.LblShortcutKeyForLock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.LblShortcutKeyForLock.Click += new System.EventHandler(this.LblShortcutKeyForLock_Click);
             // 
+            // ChkIsAutoCheckUpdate
+            // 
+            this.ChkIsAutoCheckUpdate.AutoSize = true;
+            this.ChkIsAutoCheckUpdate.Location = new System.Drawing.Point(12, 93);
+            this.ChkIsAutoCheckUpdate.Name = "ChkIsAutoCheckUpdate";
+            this.ChkIsAutoCheckUpdate.Size = new System.Drawing.Size(99, 21);
+            this.ChkIsAutoCheckUpdate.TabIndex = 9;
+            this.ChkIsAutoCheckUpdate.Text = "自动检查更新";
+            this.ChkIsAutoCheckUpdate.UseVisualStyleBackColor = true;
+            this.ChkIsAutoCheckUpdate.CheckedChanged += new System.EventHandler(this.ChkIsAutoCheckUpdate_CheckedChanged);
+            // 
+            // LblCheckUpdate
+            // 
+            this.LblCheckUpdate.AutoSize = true;
+            this.LblCheckUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LblCheckUpdate.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.LblCheckUpdate.Location = new System.Drawing.Point(128, 94);
+            this.LblCheckUpdate.Name = "LblCheckUpdate";
+            this.LblCheckUpdate.Size = new System.Drawing.Size(56, 17);
+            this.LblCheckUpdate.TabIndex = 10;
+            this.LblCheckUpdate.Text = "检查更新";
+            this.LblCheckUpdate.Click += new System.EventHandler(this.LblCheckUpdate_Click);
+            // 
             // FmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(299, 167);
+            this.ClientSize = new System.Drawing.Size(316, 182);
+            this.Controls.Add(this.LblCheckUpdate);
+            this.Controls.Add(this.ChkIsAutoCheckUpdate);
             this.Controls.Add(this.LblShortcutKeyForLock);
             this.Controls.Add(this.BtnClearShortcutKeyForLock);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LblPasswordTip);
             this.Controls.Add(this.BtnPassword);
             this.Controls.Add(this.ChkIsHideWindowWhenClose);
-            this.Controls.Add(this.ChkIsAutoMoveMouse);
+            this.Controls.Add(this.ChkIsDisableWindowsLock);
             this.Controls.Add(this.ChkIsHideWindowWhenLaunch);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -208,13 +233,15 @@ namespace ComputerLock
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 锁定ToolStripMenuItem;
         private System.Windows.Forms.CheckBox ChkIsHideWindowWhenLaunch;
-        private System.Windows.Forms.CheckBox ChkIsAutoMoveMouse;
+        private System.Windows.Forms.CheckBox ChkIsDisableWindowsLock;
         private System.Windows.Forms.CheckBox ChkIsHideWindowWhenClose;
         private System.Windows.Forms.Button BtnPassword;
         private System.Windows.Forms.Label LblPasswordTip;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnClearShortcutKeyForLock;
         private System.Windows.Forms.Label LblShortcutKeyForLock;
+        private System.Windows.Forms.CheckBox ChkIsAutoCheckUpdate;
+        private System.Windows.Forms.Label LblCheckUpdate;
     }
 }
 

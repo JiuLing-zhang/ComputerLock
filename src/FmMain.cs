@@ -1,4 +1,5 @@
 ﻿using ComputerLock.Hooks;
+using JiuLing.AutoUpgrade.Shell;
 using JiuLing.CommonLibs.ExtensionMethods;
 using JiuLing.CommonLibs.Text;
 using JiuLing.Controls.WinForms;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ComputerLock
@@ -36,6 +38,10 @@ namespace ComputerLock
 
             LoadAppConfig();
             AppConfigToUi();
+            if (AppBase.Config.IsAutoCheckUpdate)
+            {
+                CheckUpdate(true);
+            }
         }
 
         private void _keyboardHook_KeyPressed(object sender, KeyPressedEventArgs e)
@@ -75,7 +81,8 @@ namespace ComputerLock
         {
             ChkIsHideWindowWhenLaunch.Checked = AppBase.Config.IsHideWindowWhenLaunch;
             ChkIsHideWindowWhenClose.Checked = AppBase.Config.IsHideWindowWhenClose;
-            ChkIsAutoMoveMouse.Checked = AppBase.Config.IsAutoMoveMouse;
+            ChkIsDisableWindowsLock.Checked = AppBase.Config.IsDisableWindowsLock;
+            ChkIsAutoCheckUpdate.Checked = AppBase.Config.IsAutoCheckUpdate;
             UpdatePasswordTip();
             UpdateShortcutKeyForLock();
         }
@@ -137,7 +144,24 @@ namespace ComputerLock
                 }
             }
         }
-
+        private async Task CheckUpdate(bool isBackgroundCheck)
+        {
+            await Task.Run(() =>
+            {
+                if (AppBase.UpdateUrl.IsEmpty())
+                {
+                    return;
+                }
+                AutoUpgradeFactory.Create()
+                .UseHttpMode(AppBase.UpdateUrl)
+                .SetUpgrade(config =>
+                {
+                    config.IsBackgroundCheck = isBackgroundCheck;
+                    config.IsCheckSign = true;
+                })
+                .Run();
+            });
+        }
         private void FmMain_Resize(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Minimized)
@@ -227,9 +251,9 @@ namespace ComputerLock
             SaveAppConfig();
         }
 
-        private void ChkIsAutoMoveMouse_CheckedChanged(object sender, EventArgs e)
+        private void ChkIsDisableWindowsLock_CheckedChanged(object sender, EventArgs e)
         {
-            AppBase.Config.IsAutoMoveMouse = ChkIsAutoMoveMouse.Checked;
+            AppBase.Config.IsDisableWindowsLock = ChkIsDisableWindowsLock.Checked;
             SaveAppConfig();
         }
 
@@ -238,7 +262,11 @@ namespace ComputerLock
             AppBase.Config.IsHideWindowWhenClose = ChkIsHideWindowWhenClose.Checked;
             SaveAppConfig();
         }
-
+        private void ChkIsAutoCheckUpdate_CheckedChanged(object sender, EventArgs e)
+        {
+            AppBase.Config.IsAutoCheckUpdate = ChkIsAutoCheckUpdate.Checked;
+            SaveAppConfig();
+        }
         private void BtnPassword_Click(object sender, EventArgs e)
         {
             var fmPassword = new FmPassword();
@@ -278,6 +306,11 @@ namespace ComputerLock
             AppBase.Config.ShortcutKeyDisplayForLock = "";
             SaveAppConfig();
             UpdateShortcutKeyForLock();
+        }
+
+        private async void LblCheckUpdate_Click(object sender, EventArgs e)
+        {
+            await CheckUpdate(false);
         }
     }
 }

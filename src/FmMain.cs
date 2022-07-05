@@ -191,30 +191,27 @@ namespace ComputerLock
 
         private void DoLock()
         {
-            if (Screen.AllScreens.Length == 1)
+            var otherScreens = new List<FmLockScreenBlank>();
+            if (Screen.AllScreens.Length > 1)
             {
-                new FmLockScreen().ShowDialog();
-            }
-            else
-            {
-                var screens = new List<FmLockScreenBlank>();
                 for (int i = 1; i <= Screen.AllScreens.Length - 1; i++)
                 {
                     var otherScreen = new FmLockScreenBlank();
                     setFormLocation(otherScreen, Screen.AllScreens[i]);
                     otherScreen.Show();
-
-                    screens.Add(otherScreen);
+                    otherScreen.Activate();
+                    otherScreens.Add(otherScreen);
                 }
+            }
 
-                var mainScreen = new FmLockScreen();
-                setFormLocation(mainScreen, Screen.AllScreens[0]);
-                mainScreen.ShowDialog();
+            var mainScreen = new FmLockScreen();
+            setFormLocation(mainScreen, Screen.AllScreens[0]);
+            mainScreen.Activate();
+            mainScreen.ShowDialog();
 
-                foreach (var screen in screens)
-                {
-                    screen.Close();
-                }
+            foreach (var screen in otherScreens)
+            {
+                screen.Close();
             }
         }
 

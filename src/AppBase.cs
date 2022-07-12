@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ComputerLock
@@ -33,9 +29,5 @@ namespace ComputerLock
 
         public static AppConfigInfo Config { get; set; }
         public static string Version { get; set; } = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString();
-        /// <summary>
-        /// 自动更新地址
-        /// </summary>
-        public static string UpdateUrl { get; set; } = "";
     }
 }

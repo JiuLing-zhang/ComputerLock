@@ -83,8 +83,13 @@ namespace ComputerLock
             ChkIsHideWindowWhenClose.Checked = AppBase.Config.IsHideWindowWhenClose;
             ChkIsDisableWindowsLock.Checked = AppBase.Config.IsDisableWindowsLock;
             ChkIsAutoCheckUpdate.Checked = AppBase.Config.IsAutoCheckUpdate;
+            UpdateAutostartUi();
             UpdatePasswordTip();
             UpdateShortcutKeyForLock();
+        }
+        private void UpdateAutostartUi()
+        {
+            ChkIsAutostart.Checked = AutostartHook.IsAutostart();
         }
         private void UpdatePasswordTip()
         {
@@ -244,7 +249,17 @@ namespace ComputerLock
             Rectangle bounds = screen.Bounds;
             form.SetBounds(bounds.X, bounds.Y, bounds.Width, bounds.Height);
         }
-
+        private void ChkIsAutostart_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ChkIsAutostart.Checked)
+            {
+                AutostartHook.EnabledAutostart();
+            }
+            else
+            {
+                AutostartHook.DisabledAutostart();
+            }
+        }
         private void ChkIsHideWindowWhenLaunch_CheckedChanged(object sender, EventArgs e)
         {
             AppBase.Config.IsHideWindowWhenLaunch = ChkIsHideWindowWhenLaunch.Checked;

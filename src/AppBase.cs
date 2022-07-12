@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ComputerLock
 {
@@ -13,6 +14,11 @@ namespace ComputerLock
         /// App名称
         /// </summary>
         public static string Name { get; set; } = "透明锁屏";
+
+        /// <summary>
+        /// App路径（包含文件名）
+        /// </summary>
+        public static string ExecutablePath { get; set; } = Application.ExecutablePath;
 
         public static string FriendlyName { get; set; } = AppDomain.CurrentDomain.FriendlyName;
 

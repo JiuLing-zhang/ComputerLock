@@ -1,4 +1,5 @@
 ﻿using ComputerLock.Hooks;
+using ComputerLock.resource;
 using JiuLing.AutoUpgrade.Shell;
 using JiuLing.CommonLibs.ExtensionMethods;
 using JiuLing.CommonLibs.Text;
@@ -153,12 +154,13 @@ namespace ComputerLock
         {
             await Task.Run(() =>
             {
-                if (AppBase.UpdateUrl.IsEmpty())
+                var autoUpgradePath = Resource.AutoUpgradePath;
+                if (autoUpgradePath.IsEmpty())
                 {
                     return;
                 }
                 AutoUpgradeFactory.Create()
-                .UseHttpMode(AppBase.UpdateUrl)
+                .UseHttpMode(autoUpgradePath)
                 .SetUpgrade(config =>
                 {
                     config.IsBackgroundCheck = isBackgroundCheck;

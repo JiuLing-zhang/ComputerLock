@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<Authors>九零</Authors>
 		<Product>透明锁屏</Product>
-		<Version>1.2.0.4</Version>
+		<Version>1.2.1.5</Version>
 
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net6.0-windows</TargetFramework>
@@ -16,6 +16,21 @@
 		<PackageReference Include="JiuLing.AutoUpgrade" Version="1.2.4" />
 		<PackageReference Include="JiuLing.CommonLibs" Version="1.2.6" />
 		<PackageReference Include="JiuLing.Controls.WinForms" Version="0.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="resource\Resource.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Resource.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="resource\Resource.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>

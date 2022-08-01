@@ -21,7 +21,7 @@ namespace ComputerLock
         }
 
         private static System.Threading.Mutex _mutex;
-        private KeyboardHook _keyboardHook = new KeyboardHook();
+        private readonly KeyboardHook _keyboardHook = new KeyboardHook();
         private void FmMain_Load(object sender, EventArgs e)
         {
             this.Text = $"{AppBase.Name} v{AppBase.Version}";
@@ -220,8 +220,14 @@ namespace ComputerLock
             DoLock();
         }
 
+        private bool _isLocked = false;
         private void DoLock()
         {
+            if (_isLocked)
+            {
+                return;
+            }
+            _isLocked = true;
             var otherScreens = new List<FmLockScreenBlank>();
             if (Screen.AllScreens.Length > 1)
             {
@@ -244,6 +250,7 @@ namespace ComputerLock
             {
                 screen.Close();
             }
+            _isLocked = false;
         }
 
         private void setFormLocation(Form form, Screen screen)

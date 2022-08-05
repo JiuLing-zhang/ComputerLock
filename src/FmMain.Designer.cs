@@ -202,9 +202,9 @@ namespace ComputerLock
             this.ChkIsAutostart.AutoSize = true;
             this.ChkIsAutostart.Location = new System.Drawing.Point(10, 12);
             this.ChkIsAutostart.Name = "ChkIsAutostart";
-            this.ChkIsAutostart.Size = new System.Drawing.Size(111, 21);
+            this.ChkIsAutostart.Size = new System.Drawing.Size(195, 21);
             this.ChkIsAutostart.TabIndex = 0;
-            this.ChkIsAutostart.Text = "开机时自动启动";
+            this.ChkIsAutostart.Text = "开机时自动启动（对所有用户）";
             this.ChkIsAutostart.UseVisualStyleBackColor = true;
             this.ChkIsAutostart.CheckedChanged += new System.EventHandler(this.ChkIsAutostart_CheckedChanged);
             // 

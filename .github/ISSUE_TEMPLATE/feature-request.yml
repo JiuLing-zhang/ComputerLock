@@ -1,0 +1,27 @@
+name: 功能建议
+description: 提议一个好的想法，帮我们完善程序
+labels: [功能建议]
+assignees: [JiuLing-zhang]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: 功能描述
+      description: 用简短的话描述下功能建议。
+      placeholder: 功能描述
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: 解决方案
+      description: 请描述下你理想的解决方案是什么。
+      placeholder: 解决方案
+    validations:
+      required: true
+  - type: textarea
+    id: remark
+    attributes:
+      label: 补充说明
+      description: 如果还有其它需要补充的，请说明。
+      placeholder: 补充说明

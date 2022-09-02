@@ -1,0 +1,47 @@
+name: 报告错误
+description: 报告一个错误
+labels: [错误]
+assignees: [JiuLing-zhang]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述
+      description: 请简短描述下你所遇到的错误。
+      placeholder: 问题描述
+    validations:
+      required: true
+  - type: textarea
+    id: repro-steps
+    attributes:
+      label: 重现步骤
+      description: 请描述问题出现的操作步骤。
+      placeholder: | 
+        1. 点击"按钮A"
+        2. 点击"按钮B"
+        3. 出现错误  
+    validations:
+      required: true
+  - type: textarea
+    id: remark
+    attributes:
+      label: 问题补充
+      description: 如果可以，请补充提供下错误截图等。
+      placeholder: 问题补充
+  - type: input
+    id: os
+    attributes:
+      label: 操作系统
+      description: 请提供错误出现的操作系统。
+      placeholder: 例如 Windows 10、Windows 11
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: 程序版本
+      description: 错误出现在哪个版本中。
+      options:
+        - 1.2.0.4（当前版本）
+    validations:
+      required: true

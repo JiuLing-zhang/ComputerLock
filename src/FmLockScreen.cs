@@ -98,6 +98,14 @@ namespace ComputerLock
             this.panel1.Top = this.Height / 2 - this.panel1.Height / 2;
         }
 
+        private void TxtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                TxtPassword.Text = "";
+            }
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             try

@@ -47,6 +47,7 @@ namespace ComputerLock
             this.TxtPassword.Size = new System.Drawing.Size(158, 23);
             this.TxtPassword.TabIndex = 0;
             this.TxtPassword.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.TxtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPassword_KeyDown);
             // 
             // label1
             // 

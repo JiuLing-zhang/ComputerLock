@@ -61,7 +61,7 @@ namespace ComputerLock.resource {
         }
         
         /// <summary>
-        ///   查找类似 http://162.14.66.2:9090/api/app/computer-lock/windows 的本地化字符串。
+        ///   查找类似  的本地化字符串。
         /// </summary>
         internal static string AutoUpgradePath {
             get {

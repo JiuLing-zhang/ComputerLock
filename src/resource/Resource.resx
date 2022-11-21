@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AutoUpgradePath" xml:space="preserve">
-    <value>http://162.14.66.2:9090/api/app/computer-lock/windows</value>
+    <value />
   </data>
 </root>

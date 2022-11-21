@@ -128,7 +128,7 @@ namespace ComputerLock
             this.BtnPassword.Name = "BtnPassword";
             this.BtnPassword.Size = new System.Drawing.Size(75, 23);
             this.BtnPassword.TabIndex = 3;
-            this.BtnPassword.Text = "解锁密码";
+            this.BtnPassword.Text = "设置密码";
             this.BtnPassword.UseVisualStyleBackColor = true;
             this.BtnPassword.Click += new System.EventHandler(this.BtnPassword_Click);
             // 

@@ -1,0 +1,44 @@
+name: release-job
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 7.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore -c release
+
+      - name: Get version
+        uses: olegtarasov/get-tag@v2.1
+        id: tagName
+
+      - name: Create zip
+        shell: pwsh
+        # 配置【编译后的文件地址】
+        run: Compress-Archive -Path .\src\bin\Release\net7.0-windows\* -DestinationPath .\src\bin\Release\ComputerLock_${{ steps.tagName.outputs.tag }}.zip
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          # 配置【README地址】
+          body: |
+            Release为自动生成，具体内容请查看提交日志，或直接查看[README](https://github.com/JiuLing-zhang/ComputerLock#readme)
+          # 配置【zip文件地址】
+          files: .\src\bin\Release\ComputerLock_${{ steps.tagName.outputs.tag }}.zip

@@ -336,5 +336,13 @@ namespace ComputerLock
         {
             await CheckUpdate(false);
         }
+
+        private void FmMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.WindowState = FormWindowState.Minimized;
+            }
+        }
     }
 }

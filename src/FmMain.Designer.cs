@@ -225,10 +225,12 @@ namespace ComputerLock
             this.Controls.Add(this.ChkIsAutostart);
             this.Controls.Add(this.ChkIsHideWindowWhenLaunch);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "FmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "透明锁屏";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FmMain_KeyDown);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FmMain_FormClosing);
             this.Load += new System.EventHandler(this.FmMain_Load);
             this.Shown += new System.EventHandler(this.FmMain_Shown);

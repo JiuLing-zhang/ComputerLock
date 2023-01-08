@@ -42,7 +42,8 @@ body:
       label: 程序版本
       description: 错误出现在哪个版本中。
       options:
-        - 1.2.4.8
-        - 1.2.0.4
+        - 1.2.7
+        - 1.2.6
+        - 更早
     validations:
       required: true

@@ -6,6 +6,7 @@ using JiuLing.CommonLibs.Text;
 using JiuLing.Controls.WinForms;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
@@ -343,6 +344,27 @@ namespace ComputerLock
             {
                 this.WindowState = FormWindowState.Minimized;
             }
+        }
+
+        private void pictureBoxGitHub_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using var p = new Process();
+                p.StartInfo.FileName = Resource.GitHubUrl;
+                p.StartInfo.UseShellExecute = true;
+                p.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"浏览器启动失败：{ex.Message}");
+            }
+        }
+
+        private void pictureBoxGitHub_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip toolTip1 = new ToolTip();
+            toolTip1.SetToolTip(pictureBoxGitHub, "GitHub : 九零");
         }
     }
 }

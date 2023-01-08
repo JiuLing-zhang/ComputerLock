@@ -120,4 +120,11 @@
   <data name="AutoUpgradePath" xml:space="preserve">
     <value>http://162.14.66.2:9000/api/app/cdbd0b29d200c61ace8a1ff74605b775/windows</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="github" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>github.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GitHubUrl" xml:space="preserve">
+    <value>https://github.com/JiuLing-zhang/ComputerLock</value>
+  </data>
 </root>

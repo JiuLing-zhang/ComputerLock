@@ -17,6 +17,11 @@ internal class AppConfigInfo
     public bool IsDisableWindowsLock { get; set; } = true;
 
     /// <summary>
+    /// 密码框的位置
+    /// </summary>
+    public ScreenLocationEnum PasswordInputLocation { get; set; } = ScreenLocationEnum.Center;
+
+    /// <summary>
     /// 默认密码 1
     /// </summary>
     public string Password { get; set; } = "c4ca4238a0b923820dcc509a6f75849b";
@@ -31,7 +36,7 @@ internal class AppConfigInfo
     /// </summary>
     public string ShortcutKeyForLock { get; set; }
     /// <summary>
-    /// 锁屏快捷键
+    /// 锁屏快捷键(映射到按键名称，用于主界面显示)
     /// </summary>
     public string ShortcutKeyDisplayForLock { get; set; }
 

@@ -86,6 +86,7 @@ namespace ComputerLock
             ChkIsDisableWindowsLock.Checked = AppBase.Config.IsDisableWindowsLock;
             ChkIsAutoCheckUpdate.Checked = AppBase.Config.IsAutoCheckUpdate;
             UpdateAutostartUi();
+            UpdatePasswordInputLocation();
             UpdatePasswordTip();
             UpdateShortcutKeyForLock();
         }
@@ -93,6 +94,13 @@ namespace ComputerLock
         {
             ChkIsAutostart.Checked = AutostartHook.IsAutostart();
         }
+
+        private void UpdatePasswordInputLocation()
+        {
+            int selectedIndex = (int)AppBase.Config.PasswordInputLocation;
+            ComboBoxPasswordInputLocation.SelectedIndex = selectedIndex;
+        }
+
         private void UpdatePasswordTip()
         {
             if (AppBase.Config.IsPasswordChanged)
@@ -365,6 +373,12 @@ namespace ComputerLock
         {
             ToolTip toolTip1 = new ToolTip();
             toolTip1.SetToolTip(pictureBoxGitHub, "GitHub : 九零");
+        }
+
+        private void ComboBoxPasswordInputLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AppBase.Config.PasswordInputLocation = (ScreenLocationEnum)ComboBoxPasswordInputLocation.SelectedIndex;
+            SaveAppConfig();
         }
     }
 }

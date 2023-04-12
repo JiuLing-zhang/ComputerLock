@@ -94,8 +94,33 @@ namespace ComputerLock
         }
         private void FmLockScreen_Resize(object sender, EventArgs e)
         {
-            this.panel1.Left = this.Width / 2 - this.panel1.Width / 2;
-            this.panel1.Top = this.Height / 2 - this.panel1.Height / 2;
+            switch (AppBase.Config.PasswordInputLocation)
+            {
+                case ScreenLocationEnum.Center:
+                    panel1.Top = this.Height / 2 - this.panel1.Height / 2;
+                    panel1.Left = this.Width / 2 - this.panel1.Width / 2;
+                    break;
+                case ScreenLocationEnum.TopLeft:
+                    panel1.Top = 0;
+                    panel1.Left = 0;
+                    break;
+                case ScreenLocationEnum.TopRight:
+                    panel1.Top = 0;
+                    panel1.Left = this.Width - this.panel1.Width;
+                    break;
+                case ScreenLocationEnum.BottomLeft:
+                    panel1.Top = this.Height - this.panel1.Height;
+                    panel1.Left = 0;
+                    break;
+                case ScreenLocationEnum.BottomRight:
+                    panel1.Top = this.Height - this.panel1.Height;
+                    panel1.Left = this.Width - this.panel1.Width;
+                    break;
+                default:
+                    panel1.Top = this.Height / 2 - this.panel1.Height / 2;
+                    panel1.Left = this.Width / 2 - this.panel1.Width / 2;
+                    break;
+            }
         }
 
         private void TxtPassword_KeyDown(object sender, KeyEventArgs e)

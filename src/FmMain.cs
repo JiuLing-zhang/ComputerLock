@@ -25,7 +25,9 @@ namespace ComputerLock
         private readonly KeyboardHook _keyboardHook = new KeyboardHook();
         private void FmMain_Load(object sender, EventArgs e)
         {
-            this.Text = $"{AppBase.Name} v{AppBase.Version}";
+            this.Text = $"{AppBase.Name}";
+            var version = AppBase.Version;
+            LblVersion.Text = $"v{version.Substring(0, version.LastIndexOf("."))}";
             MessageBoxUtils.SetTitle(AppBase.Name);
 
             _mutex = new System.Threading.Mutex(true, AppBase.FriendlyName);

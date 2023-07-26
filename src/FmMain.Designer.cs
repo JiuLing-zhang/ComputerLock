@@ -50,6 +50,7 @@ namespace ComputerLock
             pictureBoxGitHub = new System.Windows.Forms.PictureBox();
             label2 = new System.Windows.Forms.Label();
             ComboBoxPasswordInputLocation = new System.Windows.Forms.ComboBox();
+            LblVersion = new System.Windows.Forms.Label();
             TrayMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxGitHub).BeginInit();
             SuspendLayout();
@@ -139,7 +140,7 @@ namespace ComputerLock
             // 
             LblPasswordTip.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             LblPasswordTip.AutoSize = true;
-            LblPasswordTip.Location = new System.Drawing.Point(205, 207);
+            LblPasswordTip.Location = new System.Drawing.Point(205, 210);
             LblPasswordTip.Name = "LblPasswordTip";
             LblPasswordTip.Size = new System.Drawing.Size(75, 17);
             LblPasswordTip.TabIndex = 9;
@@ -248,11 +249,22 @@ namespace ComputerLock
             ComboBoxPasswordInputLocation.TabIndex = 13;
             ComboBoxPasswordInputLocation.SelectedIndexChanged += ComboBoxPasswordInputLocation_SelectedIndexChanged;
             // 
+            // LblVersion
+            // 
+            LblVersion.AutoSize = true;
+            LblVersion.ForeColor = System.Drawing.SystemColors.Highlight;
+            LblVersion.Location = new System.Drawing.Point(10, 210);
+            LblVersion.Name = "LblVersion";
+            LblVersion.Size = new System.Drawing.Size(44, 17);
+            LblVersion.TabIndex = 14;
+            LblVersion.Text = "版本号";
+            // 
             // FmMain
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(370, 236);
+            ClientSize = new System.Drawing.Size(370, 232);
+            Controls.Add(LblVersion);
             Controls.Add(ComboBoxPasswordInputLocation);
             Controls.Add(label2);
             Controls.Add(pictureBoxGitHub);
@@ -267,6 +279,7 @@ namespace ComputerLock
             Controls.Add(ChkIsDisableWindowsLock);
             Controls.Add(ChkIsAutostart);
             Controls.Add(ChkIsHideWindowWhenLaunch);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
             MaximizeBox = false;
@@ -304,6 +317,7 @@ namespace ComputerLock
         private System.Windows.Forms.PictureBox pictureBoxGitHub;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox ComboBoxPasswordInputLocation;
+        private System.Windows.Forms.Label LblVersion;
     }
 }
 

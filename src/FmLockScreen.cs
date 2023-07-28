@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using JiuLing.CommonLibs.ExtensionMethods;
+using System;
 using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using JiuLing.CommonLibs.ExtensionMethods;
 
 namespace ComputerLock
 {
@@ -20,7 +13,10 @@ namespace ComputerLock
             InitializeComponent();
         }
 
-        private bool _isLocked = true;
+        private bool _isLocked;
+        private DateTime _hideSelfTime;
+        private int _hideSelfSecond = 3;
+        public event EventHandler<EventArgs>? OnUnlock;
 
         /// <summary>
         /// 引用user32.dll动态链接库（windows api），
@@ -35,62 +31,66 @@ namespace ComputerLock
         {
             SetCursorPos(p.X, p.Y);
         }
-        /// <summary>
-        /// 设置鼠标的移动范围
-        /// </summary>
-        public void SetMouseRectangle(Rectangle rectangle)
-        {
-            System.Windows.Forms.Cursor.Clip = rectangle;
-        }
+
         //点击事件
         [DllImport("User32")]
-        //下面这一行对应着下面的点击事件
-        //    public extern static void mouse_event(int dwFlags, int dx, int dy, int dwData, IntPtr dwExtraInfo);
-        public extern static void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
-        public const int MOUSEEVENTF_LEFTDOWN = 0x2;
-        public const int MOUSEEVENTF_LEFTUP = 0x4;
-        public enum MouseEventFlags
-        {
-            Move = 0x0001, //移动鼠标
-            LeftDown = 0x0002,//模拟鼠标左键按下
-            LeftUp = 0x0004,//模拟鼠标左键抬起
-            RightDown = 0x0008,//鼠标右键按下
-            RightUp = 0x0010,//鼠标右键抬起
-            MiddleDown = 0x0020,//鼠标中键按下 
-            MiddleUp = 0x0040,//中键抬起
-            Wheel = 0x0800,
-            Absolute = 0x8000//标示是否采用绝对坐标
-        }
-        //鼠标将要到的x，y位置
-        public static int loginx, loginy;
+        public static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
+        public const int MOUSEEVENTF_LEFTDOWN = 0x0002;
+        public const int MOUSEEVENTF_LEFTUP = 0x0004;
+        public const int MOUSEEVENTF_RIGHTDOWN = 0x0008;
+        public const int MOUSEEVENTF_RIGHTUP = 0x0010;
+
         private void FmLockScreen_Load(object sender, EventArgs e)
         {
-            TaskManagerHook.DisabledTaskManager();
+            System.Diagnostics.Debug.WriteLine("密码窗口载入~~~~~~~~~~~~");
             timer1.Start();
         }
+
+        public void Open()
+        {
+            System.Diagnostics.Debug.WriteLine("密码窗口载入");
+            if (this.Visible)
+            {
+                return;
+            }
+            _isLocked = true;
+            TxtPassword.Text = "";
+            LblMessage.Text = $"{_hideSelfSecond} 秒后隐藏";
+            LblMessage.Visible = AppBase.Config.IsHidePasswordWindow;
+            RefreshHideSelfTime();
+            this.Show();
+            this.Activate();
+        }
+
         protected override void OnPaintBackground(PaintEventArgs e) { /* Ignore */ }
         private void FmLockScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (_isLocked)
             {
+                System.Diagnostics.Debug.WriteLine("取消密码屏幕关闭");
                 e.Cancel = true;
             }
+            System.Diagnostics.Debug.WriteLine("密码屏幕关闭");
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            RefreshHideSelfTime();
             var txt = TxtPassword.Text;
             if (txt.IsEmpty())
             {
                 return;
             }
-            if (AppBase.Config.Password == JiuLing.CommonLibs.Security.MD5Utils.GetStringValueToLower(txt))
+
+            if (AppBase.Config.Password != JiuLing.CommonLibs.Security.MD5Utils.GetStringValueToLower(txt))
             {
-                _isLocked = false;
-                TaskManagerHook.EnabledTaskManager();
-                timer1.Stop();
-                this.Close();
+                return;
             }
+            System.Diagnostics.Debug.WriteLine("准备解锁屏幕");
+
+            HideSelf();
+            _isLocked = false;
+            OnUnlock?.Invoke(this, EventArgs.Empty);
         }
         private void FmLockScreen_Resize(object sender, EventArgs e)
         {
@@ -135,22 +135,57 @@ namespace ComputerLock
         {
             try
             {
-                if (!AppBase.Config.IsDisableWindowsLock)
+                if (!_isLocked)
                 {
                     return;
                 }
+                var time = DateTime.Now;
+                if (time.Second % 30 == 0)
+                {
+                    if (AppBase.Config.IsDisableWindowsLock)
+                    {
+                        DoMoveMouse();
+                    }
+                }
 
-                var random = new Random();
-                var x = random.Next(0, 100);
-                var y = random.Next(0, 100);
+                if (AppBase.Config.IsHidePasswordWindow)
+                {
+                    var hideCountdown = Convert.ToInt32(_hideSelfTime.Subtract(time).TotalSeconds);
+                    LblMessage.Text = $"{hideCountdown} 秒后隐藏";
+                    if (hideCountdown <= 0)
+                    {
+                        HideSelf();
+                    }
+                }
 
-                MoveMouseToPoint(new Point(x, y));
-                mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, x, y, 0, 0);
             }
             catch (Exception ex)
             {
 
             }
+        }
+
+        private void DoMoveMouse()
+        {
+            var random = new Random();
+            var x = random.Next(0, 100);
+            var y = random.Next(0, 100);
+
+            MoveMouseToPoint(new Point(x, y));
+            mouse_event(MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP, x, y, 0, 0);
+        }
+        private void HideSelf()
+        {
+            System.Diagnostics.Debug.WriteLine("准备隐藏密码框");
+            if (this.Visible)
+            {
+                this.Hide();
+            }
+        }
+
+        private void RefreshHideSelfTime()
+        {
+            _hideSelfTime = DateTime.Now.AddSeconds(_hideSelfSecond);
         }
     }
 }

@@ -29,71 +29,80 @@ namespace ComputerLock
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.TxtPassword = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.panel1.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            TxtPassword = new System.Windows.Forms.TextBox();
+            label1 = new System.Windows.Forms.Label();
+            panel1 = new System.Windows.Forms.Panel();
+            LblMessage = new System.Windows.Forms.Label();
+            timer1 = new System.Windows.Forms.Timer(components);
+            panel1.SuspendLayout();
+            SuspendLayout();
             // 
             // TxtPassword
             // 
-            this.TxtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtPassword.Location = new System.Drawing.Point(41, 3);
-            this.TxtPassword.Name = "TxtPassword";
-            this.TxtPassword.PasswordChar = '*';
-            this.TxtPassword.Size = new System.Drawing.Size(158, 23);
-            this.TxtPassword.TabIndex = 0;
-            this.TxtPassword.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            this.TxtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPassword_KeyDown);
+            TxtPassword.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            TxtPassword.Location = new System.Drawing.Point(3, 3);
+            TxtPassword.Name = "TxtPassword";
+            TxtPassword.PasswordChar = '*';
+            TxtPassword.Size = new System.Drawing.Size(162, 23);
+            TxtPassword.TabIndex = 0;
+            TxtPassword.TextChanged += textBox1_TextChanged;
+            TxtPassword.KeyDown += TxtPassword_KeyDown;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 17);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "密码";
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(3, 29);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(68, 17);
+            label1.TabIndex = 1;
+            label1.Text = "请输入密码";
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Lavender;
-            this.panel1.Controls.Add(this.TxtPassword);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(78, 92);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(202, 30);
-            this.panel1.TabIndex = 2;
+            panel1.BackColor = System.Drawing.Color.Lavender;
+            panel1.Controls.Add(LblMessage);
+            panel1.Controls.Add(TxtPassword);
+            panel1.Controls.Add(label1);
+            panel1.Location = new System.Drawing.Point(72, 92);
+            panel1.Name = "panel1";
+            panel1.Size = new System.Drawing.Size(168, 52);
+            panel1.TabIndex = 2;
+            // 
+            // LblMessage
+            // 
+            LblMessage.AutoSize = true;
+            LblMessage.Location = new System.Drawing.Point(98, 29);
+            LblMessage.Name = "LblMessage";
+            LblMessage.Size = new System.Drawing.Size(67, 17);
+            LblMessage.TabIndex = 2;
+            LblMessage.Text = "3 秒后隐藏";
             // 
             // timer1
             // 
-            this.timer1.Interval = 30000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            timer1.Interval = 1000;
+            timer1.Tick += timer1_Tick;
             // 
             // FmLockScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(353, 245);
-            this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FmLockScreen";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FmLockScreen";
-            this.TopMost = true;
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FmLockScreen_FormClosing);
-            this.Load += new System.EventHandler(this.FmLockScreen_Load);
-            this.Resize += new System.EventHandler(this.FmLockScreen_Resize);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(353, 245);
+            Controls.Add(panel1);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Name = "FmLockScreen";
+            ShowIcon = false;
+            ShowInTaskbar = false;
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "FmLockScreen";
+            TopMost = true;
+            WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            FormClosing += FmLockScreen_FormClosing;
+            Load += FmLockScreen_Load;
+            Resize += FmLockScreen_Resize;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -102,5 +111,6 @@ namespace ComputerLock
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label LblMessage;
     }
 }

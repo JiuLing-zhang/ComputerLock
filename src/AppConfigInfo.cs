@@ -44,4 +44,9 @@ internal class AppConfigInfo
     /// 自动检查更新
     /// </summary>
     public bool IsAutoCheckUpdate { get; set; } = false;
+
+    /// <summary>
+    /// 自动隐藏密码框
+    /// </summary>
+    public bool IsHidePasswordWindow { get; set; }
 }

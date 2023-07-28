@@ -29,24 +29,25 @@ namespace ComputerLock
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
+            SuspendLayout();
             // 
             // FmLockScreenBlank
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(480, 317);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FmLockScreenBlank";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "FmLockScreenBlank";
-            this.TopMost = true;
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.FmLockScreenBlank_Load);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(480, 317);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Name = "FmLockScreenBlank";
+            ShowIcon = false;
+            ShowInTaskbar = false;
+            StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            Text = "FmLockScreenBlank";
+            TopMost = true;
+            WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            Load += FmLockScreenBlank_Load;
+            KeyDown += FmLockScreenBlank_KeyDown;
+            MouseClick += FmLockScreenBlank_MouseClick;
+            ResumeLayout(false);
         }
 
         #endregion

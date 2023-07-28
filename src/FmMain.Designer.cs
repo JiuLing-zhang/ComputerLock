@@ -51,6 +51,7 @@ namespace ComputerLock
             label2 = new System.Windows.Forms.Label();
             ComboBoxPasswordInputLocation = new System.Windows.Forms.ComboBox();
             LblVersion = new System.Windows.Forms.Label();
+            ChkIsHidePasswordWindow = new System.Windows.Forms.CheckBox();
             TrayMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxGitHub).BeginInit();
             SuspendLayout();
@@ -128,7 +129,7 @@ namespace ComputerLock
             // BtnPassword
             // 
             BtnPassword.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            BtnPassword.Location = new System.Drawing.Point(286, 204);
+            BtnPassword.Location = new System.Drawing.Point(286, 203);
             BtnPassword.Name = "BtnPassword";
             BtnPassword.Size = new System.Drawing.Size(75, 23);
             BtnPassword.TabIndex = 10;
@@ -140,7 +141,7 @@ namespace ComputerLock
             // 
             LblPasswordTip.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             LblPasswordTip.AutoSize = true;
-            LblPasswordTip.Location = new System.Drawing.Point(205, 210);
+            LblPasswordTip.Location = new System.Drawing.Point(205, 209);
             LblPasswordTip.Name = "LblPasswordTip";
             LblPasswordTip.Size = new System.Drawing.Size(75, 17);
             LblPasswordTip.TabIndex = 9;
@@ -149,7 +150,7 @@ namespace ComputerLock
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(10, 178);
+            label1.Location = new System.Drawing.Point(10, 177);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(68, 17);
             label1.TabIndex = 6;
@@ -158,7 +159,7 @@ namespace ComputerLock
             // BtnClearShortcutKeyForLock
             // 
             BtnClearShortcutKeyForLock.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            BtnClearShortcutKeyForLock.Location = new System.Drawing.Point(286, 175);
+            BtnClearShortcutKeyForLock.Location = new System.Drawing.Point(286, 174);
             BtnClearShortcutKeyForLock.Name = "BtnClearShortcutKeyForLock";
             BtnClearShortcutKeyForLock.Size = new System.Drawing.Size(75, 23);
             BtnClearShortcutKeyForLock.TabIndex = 8;
@@ -172,7 +173,7 @@ namespace ComputerLock
             LblShortcutKeyForLock.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             LblShortcutKeyForLock.Cursor = System.Windows.Forms.Cursors.Hand;
             LblShortcutKeyForLock.ForeColor = System.Drawing.SystemColors.Highlight;
-            LblShortcutKeyForLock.Location = new System.Drawing.Point(82, 178);
+            LblShortcutKeyForLock.Location = new System.Drawing.Point(82, 177);
             LblShortcutKeyForLock.Name = "LblShortcutKeyForLock";
             LblShortcutKeyForLock.Size = new System.Drawing.Size(192, 17);
             LblShortcutKeyForLock.TabIndex = 7;
@@ -232,7 +233,7 @@ namespace ComputerLock
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(10, 148);
+            label2.Location = new System.Drawing.Point(10, 149);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(68, 17);
             label2.TabIndex = 12;
@@ -243,7 +244,7 @@ namespace ComputerLock
             ComboBoxPasswordInputLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             ComboBoxPasswordInputLocation.FormattingEnabled = true;
             ComboBoxPasswordInputLocation.Items.AddRange(new object[] { "居中", "左上", "右上", "左下", "右下" });
-            ComboBoxPasswordInputLocation.Location = new System.Drawing.Point(84, 144);
+            ComboBoxPasswordInputLocation.Location = new System.Drawing.Point(84, 145);
             ComboBoxPasswordInputLocation.Name = "ComboBoxPasswordInputLocation";
             ComboBoxPasswordInputLocation.Size = new System.Drawing.Size(63, 25);
             ComboBoxPasswordInputLocation.TabIndex = 13;
@@ -253,17 +254,29 @@ namespace ComputerLock
             // 
             LblVersion.AutoSize = true;
             LblVersion.ForeColor = System.Drawing.SystemColors.Highlight;
-            LblVersion.Location = new System.Drawing.Point(10, 210);
+            LblVersion.Location = new System.Drawing.Point(10, 209);
             LblVersion.Name = "LblVersion";
             LblVersion.Size = new System.Drawing.Size(44, 17);
             LblVersion.TabIndex = 14;
             LblVersion.Text = "版本号";
             // 
+            // ChkIsHidePasswordWindow
+            // 
+            ChkIsHidePasswordWindow.AutoSize = true;
+            ChkIsHidePasswordWindow.Location = new System.Drawing.Point(153, 149);
+            ChkIsHidePasswordWindow.Name = "ChkIsHidePasswordWindow";
+            ChkIsHidePasswordWindow.Size = new System.Drawing.Size(111, 21);
+            ChkIsHidePasswordWindow.TabIndex = 15;
+            ChkIsHidePasswordWindow.Text = "自动隐藏密码框";
+            ChkIsHidePasswordWindow.UseVisualStyleBackColor = true;
+            ChkIsHidePasswordWindow.CheckedChanged += ChkIsHidePasswordWindow_CheckedChanged;
+            // 
             // FmMain
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(370, 232);
+            ClientSize = new System.Drawing.Size(370, 228);
+            Controls.Add(ChkIsHidePasswordWindow);
             Controls.Add(LblVersion);
             Controls.Add(ComboBoxPasswordInputLocation);
             Controls.Add(label2);
@@ -318,6 +331,7 @@ namespace ComputerLock
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox ComboBoxPasswordInputLocation;
         private System.Windows.Forms.Label LblVersion;
+        private System.Windows.Forms.CheckBox ChkIsHidePasswordWindow;
     }
 }
 

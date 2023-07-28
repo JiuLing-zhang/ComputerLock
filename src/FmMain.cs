@@ -87,6 +87,7 @@ namespace ComputerLock
             ChkIsHideWindowWhenClose.Checked = AppBase.Config.IsHideWindowWhenClose;
             ChkIsDisableWindowsLock.Checked = AppBase.Config.IsDisableWindowsLock;
             ChkIsAutoCheckUpdate.Checked = AppBase.Config.IsAutoCheckUpdate;
+            ChkIsHidePasswordWindow.Checked = AppBase.Config.IsHidePasswordWindow;
             UpdateAutostartUi();
             UpdatePasswordInputLocation();
             UpdatePasswordTip();
@@ -231,43 +232,10 @@ namespace ComputerLock
             DoLock();
         }
 
-        private bool _isLocked = false;
+
         private void DoLock()
         {
-            if (_isLocked)
-            {
-                return;
-            }
-            _isLocked = true;
-            var otherScreens = new List<FmLockScreenBlank>();
-            if (Screen.AllScreens.Length > 1)
-            {
-                for (int i = 1; i <= Screen.AllScreens.Length - 1; i++)
-                {
-                    var otherScreen = new FmLockScreenBlank();
-                    setFormLocation(otherScreen, Screen.AllScreens[i]);
-                    otherScreen.Show();
-                    otherScreen.Activate();
-                    otherScreens.Add(otherScreen);
-                }
-            }
-
-            var mainScreen = new FmLockScreen();
-            setFormLocation(mainScreen, Screen.AllScreens[0]);
-            mainScreen.Activate();
-            mainScreen.ShowDialog();
-
-            foreach (var screen in otherScreens)
-            {
-                screen.Close();
-            }
-            _isLocked = false;
-        }
-
-        private void setFormLocation(Form form, Screen screen)
-        {
-            Rectangle bounds = screen.Bounds;
-            form.SetBounds(bounds.X, bounds.Y, bounds.Width, bounds.Height);
+            LockService.GetInstance().Lock();
         }
         private void ChkIsAutostart_CheckedChanged(object sender, EventArgs e)
         {
@@ -300,6 +268,11 @@ namespace ComputerLock
         private void ChkIsAutoCheckUpdate_CheckedChanged(object sender, EventArgs e)
         {
             AppBase.Config.IsAutoCheckUpdate = ChkIsAutoCheckUpdate.Checked;
+            SaveAppConfig();
+        }
+        private void ChkIsHidePasswordWindow_CheckedChanged(object sender, EventArgs e)
+        {
+            AppBase.Config.IsHidePasswordWindow = ChkIsHidePasswordWindow.Checked;
             SaveAppConfig();
         }
         private void BtnPassword_Click(object sender, EventArgs e)

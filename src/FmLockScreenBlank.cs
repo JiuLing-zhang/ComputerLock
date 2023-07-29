@@ -12,6 +12,7 @@ namespace ComputerLock
 {
     public partial class FmLockScreenBlank : Form
     {
+        private bool _isUnlock = false;
         public event EventHandler<EventArgs>? OnDeviceInput;
         public FmLockScreenBlank()
         {
@@ -20,6 +21,11 @@ namespace ComputerLock
 
         private void FmLockScreenBlank_Load(object sender, EventArgs e)
         {
+        }
+
+        public void Unlock()
+        {
+            _isUnlock = true;
         }
 
         protected override void OnPaintBackground(PaintEventArgs e) { /* Ignore */ }
@@ -36,6 +42,14 @@ namespace ComputerLock
             if (e.Button == MouseButtons.Left)
             {
                 OnDeviceInput?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        private void FmLockScreenBlank_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!_isUnlock)
+            {
+                e.Cancel = true;
             }
         }
     }

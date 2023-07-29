@@ -33,10 +33,11 @@ namespace ComputerLock
             // 
             // FmLockScreenBlank
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(480, 317);
+            ClientSize = new System.Drawing.Size(617, 373);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             Name = "FmLockScreenBlank";
             ShowIcon = false;
             ShowInTaskbar = false;
@@ -44,6 +45,7 @@ namespace ComputerLock
             Text = "FmLockScreenBlank";
             TopMost = true;
             WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            FormClosing += FmLockScreenBlank_FormClosing;
             Load += FmLockScreenBlank_Load;
             KeyDown += FmLockScreenBlank_KeyDown;
             MouseClick += FmLockScreenBlank_MouseClick;

@@ -42,13 +42,11 @@ namespace ComputerLock
 
         private void FmLockScreen_Load(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("密码窗口载入~~~~~~~~~~~~");
             timer1.Start();
         }
 
         public void Open()
         {
-            System.Diagnostics.Debug.WriteLine("密码窗口载入");
             if (this.Visible)
             {
                 return;
@@ -67,10 +65,8 @@ namespace ComputerLock
         {
             if (_isLocked)
             {
-                System.Diagnostics.Debug.WriteLine("取消密码屏幕关闭");
                 e.Cancel = true;
             }
-            System.Diagnostics.Debug.WriteLine("密码屏幕关闭");
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -86,7 +82,6 @@ namespace ComputerLock
             {
                 return;
             }
-            System.Diagnostics.Debug.WriteLine("准备解锁屏幕");
 
             HideSelf();
             _isLocked = false;
@@ -176,7 +171,6 @@ namespace ComputerLock
         }
         private void HideSelf()
         {
-            System.Diagnostics.Debug.WriteLine("准备隐藏密码框");
             if (this.Visible)
             {
                 this.Hide();

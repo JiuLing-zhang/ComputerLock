@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<Authors>九零</Authors>
 		<Product>透明锁屏</Product>
-		<Version>1.2.14.18</Version>
+		<Version>1.2.15.19</Version>
 		<Nullable>enable</Nullable>
 
 		<OutputType>WinExe</OutputType>

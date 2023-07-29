@@ -48,5 +48,5 @@ internal class AppConfigInfo
     /// <summary>
     /// 自动隐藏密码框
     /// </summary>
-    public bool IsHidePasswordWindow { get; set; }
+    public bool IsHidePasswordWindow { get; set; } = true;
 }

@@ -28,10 +28,8 @@ internal class LockService
 
     public void Lock()
     {
-        System.Diagnostics.Debug.WriteLine("准备锁定");
         if (_isLocked)
         {
-            System.Diagnostics.Debug.WriteLine("重复锁定");
             return;
         }
         _isLocked = true;
@@ -50,7 +48,6 @@ internal class LockService
             blankScreen.Show();
             blankScreen.Activate();
             _blankScreens.Add(blankScreen);
-            System.Diagnostics.Debug.WriteLine($"空白屏幕锁定 {i}");
         }
         OpenLockScreen();
     }
@@ -63,25 +60,22 @@ internal class LockService
 
     private void _fmLockScreen_OnUnlock(object? sender, EventArgs e)
     {
-        System.Diagnostics.Debug.WriteLine("解锁");
         foreach (var screen in _blankScreens)
         {
             screen.OnDeviceInput -= BlankScreen_OnDeviceInput;
+            screen.Unlock();
             screen.Close();
-            System.Diagnostics.Debug.WriteLine($"关闭屏幕 {screen.Text}");
         }
         TaskManagerHook.EnabledTaskManager();
         _isLocked = false;
     }
     private void BlankScreen_OnDeviceInput(object? sender, EventArgs e)
     {
-        System.Diagnostics.Debug.WriteLine("设备输入");
         OpenLockScreen();
     }
 
     private void OpenLockScreen()
     {
-        System.Diagnostics.Debug.WriteLine("弹出密码框");
         _fmLockScreen.Open();
     }
 }

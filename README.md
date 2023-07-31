@@ -1,7 +1,7 @@
 ﻿## 透明锁屏
 一个 `Windows` 下另类的锁屏工具。  
 
-![ComputerLock.png](https://s2.loli.net/2022/07/12/JwoXipldbkqLgIa.png)  
+<img src="https://github.com/JiuLing-zhang/ComputerLock/raw/main/resources/app.png" width="40%">
 
 ## 功能介绍
 <table>

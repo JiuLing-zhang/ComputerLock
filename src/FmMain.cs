@@ -11,6 +11,7 @@ using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using JiuLing.AutoUpgrade.Shared;
 
 namespace ComputerLock
 {
@@ -176,6 +177,7 @@ namespace ComputerLock
                 .SetUpgrade(config =>
                 {
                     config.IsBackgroundCheck = isBackgroundCheck;
+                    config.Theme = ThemeEnum.Light;
                     config.IsCheckSign = true;
                 })
                 .Run();

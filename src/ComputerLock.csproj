@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<Authors>九零</Authors>
 		<Product>透明锁屏</Product>
-		<Version>1.2.15.19</Version>
+		<Version>1.2.16.20</Version>
 		<Nullable>enable</Nullable>
 
 		<OutputType>WinExe</OutputType>
@@ -14,8 +14,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="JiuLing.AutoUpgrade" Version="1.2.9" />
-		<PackageReference Include="JiuLing.CommonLibs" Version="1.5.8" />
+		<PackageReference Include="JiuLing.AutoUpgrade" Version="2.0.0" />
+		<PackageReference Include="JiuLing.CommonLibs" Version="1.6.6" />
 		<PackageReference Include="JiuLing.Controls.WinForms" Version="0.0.3" />
 	</ItemGroup>
 

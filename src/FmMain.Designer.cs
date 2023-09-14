@@ -220,10 +220,10 @@ namespace ComputerLock
             pictureBoxGitHub.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             pictureBoxGitHub.Cursor = System.Windows.Forms.Cursors.Hand;
             pictureBoxGitHub.Image = resource.Resource.github;
-            pictureBoxGitHub.Location = new System.Drawing.Point(336, 5);
+            pictureBoxGitHub.Location = new System.Drawing.Point(333, 5);
             pictureBoxGitHub.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             pictureBoxGitHub.Name = "pictureBoxGitHub";
-            pictureBoxGitHub.Size = new System.Drawing.Size(31, 34);
+            pictureBoxGitHub.Size = new System.Drawing.Size(34, 34);
             pictureBoxGitHub.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             pictureBoxGitHub.TabIndex = 11;
             pictureBoxGitHub.TabStop = false;

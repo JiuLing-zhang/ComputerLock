@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComputerLock.Hooks;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -15,7 +16,7 @@ internal class LockService
 
     private bool _isLocked = false;
     private readonly FmLockScreen _fmLockScreen;
-
+    private readonly SystemKeyHook _systemKeyHook = new();
     private readonly List<FmLockScreenBlank> _blankScreens;
     private LockService()
     {
@@ -34,7 +35,7 @@ internal class LockService
         }
         _isLocked = true;
         TaskManagerHook.DisabledTaskManager();
-
+        _systemKeyHook.DisableSystemKey();
         if (_blankScreens.Any())
         {
             _blankScreens.Clear();
@@ -67,6 +68,7 @@ internal class LockService
             screen.Close();
         }
         TaskManagerHook.EnabledTaskManager();
+        _systemKeyHook.Dispose();
         _isLocked = false;
     }
     private void BlankScreen_OnDeviceInput(object? sender, EventArgs e)

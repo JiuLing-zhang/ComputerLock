@@ -7,11 +7,6 @@ namespace ComputerLock
     internal class AppBase
     {
         /// <summary>
-        /// App名称
-        /// </summary>
-        public static string Name { get; set; } = "透明锁屏";
-
-        /// <summary>
         /// App路径（包含文件名）
         /// </summary>
         public static string ExecutablePath { get; set; } = Application.ExecutablePath;

@@ -354,14 +354,25 @@ public partial class FmMain : Form
         {
             return;
         }
+
+        if (AppBase.Config.PasswordInputLocation == (ScreenLocationEnum)selectedIndex)
+        {
+            return;
+        }
         AppBase.Config.PasswordInputLocation = (ScreenLocationEnum)selectedIndex;
         SaveAppConfig();
+        MessageBoxUtils.ShowInfo(_resources.GetString("Restarting", CultureInfo.CurrentCulture));
     }
 
     private void ComboBoxLang_SelectedIndexChanged(object sender, EventArgs e)
     {
         var selectedIndex = ComboBoxLang.SelectedIndex;
         if (selectedIndex == -1)
+        {
+            return;
+        }
+
+        if (AppBase.Config.Lang == (LangEnum)selectedIndex)
         {
             return;
         }

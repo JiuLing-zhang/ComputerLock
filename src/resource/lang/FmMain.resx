@@ -198,4 +198,7 @@
   <data name="ToolBtnExit" xml:space="preserve">
     <value></value>
   </data>
+  <data name="Restarting" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

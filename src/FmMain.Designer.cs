@@ -33,27 +33,38 @@ namespace ComputerLock
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmMain));
             Tray = new System.Windows.Forms.NotifyIcon(components);
             TrayMenu = new System.Windows.Forms.ContextMenuStrip(components);
-            主界面ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            锁定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            ToolBtnMainWindow = new System.Windows.Forms.ToolStripMenuItem();
+            ToolBtnDoLock = new System.Windows.Forms.ToolStripMenuItem();
+            ToolBtnExit = new System.Windows.Forms.ToolStripMenuItem();
             ChkIsHideWindowWhenLaunch = new System.Windows.Forms.CheckBox();
             ChkIsDisableWindowsLock = new System.Windows.Forms.CheckBox();
             ChkIsHideWindowWhenClose = new System.Windows.Forms.CheckBox();
             BtnPassword = new System.Windows.Forms.Button();
             LblPasswordTip = new System.Windows.Forms.Label();
-            label1 = new System.Windows.Forms.Label();
+            LblLockShortcutKey = new System.Windows.Forms.Label();
             BtnClearShortcutKeyForLock = new System.Windows.Forms.Button();
             LblShortcutKeyForLock = new System.Windows.Forms.Label();
             ChkIsAutoCheckUpdate = new System.Windows.Forms.CheckBox();
             LblCheckUpdate = new System.Windows.Forms.Label();
             ChkIsAutostart = new System.Windows.Forms.CheckBox();
-            pictureBoxGitHub = new System.Windows.Forms.PictureBox();
-            label2 = new System.Windows.Forms.Label();
+            LblPwdLocation = new System.Windows.Forms.Label();
             ComboBoxPasswordInputLocation = new System.Windows.Forms.ComboBox();
             LblVersion = new System.Windows.Forms.Label();
             ChkIsHidePasswordWindow = new System.Windows.Forms.CheckBox();
+            ComboBoxLang = new System.Windows.Forms.ComboBox();
+            label3 = new System.Windows.Forms.Label();
+            flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            LblGitHub = new System.Windows.Forms.Label();
+            flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
             TrayMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxGitHub).BeginInit();
+            flowLayoutPanel1.SuspendLayout();
+            flowLayoutPanel2.SuspendLayout();
+            flowLayoutPanel3.SuspendLayout();
+            flowLayoutPanel4.SuspendLayout();
+            flowLayoutPanel5.SuspendLayout();
             SuspendLayout();
             // 
             // Tray
@@ -68,35 +79,35 @@ namespace ComputerLock
             // TrayMenu
             // 
             TrayMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
-            TrayMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { 主界面ToolStripMenuItem, 锁定ToolStripMenuItem, 退出ToolStripMenuItem });
+            TrayMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { ToolBtnMainWindow, ToolBtnDoLock, ToolBtnExit });
             TrayMenu.Name = "contextMenuStrip1";
-            TrayMenu.Size = new System.Drawing.Size(137, 70);
+            TrayMenu.Size = new System.Drawing.Size(181, 92);
             // 
-            // 主界面ToolStripMenuItem
+            // ToolBtnMainWindow
             // 
-            主界面ToolStripMenuItem.Name = "主界面ToolStripMenuItem";
-            主界面ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            主界面ToolStripMenuItem.Text = "显示主窗口";
-            主界面ToolStripMenuItem.Click += 主界面ToolStripMenuItem_Click;
+            ToolBtnMainWindow.Name = "ToolBtnMainWindow";
+            ToolBtnMainWindow.Size = new System.Drawing.Size(180, 22);
+            ToolBtnMainWindow.Text = "显示主窗口";
+            ToolBtnMainWindow.Click += ToolBtnMainWindow_Click;
             // 
-            // 锁定ToolStripMenuItem
+            // ToolBtnDoLock
             // 
-            锁定ToolStripMenuItem.Name = "锁定ToolStripMenuItem";
-            锁定ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            锁定ToolStripMenuItem.Text = "屏幕锁定";
-            锁定ToolStripMenuItem.Click += 锁定ToolStripMenuItem_Click;
+            ToolBtnDoLock.Name = "ToolBtnDoLock";
+            ToolBtnDoLock.Size = new System.Drawing.Size(180, 22);
+            ToolBtnDoLock.Text = "屏幕锁定";
+            ToolBtnDoLock.Click += ToolBtnDoLock_Click;
             // 
-            // 退出ToolStripMenuItem
+            // ToolBtnExit
             // 
-            退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
-            退出ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            退出ToolStripMenuItem.Text = "退出";
-            退出ToolStripMenuItem.Click += 退出ToolStripMenuItem_Click;
+            ToolBtnExit.Name = "ToolBtnExit";
+            ToolBtnExit.Size = new System.Drawing.Size(180, 22);
+            ToolBtnExit.Text = "退出";
+            ToolBtnExit.Click += ToolBtnExit_Click;
             // 
             // ChkIsHideWindowWhenLaunch
             // 
             ChkIsHideWindowWhenLaunch.AutoSize = true;
-            ChkIsHideWindowWhenLaunch.Location = new System.Drawing.Point(10, 39);
+            ChkIsHideWindowWhenLaunch.Location = new System.Drawing.Point(10, 35);
             ChkIsHideWindowWhenLaunch.Name = "ChkIsHideWindowWhenLaunch";
             ChkIsHideWindowWhenLaunch.Size = new System.Drawing.Size(135, 21);
             ChkIsHideWindowWhenLaunch.TabIndex = 1;
@@ -107,7 +118,7 @@ namespace ComputerLock
             // ChkIsDisableWindowsLock
             // 
             ChkIsDisableWindowsLock.AutoSize = true;
-            ChkIsDisableWindowsLock.Location = new System.Drawing.Point(10, 93);
+            ChkIsDisableWindowsLock.Location = new System.Drawing.Point(10, 89);
             ChkIsDisableWindowsLock.Name = "ChkIsDisableWindowsLock";
             ChkIsDisableWindowsLock.Size = new System.Drawing.Size(128, 21);
             ChkIsDisableWindowsLock.TabIndex = 3;
@@ -118,7 +129,7 @@ namespace ComputerLock
             // ChkIsHideWindowWhenClose
             // 
             ChkIsHideWindowWhenClose.AutoSize = true;
-            ChkIsHideWindowWhenClose.Location = new System.Drawing.Point(10, 66);
+            ChkIsHideWindowWhenClose.Location = new System.Drawing.Point(10, 62);
             ChkIsHideWindowWhenClose.Name = "ChkIsHideWindowWhenClose";
             ChkIsHideWindowWhenClose.Size = new System.Drawing.Size(159, 21);
             ChkIsHideWindowWhenClose.TabIndex = 2;
@@ -128,10 +139,11 @@ namespace ComputerLock
             // 
             // BtnPassword
             // 
-            BtnPassword.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            BtnPassword.Location = new System.Drawing.Point(286, 203);
+            BtnPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
+            BtnPassword.AutoSize = true;
+            BtnPassword.Location = new System.Drawing.Point(162, 3);
             BtnPassword.Name = "BtnPassword";
-            BtnPassword.Size = new System.Drawing.Size(75, 23);
+            BtnPassword.Size = new System.Drawing.Size(66, 27);
             BtnPassword.TabIndex = 10;
             BtnPassword.Text = "设置密码";
             BtnPassword.UseVisualStyleBackColor = true;
@@ -139,29 +151,31 @@ namespace ComputerLock
             // 
             // LblPasswordTip
             // 
-            LblPasswordTip.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            LblPasswordTip.Anchor = System.Windows.Forms.AnchorStyles.None;
             LblPasswordTip.AutoSize = true;
-            LblPasswordTip.Location = new System.Drawing.Point(205, 209);
+            LblPasswordTip.Location = new System.Drawing.Point(81, 8);
             LblPasswordTip.Name = "LblPasswordTip";
             LblPasswordTip.Size = new System.Drawing.Size(75, 17);
             LblPasswordTip.TabIndex = 9;
             LblPasswordTip.Text = "初始密码为1";
             // 
-            // label1
+            // LblLockShortcutKey
             // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(10, 177);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(68, 17);
-            label1.TabIndex = 6;
-            label1.Text = "锁屏快捷键";
+            LblLockShortcutKey.Anchor = System.Windows.Forms.AnchorStyles.None;
+            LblLockShortcutKey.AutoSize = true;
+            LblLockShortcutKey.Location = new System.Drawing.Point(3, 8);
+            LblLockShortcutKey.Name = "LblLockShortcutKey";
+            LblLockShortcutKey.Size = new System.Drawing.Size(68, 17);
+            LblLockShortcutKey.TabIndex = 6;
+            LblLockShortcutKey.Text = "锁屏快捷键";
             // 
             // BtnClearShortcutKeyForLock
             // 
-            BtnClearShortcutKeyForLock.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            BtnClearShortcutKeyForLock.Location = new System.Drawing.Point(286, 174);
+            BtnClearShortcutKeyForLock.Anchor = System.Windows.Forms.AnchorStyles.None;
+            BtnClearShortcutKeyForLock.AutoSize = true;
+            BtnClearShortcutKeyForLock.Location = new System.Drawing.Point(258, 3);
             BtnClearShortcutKeyForLock.Name = "BtnClearShortcutKeyForLock";
-            BtnClearShortcutKeyForLock.Size = new System.Drawing.Size(75, 23);
+            BtnClearShortcutKeyForLock.Size = new System.Drawing.Size(75, 27);
             BtnClearShortcutKeyForLock.TabIndex = 8;
             BtnClearShortcutKeyForLock.Text = "清除";
             BtnClearShortcutKeyForLock.UseVisualStyleBackColor = true;
@@ -169,13 +183,13 @@ namespace ComputerLock
             // 
             // LblShortcutKeyForLock
             // 
-            LblShortcutKeyForLock.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            LblShortcutKeyForLock.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             LblShortcutKeyForLock.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             LblShortcutKeyForLock.Cursor = System.Windows.Forms.Cursors.Hand;
             LblShortcutKeyForLock.ForeColor = System.Drawing.SystemColors.Highlight;
-            LblShortcutKeyForLock.Location = new System.Drawing.Point(82, 177);
+            LblShortcutKeyForLock.Location = new System.Drawing.Point(77, 5);
             LblShortcutKeyForLock.Name = "LblShortcutKeyForLock";
-            LblShortcutKeyForLock.Size = new System.Drawing.Size(192, 17);
+            LblShortcutKeyForLock.Size = new System.Drawing.Size(175, 23);
             LblShortcutKeyForLock.TabIndex = 7;
             LblShortcutKeyForLock.Text = "未设置";
             LblShortcutKeyForLock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -183,8 +197,9 @@ namespace ComputerLock
             // 
             // ChkIsAutoCheckUpdate
             // 
+            ChkIsAutoCheckUpdate.Anchor = System.Windows.Forms.AnchorStyles.None;
             ChkIsAutoCheckUpdate.AutoSize = true;
-            ChkIsAutoCheckUpdate.Location = new System.Drawing.Point(10, 120);
+            ChkIsAutoCheckUpdate.Location = new System.Drawing.Point(3, 3);
             ChkIsAutoCheckUpdate.Name = "ChkIsAutoCheckUpdate";
             ChkIsAutoCheckUpdate.Size = new System.Drawing.Size(75, 21);
             ChkIsAutoCheckUpdate.TabIndex = 4;
@@ -194,10 +209,11 @@ namespace ComputerLock
             // 
             // LblCheckUpdate
             // 
+            LblCheckUpdate.Anchor = System.Windows.Forms.AnchorStyles.None;
             LblCheckUpdate.AutoSize = true;
             LblCheckUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
             LblCheckUpdate.ForeColor = System.Drawing.SystemColors.Highlight;
-            LblCheckUpdate.Location = new System.Drawing.Point(91, 121);
+            LblCheckUpdate.Location = new System.Drawing.Point(84, 5);
             LblCheckUpdate.Name = "LblCheckUpdate";
             LblCheckUpdate.Size = new System.Drawing.Size(56, 17);
             LblCheckUpdate.TabIndex = 5;
@@ -207,7 +223,7 @@ namespace ComputerLock
             // ChkIsAutostart
             // 
             ChkIsAutostart.AutoSize = true;
-            ChkIsAutostart.Location = new System.Drawing.Point(10, 12);
+            ChkIsAutostart.Location = new System.Drawing.Point(10, 8);
             ChkIsAutostart.Name = "ChkIsAutostart";
             ChkIsAutostart.Size = new System.Drawing.Size(195, 21);
             ChkIsAutostart.TabIndex = 0;
@@ -215,55 +231,45 @@ namespace ComputerLock
             ChkIsAutostart.UseVisualStyleBackColor = true;
             ChkIsAutostart.CheckedChanged += ChkIsAutostart_CheckedChanged;
             // 
-            // pictureBoxGitHub
+            // LblPwdLocation
             // 
-            pictureBoxGitHub.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            pictureBoxGitHub.Cursor = System.Windows.Forms.Cursors.Hand;
-            pictureBoxGitHub.Image = resource.Resource.github;
-            pictureBoxGitHub.Location = new System.Drawing.Point(333, 5);
-            pictureBoxGitHub.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            pictureBoxGitHub.Name = "pictureBoxGitHub";
-            pictureBoxGitHub.Size = new System.Drawing.Size(34, 34);
-            pictureBoxGitHub.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            pictureBoxGitHub.TabIndex = 11;
-            pictureBoxGitHub.TabStop = false;
-            pictureBoxGitHub.Click += pictureBoxGitHub_Click;
-            pictureBoxGitHub.MouseHover += pictureBoxGitHub_MouseHover;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(10, 149);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(68, 17);
-            label2.TabIndex = 12;
-            label2.Text = "密码框位置";
+            LblPwdLocation.Anchor = System.Windows.Forms.AnchorStyles.None;
+            LblPwdLocation.AutoSize = true;
+            LblPwdLocation.Location = new System.Drawing.Point(3, 7);
+            LblPwdLocation.Name = "LblPwdLocation";
+            LblPwdLocation.Size = new System.Drawing.Size(68, 17);
+            LblPwdLocation.TabIndex = 12;
+            LblPwdLocation.Text = "密码框位置";
             // 
             // ComboBoxPasswordInputLocation
             // 
+            ComboBoxPasswordInputLocation.Anchor = System.Windows.Forms.AnchorStyles.None;
             ComboBoxPasswordInputLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             ComboBoxPasswordInputLocation.FormattingEnabled = true;
             ComboBoxPasswordInputLocation.Items.AddRange(new object[] { "居中", "左上", "右上", "左下", "右下" });
-            ComboBoxPasswordInputLocation.Location = new System.Drawing.Point(84, 145);
+            ComboBoxPasswordInputLocation.Location = new System.Drawing.Point(77, 3);
             ComboBoxPasswordInputLocation.Name = "ComboBoxPasswordInputLocation";
-            ComboBoxPasswordInputLocation.Size = new System.Drawing.Size(63, 25);
+            ComboBoxPasswordInputLocation.Size = new System.Drawing.Size(102, 25);
             ComboBoxPasswordInputLocation.TabIndex = 13;
             ComboBoxPasswordInputLocation.SelectedIndexChanged += ComboBoxPasswordInputLocation_SelectedIndexChanged;
             // 
             // LblVersion
             // 
+            LblVersion.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             LblVersion.AutoSize = true;
-            LblVersion.ForeColor = System.Drawing.SystemColors.Highlight;
-            LblVersion.Location = new System.Drawing.Point(10, 209);
+            LblVersion.ForeColor = System.Drawing.SystemColors.ControlText;
+            LblVersion.Location = new System.Drawing.Point(24, 0);
             LblVersion.Name = "LblVersion";
-            LblVersion.Size = new System.Drawing.Size(44, 17);
+            LblVersion.Size = new System.Drawing.Size(41, 17);
             LblVersion.TabIndex = 14;
-            LblVersion.Text = "版本号";
+            LblVersion.Text = "v0.0.1";
+            LblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // ChkIsHidePasswordWindow
             // 
+            ChkIsHidePasswordWindow.Anchor = System.Windows.Forms.AnchorStyles.None;
             ChkIsHidePasswordWindow.AutoSize = true;
-            ChkIsHidePasswordWindow.Location = new System.Drawing.Point(153, 149);
+            ChkIsHidePasswordWindow.Location = new System.Drawing.Point(185, 5);
             ChkIsHidePasswordWindow.Name = "ChkIsHidePasswordWindow";
             ChkIsHidePasswordWindow.Size = new System.Drawing.Size(111, 21);
             ChkIsHidePasswordWindow.TabIndex = 15;
@@ -271,23 +277,106 @@ namespace ComputerLock
             ChkIsHidePasswordWindow.UseVisualStyleBackColor = true;
             ChkIsHidePasswordWindow.CheckedChanged += ChkIsHidePasswordWindow_CheckedChanged;
             // 
+            // ComboBoxLang
+            // 
+            ComboBoxLang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            ComboBoxLang.FormattingEnabled = true;
+            ComboBoxLang.Items.AddRange(new object[] { "中文", "en" });
+            ComboBoxLang.Location = new System.Drawing.Point(106, 205);
+            ComboBoxLang.Name = "ComboBoxLang";
+            ComboBoxLang.Size = new System.Drawing.Size(63, 25);
+            ComboBoxLang.TabIndex = 17;
+            ComboBoxLang.SelectedIndexChanged += ComboBoxLang_SelectedIndexChanged;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(7, 209);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(93, 17);
+            label3.TabIndex = 16;
+            label3.Text = "语言 Language";
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            flowLayoutPanel1.Controls.Add(ChkIsAutoCheckUpdate);
+            flowLayoutPanel1.Controls.Add(LblCheckUpdate);
+            flowLayoutPanel1.Location = new System.Drawing.Point(7, 111);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new System.Drawing.Size(399, 31);
+            flowLayoutPanel1.TabIndex = 18;
+            // 
+            // flowLayoutPanel2
+            // 
+            flowLayoutPanel2.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            flowLayoutPanel2.Controls.Add(LblPwdLocation);
+            flowLayoutPanel2.Controls.Add(ComboBoxPasswordInputLocation);
+            flowLayoutPanel2.Controls.Add(ChkIsHidePasswordWindow);
+            flowLayoutPanel2.Location = new System.Drawing.Point(7, 140);
+            flowLayoutPanel2.Name = "flowLayoutPanel2";
+            flowLayoutPanel2.Size = new System.Drawing.Size(399, 31);
+            flowLayoutPanel2.TabIndex = 19;
+            // 
+            // flowLayoutPanel3
+            // 
+            flowLayoutPanel3.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            flowLayoutPanel3.Controls.Add(LblLockShortcutKey);
+            flowLayoutPanel3.Controls.Add(LblShortcutKeyForLock);
+            flowLayoutPanel3.Controls.Add(BtnClearShortcutKeyForLock);
+            flowLayoutPanel3.Location = new System.Drawing.Point(7, 171);
+            flowLayoutPanel3.Name = "flowLayoutPanel3";
+            flowLayoutPanel3.Size = new System.Drawing.Size(399, 31);
+            flowLayoutPanel3.TabIndex = 20;
+            // 
+            // flowLayoutPanel4
+            // 
+            flowLayoutPanel4.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            flowLayoutPanel4.Controls.Add(BtnPassword);
+            flowLayoutPanel4.Controls.Add(LblPasswordTip);
+            flowLayoutPanel4.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            flowLayoutPanel4.Location = new System.Drawing.Point(175, 202);
+            flowLayoutPanel4.Name = "flowLayoutPanel4";
+            flowLayoutPanel4.Size = new System.Drawing.Size(231, 31);
+            flowLayoutPanel4.TabIndex = 21;
+            // 
+            // LblGitHub
+            // 
+            LblGitHub.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            LblGitHub.AutoSize = true;
+            LblGitHub.Cursor = System.Windows.Forms.Cursors.Hand;
+            LblGitHub.ForeColor = System.Drawing.SystemColors.Highlight;
+            LblGitHub.Location = new System.Drawing.Point(17, 17);
+            LblGitHub.Name = "LblGitHub";
+            LblGitHub.Size = new System.Drawing.Size(48, 17);
+            LblGitHub.TabIndex = 22;
+            LblGitHub.Text = "GitHub";
+            LblGitHub.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            LblGitHub.Click += LblGitHub_Click;
+            // 
+            // flowLayoutPanel5
+            // 
+            flowLayoutPanel5.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            flowLayoutPanel5.Controls.Add(LblVersion);
+            flowLayoutPanel5.Controls.Add(LblGitHub);
+            flowLayoutPanel5.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            flowLayoutPanel5.Location = new System.Drawing.Point(339, 8);
+            flowLayoutPanel5.Name = "flowLayoutPanel5";
+            flowLayoutPanel5.Size = new System.Drawing.Size(68, 39);
+            flowLayoutPanel5.TabIndex = 23;
+            // 
             // FmMain
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(370, 228);
-            Controls.Add(ChkIsHidePasswordWindow);
-            Controls.Add(LblVersion);
-            Controls.Add(ComboBoxPasswordInputLocation);
-            Controls.Add(label2);
-            Controls.Add(pictureBoxGitHub);
-            Controls.Add(LblCheckUpdate);
-            Controls.Add(ChkIsAutoCheckUpdate);
-            Controls.Add(LblShortcutKeyForLock);
-            Controls.Add(BtnClearShortcutKeyForLock);
-            Controls.Add(label1);
-            Controls.Add(LblPasswordTip);
-            Controls.Add(BtnPassword);
+            ClientSize = new System.Drawing.Size(409, 240);
+            Controls.Add(flowLayoutPanel5);
+            Controls.Add(flowLayoutPanel4);
+            Controls.Add(flowLayoutPanel3);
+            Controls.Add(flowLayoutPanel2);
+            Controls.Add(flowLayoutPanel1);
+            Controls.Add(ComboBoxLang);
+            Controls.Add(label3);
             Controls.Add(ChkIsHideWindowWhenClose);
             Controls.Add(ChkIsDisableWindowsLock);
             Controls.Add(ChkIsAutostart);
@@ -305,7 +394,16 @@ namespace ComputerLock
             KeyDown += FmMain_KeyDown;
             Resize += FmMain_Resize;
             TrayMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBoxGitHub).EndInit();
+            flowLayoutPanel1.ResumeLayout(false);
+            flowLayoutPanel1.PerformLayout();
+            flowLayoutPanel2.ResumeLayout(false);
+            flowLayoutPanel2.PerformLayout();
+            flowLayoutPanel3.ResumeLayout(false);
+            flowLayoutPanel3.PerformLayout();
+            flowLayoutPanel4.ResumeLayout(false);
+            flowLayoutPanel4.PerformLayout();
+            flowLayoutPanel5.ResumeLayout(false);
+            flowLayoutPanel5.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -313,25 +411,32 @@ namespace ComputerLock
         #endregion
         private System.Windows.Forms.NotifyIcon Tray;
         private System.Windows.Forms.ContextMenuStrip TrayMenu;
-        private System.Windows.Forms.ToolStripMenuItem 主界面ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 锁定ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ToolBtnMainWindow;
+        private System.Windows.Forms.ToolStripMenuItem ToolBtnExit;
+        private System.Windows.Forms.ToolStripMenuItem ToolBtnDoLock;
         private System.Windows.Forms.CheckBox ChkIsHideWindowWhenLaunch;
         private System.Windows.Forms.CheckBox ChkIsDisableWindowsLock;
         private System.Windows.Forms.CheckBox ChkIsHideWindowWhenClose;
         private System.Windows.Forms.Button BtnPassword;
         private System.Windows.Forms.Label LblPasswordTip;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LblLockShortcutKey;
         private System.Windows.Forms.Button BtnClearShortcutKeyForLock;
         private System.Windows.Forms.Label LblShortcutKeyForLock;
         private System.Windows.Forms.CheckBox ChkIsAutoCheckUpdate;
         private System.Windows.Forms.Label LblCheckUpdate;
         private System.Windows.Forms.CheckBox ChkIsAutostart;
-        private System.Windows.Forms.PictureBox pictureBoxGitHub;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label LblPwdLocation;
         private System.Windows.Forms.ComboBox ComboBoxPasswordInputLocation;
         private System.Windows.Forms.Label LblVersion;
         private System.Windows.Forms.CheckBox ChkIsHidePasswordWindow;
+        private System.Windows.Forms.ComboBox ComboBoxLang;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
+        private System.Windows.Forms.Label LblGitHub;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
     }
 }
 

@@ -1,68 +1,67 @@
 ﻿using JiuLing.CommonLibs.ExtensionMethods;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
+using System.Resources;
 using System.Windows.Forms;
 
-namespace ComputerLock
+namespace ComputerLock;
+public partial class FmShortcutKeySetting : Form
 {
-    public partial class FmShortcutKeySetting : Form
+    private ResourceManager _resources = new ResourceManager("ComputerLock.resource.lang.FmShortcutKeySetting", typeof(FmShortcutKeySetting).Assembly);
+    public string ShortcutKey { get; set; }
+    public string ShortcutKeyDisplay { get; set; }
+
+    public FmShortcutKeySetting()
     {
-        public FmShortcutKeySetting()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
 
-        public string ShortcutKey { get; set; }
-        public string ShortcutKeyDisplay { get; set; }
-        private void FmShortcutKeySetting_Load(object sender, EventArgs e)
+        this.Text = _resources.GetString("Title", CultureInfo.CurrentCulture);
+        LblKeys.Text = _resources.GetString("EnterShortcutKey", CultureInfo.CurrentCulture);
+        BtnSave.Text = _resources.GetString("Save", CultureInfo.CurrentCulture);
+        BtnCancel.Text = _resources.GetString("Cancel", CultureInfo.CurrentCulture);
+    }
+    private void FmShortcutKeySetting_Load(object sender, EventArgs e)
+    {
+        this.KeyPreview = true;
+    }
+    private void BtnSave_Click(object sender, EventArgs e)
+    {
+        if (ShortcutKey.IsNotEmpty())
         {
-            this.KeyPreview = true;
+            DialogResult = DialogResult.OK;
         }
-        private void BtnSave_Click(object sender, EventArgs e)
-        {
-            if (ShortcutKey.IsNotEmpty())
-            {
-                DialogResult = DialogResult.OK;
-            }
-            this.Close();
-        }
-        private void BtnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        this.Close();
+    }
+    private void BtnCancel_Click(object sender, EventArgs e)
+    {
+        this.Close();
+    }
 
-        private void FmShortcutKeySetting_KeyDown(object sender, KeyEventArgs e)
+    private void FmShortcutKeySetting_KeyDown(object sender, KeyEventArgs e)
+    {
+        ShortcutKey = "";
+        if (e.Control)
         {
+            ShortcutKey = "Ctrl + ";
+        }
+        if (e.Shift)
+        {
+            ShortcutKey = ShortcutKey + "Shift + ";
+        }
+        if (e.Alt)
+        {
+            ShortcutKey = ShortcutKey + "Alt + ";
+        }
+        if ((e.KeyValue >= 65 && e.KeyValue <= 90) || (e.KeyValue >= 48 && e.KeyValue <= 57))
+        {
+            ShortcutKeyDisplay = ShortcutKey + $"{e.KeyCode}";
+            LblKeys.Text = ShortcutKeyDisplay;
+            ShortcutKey = ShortcutKey + $"{e.KeyValue}";
+        }
+        else
+        {
+            LblKeys.Text = _resources.GetString("EnterShortcutKey", CultureInfo.CurrentCulture);
             ShortcutKey = "";
-            if (e.Control)
-            {
-                ShortcutKey = "Ctrl + ";
-            }
-            if (e.Shift)
-            {
-                ShortcutKey = ShortcutKey + "Shift + ";
-            }
-            if (e.Alt)
-            {
-                ShortcutKey = ShortcutKey + "Alt + ";
-            }
-            if ((e.KeyValue >= 65 && e.KeyValue <= 90) || (e.KeyValue >= 48 && e.KeyValue <= 57))
-            {
-                ShortcutKeyDisplay = ShortcutKey + $"{e.KeyCode}";
-                LblKeys.Text = ShortcutKeyDisplay;
-                ShortcutKey = ShortcutKey + $"{e.KeyValue}";
-            }
-            else
-            {
-                LblKeys.Text = "请直接在键盘上输入新的快捷键";
-                ShortcutKey = "";
-            }
         }
     }
 }

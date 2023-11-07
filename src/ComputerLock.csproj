@@ -14,12 +14,32 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="JiuLing.AutoUpgrade" Version="2.0.0" />
+		<PackageReference Include="JiuLing.AutoUpgrade" Version="2.1.0" />
 		<PackageReference Include="JiuLing.CommonLibs" Version="1.6.6" />
 		<PackageReference Include="JiuLing.Controls.WinForms" Version="0.0.3" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="resource\lang\FmLockScreen.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>FmLockScreen.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="resource\lang\FmMain.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>FmMain.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="resource\lang\FmPassword.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>FmPassword.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="resource\lang\FmShortcutKeySetting.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>FmShortcutKeySetting.resx</DependentUpon>
+	  </Compile>
 	  <Compile Update="resource\Resource.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
@@ -28,6 +48,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <EmbeddedResource Update="resource\lang\FmLockScreen.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>FmLockScreen.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="resource\lang\FmMain.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>FmMain.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="resource\lang\FmPassword.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>FmPassword.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="resource\lang\FmShortcutKeySetting.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>FmShortcutKeySetting.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
 	  <EmbeddedResource Update="resource\Resource.resx">
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>Resource.Designer.cs</LastGenOutput>

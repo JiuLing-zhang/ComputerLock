@@ -22,6 +22,11 @@ internal class AppConfigInfo
     public ScreenLocationEnum PasswordInputLocation { get; set; } = ScreenLocationEnum.Center;
 
     /// <summary>
+    /// 语言
+    /// </summary>
+    public LangEnum Lang { get; set; } = LangEnum.zh;
+
+    /// <summary>
     /// 默认密码 1
     /// </summary>
     public string Password { get; set; } = "c4ca4238a0b923820dcc509a6f75849b";

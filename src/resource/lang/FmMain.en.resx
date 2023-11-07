@@ -198,4 +198,7 @@
   <data name="ToolBtnExit" xml:space="preserve">
     <value>Exit</value>
   </data>
+  <data name="Restarting" xml:space="preserve">
+    <value>The setting is successful and will take effect after restarting.</value>
+  </data>
 </root>

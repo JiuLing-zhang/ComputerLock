@@ -234,6 +234,15 @@ namespace ComputerLock.resource.lang {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        internal static string Restarting {
+            get {
+                return ResourceManager.GetString("Restarting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         internal static string RightBottom {
             get {
                 return ResourceManager.GetString("RightBottom", resourceCulture);

@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<Authors>九零</Authors>
 		<Product>透明锁屏</Product>
-		<Version>1.2.18.22</Version>
+		<Version>1.3.0.23</Version>
 		<Nullable>enable</Nullable>
 
 		<OutputType>WinExe</OutputType>
@@ -71,7 +71,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="首次运行请看这里！！！.txt">
+		<None Update="首次运行请看这里_Readme.txt">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>

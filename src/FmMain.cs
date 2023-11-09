@@ -372,10 +372,6 @@ public partial class FmMain : Form
             return;
         }
 
-        if (AppBase.Config.Lang == (LangEnum)selectedIndex)
-        {
-            return;
-        }
         AppBase.Config.Lang = (LangEnum)selectedIndex;
         SaveAppConfig();
         ChangeLanguage(AppBase.Config.Lang.ToString());

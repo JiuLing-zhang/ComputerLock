@@ -142,7 +142,7 @@
     <value>pwd box position</value>
   </data>
   <data name="ChkIsHidePasswordWindow" xml:space="preserve">
-    <value>Auto-hide</value>
+    <value>Auto-hide password box</value>
   </data>
   <data name="LblLockShortcutKey" xml:space="preserve">
     <value>Lock shortcut key</value>
@@ -151,7 +151,7 @@
     <value>Remove</value>
   </data>
   <data name="LblPasswordTip" xml:space="preserve">
-    <value>Default pwd is 1</value>
+    <value>Default password is 1</value>
   </data>
   <data name="BtnPassword" xml:space="preserve">
     <value>Set password</value>
@@ -200,5 +200,14 @@
   </data>
   <data name="Restarting" xml:space="preserve">
     <value>The setting is successful and will take effect after restarting.</value>
+  </data>
+  <data name="ChkKeyboardDownActivePwd" xml:space="preserve">
+    <value>Show password box when keyboard down</value>
+  </data>
+  <data name="ChkMouseDownActivePwd" xml:space="preserve">
+    <value>Show password box when mouse clicked on position of box</value>
+  </data>
+  <data name="ActiveMethodEmpty" xml:space="preserve">
+    <value>Please select at least one activation method</value>
   </data>
 </root>

@@ -87,6 +87,12 @@ public partial class FmMain : Form
         ChkIsDisableWindowsLock.Checked = AppBase.Config.IsDisableWindowsLock;
         ChkIsAutoCheckUpdate.Checked = AppBase.Config.IsAutoCheckUpdate;
         ChkIsHidePasswordWindow.Checked = AppBase.Config.IsHidePasswordWindow;
+
+        var KeyboardDownChecked = (AppBase.Config.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.KeyboardDown) == PasswordBoxActiveMethodEnum.KeyboardDown;
+        var mouseDownChecked = (AppBase.Config.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.MouseDown) == PasswordBoxActiveMethodEnum.MouseDown;
+        ChkKeyboardDownActivePwd.Checked = KeyboardDownChecked;
+        ChkMouseDownActivePwd.Checked = mouseDownChecked;
+
         UpdateAutostartUi();
         UpdateLangLocation();
         UpdatePasswordInputLocation();
@@ -284,6 +290,55 @@ public partial class FmMain : Form
         AppBase.Config.IsHidePasswordWindow = ChkIsHidePasswordWindow.Checked;
         SaveAppConfig();
     }
+
+    private void ChkKeyboardDownActivePwd_CheckedChanged(object sender, EventArgs e)
+    {
+        CheckBox checkBox = (CheckBox)sender;
+        bool isChecked = checkBox.Checked;
+        bool isMouseDownChecked = ChkMouseDownActivePwd.Checked;
+        if (isChecked == false)
+        {
+            if (isMouseDownChecked == false)
+            {
+                checkBox.Checked = !isChecked;
+                MessageBoxUtils.ShowInfo(_resources.GetString("ActiveMethodEmpty", CultureInfo.CurrentCulture));
+                return;
+            }
+        }
+        SavePasswordBoxActiveMethod(isMouseDownChecked, isChecked);
+    }
+
+    private void ChkMouseDownActivePwd_CheckedChanged(object sender, EventArgs e)
+    {
+        CheckBox checkBox = (CheckBox)sender;
+        bool isChecked = checkBox.Checked;
+        bool isKeyboardDownChecked = ChkKeyboardDownActivePwd.Checked;
+        if (isChecked == false)
+        {
+            if (isKeyboardDownChecked == false)
+            {
+                checkBox.Checked = !isChecked;
+                MessageBoxUtils.ShowInfo(_resources.GetString("ActiveMethodEmpty", CultureInfo.CurrentCulture));
+                return;
+            }
+        }
+        SavePasswordBoxActiveMethod(isChecked, isKeyboardDownChecked);
+    }
+
+    private void SavePasswordBoxActiveMethod(bool isMouseDownChecked, bool isKeyboardDownChecked)
+    {
+        AppBase.Config.PasswordBoxActiveMethod = 0;
+        if (isMouseDownChecked)
+        {
+            AppBase.Config.PasswordBoxActiveMethod = AppBase.Config.PasswordBoxActiveMethod | PasswordBoxActiveMethodEnum.MouseDown;
+        }
+        if (isKeyboardDownChecked)
+        {
+            AppBase.Config.PasswordBoxActiveMethod = AppBase.Config.PasswordBoxActiveMethod | PasswordBoxActiveMethodEnum.KeyboardDown;
+        }
+        SaveAppConfig();
+    }
+
     private void BtnPassword_Click(object sender, EventArgs e)
     {
         var fmPassword = new FmPassword();
@@ -403,10 +458,6 @@ public partial class FmMain : Form
             if (childControl.HasChildren)
             {
                 SetControlLanguage(childControl);
-            }
-            if (childControl.Name == "Tray")
-            {
-
             }
             string? value = _resources.GetString(childControl.Name, CultureInfo.CurrentCulture);
             if (value == null)

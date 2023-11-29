@@ -63,6 +63,15 @@ namespace ComputerLock.resource.lang {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        internal static string ActiveMethodEmpty {
+            get {
+                return ResourceManager.GetString("ActiveMethodEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         internal static string BtnClearShortcutKeyForLock {
             get {
                 return ResourceManager.GetString("BtnClearShortcutKeyForLock", resourceCulture);
@@ -138,6 +147,24 @@ namespace ComputerLock.resource.lang {
         internal static string ChkIsHideWindowWhenLaunch {
             get {
                 return ResourceManager.GetString("ChkIsHideWindowWhenLaunch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        internal static string ChkKeyboardDownActivePwd {
+            get {
+                return ResourceManager.GetString("ChkKeyboardDownActivePwd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        internal static string ChkMouseDownActivePwd {
+            get {
+                return ResourceManager.GetString("ChkMouseDownActivePwd", resourceCulture);
             }
         }
         

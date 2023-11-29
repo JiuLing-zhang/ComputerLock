@@ -201,4 +201,13 @@
   <data name="Restarting" xml:space="preserve">
     <value></value>
   </data>
+  <data name="ChkKeyboardDownActivePwd" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ChkMouseDownActivePwd" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ActiveMethodEmpty" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

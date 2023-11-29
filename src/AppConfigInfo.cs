@@ -54,4 +54,9 @@ internal class AppConfigInfo
     /// 自动隐藏密码框
     /// </summary>
     public bool IsHidePasswordWindow { get; set; } = true;
+
+    /// <summary>
+    /// 密码框激活方式
+    /// </summary>
+    public PasswordBoxActiveMethodEnum PasswordBoxActiveMethod { get; set; } = PasswordBoxActiveMethodEnum.KeyboardDown | PasswordBoxActiveMethodEnum.MouseDown;
 }

@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
-using System.Windows.Forms;
 
 namespace ComputerLock
 {
@@ -9,7 +9,7 @@ namespace ComputerLock
         /// <summary>
         /// App路径（包含文件名）
         /// </summary>
-        public static string ExecutablePath { get; set; } = Application.ExecutablePath;
+        public static string ExecutablePath { get; set; } = Process.GetCurrentProcess().MainModule.FileName;
 
         public static string FriendlyName { get; set; } = AppDomain.CurrentDomain.FriendlyName;
 
@@ -22,7 +22,6 @@ namespace ComputerLock
         /// </summary>
         public static string ConfigPath { get; set; } = Path.Combine(DataPath, FriendlyName, "config.json");
 
-        public static AppConfigInfo Config { get; set; }
         public static string Version { get; set; } = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString();
     }
 }

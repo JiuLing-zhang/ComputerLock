@@ -1,0 +1,127 @@
+﻿@using ComputerLock.Resources
+@using JiuLing.AutoUpgrade.Shared
+@using JiuLing.AutoUpgrade.Shell
+@using JiuLing.CommonLibs.ExtensionMethods
+@using ComputerLock.Enums
+@using System.Globalization
+@using ComputerLock.Hooks
+@using Microsoft.Extensions.Localization
+
+@inject AppSettings AppSettings
+@inject AppSettingWriter AppSettingWriter
+@inject IStringLocalizer<Lang> Lang
+@inject AutostartHook AutostartHook
+@inject ISnackbar Snackbar
+@inject UpdateHelper UpdateHelper
+
+<MudDrawer @bind-Open="@_isOpen"
+           Class="pa-6"
+           Anchor="Anchor.End"
+           Elevation="1"
+           Width="350px"
+           Variant="@DrawerVariant.Temporary">
+    <MudDrawerContainer>
+
+        <MudSwitch Checked="@(_isAutostart)"
+                   T="bool"
+                   CheckedChanged="AutostartChange"
+                   Label="@(Lang["Autostart"])"
+                   Color="Color.Primary" />
+
+        <MudSwitch @bind-Checked="@(AppSettings.IsHideWindowWhenLaunch)"
+                   @bind-Checked:after="SaveSettings"
+                   Label="@(Lang["HideWindowWhenLaunch"])"
+                   Color="Color.Primary" />
+        <MudSwitch @bind-Checked="@(AppSettings.IsHideWindowWhenClose)"
+                   @bind-Checked:after="SaveSettings"
+                   Label="@(Lang["HideWindowWhenClose"])"
+                   Color="Color.Primary" />
+        <MudSwitch @bind-Checked="@(AppSettings.IsAutoCheckUpdate)"
+                   @bind-Checked:after="SaveSettings"
+                   Label="@(Lang["AutoCheckUpdate"])"
+                   Color="Color.Primary" />
+
+        <MudSelect Class="mt-3"
+                   T="string"
+                   Label="语言 Lang"
+                   Value="@(AppSettings.Lang.ToString())"
+                   ValueChanged="LangValueChanged">
+            <MudSelectItem Value="@("zh")">中文</MudSelectItem>
+            <MudSelectItem Value="@("en")">en</MudSelectItem>
+        </MudSelect>
+
+        <div class="mt-10">
+            <MudChip Label="true"
+                     Disabled="true"
+                     Size="Size.Small">
+                @(_version)
+            </MudChip>
+            <MudButton Variant="Variant.Text"
+                       Color="Color.Primary"
+                       Size="Size.Small"
+                       OnClick="CheckUpdateAsync">@(Lang["CheckUpdate"])</MudButton>
+            <MudButton Href="@(Resource.GitHubUrl)"
+                       Target="_blank"
+                       Variant="Variant.Text"
+                       Size="Size.Small"
+                       EndIcon="@Icons.Custom.Brands.GitHub"
+                       Color="Color.Primary">
+                GitHub
+            </MudButton>
+        </div>
+
+    </MudDrawerContainer>
+
+</MudDrawer>
+
+@code {
+    private bool _isOpen;
+    private bool _isAutostart;
+    private string _version;
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        _isAutostart = AutostartHook.IsAutostart();
+        _version = AppBase.Version;
+        _version = $"v{_version.Substring(0, _version.LastIndexOf("."))}";
+
+    }
+
+    public void Open()
+    {
+        _isOpen = true;
+        StateHasChanged();
+    }
+
+    private void AutostartChange(bool isChecked)
+    {
+        if (isChecked)
+        {
+            AutostartHook.EnabledAutostart();
+        }
+        else
+        {
+            AutostartHook.DisabledAutostart();
+        }
+        _isAutostart = AutostartHook.IsAutostart();
+    }
+
+    private void SaveSettings()
+    {
+        AppSettingWriter.Save(AppSettings);
+    }
+
+    private async Task CheckUpdateAsync()
+    {
+        await UpdateHelper.DoAsync(false);
+    }
+
+    private async Task LangValueChanged(string lang)
+    {
+        LangEnum langEnum = (LangEnum)Enum.Parse(typeof(LangEnum), lang);
+        AppSettings.Lang = langEnum;
+        SaveSettings();
+
+        Snackbar.Add("重启后生效 Take effect after restart", Severity.Success);
+    }
+}

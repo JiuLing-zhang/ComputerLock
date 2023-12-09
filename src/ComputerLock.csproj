@@ -1,79 +1,58 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
 		<Authors>九零</Authors>
 		<Product>透明锁屏</Product>
-		<Version>1.3.1.24</Version>
-		<Nullable>enable</Nullable>
-
+		<Version>1.3.1</Version>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net7.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
 		<UseWindowsForms>true</UseWindowsForms>
-		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<RootNamespace>ComputerLock</RootNamespace>
 		<ApplicationIcon>icon.ico</ApplicationIcon>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="JiuLing.AutoUpgrade" Version="2.1.1" />
+		<PackageReference Include="JiuLing.AutoUpgrade" Version="2.1.2" />
 		<PackageReference Include="JiuLing.CommonLibs" Version="1.6.6" />
-		<PackageReference Include="JiuLing.Controls.WinForms" Version="0.0.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="7.0.101" />
+		<PackageReference Include="ModernWpfUI" Version="0.9.6" />
+		<PackageReference Include="MudBlazor" Version="6.11.1" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="resource\lang\FmLockScreen.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>FmLockScreen.resx</DependentUpon>
-	  </Compile>
-	  <Compile Update="resource\lang\FmMain.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>FmMain.resx</DependentUpon>
-	  </Compile>
-	  <Compile Update="resource\lang\FmPassword.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>FmPassword.resx</DependentUpon>
-	  </Compile>
-	  <Compile Update="resource\lang\FmShortcutKeySetting.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>FmShortcutKeySetting.resx</DependentUpon>
-	  </Compile>
-	  <Compile Update="resource\Resource.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>Resource.resx</DependentUpon>
-	  </Compile>
+		<Compile Update="Resources\Lang.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Lang.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\Resource.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resource.resx</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Update="resource\lang\FmLockScreen.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>FmLockScreen.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
-	  <EmbeddedResource Update="resource\lang\FmMain.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>FmMain.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
-	  <EmbeddedResource Update="resource\lang\FmPassword.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>FmPassword.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
-	  <EmbeddedResource Update="resource\lang\FmShortcutKeySetting.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>FmShortcutKeySetting.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
-	  <EmbeddedResource Update="resource\Resource.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>Resource.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
+		<EmbeddedResource Update="Resources\Lang.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Lang.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\Resource.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resource.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="首次运行请看这里_Readme.txt">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
+	  <None Update="icon.ico">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="首次运行请看这里_Readme.txt">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
-
 </Project>

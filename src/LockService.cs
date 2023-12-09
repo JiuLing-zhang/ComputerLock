@@ -1,30 +1,22 @@
 ﻿using ComputerLock.Hooks;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
+using Microsoft.Extensions.DependencyInjection;
+using System.Windows;
 
 namespace ComputerLock;
 internal class LockService
 {
-    private static readonly LockService Instance = new();
-    public static LockService GetInstance()
-    {
-        return Instance;
-    }
-
     private bool _isLocked = false;
-    private readonly FmLockScreen _fmLockScreen;
+    private readonly WindowLockScreen _fmLockScreen;
+    private readonly IServiceProvider _serviceProvider;
     private readonly SystemKeyHook _systemKeyHook = new();
-    private readonly List<FmLockScreenBlank> _blankScreens;
-    private LockService()
+    private readonly List<WindowBlankScreen> _blankScreens;
+    public LockService(WindowLockScreen windowLockScreen, IServiceProvider serviceProvider)
     {
-        _fmLockScreen = new FmLockScreen();
+        _fmLockScreen = windowLockScreen;
         _fmLockScreen.OnUnlock += _fmLockScreen_OnUnlock;
         SetFormLocation(_fmLockScreen, Screen.AllScreens[0]);
-
-        _blankScreens = new List<FmLockScreenBlank>();
+        _serviceProvider = serviceProvider;
+        _blankScreens = new List<WindowBlankScreen>();
     }
 
     public void Lock()
@@ -43,7 +35,7 @@ internal class LockService
 
         for (var i = 0; i <= Screen.AllScreens.Length - 1; i++)
         {
-            var blankScreen = new FmLockScreenBlank();
+            var blankScreen = _serviceProvider.GetRequiredService<WindowBlankScreen>();
             blankScreen.OnDeviceInput += BlankScreen_OnDeviceInput;
             SetFormLocation(blankScreen, Screen.AllScreens[i]);
             blankScreen.Show();
@@ -53,10 +45,13 @@ internal class LockService
         OpenLockScreen();
     }
 
-    private void SetFormLocation(Form form, Screen screen)
+    private void SetFormLocation(Window form, Screen screen)
     {
-        Rectangle bounds = screen.Bounds;
-        form.SetBounds(bounds.X, bounds.Y, bounds.Width, bounds.Height);
+        //Rectangle bounds = screen.Bounds;
+        ////TODO 迁移
+        //form.Width = bounds.Width;
+        //form.Height = bounds.Height;
+        //form.SetBounds(bounds.X, bounds.Y, bounds.Width, bounds.Height);
     }
 
     private void _fmLockScreen_OnUnlock(object? sender, EventArgs e)

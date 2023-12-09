@@ -1,0 +1,24 @@
+﻿<Window x:Class="ComputerLock.WindowBlankScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComputerLock"
+        mc:Ignorable="d"
+        Title=""
+        WindowStyle="None"
+        Topmost="True"
+        WindowState="Maximized"
+        ShowInTaskbar="False"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Height="450"
+        Width="800"
+        Loaded="Window_Loaded"
+        KeyDown="Window_KeyDown"
+        MouseDown="Window_MouseDown"
+        Closing="Window_Closing">
+    <Grid Background="#000000" Opacity="0.01">
+
+    </Grid>
+</Window>

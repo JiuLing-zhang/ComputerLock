@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.3.32611.2
+VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputerLock", "src\ComputerLock.csproj", "{DBCC7339-3EB6-402B-9EC8-BD7014CC1CE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputerLock", "src\ComputerLock.csproj", "{B6A9D5A0-CD0F-4D7B-AD6A-9B66F433627B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DBCC7339-3EB6-402B-9EC8-BD7014CC1CE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DBCC7339-3EB6-402B-9EC8-BD7014CC1CE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DBCC7339-3EB6-402B-9EC8-BD7014CC1CE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DBCC7339-3EB6-402B-9EC8-BD7014CC1CE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6A9D5A0-CD0F-4D7B-AD6A-9B66F433627B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6A9D5A0-CD0F-4D7B-AD6A-9B66F433627B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6A9D5A0-CD0F-4D7B-AD6A-9B66F433627B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6A9D5A0-CD0F-4D7B-AD6A-9B66F433627B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {EEFBE141-C21A-447B-9B6D-BB2A5EFB69FB}
+		SolutionGuid = {84A8F2DF-E6F5-44C7-BCBE-2BC9CE9F3F03}
+		RESX_NeutralResourcesLanguage = zh-Hans
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,60 @@
+﻿@using ComputerLock.Platforms
+﻿
+@inject IWindowTitleBar WindowTitleBar
+
+<div class="title-bar d-flex align-start @Class">
+
+    <MudIconButton Icon="@Icons.Material.Filled.Minimize"
+                   Size="Size.Medium"
+                   OnClick="MinimizeAsync" />
+    <MudIconButton Icon=@(_maximizerIcon)
+                   Size="Size.Medium"
+                   Disabled="true"
+                   OnClick="MaximizeAsync" />
+    <MudIconButton Icon="@Icons.Material.Filled.Close"
+                   Size="Size.Medium"
+                   OnClick="CloseAsync" />
+</div>
+@code {
+
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    private string _maximizerIcon;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        await SetMaximizerIconAsync();
+    }
+
+    private Task MinimizeAsync()
+    {
+        WindowTitleBar.Minimize();
+        return Task.CompletedTask;
+    }
+
+    private async Task MaximizeAsync()
+    {
+        WindowTitleBar.Maximize();
+        await SetMaximizerIconAsync();
+    }
+    private Task CloseAsync()
+    {
+        WindowTitleBar.Close();
+        return Task.CompletedTask;
+    }
+
+    private Task SetMaximizerIconAsync()
+    {
+        if (WindowTitleBar.IsMaximized)
+        {
+            _maximizerIcon = Icons.Material.Filled.CloseFullscreen;
+        }
+        else
+        {
+            _maximizerIcon = Icons.Material.Filled.Fullscreen;
+        }
+        return Task.CompletedTask;
+    }
+}

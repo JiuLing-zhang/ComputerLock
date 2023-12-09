@@ -1,0 +1,277 @@
+﻿@page "/"
+@using ComputerLock.Resources
+@using ComputerLock.Enums
+@using ComputerLock.Hooks
+@using ComputerLock.Platforms
+@using JiuLing.CommonLibs.ExtensionMethods
+@using JiuLing.CommonLibs.Text
+
+@inject AppSettings AppSettings
+@inject AppSettingWriter AppSettingWriter
+@inject IStringLocalizer<Lang> Lang
+@inject ISnackbar Snackbar
+@inject IDialogService Dialog
+@inject UpdateHelper UpdateHelper
+@inject ILocker Locker
+@inject KeyboardHook KeyboardHook
+
+
+<style>
+    .dialog-blurry {
+        backdrop-filter: blur(10px);
+    }
+</style>
+
+<MudSwitch @bind-Checked="@(AppSettings.IsDisableWindowsLock)"
+           @bind-Checked:after="SaveSettings"
+           Label="@(Lang["DisableWindowsLock"])"
+           Color="Color.Primary" />
+
+<MudSwitch @bind-Checked="@(AppSettings.IsHidePasswordWindow)"
+           @bind-Checked:after="SaveSettings"
+           Label="@(Lang["HidePasswordWindow"])"
+           Color="Color.Primary" />
+
+<MudSwitch @bind-Checked="@(_keyboardDownChecked)"
+           @bind-Checked:after="KeyboardDownChecked"
+           Label="@(Lang["KeyboardDownActivePwd"])"
+           Color="Color.Primary" />
+
+<MudSwitch @bind-Checked="@(_mouseDownChecked)"
+           @bind-Checked:after="MouseDownChecked"
+           Label="@(Lang["MouseDownActivePwd"])"
+           Color="Color.Primary" />
+
+<div class="d-flex align-center mt-2">
+    <MudText Typo="Typo.button">@(Lang["LockShortcutKey"])</MudText>
+    <MudButton Class="ml-3"
+               Variant="Variant.Text"
+               Size="Size.Small"
+               Color="Color.Primary"
+               OnClick="SetShortcutKey">
+        @(_shortcutKeyText)
+    </MudButton>
+    @if (AppSettings.ShortcutKeyForLock.IsNotEmpty())
+    {
+        <MudIconButton Icon="@Icons.Material.Filled.Delete"
+                       Size="Size.Small"
+                       OnClick="ClearShortcutKey" />
+    }
+
+</div>
+
+<MudSelect T="ScreenLocationEnum"
+           Label="@(Lang["PwdLocation"])"
+           Value="@(AppSettings.PasswordInputLocation)"
+           Class="mt-4"
+           ValueChanged="PwdBoxLocationChanged"
+           Dense="true">
+    <MudSelectItem Value="@(ScreenLocationEnum.Center)">@(Lang["Center"])</MudSelectItem>
+    <MudSelectItem Value="@(ScreenLocationEnum.TopLeft)">@(Lang["TopLeft"])</MudSelectItem>
+    <MudSelectItem Value="@(ScreenLocationEnum.TopRight)">@(Lang["TopRight"])</MudSelectItem>
+    <MudSelectItem Value="@(ScreenLocationEnum.BottomLeft)">@(Lang["BottomLeft"])</MudSelectItem>
+    <MudSelectItem Value="@(ScreenLocationEnum.BottomRight)">@(Lang["BottomRight"])</MudSelectItem>
+</MudSelect>
+
+
+<div class="d-flex align-center mt-4">
+    <MudButton Class="mr-3"
+               Variant="Variant.Text"
+               Size="Size.Small"
+               Color="Color.Primary"
+               OnClick="SetPassword">
+        @(Lang["SetPassword"])
+    </MudButton>
+    @if (!AppSettings.IsPasswordChanged)
+    {
+        <MudText Typo="Typo.caption">@(Lang["PasswordTip"])</MudText>
+    }
+</div>
+
+@code {
+
+    private bool _keyboardDownChecked;
+    private bool _mouseDownChecked;
+    private string _shortcutKeyText = "未设置";
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        _keyboardDownChecked = (AppSettings.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.KeyboardDown) == PasswordBoxActiveMethodEnum.KeyboardDown;
+        _mouseDownChecked = (AppSettings.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.MouseDown) == PasswordBoxActiveMethodEnum.MouseDown;
+        UpdateShortcutKeyForLock();
+
+        KeyboardHook.KeyPressed += _keyboardHook_KeyPressed;
+
+        if (AppSettings.IsAutoCheckUpdate)
+        {
+            await UpdateHelper.DoAsync(true);
+        }
+    }
+
+    private void _keyboardHook_KeyPressed(object sender, KeyPressedEventArgs e)
+    {
+        Locker.Lock();
+    }
+
+    private void KeyboardDownChecked()
+    {
+        if (!_keyboardDownChecked)
+        {
+            if (!_mouseDownChecked)
+            {
+                _keyboardDownChecked = true;
+                Snackbar.Add(Lang["ActiveMethodEmpty"], Severity.Warning);
+                return;
+            }
+        }
+        SavePasswordBoxActiveMethod();
+    }
+    private void MouseDownChecked()
+    {
+        if (!_mouseDownChecked)
+        {
+            if (!_keyboardDownChecked)
+            {
+                _mouseDownChecked = true;
+                Snackbar.Add(Lang["ActiveMethodEmpty"], Severity.Warning);
+                return;
+            }
+        }
+        SavePasswordBoxActiveMethod();
+    }
+
+    private void SavePasswordBoxActiveMethod()
+    {
+        AppSettings.PasswordBoxActiveMethod = 0;
+        if (_keyboardDownChecked)
+        {
+            AppSettings.PasswordBoxActiveMethod |= PasswordBoxActiveMethodEnum.KeyboardDown;
+        }
+        if (_mouseDownChecked)
+        {
+            AppSettings.PasswordBoxActiveMethod |= PasswordBoxActiveMethodEnum.MouseDown;
+        }
+        SaveSettings();
+    }
+
+    private void PwdBoxLocationChanged(ScreenLocationEnum location)
+    {
+        AppSettings.PasswordInputLocation = location;
+        SaveSettings();
+        Snackbar.Add(Lang["Restarting"], Severity.Success);
+    }
+
+    private void SaveSettings()
+    {
+        AppSettingWriter.Save(AppSettings);
+    }
+    private async Task SetShortcutKey()
+    {
+        var noHeader = new DialogOptions()
+            {
+                NoHeader = true,
+                ClassBackground = "dialog-blurry",
+                CloseOnEscapeKey = false,
+            };
+        var dialog = await Dialog.ShowAsync<ShortcutKeySetting>("", noHeader);
+        var result = await dialog.Result;
+        if (result.Canceled)
+        {
+            return;
+        }
+
+        var shortcutKeyModel = result.Data as ShortcutKeyModel;
+        if (shortcutKeyModel == null)
+        {
+            return;
+        }
+
+        AppSettings.ShortcutKeyForLock = shortcutKeyModel.ShortcutKey;
+        AppSettings.ShortcutKeyDisplayForLock = shortcutKeyModel.ShortcutKeyDisplay;
+        SaveSettings();
+        UpdateShortcutKeyForLock();
+    }
+    private async Task ClearShortcutKey()
+    {
+
+        AppSettings.ShortcutKeyForLock = "";
+        AppSettings.ShortcutKeyDisplayForLock = "";
+        SaveSettings();
+        UpdateShortcutKeyForLock();
+    }
+
+
+    public void UpdateShortcutKeyForLock()
+    {
+        if (AppSettings.ShortcutKeyForLock.IsEmpty())
+        {
+            try
+            {
+                KeyboardHook.UnregisterHotKey();
+            }
+            catch (Exception ex)
+            {
+                //MessageBoxUtils.ShowError($"取消快捷键失败：{ex.Message}");
+            }
+            _shortcutKeyText = Lang["Invalid"];
+        }
+        else
+        {
+            try
+            {
+                ModifierKeys keys = 0;
+                if (AppSettings.ShortcutKeyForLock.IndexOf("Ctrl") >= 0)
+                {
+                    keys = keys | Hooks.ModifierKeys.Control;
+                }
+                if (AppSettings.ShortcutKeyForLock.IndexOf("Shift") >= 0)
+                {
+                    keys = keys | Hooks.ModifierKeys.Shift;
+                }
+                if (AppSettings.ShortcutKeyForLock.IndexOf("Alt") >= 0)
+                {
+                    keys = keys | Hooks.ModifierKeys.Alt;
+                }
+
+                var result = RegexUtils.GetFirst(AppSettings.ShortcutKeyForLock, @"\d+");
+                if (result.success == false)
+                {
+                    throw new Exception(Lang["ShortcutKeyConfigError"]);
+                }
+
+                Keys key = (Keys)Convert.ToInt32(result.result);
+                KeyboardHook.RegisterHotKey(keys, key);
+
+                _shortcutKeyText = AppSettings.ShortcutKeyDisplayForLock;
+            }
+            catch (Exception ex)
+            {
+                Snackbar.Add($"{Lang["ExRegistFailed"]}{ex.Message}", Severity.Error);
+            }
+        }
+    }
+
+
+    private async Task SetPassword()
+    {
+        var noHeader = new DialogOptions()
+            {
+                ClassBackground = "dialog-blurry",
+                CloseOnEscapeKey = false,
+                CloseButton = true
+            };
+        var dialog = await Dialog.ShowAsync<SetPassword>(Lang["SetPassword"], noHeader);
+        var result = await dialog.Result;
+        if (result.Canceled)
+        {
+            return;
+        }
+        if (result.Data == null)
+        {
+            return;
+        }
+        AppSettings.Password = result.Data.ToString();
+        AppSettings.IsPasswordChanged = true;
+        SaveSettings();
+    }
+}

@@ -1,0 +1,30 @@
+﻿<Window x:Class="ComputerLock.WindowMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComputerLock"
+        xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation/blazor"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        mc:Ignorable="d"
+        Title="透明锁屏"
+        Height="380"
+        Width="530"
+        WindowState="Normal"
+        StateChanged="Window_StateChanged"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing"
+        KeyDown="Window_KeyDown"
+        WindowStartupLocation="CenterScreen"
+        ui:TitleBar.ExtendViewIntoTitleBar="True"
+        ui:TitleBar.IsBackButtonVisible="False"
+        ui:TitleBar.Style="{DynamicResource AppTitleBarStyle}"
+        ui:WindowHelper.UseModernWindowStyle="True">
+    <Grid>
+        <wpf:BlazorWebView HostPage="wwwroot\index.html" Services="{DynamicResource services}">
+            <wpf:BlazorWebView.RootComponents>
+                <wpf:RootComponent Selector="#app" ComponentType="{x:Type local:WebApp}" />
+            </wpf:BlazorWebView.RootComponents>
+        </wpf:BlazorWebView>
+    </Grid>
+</Window>

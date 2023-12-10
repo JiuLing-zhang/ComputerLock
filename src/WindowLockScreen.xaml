@@ -17,16 +17,40 @@
         Loaded="Window_Loaded"
         SizeChanged="Window_SizeChanged"
         >
-    <StackPanel>
-        <StackPanel x:Name="panel1">
-            <StackPanel>
-                <Label x:Name="LblPassword"/>
-                <Label x:Name="LblMessage"/>
-            </StackPanel>
-            <PasswordBox x:Name="TxtPassword" 
-                         PasswordChanged="TxtPassword_PasswordChanged"
-                         KeyDown="TxtPassword_KeyDown"/>
-        </StackPanel>
+    <Grid Margin="10">
+        <Border Width="230"
+                Height="65"
+                x:Name="PasswordBlock"
+                CornerRadius="10"
+                BorderBrush="Transparent"
+                Background="#fb8c00"
+                BorderThickness="1">
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-    </StackPanel>
+                <Label Grid.Row="0"
+                       Grid.Column="0" 
+                       x:Name="LblPassword"/>
+                <Label Grid.Row="0" 
+                       Grid.Column="2" 
+                       x:Name="LblMessage"/>
+
+                <PasswordBox Grid.Row="2" 
+                             Grid.Column="0" 
+                             Grid.ColumnSpan="3" 
+                             x:Name="TxtPassword" 
+                             PasswordChanged="TxtPassword_PasswordChanged"
+                             KeyDown="TxtPassword_KeyDown"/>
+            </Grid>
+        </Border>
+    </Grid>
 </Window>

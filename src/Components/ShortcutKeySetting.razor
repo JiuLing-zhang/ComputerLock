@@ -57,7 +57,12 @@
             _shortcutKey = _shortcutKey + "Alt + ";
         }
 
-        if ((ascii >= 48 && ascii <= 57) || (ascii >= 65 && ascii <= 90) || (ascii >= 97 && ascii <= 122))
+        if (ascii >= 97 && ascii <= 122)
+        {
+            ascii = (byte)char.ToUpper((char)ascii);
+        }
+
+        if ((ascii >= 48 && ascii <= 57) || (ascii >= 65 && ascii <= 90))
         {
             _shortcutKeyDisplay = _shortcutKey + $"{value.Key}";
             _shortcutKeyText = _shortcutKeyDisplay;

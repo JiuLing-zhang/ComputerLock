@@ -11,8 +11,8 @@ namespace ComputerLock
     {
         private bool _isUnlock = false;
         public event EventHandler<EventArgs>? OnDeviceInput;
-        private readonly double _unlockAreaHeight = 70;
-        private readonly double _unlockAreaWidth = 160;
+        private readonly double _unlockAreaHeight = 65;
+        private readonly double _unlockAreaWidth = 230;
 
         private readonly AppSettings _appSettings;
         public WindowBlankScreen(AppSettings appSettings)
@@ -31,12 +31,16 @@ namespace ComputerLock
             {
                 return;
             }
+
+            if (e.Key != Key.Escape)
+            {
+                return;
+            }
             OnDeviceInput?.Invoke(this, EventArgs.Empty);
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
             //这里只响应左键
             //因为为了实现禁用 Windows 锁屏，会定时点击鼠标右键
             if (e.ChangedButton != MouseButton.Left)

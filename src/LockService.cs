@@ -14,7 +14,6 @@ internal class LockService
     {
         _fmLockScreen = windowLockScreen;
         _fmLockScreen.OnUnlock += _fmLockScreen_OnUnlock;
-        SetFormLocation(_fmLockScreen, Screen.AllScreens[0]);
         _serviceProvider = serviceProvider;
         _blankScreens = new List<WindowBlankScreen>();
     }
@@ -37,21 +36,11 @@ internal class LockService
         {
             var blankScreen = _serviceProvider.GetRequiredService<WindowBlankScreen>();
             blankScreen.OnDeviceInput += BlankScreen_OnDeviceInput;
-            SetFormLocation(blankScreen, Screen.AllScreens[i]);
             blankScreen.Show();
             blankScreen.Activate();
             _blankScreens.Add(blankScreen);
         }
         OpenLockScreen();
-    }
-
-    private void SetFormLocation(Window form, Screen screen)
-    {
-        //Rectangle bounds = screen.Bounds;
-        ////TODO 迁移
-        //form.Width = bounds.Width;
-        //form.Height = bounds.Height;
-        //form.SetBounds(bounds.X, bounds.Y, bounds.Width, bounds.Height);
     }
 
     private void _fmLockScreen_OnUnlock(object? sender, EventArgs e)

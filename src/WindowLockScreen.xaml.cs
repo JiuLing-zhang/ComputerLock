@@ -64,55 +64,54 @@ public partial class WindowLockScreen : Window
 
     private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
     {
-        //TODO 迁移
-        //switch (_appSettings.PasswordInputLocation)
-        //{
-        //    case ScreenLocationEnum.Center:
-        //        panel1.Top = this.Height / 2 - this.panel1.Height / 2;
-        //        panel1.Left = this.Width / 2 - this.panel1.Width / 2;
-        //        break;
-        //    case ScreenLocationEnum.TopLeft:
-        //        panel1.Top = 0;
-        //        panel1.Left = 0;
-        //        break;
-        //    case ScreenLocationEnum.TopRight:
-        //        panel1.Top = 0;
-        //        panel1.Left = this.Width - this.panel1.Width;
-        //        break;
-        //    case ScreenLocationEnum.BottomLeft:
-        //        panel1.Top = this.Height - this.panel1.Height;
-        //        panel1.Left = 0;
-        //        break;
-        //    case ScreenLocationEnum.BottomRight:
-        //        panel1.Top = this.Height - this.panel1.Height;
-        //        panel1.Left = this.Width - this.panel1.Width;
-        //        break;
-        //    default:
-        //        panel1.Top = this.Height / 2 - this.panel1.Height / 2;
-        //        panel1.Left = this.Width / 2 - this.panel1.Width / 2;
-        //        break;
-        //}
+        switch (_appSettings.PasswordInputLocation)
+        {
+            case ScreenLocationEnum.Center:
+                PasswordBlock.VerticalAlignment = VerticalAlignment.Center;
+                PasswordBlock.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+                break;
+            case ScreenLocationEnum.TopLeft:
+                PasswordBlock.VerticalAlignment = VerticalAlignment.Top;
+                PasswordBlock.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                break;
+            case ScreenLocationEnum.TopRight:
+                PasswordBlock.VerticalAlignment = VerticalAlignment.Top;
+                PasswordBlock.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
+                break;
+            case ScreenLocationEnum.BottomLeft:
+                PasswordBlock.VerticalAlignment = VerticalAlignment.Bottom;
+                PasswordBlock.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                break;
+            case ScreenLocationEnum.BottomRight:
+                PasswordBlock.VerticalAlignment = VerticalAlignment.Bottom;
+                PasswordBlock.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
+                break;
+            default:
+                PasswordBlock.VerticalAlignment = VerticalAlignment.Center;
+                PasswordBlock.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+                break;
+        }
     }
 
     public void Open()
     {
-
         if (this.Visibility == Visibility.Visible)
         {
             return;
         }
         _isLocked = true;
         LblPassword.Content = _lang["Password"];
-        TxtPassword.Password = "";
         if (_appSettings.IsHidePasswordWindow)
         {
             LblMessage.Visibility = Visibility.Visible;
             LblMessage.Content = $"{_lang["TimerPrefix"]}{_hideSelfSecond}{_lang["TimerPostfix"]}";
         }
-
         RefreshHideSelfTime();
         this.Show();
+        this.Topmost = true;
         this.Activate();
+        TxtPassword.Password = "";
+        TxtPassword.Focus();
     }
 
 
@@ -136,7 +135,7 @@ public partial class WindowLockScreen : Window
             if (_appSettings.IsHidePasswordWindow)
             {
                 var hideCountdown = Convert.ToInt32(_hideSelfTime.Subtract(time).TotalSeconds);
-                LblMessage.Content = $"{_lang["TimerPrefix"]}{_hideSelfSecond}{_lang["TimerPostfix"]}";
+                LblMessage.Content = $"{_lang["TimerPrefix"]}{hideCountdown}{_lang["TimerPostfix"]}";
                 if (hideCountdown <= 0)
                 {
                     HideSelf();
@@ -146,7 +145,6 @@ public partial class WindowLockScreen : Window
         }
         catch (Exception ex)
         {
-
         }
     }
 

@@ -142,7 +142,7 @@
     <value>自动隐藏密码框</value>
   </data>
   <data name="KeyboardDownActivePwd" xml:space="preserve">
-    <value>键盘按下时显示密码框</value>
+    <value>按下 ESC 键显示密码框</value>
   </data>
   <data name="MouseDownActivePwd" xml:space="preserve">
     <value>鼠标点击密码框位置时显示</value>

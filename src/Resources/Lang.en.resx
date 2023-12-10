@@ -142,7 +142,7 @@
     <value>Auto-hide password box</value>
   </data>
   <data name="KeyboardDownActivePwd" xml:space="preserve">
-    <value>Show password box when keyboard down</value>
+    <value>Show password box when ESC key down</value>
   </data>
   <data name="MouseDownActivePwd" xml:space="preserve">
     <value>Show password box when mouse clicked on position of box</value>

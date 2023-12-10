@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ComputerLock.Enums;
+﻿namespace ComputerLock.Enums;
 [Flags]
 public enum PasswordBoxActiveMethodEnum
 {

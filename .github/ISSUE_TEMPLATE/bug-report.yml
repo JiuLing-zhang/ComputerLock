@@ -36,14 +36,10 @@ body:
       placeholder: 例如 Windows 10、Windows 11
     validations:
       required: true
-  - type: dropdown
+  - type: input
     id: version
     attributes:
       label: 程序版本
-      description: 错误出现在哪个版本中。
-      options:
-        - 1.2.7
-        - 1.2.6
-        - 更早
+      description: 错误出现在哪个版本中。      
     validations:
       required: true

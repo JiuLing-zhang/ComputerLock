@@ -17,6 +17,7 @@
         Loaded="Window_Loaded"
         SizeChanged="Window_SizeChanged"
         >
+
     <Grid Margin="10">
         <Border Width="230"
                 Height="65"
@@ -47,7 +48,7 @@
                 <PasswordBox Grid.Row="2" 
                              Grid.Column="0" 
                              Grid.ColumnSpan="3" 
-                             x:Name="TxtPassword" 
+                             x:Name="TxtPassword"
                              PasswordChanged="TxtPassword_PasswordChanged"
                              KeyDown="TxtPassword_KeyDown"/>
             </Grid>

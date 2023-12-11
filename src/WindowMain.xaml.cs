@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using ComputerLock.Hooks;
 using ComputerLock.Platforms;
 using ComputerLock.Resources;
@@ -41,11 +42,16 @@ public partial class WindowMain : Window
         _contextMenuStrip.Items.Add(btnLock);
 
         var btnClose = new ToolStripMenuItem(Lang.Exit);
-        btnClose.Click += (_, __) => System.Windows.Application.Current.Shutdown();
+        btnClose.Click += (_, __) =>
+        {
+            Dispose();
+            System.Windows.Application.Current.Shutdown();
+        };
         _contextMenuStrip.Items.Add(btnClose);
 
         _notifyIcon.ContextMenuStrip = _contextMenuStrip;
-        _notifyIcon.Icon = new System.Drawing.Icon("icon.ico");
+        Stream iconStream = System.Windows.Application.GetResourceStream(new Uri("pack://application:,,,/ComputerLock;component/icon.ico")).Stream;
+        _notifyIcon.Icon = new System.Drawing.Icon(iconStream);
         _notifyIcon.Click += (object? sender, EventArgs e) =>
         {
             var args = e as MouseEventArgs;
@@ -81,7 +87,7 @@ public partial class WindowMain : Window
             e.Cancel = true;
             return;
         }
-        _keyboardHook.Dispose();
+        Dispose();
     }
 
     private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -92,5 +98,10 @@ public partial class WindowMain : Window
             this.WindowState = WindowState.Minimized;
             this.ShowInTaskbar = false;
         }
+    }
+    public void Dispose()
+    {
+        _notifyIcon.Visible = false;
+        _keyboardHook.Dispose();
     }
 }

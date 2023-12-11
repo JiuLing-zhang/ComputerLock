@@ -8,11 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ComputerLock.Resources
-{
+namespace ComputerLock.Resources {
     using System;
-
-
+    
+    
     /// <summary>
     ///   一个强类型的资源类，用于查找本地化的字符串等。
     /// </summary>
@@ -23,499 +22,409 @@ namespace ComputerLock.Resources
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Lang
-    {
-
+    public class Lang {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Lang()
-        {
+        internal Lang() {
         }
-
+        
         /// <summary>
         ///   返回此类使用的缓存的 ResourceManager 实例。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if (object.ReferenceEquals(resourceMan, null))
-                {
+        public static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ComputerLock.Resources.Lang", typeof(Lang).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   重写当前线程的 CurrentUICulture 属性，对
         ///   使用此强类型资源类的所有资源查找执行重写。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        public static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string ActiveMethodEmpty
-        {
-            get
-            {
+        public static string ActiveMethodEmpty {
+            get {
                 return ResourceManager.GetString("ActiveMethodEmpty", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string AutoCheckUpdate
-        {
-            get
-            {
+        public static string AutoCheckUpdate {
+            get {
                 return ResourceManager.GetString("AutoCheckUpdate", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string Autostart
-        {
-            get
-            {
+        public static string Autostart {
+            get {
                 return ResourceManager.GetString("Autostart", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string BottomLeft
-        {
-            get
-            {
+        public static string BottomLeft {
+            get {
                 return ResourceManager.GetString("BottomLeft", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string BottomRight
-        {
-            get
-            {
+        public static string BottomRight {
+            get {
                 return ResourceManager.GetString("BottomRight", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string Cancel
-        {
-            get
-            {
+        public static string Cancel {
+            get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string Center
-        {
-            get
-            {
+        public static string Center {
+            get {
                 return ResourceManager.GetString("Center", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string CheckUpdate
-        {
-            get
-            {
+        public static string CheckUpdate {
+            get {
                 return ResourceManager.GetString("CheckUpdate", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string ConfigFilePathError
-        {
-            get
-            {
+        public static string ConfigFilePathError {
+            get {
                 return ResourceManager.GetString("ConfigFilePathError", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string ConfirmPassword
-        {
-            get
-            {
+        public static string ConfirmPassword {
+            get {
                 return ResourceManager.GetString("ConfirmPassword", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string CurrentPassword
-        {
-            get
-            {
+        public static string CurrentPassword {
+            get {
                 return ResourceManager.GetString("CurrentPassword", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string DisableWindowsLock
-        {
-            get
-            {
+        public static string DisableWindowsLock {
+            get {
                 return ResourceManager.GetString("DisableWindowsLock", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string DoLock
-        {
-            get
-            {
+        public static string DoLock {
+            get {
                 return ResourceManager.GetString("DoLock", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string EnterShortcutKey
-        {
-            get
-            {
+        public static string EnterShortcutKey {
+            get {
                 return ResourceManager.GetString("EnterShortcutKey", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string Exit
-        {
-            get
-            {
+        public static string Exit {
+            get {
                 return ResourceManager.GetString("Exit", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string ExRegistFailed
-        {
-            get
-            {
+        public static string ExRegistFailed {
+            get {
                 return ResourceManager.GetString("ExRegistFailed", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string HidePasswordWindow
-        {
-            get
-            {
+        public static string HidePasswordWindow {
+            get {
                 return ResourceManager.GetString("HidePasswordWindow", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string HideWindowWhenClose
-        {
-            get
-            {
+        public static string HideWindowWhenClose {
+            get {
                 return ResourceManager.GetString("HideWindowWhenClose", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string HideWindowWhenLaunch
-        {
-            get
-            {
+        public static string HideWindowWhenLaunch {
+            get {
                 return ResourceManager.GetString("HideWindowWhenLaunch", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string Invalid
-        {
-            get
-            {
+        public static string Invalid {
+            get {
                 return ResourceManager.GetString("Invalid", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string KeyboardDownActivePwd
-        {
-            get
-            {
+        public static string KeyboardDownActivePwd {
+            get {
                 return ResourceManager.GetString("KeyboardDownActivePwd", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string LockShortcutKey
-        {
-            get
-            {
+        public static string LockShortcutKey {
+            get {
                 return ResourceManager.GetString("LockShortcutKey", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string MouseDownActivePwd
-        {
-            get
-            {
+        public static string MouseDownActivePwd {
+            get {
                 return ResourceManager.GetString("MouseDownActivePwd", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string NewPassword
-        {
-            get
-            {
+        public static string NewPassword {
+            get {
                 return ResourceManager.GetString("NewPassword", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string Password
-        {
-            get
-            {
+        public static string Password {
+            get {
                 return ResourceManager.GetString("Password", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string PasswordEmpty
-        {
-            get
-            {
+        public static string PasswordEmpty {
+            get {
                 return ResourceManager.GetString("PasswordEmpty", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string PasswordInconsistent
-        {
-            get
-            {
+        public static string PasswordInconsistent {
+            get {
                 return ResourceManager.GetString("PasswordInconsistent", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string PasswordTip
-        {
-            get
-            {
+        public static string PasswordTip {
+            get {
                 return ResourceManager.GetString("PasswordTip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string PwdLocation
-        {
-            get
-            {
+        public static string PwdLocation {
+            get {
                 return ResourceManager.GetString("PwdLocation", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string Restarting
-        {
-            get
-            {
+        public static string Restarting {
+            get {
                 return ResourceManager.GetString("Restarting", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string Save
-        {
-            get
-            {
+        public static string Save {
+            get {
                 return ResourceManager.GetString("Save", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string SaveOk
-        {
-            get
-            {
+        public static string SaveOk {
+            get {
                 return ResourceManager.GetString("SaveOk", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string SetPassword
-        {
-            get
-            {
+        public static string SetPassword {
+            get {
                 return ResourceManager.GetString("SetPassword", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string ShortcutKeyConfigError
-        {
-            get
-            {
+        public static string ShortcutKeyConfigError {
+            get {
                 return ResourceManager.GetString("ShortcutKeyConfigError", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string ShowMainWindow
-        {
-            get
-            {
+        public static string ShowMainWindow {
+            get {
                 return ResourceManager.GetString("ShowMainWindow", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string TimerPostfix
-        {
-            get
-            {
+        public static string TimerPostfix {
+            get {
                 return ResourceManager.GetString("TimerPostfix", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string TimerPrefix
-        {
-            get
-            {
+        public static string TimerPrefix {
+            get {
                 return ResourceManager.GetString("TimerPrefix", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string Title
-        {
-            get
-            {
+        public static string Title {
+            get {
                 return ResourceManager.GetString("Title", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string TopLeft
-        {
-            get
-            {
+        public static string TopLeft {
+            get {
                 return ResourceManager.GetString("TopLeft", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string TopRight
-        {
-            get
-            {
+        public static string TopRight {
+            get {
                 return ResourceManager.GetString("TopRight", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        internal static string WrongPassword
-        {
-            get
-            {
+        public static string WrongPassword {
+            get {
                 return ResourceManager.GetString("WrongPassword", resourceCulture);
             }
         }

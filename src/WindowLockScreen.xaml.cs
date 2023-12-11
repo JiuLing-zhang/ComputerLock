@@ -14,7 +14,6 @@ namespace ComputerLock;
 /// </summary>
 public partial class WindowLockScreen : Window
 {
-    private bool _isLocked;
     private DateTime _hideSelfTime;
     private int _hideSelfSecond = 3;
     public event EventHandler<EventArgs>? OnUnlock;
@@ -50,16 +49,20 @@ public partial class WindowLockScreen : Window
         _appSettings = appSettings;
         _lang = lang;
 
-
         _timer.Interval = TimeSpan.FromSeconds(1);
         _timer.Tick += _timer_Tick;
         _timer.Start();
     }
 
-
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
-
+        LblPassword.Content = _lang["Password"];
+        if (_appSettings.IsHidePasswordWindow)
+        {
+            LblMessage.Visibility = Visibility.Visible;
+            LblMessage.Content = $"{_lang["TimerPrefix"]}{_hideSelfSecond}{_lang["TimerPostfix"]}";
+        }
+        RefreshHideSelfTime();
     }
 
     private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -93,36 +96,19 @@ public partial class WindowLockScreen : Window
         }
     }
 
-    public void Open()
+    public void ShowPassword()
     {
-        if (this.Visibility == Visibility.Visible)
-        {
-            return;
-        }
-        _isLocked = true;
-        LblPassword.Content = _lang["Password"];
-        if (_appSettings.IsHidePasswordWindow)
-        {
-            LblMessage.Visibility = Visibility.Visible;
-            LblMessage.Content = $"{_lang["TimerPrefix"]}{_hideSelfSecond}{_lang["TimerPostfix"]}";
-        }
         RefreshHideSelfTime();
-        this.Show();
-        this.Topmost = true;
-        this.Activate();
+        TxtPassword.Visibility = Visibility.Visible;
+        PasswordBlock.Opacity = 1;
         TxtPassword.Password = "";
         TxtPassword.Focus();
     }
-
 
     private void _timer_Tick(object? sender, EventArgs e)
     {
         try
         {
-            if (!_isLocked)
-            {
-                return;
-            }
             var time = DateTime.Now;
             if (time.Second % 30 == 0)
             {
@@ -138,10 +124,9 @@ public partial class WindowLockScreen : Window
                 LblMessage.Content = $"{_lang["TimerPrefix"]}{hideCountdown}{_lang["TimerPostfix"]}";
                 if (hideCountdown <= 0)
                 {
-                    HideSelf();
+                    HidePassword();
                 }
             }
-
         }
         catch (Exception ex)
         {
@@ -162,9 +147,8 @@ public partial class WindowLockScreen : Window
             return;
         }
 
-        HideSelf();
-        _isLocked = false;
         OnUnlock?.Invoke(this, EventArgs.Empty);
+        this.Close();
     }
 
     private void TxtPassword_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -183,17 +167,40 @@ public partial class WindowLockScreen : Window
         MoveMouseToPoint(new Point(x, y));
         mouse_event(MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP, x, y, 0, 0);
     }
-    private void HideSelf()
+    private void HidePassword()
     {
-        if (this.Visibility == Visibility.Visible)
+        if (PasswordBlock.Opacity == 1)
         {
-            this.Hide();
+            TxtPassword.Visibility = Visibility.Collapsed;
+            PasswordBlock.Opacity = 0;
         }
     }
-
     private void RefreshHideSelfTime()
     {
         _hideSelfTime = DateTime.Now.AddSeconds(_hideSelfSecond);
     }
 
+    private void PasswordBlock_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        ShowPassword();
+    }
+
+    private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+    {
+        _timer.Stop();
+    }
+
+    private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+    {
+        if ((_appSettings.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.KeyboardDown) != PasswordBoxActiveMethodEnum.KeyboardDown)
+        {
+            return;
+        }
+
+        if (e.Key != Key.Escape)
+        {
+            return;
+        }
+        ShowPassword();
+    }
 }

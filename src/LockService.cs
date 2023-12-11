@@ -6,14 +6,12 @@ namespace ComputerLock;
 internal class LockService
 {
     private bool _isLocked = false;
-    private readonly WindowLockScreen _fmLockScreen;
     private readonly IServiceProvider _serviceProvider;
     private readonly SystemKeyHook _systemKeyHook = new();
+    private WindowLockScreen _windowLockScreen;
     private readonly List<WindowBlankScreen> _blankScreens;
-    public LockService(WindowLockScreen windowLockScreen, IServiceProvider serviceProvider)
+    public LockService(IServiceProvider serviceProvider)
     {
-        _fmLockScreen = windowLockScreen;
-        _fmLockScreen.OnUnlock += _fmLockScreen_OnUnlock;
         _serviceProvider = serviceProvider;
         _blankScreens = new List<WindowBlankScreen>();
     }
@@ -24,6 +22,12 @@ internal class LockService
         {
             return;
         }
+        var primaryScreen = Screen.PrimaryScreen;
+        if (primaryScreen == null)
+        {
+            throw new Exception("没有检测到屏幕 no screen");
+        }
+
         _isLocked = true;
         TaskManagerHook.DisabledTaskManager();
         _systemKeyHook.DisableSystemKey();
@@ -32,15 +36,34 @@ internal class LockService
             _blankScreens.Clear();
         }
 
+        _windowLockScreen = _serviceProvider.GetRequiredService<WindowLockScreen>();
+        _windowLockScreen.Left = primaryScreen.WorkingArea.Left;
+        _windowLockScreen.Top = primaryScreen.WorkingArea.Top;
+        _windowLockScreen.OnUnlock += _fmLockScreen_OnUnlock;
+        _windowLockScreen.Closing += (_, __) =>
+        {
+            _windowLockScreen.OnUnlock -= _fmLockScreen_OnUnlock;
+        };
+        _windowLockScreen.Show();
+        _windowLockScreen.Activate();
+
         for (var i = 0; i <= Screen.AllScreens.Length - 1; i++)
         {
+            var screen = Screen.AllScreens[i];
+            if (screen.Primary)
+            {
+                continue;
+            }
+
             var blankScreen = _serviceProvider.GetRequiredService<WindowBlankScreen>();
+            blankScreen.WindowStartupLocation = WindowStartupLocation.Manual;
+            blankScreen.Left = screen.WorkingArea.Left;
+            blankScreen.Top = screen.WorkingArea.Top;
             blankScreen.OnDeviceInput += BlankScreen_OnDeviceInput;
             blankScreen.Show();
             blankScreen.Activate();
             _blankScreens.Add(blankScreen);
         }
-        OpenLockScreen();
     }
 
     private void _fmLockScreen_OnUnlock(object? sender, EventArgs e)
@@ -57,11 +80,6 @@ internal class LockService
     }
     private void BlankScreen_OnDeviceInput(object? sender, EventArgs e)
     {
-        OpenLockScreen();
-    }
-
-    private void OpenLockScreen()
-    {
-        _fmLockScreen.Open();
+        _windowLockScreen.ShowPassword();
     }
 }

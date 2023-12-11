@@ -7,6 +7,7 @@ using MudBlazor.Services;
 using System.Windows;
 using ComputerLock.Hooks;
 using Application = System.Windows.Application;
+using JiuLing.CommonLibs.ExtensionMethods;
 
 namespace ComputerLock
 {
@@ -18,6 +19,15 @@ namespace ComputerLock
         private static System.Threading.Mutex _mutex;
         protected override void OnStartup(StartupEventArgs e)
         {
+            var delayParameter = e.Args.FirstOrDefault(arg => arg.StartsWith("/delay="));
+            if (delayParameter.IsNotEmpty())
+            {
+                int delaySeconds;
+                if (int.TryParse(delayParameter.Substring("/delay=".Length), out delaySeconds))
+                {
+                    Thread.Sleep(delaySeconds * 1000);
+                }
+            }
 
             _mutex = new System.Threading.Mutex(true, AppBase.FriendlyName);
             if (!_mutex.WaitOne(0, false))
@@ -49,7 +59,7 @@ namespace ComputerLock
             services.AddSingleton<UpdateHelper>();
             services.AddSingleton<AutostartHook>();
             services.AddSingleton<WindowMain>();
-            services.AddSingleton<WindowLockScreen>();
+            services.AddTransient<WindowLockScreen>();
             services.AddTransient<WindowBlankScreen>();
             services.AddSingleton<LockService>();
             services.AddSingleton<IWindowMoving, WindowMoving>();

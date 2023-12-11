@@ -7,8 +7,7 @@
         mc:Ignorable="d"
         Title=""
         WindowStyle="None"
-        Topmost="True"
-        WindowState="Maximized"
+        Topmost="True"      
         ShowInTaskbar="False"
         Background="Transparent"
         AllowsTransparency="True"
@@ -16,7 +15,6 @@
         Width="800"
         Loaded="Window_Loaded"
         KeyDown="Window_KeyDown"
-        MouseDown="Window_MouseDown"
         Closing="Window_Closing">
     <Grid Background="#000000" Opacity="0.01">
 

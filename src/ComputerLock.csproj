@@ -13,8 +13,9 @@
 		<RootNamespace>ComputerLock</RootNamespace>
 		<ApplicationIcon>icon.ico</ApplicationIcon>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<PublishSingleFile>true</PublishSingleFile>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
 		<PackageReference Include="JiuLing.AutoUpgrade" Version="2.1.2" />
 		<PackageReference Include="JiuLing.CommonLibs" Version="1.6.6" />
@@ -22,9 +23,9 @@
 		<PackageReference Include="ModernWpfUI" Version="0.9.6" />
 		<PackageReference Include="MudBlazor" Version="6.11.1" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
-	  <Resource Include="icon.ico" />
+		<Resource Include="icon.ico" />
 	</ItemGroup>
 
 	<ItemGroup>

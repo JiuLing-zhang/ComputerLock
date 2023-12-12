@@ -178,6 +178,10 @@ public partial class WindowLockScreen : Window
     private void RefreshHideSelfTime()
     {
         _hideSelfTime = DateTime.Now.AddSeconds(_hideSelfSecond);
+        this.Dispatcher.BeginInvoke(new Action(() =>
+        {
+            LblMessage.Content = $"{_lang["TimerPrefix"]}{_hideSelfSecond}{_lang["TimerPostfix"]}";
+        }));
     }
 
     private void PasswordBlock_MouseDown(object sender, MouseButtonEventArgs e)

@@ -22,7 +22,7 @@ internal class AutostartHook
     {
         string execPath = AppBase.ExecutablePath;
         var registryKey = Registry.LocalMachine.CreateSubKey(RegKey);
-        registryKey.SetValue(AppBase.FriendlyName, $"\"{execPath}\" /delay=5");
+        registryKey.SetValue(AppBase.FriendlyName, $"\"{execPath}\"");
         registryKey.Close();
     }
 

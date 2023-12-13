@@ -24,9 +24,6 @@ jobs:
       - name: Build
         run: dotnet build --no-restore -c release
 
-      - name: Publish
-        run: dotnet publish -c Release -r win-x64 -p:PublishReadyToRun=true --self-contained false
-
       - name: Get version
         uses: olegtarasov/get-tag@v2.1
         id: tagName
@@ -34,7 +31,7 @@ jobs:
       - name: Create zip
         shell: pwsh
         # 配置【编译后的文件地址】
-        run: Compress-Archive -Path ${{github.workspace}}\src\bin\Release\net7.0-windows\win-x64\publish\* -DestinationPath ${{github.workspace}}\src\bin\Release\ComputerLock_${{ steps.tagName.outputs.tag }}_win_x64.zip
+        run: Compress-Archive -Path ${{github.workspace}}\src\bin\Release\net7.0-windows\* -DestinationPath ${{github.workspace}}\src\bin\Release\ComputerLock_${{ steps.tagName.outputs.tag }}.zip
 
       - name: Release
         uses: softprops/action-gh-release@v0.1.13
@@ -44,4 +41,4 @@ jobs:
           body: |
             Release为自动生成，具体内容请查看提交日志，或直接查看[README](https://github.com/JiuLing-zhang/ComputerLock#readme)
           # 配置【zip文件地址】
-          files: ${{github.workspace}}\src\bin\Release\ComputerLock_${{ steps.tagName.outputs.tag }}_win_x64.zip
+          files: ${{github.workspace}}\src\bin\Release\ComputerLock_${{ steps.tagName.outputs.tag }}.zip

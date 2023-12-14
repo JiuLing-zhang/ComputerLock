@@ -25,7 +25,7 @@ jobs:
         run: dotnet build --no-restore -c release
 
       - name: Publish
-        run: dotnet publish -c Release -r win-x64 -p:PublishReadyToRun=true --self-contained false
+        run: dotnet publish -c Release -r win-x64 -p:PublishReadyToRun=false --self-contained false
 
       - name: Get version
         uses: olegtarasov/get-tag@v2.1

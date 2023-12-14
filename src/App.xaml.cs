@@ -27,6 +27,8 @@ namespace ComputerLock
                 return;
             }
 
+            Environment.CurrentDirectory = Path.GetDirectoryName(typeof(App).Assembly.Location);
+
             Init();
             base.OnStartup(e);
         }

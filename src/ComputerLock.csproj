@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<Authors>九零</Authors>
 		<Product>透明锁屏</Product>
-		<Version>2.0.1.26</Version>
+		<Version>2.0.2.27</Version>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net7.0-windows</TargetFramework>
 		<Nullable>enable</Nullable>
@@ -13,6 +13,7 @@
 		<RootNamespace>ComputerLock</RootNamespace>
 		<ApplicationIcon>icon.ico</ApplicationIcon>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<PublishSingleFile>true</PublishSingleFile>
 	</PropertyGroup>
 
 	<ItemGroup>

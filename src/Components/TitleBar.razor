@@ -4,16 +4,23 @@
 
 <div class="title-bar d-flex align-start @Class">
 
-    <MudIconButton Icon="@Icons.Material.Filled.Minimize"
-                   Size="Size.Medium"
-                   OnClick="MinimizeAsync" />
-    <MudIconButton Icon=@(_maximizerIcon)
-                   Size="Size.Medium"
-                   Disabled="true"
-                   OnClick="MaximizeAsync" />
-    <MudIconButton Icon="@Icons.Material.Filled.Close"
-                   Size="Size.Medium"
-                   OnClick="CloseAsync" />
+    <MudTooltip Text="最小化" Delay="600">
+        <MudIconButton Icon="@Icons.Material.Filled.Minimize"
+                       Size="Size.Medium"
+                       OnClick="MinimizeAsync" />
+    </MudTooltip>
+
+    @*     <MudIconButton Icon=@(_maximizerIcon)
+    Size="Size.Medium"
+    Disabled="true"
+    OnClick="MaximizeAsync" /> *@
+
+    <MudTooltip Text="关闭" Delay="600">
+        <MudIconButton Icon="@Icons.Material.Filled.Close"
+                       Size="Size.Medium"
+                       OnClick="CloseAsync" />
+    </MudTooltip>
+
 </div>
 @code {
 

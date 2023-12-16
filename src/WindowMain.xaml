@@ -10,6 +10,7 @@
         Title="透明锁屏"
         Height="380"
         Width="530"
+        ResizeMode="NoResize"
         WindowState="Normal"
         StateChanged="Window_StateChanged"
         Loaded="Window_Loaded"

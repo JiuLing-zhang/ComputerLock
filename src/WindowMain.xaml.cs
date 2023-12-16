@@ -25,6 +25,7 @@ public partial class WindowMain : Window
     }
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
+        this.Title = Lang.Title;
         this.WindowState = _appSettings.IsHideWindowWhenLaunch ? WindowState.Minimized : WindowState.Normal;
     }
 
@@ -52,6 +53,7 @@ public partial class WindowMain : Window
         _notifyIcon.ContextMenuStrip = _contextMenuStrip;
         Stream iconStream = System.Windows.Application.GetResourceStream(new Uri("pack://application:,,,/ComputerLock;component/icon.ico")).Stream;
         _notifyIcon.Icon = new System.Drawing.Icon(iconStream);
+        _notifyIcon.Text = Lang.Title;
         _notifyIcon.Click += (object? sender, EventArgs e) =>
         {
             var args = e as MouseEventArgs;

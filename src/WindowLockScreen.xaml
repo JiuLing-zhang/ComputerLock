@@ -20,19 +20,27 @@
         KeyDown="Window_KeyDown"
         >
 
+    <Window.Resources>
+        <Style x:Key="CustomPasswordBoxStyle" TargetType="PasswordBox">
+            <Setter Property="Background" Value="#B2FFFFFF"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.Background>
             <SolidColorBrush Color="#000000" Opacity="0.01"/>
         </Grid.Background>
         <Border Width="230"
-    Height="65"
-    x:Name="PasswordBlock"
-    Opacity="1"
-    CornerRadius="10"
-    BorderBrush="Transparent"
-    Background="#fb8c00"
-    BorderThickness="1"
-    MouseDown="PasswordBlock_MouseDown">
+                Height="55"
+                x:Name="PasswordBlock"
+                Opacity="1"
+                CornerRadius="10"
+                BorderBrush="Transparent"
+                Background="#EAEAEA"
+                BorderThickness="1"
+                MouseDown="PasswordBlock_MouseDown">
             <Grid Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -46,18 +54,21 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Row="0"
-           Grid.Column="0" 
-           x:Name="LblPassword"/>
-                <Label Grid.Row="0" 
-           Grid.Column="2" 
-           x:Name="LblMessage"/>
+                       Grid.Column="0"
+                       Opacity="0.5"
+                       x:Name="LblPassword"/>
+                <Label Grid.Row="0"
+                       Grid.Column="2"
+                       Opacity="0.5"
+                       x:Name="LblMessage"/>
 
-                <PasswordBox Grid.Row="2" 
-                 Grid.Column="0" 
-                 Grid.ColumnSpan="3" 
-                 x:Name="TxtPassword"
-                 PasswordChanged="TxtPassword_PasswordChanged"
-                 KeyDown="TxtPassword_KeyDown"/>
+                <PasswordBox Grid.Row="2"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="3"
+                             x:Name="TxtPassword"
+                             Style="{StaticResource CustomPasswordBoxStyle}"
+                             PasswordChanged="TxtPassword_PasswordChanged"
+                             KeyDown="TxtPassword_KeyDown"/>
             </Grid>
         </Border>
     </Grid>

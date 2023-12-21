@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<Authors>九零</Authors>
 		<Product>透明锁屏</Product>
-		<Version>2.0.5.30</Version>
+		<Version>2.0.6</Version>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net7.0-windows</TargetFramework>
 		<Nullable>enable</Nullable>
@@ -17,11 +17,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="JiuLing.AutoUpgrade" Version="2.1.2" />
+		<PackageReference Include="JiuLing.AutoUpgrade" Version="2.1.3" />
 		<PackageReference Include="JiuLing.CommonLibs" Version="1.6.6" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="7.0.101" />
 		<PackageReference Include="ModernWpfUI" Version="0.9.6" />
-		<PackageReference Include="MudBlazor" Version="6.11.1" />
+		<PackageReference Include="MudBlazor" Version="6.11.2" />
 	</ItemGroup>
 
 	<ItemGroup>

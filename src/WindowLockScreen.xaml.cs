@@ -186,6 +186,11 @@ public partial class WindowLockScreen : Window
 
     private void PasswordBlock_MouseDown(object sender, MouseButtonEventArgs e)
     {
+        if ((_appSettings.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.MouseDown) != PasswordBoxActiveMethodEnum.MouseDown)
+        {
+            return;
+        }
+
         ShowPassword();
     }
 

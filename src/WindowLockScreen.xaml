@@ -55,10 +55,12 @@
 
                 <Label Grid.Row="0"
                        Grid.Column="0"
-                       Opacity="0.5"
+                       Foreground="#000000"
+                       Opacity="0.5"                       
                        x:Name="LblPassword"/>
                 <Label Grid.Row="0"
                        Grid.Column="2"
+                       Foreground="#000000"
                        Opacity="0.5"
                        x:Name="LblMessage"/>
 

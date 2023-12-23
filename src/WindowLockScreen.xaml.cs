@@ -63,6 +63,7 @@ public partial class WindowLockScreen : Window
             LblMessage.Content = $"{_lang["TimerPrefix"]}{_hideSelfSecond}{_lang["TimerPostfix"]}";
         }
         RefreshHideSelfTime();
+        HidePassword();
     }
 
     private void Window_SizeChanged(object sender, SizeChangedEventArgs e)

@@ -237,4 +237,7 @@
   <data name="Password" xml:space="preserve">
     <value>密码</value>
   </data>
+  <data name="Locked" xml:space="preserve">
+    <value>已锁定</value>
+  </data>
 </root>

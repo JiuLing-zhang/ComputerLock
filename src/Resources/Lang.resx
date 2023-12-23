@@ -220,4 +220,7 @@
   <data name="Password" xml:space="preserve">
     <value></value>
   </data>
+  <data name="Locked" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

@@ -1,6 +1,9 @@
 ﻿using ComputerLock.Hooks;
+using ComputerLock.Resources;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Localization;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace ComputerLock;
 internal class LockService
@@ -10,10 +13,13 @@ internal class LockService
     private readonly SystemKeyHook _systemKeyHook = new();
     private WindowLockScreen _windowLockScreen;
     private readonly List<WindowBlankScreen> _blankScreens;
-    public LockService(IServiceProvider serviceProvider)
+    private WindowPopup? _popup;
+    private readonly IStringLocalizer<Lang> _lang;
+    public LockService(IServiceProvider serviceProvider, IStringLocalizer<Lang> lang)
     {
         _serviceProvider = serviceProvider;
         _blankScreens = new List<WindowBlankScreen>();
+        _lang = lang;
     }
 
     public void Lock()
@@ -29,6 +35,8 @@ internal class LockService
         }
 
         _isLocked = true;
+        ShowPopup();
+
         TaskManagerHook.DisabledTaskManager();
         _systemKeyHook.DisableSystemKey();
         if (_blankScreens.Any())
@@ -81,5 +89,26 @@ internal class LockService
     private void BlankScreen_OnDeviceInput(object? sender, EventArgs e)
     {
         _windowLockScreen.ShowPassword();
+    }
+
+    private void ShowPopup()
+    {
+        _popup = new WindowPopup(_lang["Locked"]);
+        double primaryScreenWidth = SystemParameters.PrimaryScreenWidth;
+        double primaryScreenHeight = SystemParameters.PrimaryScreenHeight;
+        _popup.Left = (primaryScreenWidth - _popup.Width) / 2;
+        _popup.Top = (primaryScreenHeight - _popup.Height) / 2;
+        _popup.Show();
+
+        var timer = new DispatcherTimer()
+        {
+            Interval = TimeSpan.FromMilliseconds(1100),
+        };
+        timer.Tick += (_, __) =>
+        {
+            timer.Stop();
+            _popup.CloseWindow();
+        };
+        timer.Start();
     }
 }

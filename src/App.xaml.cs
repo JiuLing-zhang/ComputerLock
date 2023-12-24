@@ -50,6 +50,7 @@ namespace ComputerLock
             services.AddSingleton<KeyboardHook>();
             services.AddSingleton<UpdateHelper>();
             services.AddSingleton<AutostartHook>();
+            services.AddSingleton<UserActivityMonitor>();
             services.AddSingleton<WindowMain>();
             services.AddTransient<WindowLockScreen>();
             services.AddTransient<WindowBlankScreen>();

@@ -60,6 +60,20 @@
 
 </div>
 
+<MudSelect T="int"
+           Label="@(Lang["AutoLock"])"
+           Value="@(AppSettings.AutoLockSecond)"
+           Class="mt-4"
+           ValueChanged="AutoLockChanged"
+           Dense="true">
+    <MudSelectItem Value="0">@(Lang["Never"])</MudSelectItem>
+    <MudSelectItem Value="60">@(Lang["Minute1"])</MudSelectItem>
+    <MudSelectItem Value="120">@(Lang["Minute2"])</MudSelectItem>
+    <MudSelectItem Value="180">@(Lang["Minute3"])</MudSelectItem>
+    <MudSelectItem Value="300">@(Lang["Minute5"])</MudSelectItem>
+    <MudSelectItem Value="600">@(Lang["Minute10"])</MudSelectItem>
+</MudSelect>
+
 <MudSelect T="ScreenLocationEnum"
            Label="@(Lang["PwdLocation"])"
            Value="@(AppSettings.PasswordInputLocation)"
@@ -153,6 +167,14 @@
         }
         SaveSettings();
     }
+
+    private void AutoLockChanged(int autoLockSecond)
+    {
+        AppSettings.AutoLockSecond = autoLockSecond;
+        SaveSettings();
+        Snackbar.Add(Lang["Restarting"], Severity.Success);
+    }
+
 
     private void PwdBoxLocationChanged(ScreenLocationEnum location)
     {

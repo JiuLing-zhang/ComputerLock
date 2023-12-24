@@ -23,6 +23,11 @@ public class AppSettings
     public bool IsDisableWindowsLock { get; set; } = true;
 
     /// <summary>
+    /// 自动锁定的秒数
+    /// </summary>
+    public int AutoLockSecond { get; set; } = 0;
+
+    /// <summary>
     /// 密码框的位置
     /// </summary>
     public ScreenLocationEnum PasswordInputLocation { get; set; } = ScreenLocationEnum.Center;

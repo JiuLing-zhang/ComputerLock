@@ -81,6 +81,15 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string AutoLock {
+            get {
+                return ResourceManager.GetString("AutoLock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string Autostart {
             get {
                 return ResourceManager.GetString("Autostart", resourceCulture);
@@ -270,9 +279,63 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string Minute1 {
+            get {
+                return ResourceManager.GetString("Minute1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string Minute10 {
+            get {
+                return ResourceManager.GetString("Minute10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string Minute2 {
+            get {
+                return ResourceManager.GetString("Minute2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string Minute3 {
+            get {
+                return ResourceManager.GetString("Minute3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string Minute5 {
+            get {
+                return ResourceManager.GetString("Minute5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string MouseDownActivePwd {
             get {
                 return ResourceManager.GetString("MouseDownActivePwd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string Never {
+            get {
+                return ResourceManager.GetString("Never", resourceCulture);
             }
         }
         

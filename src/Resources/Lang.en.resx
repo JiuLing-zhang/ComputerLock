@@ -243,4 +243,25 @@
   <data name="Locked" xml:space="preserve">
     <value>Locked</value>
   </data>
+  <data name="AutoLock" xml:space="preserve">
+    <value>Auto Lock(Idle for the following time)</value>
+  </data>
+  <data name="Never" xml:space="preserve">
+    <value>Never</value>
+  </data>
+  <data name="Minute1" xml:space="preserve">
+    <value>1 minute</value>
+  </data>
+  <data name="Minute2" xml:space="preserve">
+    <value>2 minute</value>
+  </data>
+  <data name="Minute3" xml:space="preserve">
+    <value>3 minute</value>
+  </data>
+  <data name="Minute5" xml:space="preserve">
+    <value>5 minute</value>
+  </data>
+  <data name="Minute10" xml:space="preserve">
+    <value>10 minute</value>
+  </data>
 </root>

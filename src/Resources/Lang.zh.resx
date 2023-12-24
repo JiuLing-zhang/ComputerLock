@@ -240,4 +240,25 @@
   <data name="Locked" xml:space="preserve">
     <value>已锁定</value>
   </data>
+  <data name="AutoLock" xml:space="preserve">
+    <value>自动锁定（闲置以下时间）</value>
+  </data>
+  <data name="Never" xml:space="preserve">
+    <value>从不</value>
+  </data>
+  <data name="Minute1" xml:space="preserve">
+    <value>1 分钟</value>
+  </data>
+  <data name="Minute2" xml:space="preserve">
+    <value>2 分钟</value>
+  </data>
+  <data name="Minute3" xml:space="preserve">
+    <value>3 分钟</value>
+  </data>
+  <data name="Minute5" xml:space="preserve">
+    <value>5 分钟</value>
+  </data>
+  <data name="Minute10" xml:space="preserve">
+    <value>10 分钟</value>
+  </data>
 </root>

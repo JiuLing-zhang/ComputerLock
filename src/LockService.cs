@@ -15,6 +15,8 @@ internal class LockService
     private readonly List<WindowBlankScreen> _blankScreens;
     private WindowPopup? _popup;
     private readonly IStringLocalizer<Lang> _lang;
+    public event EventHandler OnLock;
+    public event EventHandler OnUnlock;
     public LockService(IServiceProvider serviceProvider, IStringLocalizer<Lang> lang)
     {
         _serviceProvider = serviceProvider;
@@ -72,6 +74,8 @@ internal class LockService
             blankScreen.Activate();
             _blankScreens.Add(blankScreen);
         }
+
+        OnLock?.Invoke(this, EventArgs.Empty);
     }
 
     private void _fmLockScreen_OnUnlock(object? sender, EventArgs e)
@@ -85,6 +89,7 @@ internal class LockService
         TaskManagerHook.EnabledTaskManager();
         _systemKeyHook.Dispose();
         _isLocked = false;
+        OnUnlock?.Invoke(this, EventArgs.Empty);
     }
     private void BlankScreen_OnDeviceInput(object? sender, EventArgs e)
     {

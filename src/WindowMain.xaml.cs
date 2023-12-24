@@ -9,20 +9,45 @@ public partial class WindowMain : Window
 {
     private readonly KeyboardHook _keyboardHook;
     private readonly AppSettings _appSettings;
+    private readonly UserActivityMonitor _activityMonitor;
     private readonly ILocker _locker;
 
     private NotifyIcon _notifyIcon;
     private ContextMenuStrip _contextMenuStrip;
 
-    public WindowMain(KeyboardHook keyboardHook, AppSettings appSettings, ILocker locker)
+    public WindowMain(KeyboardHook keyboardHook, AppSettings appSettings, ILocker locker, UserActivityMonitor activityMonitor)
     {
         InitializeComponent();
+
         _keyboardHook = keyboardHook;
         _appSettings = appSettings;
         _locker = locker;
+        _activityMonitor = activityMonitor;
+
         InitializeNotifyIcon();
 
+        if (_appSettings.AutoLockSecond != 0)
+        {
+            _activityMonitor.SetAutoLockSecond(_appSettings.AutoLockSecond);
+            _activityMonitor.OnIdle += (_, __) =>
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    _locker.Lock();
+                });
+            };
+            _locker.OnLock += (_, __) =>
+            {
+                _activityMonitor.StopMonitoring();
+            };
+            _locker.OnUnlock += (_, __) =>
+            {
+                _activityMonitor.StartMonitoring();
+            };
+            _activityMonitor.StartMonitoring();
+        }
     }
+
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
         this.Title = Lang.Title;

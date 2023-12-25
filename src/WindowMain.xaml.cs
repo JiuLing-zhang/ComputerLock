@@ -9,7 +9,7 @@ public partial class WindowMain : Window
 {
     private readonly KeyboardHook _keyboardHook;
     private readonly AppSettings _appSettings;
-    private readonly UserActivityMonitor _activityMonitor;
+    private readonly UserActivityMonitor? _activityMonitor;
     private readonly ILocker _locker;
 
     private NotifyIcon _notifyIcon;
@@ -22,12 +22,12 @@ public partial class WindowMain : Window
         _keyboardHook = keyboardHook;
         _appSettings = appSettings;
         _locker = locker;
-        _activityMonitor = activityMonitor;
 
         InitializeNotifyIcon();
 
         if (_appSettings.AutoLockSecond != 0)
         {
+            _activityMonitor = activityMonitor;
             _activityMonitor.SetAutoLockSecond(_appSettings.AutoLockSecond);
             _activityMonitor.OnIdle += (_, __) =>
             {
@@ -129,6 +129,7 @@ public partial class WindowMain : Window
     public void Dispose()
     {
         _notifyIcon.Visible = false;
+        _activityMonitor?.StopMonitoring();
         _keyboardHook.Dispose();
     }
 }

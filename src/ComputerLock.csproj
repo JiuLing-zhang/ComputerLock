@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<Authors>九零</Authors>
 		<Product>透明锁屏</Product>
-		<Version>2.0.7</Version>
+		<Version>2.0.8</Version>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net7.0-windows</TargetFramework>
 		<Nullable>enable</Nullable>

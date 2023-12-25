@@ -65,6 +65,8 @@
            Value="@(AppSettings.AutoLockSecond)"
            Class="mt-4"
            ValueChanged="AutoLockChanged"
+           AnchorOrigin="Origin.CenterCenter"
+           TransformOrigin="Origin.CenterCenter"
            Dense="true">
     <MudSelectItem Value="0">@(Lang["Never"])</MudSelectItem>
     <MudSelectItem Value="60">@(Lang["Minute1"])</MudSelectItem>

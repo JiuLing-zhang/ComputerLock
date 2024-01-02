@@ -244,4 +244,7 @@
   <data name="Minute10" xml:space="preserve">
     <value></value>
   </data>
+  <data name="LockAnimation" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

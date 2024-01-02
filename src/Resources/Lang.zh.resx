@@ -261,4 +261,7 @@
   <data name="Minute10" xml:space="preserve">
     <value>10 分钟</value>
   </data>
+  <data name="LockAnimation" xml:space="preserve">
+    <value>锁定时显示动画</value>
+  </data>
 </root>

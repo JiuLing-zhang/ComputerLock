@@ -23,6 +23,11 @@ public class AppSettings
     public bool IsDisableWindowsLock { get; set; } = true;
 
     /// <summary>
+    /// 锁定时显示动画
+    /// </summary>
+    public bool LockAnimation { get; set; } = true;
+
+    /// <summary>
     /// 自动锁定的秒数
     /// </summary>
     public int AutoLockSecond { get; set; } = 0;

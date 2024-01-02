@@ -244,7 +244,7 @@
     <value>Locked</value>
   </data>
   <data name="AutoLock" xml:space="preserve">
-    <value>Auto Lock(Idle for the following time)</value>
+    <value>Automatically lock after idle time</value>
   </data>
   <data name="Never" xml:space="preserve">
     <value>Never</value>
@@ -263,5 +263,8 @@
   </data>
   <data name="Minute10" xml:space="preserve">
     <value>10 minute</value>
+  </data>
+  <data name="LockAnimation" xml:space="preserve">
+    <value>Show animation when locked</value>
   </data>
 </root>

@@ -15,13 +15,15 @@ internal class LockService
     private readonly List<WindowBlankScreen> _blankScreens;
     private WindowPopup? _popup;
     private readonly IStringLocalizer<Lang> _lang;
+    private readonly AppSettings _appSettings;
     public event EventHandler OnLock;
     public event EventHandler OnUnlock;
-    public LockService(IServiceProvider serviceProvider, IStringLocalizer<Lang> lang)
+    public LockService(IServiceProvider serviceProvider, IStringLocalizer<Lang> lang, AppSettings appSettings)
     {
         _serviceProvider = serviceProvider;
         _blankScreens = new List<WindowBlankScreen>();
         _lang = lang;
+        _appSettings = appSettings;
     }
 
     public void Lock()
@@ -37,7 +39,10 @@ internal class LockService
         }
 
         _isLocked = true;
-        ShowPopup();
+        if (_appSettings.LockAnimation)
+        {
+            ShowPopup();
+        }
 
         TaskManagerHook.DisabledTaskManager();
         _systemKeyHook.DisableSystemKey();

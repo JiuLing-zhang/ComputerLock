@@ -42,6 +42,11 @@
            Label="@(Lang["MouseDownActivePwd"])"
            Color="Color.Primary" />
 
+<MudSwitch @bind-Checked="@(AppSettings.LockAnimation)"
+           @bind-Checked:after="SaveSettings"
+           Label="@(Lang["LockAnimation"])"
+           Color="Color.Primary" />
+
 <div class="d-flex align-center mt-2">
     <MudText Typo="Typo.button">@(Lang["LockShortcutKey"])</MudText>
     <MudButton Class="ml-3"
@@ -53,42 +58,45 @@
     </MudButton>
     @if (AppSettings.ShortcutKeyForLock.IsNotEmpty())
     {
-        <MudIconButton Icon="@Icons.Material.Filled.Delete"
-                       Size="Size.Small"
-                       OnClick="ClearShortcutKey" />
+        <MudTooltip Text="删除快捷键" Delay="600">
+            <MudIconButton Icon="@Icons.Material.Filled.Delete"
+                           Size="Size.Small"
+                           OnClick="ClearShortcutKey" />
+        </MudTooltip>
     }
-
 </div>
 
-<MudSelect T="int"
-           Label="@(Lang["AutoLock"])"
-           Value="@(AppSettings.AutoLockSecond)"
-           Class="mt-4"
-           ValueChanged="AutoLockChanged"
-           AnchorOrigin="Origin.CenterCenter"
-           TransformOrigin="Origin.CenterCenter"
-           Dense="true">
-    <MudSelectItem Value="0">@(Lang["Never"])</MudSelectItem>
-    <MudSelectItem Value="60">@(Lang["Minute1"])</MudSelectItem>
-    <MudSelectItem Value="120">@(Lang["Minute2"])</MudSelectItem>
-    <MudSelectItem Value="180">@(Lang["Minute3"])</MudSelectItem>
-    <MudSelectItem Value="300">@(Lang["Minute5"])</MudSelectItem>
-    <MudSelectItem Value="600">@(Lang["Minute10"])</MudSelectItem>
-</MudSelect>
-
-<MudSelect T="ScreenLocationEnum"
-           Label="@(Lang["PwdLocation"])"
-           Value="@(AppSettings.PasswordInputLocation)"
-           Class="mt-4"
-           ValueChanged="PwdBoxLocationChanged"
-           Dense="true">
-    <MudSelectItem Value="@(ScreenLocationEnum.Center)">@(Lang["Center"])</MudSelectItem>
-    <MudSelectItem Value="@(ScreenLocationEnum.TopLeft)">@(Lang["TopLeft"])</MudSelectItem>
-    <MudSelectItem Value="@(ScreenLocationEnum.TopRight)">@(Lang["TopRight"])</MudSelectItem>
-    <MudSelectItem Value="@(ScreenLocationEnum.BottomLeft)">@(Lang["BottomLeft"])</MudSelectItem>
-    <MudSelectItem Value="@(ScreenLocationEnum.BottomRight)">@(Lang["BottomRight"])</MudSelectItem>
-</MudSelect>
-
+<MudGrid>
+    <MudItem xs="6">
+        <MudSelect T="int"
+                   Label="@(Lang["AutoLock"])"
+                   Value="@(AppSettings.AutoLockSecond)"
+                   Class="mt-4"
+                   ValueChanged="AutoLockChanged"
+                   Dense="true">
+            <MudSelectItem Value="0">@(Lang["Never"])</MudSelectItem>
+            <MudSelectItem Value="60">@(Lang["Minute1"])</MudSelectItem>
+            <MudSelectItem Value="120">@(Lang["Minute2"])</MudSelectItem>
+            <MudSelectItem Value="180">@(Lang["Minute3"])</MudSelectItem>
+            <MudSelectItem Value="300">@(Lang["Minute5"])</MudSelectItem>
+            <MudSelectItem Value="600">@(Lang["Minute10"])</MudSelectItem>
+        </MudSelect>
+    </MudItem>
+    <MudItem xs="6">
+        <MudSelect T="ScreenLocationEnum"
+                   Label="@(Lang["PwdLocation"])"
+                   Value="@(AppSettings.PasswordInputLocation)"
+                   Class="mt-4"
+                   ValueChanged="PwdBoxLocationChanged"
+                   Dense="true">
+            <MudSelectItem Value="@(ScreenLocationEnum.Center)">@(Lang["Center"])</MudSelectItem>
+            <MudSelectItem Value="@(ScreenLocationEnum.TopLeft)">@(Lang["TopLeft"])</MudSelectItem>
+            <MudSelectItem Value="@(ScreenLocationEnum.TopRight)">@(Lang["TopRight"])</MudSelectItem>
+            <MudSelectItem Value="@(ScreenLocationEnum.BottomLeft)">@(Lang["BottomLeft"])</MudSelectItem>
+            <MudSelectItem Value="@(ScreenLocationEnum.BottomRight)">@(Lang["BottomRight"])</MudSelectItem>
+        </MudSelect>
+    </MudItem>
+</MudGrid>
 
 <div class="d-flex align-center mt-4">
     <MudButton Class="mr-3"

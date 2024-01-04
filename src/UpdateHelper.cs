@@ -2,6 +2,7 @@
 using JiuLing.AutoUpgrade.Shared;
 using JiuLing.AutoUpgrade.Shell;
 using JiuLing.CommonLibs.ExtensionMethods;
+using System.IO;
 
 namespace ComputerLock;
 internal class UpdateHelper
@@ -26,6 +27,11 @@ internal class UpdateHelper
             2 => ThemeEnum.Dark,
             _ => ThemeEnum.Light
         };
+        var iconPath = @"wwwroot\icon.ico";
+        if (!File.Exists(iconPath))
+        {
+            iconPath = "";
+        }
         await AutoUpgradeFactory.Create()
             .UseHttpMode(autoUpgradePath)
             .SetUpgrade(config =>
@@ -34,6 +40,7 @@ internal class UpdateHelper
                 config.Theme = theme;
                 config.IsCheckSign = true;
                 config.Lang = _appSettings.Lang.ToString();
+                config.IconPath = iconPath;
             })
             .RunAsync();
     }

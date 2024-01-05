@@ -7,7 +7,7 @@ using MudBlazor.Services;
 using System.Windows;
 using ComputerLock.Hooks;
 using Application = System.Windows.Application;
-using JiuLing.CommonLibs.ExtensionMethods;
+using System.Text.Json;
 
 namespace ComputerLock
 {
@@ -44,7 +44,15 @@ namespace ComputerLock
                     return new AppSettings();
                 }
                 string json = File.ReadAllText(AppBase.ConfigPath);
-                return System.Text.Json.JsonSerializer.Deserialize<AppSettings>(json);
+                try
+                {
+                    var appSettings = JsonSerializer.Deserialize<AppSettings>(json);
+                    return appSettings ?? new AppSettings();
+                }
+                catch (JsonException)
+                {
+                    return new AppSettings();
+                }
             });
 
             services.AddSingleton<KeyboardHook>();

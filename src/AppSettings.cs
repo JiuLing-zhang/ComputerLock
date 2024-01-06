@@ -67,6 +67,11 @@ public class AppSettings
     public bool IsAutoCheckUpdate { get; set; } = false;
 
     /// <summary>
+    /// 启用密码框
+    /// </summary>
+    public bool EnablePasswordBox { get; set; } = true;
+
+    /// <summary>
     /// 自动隐藏密码框
     /// </summary>
     public bool IsHidePasswordWindow { get; set; } = true;

@@ -247,4 +247,13 @@
   <data name="LockAnimation" xml:space="preserve">
     <value></value>
   </data>
+  <data name="EnablePasswordBox" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UnLocked" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="EnablePasswordBoxTips" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

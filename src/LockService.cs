@@ -41,7 +41,7 @@ internal class LockService
         _isLocked = true;
         if (_appSettings.LockAnimation)
         {
-            ShowPopup();
+            ShowPopup(_lang["Locked"]);
         }
 
         TaskManagerHook.DisabledTaskManager();
@@ -94,6 +94,10 @@ internal class LockService
         TaskManagerHook.EnabledTaskManager();
         _systemKeyHook.Dispose();
         _isLocked = false;
+        if (_appSettings.LockAnimation)
+        {
+            ShowPopup(_lang["UnLocked"]);
+        }
         OnUnlock?.Invoke(this, EventArgs.Empty);
     }
     private void BlankScreen_OnDeviceInput(object? sender, EventArgs e)
@@ -101,9 +105,9 @@ internal class LockService
         _windowLockScreen.ShowPassword();
     }
 
-    private void ShowPopup()
+    private void ShowPopup(string message)
     {
-        _popup = new WindowPopup(_lang["Locked"]);
+        _popup = new WindowPopup(message);
         double primaryScreenWidth = SystemParameters.PrimaryScreenWidth;
         double primaryScreenHeight = SystemParameters.PrimaryScreenHeight;
         _popup.Left = (primaryScreenWidth - _popup.Width) / 2;

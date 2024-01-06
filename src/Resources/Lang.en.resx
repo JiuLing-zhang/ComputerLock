@@ -145,7 +145,7 @@
     <value>Show password box when ESC key down</value>
   </data>
   <data name="MouseDownActivePwd" xml:space="preserve">
-    <value>Show password box when mouse clicked on position of box</value>
+    <value>Show password box when clicked on position of box</value>
   </data>
   <data name="ActiveMethodEmpty" xml:space="preserve">
     <value>Please select at least one activation method</value>
@@ -266,5 +266,14 @@
   </data>
   <data name="LockAnimation" xml:space="preserve">
     <value>Show animation when locked</value>
+  </data>
+  <data name="EnablePasswordBox" xml:space="preserve">
+    <value>Enable password box</value>
+  </data>
+  <data name="UnLocked" xml:space="preserve">
+    <value>unLocked</value>
+  </data>
+  <data name="EnablePasswordBoxTips" xml:space="preserve">
+    <value>Press ESC and enter password to unlock</value>
   </data>
 </root>

@@ -57,12 +57,15 @@ public partial class WindowLockScreen : Window
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
         LblPassword.Content = _lang["Password"];
-        if (_appSettings.IsHidePasswordWindow)
+        if (_appSettings.EnablePasswordBox)
         {
-            LblMessage.Visibility = Visibility.Visible;
-            LblMessage.Content = $"{_lang["TimerPrefix"]}{_hideSelfSecond}{_lang["TimerPostfix"]}";
+            if (_appSettings.IsHidePasswordWindow)
+            {
+                LblMessage.Visibility = Visibility.Visible;
+                LblMessage.Content = $"{_lang["TimerPrefix"]}{_hideSelfSecond}{_lang["TimerPostfix"]}";
+            }
+            RefreshHideSelfTime();
         }
-        RefreshHideSelfTime();
         HidePassword();
     }
 
@@ -99,9 +102,20 @@ public partial class WindowLockScreen : Window
 
     public void ShowPassword()
     {
-        RefreshHideSelfTime();
-        TxtPassword.Visibility = Visibility.Visible;
-        PasswordBlock.Opacity = 1;
+        if (_appSettings.EnablePasswordBox)
+        {
+            RefreshHideSelfTime();
+            TxtPassword.Visibility = Visibility.Visible;
+            PasswordBlock.Opacity = 1;
+        }
+        else
+        {
+            TxtPassword.Visibility = Visibility.Visible;
+            //TxtPassword.Width = 1;
+            PasswordBlock.Width = 1;
+            PasswordBlock.Opacity = 0.01;
+        }
+        //TODO 处理密码      
         TxtPassword.Password = "";
         TxtPassword.Focus();
     }
@@ -118,14 +132,16 @@ public partial class WindowLockScreen : Window
                     DoMoveMouse();
                 }
             }
-
-            if (_appSettings.IsHidePasswordWindow)
+            if (_appSettings.EnablePasswordBox)
             {
-                var hideCountdown = Convert.ToInt32(_hideSelfTime.Subtract(time).TotalSeconds);
-                LblMessage.Content = $"{_lang["TimerPrefix"]}{hideCountdown}{_lang["TimerPostfix"]}";
-                if (hideCountdown <= 0)
+                if (_appSettings.IsHidePasswordWindow)
                 {
-                    HidePassword();
+                    var hideCountdown = Convert.ToInt32(_hideSelfTime.Subtract(time).TotalSeconds);
+                    LblMessage.Content = $"{_lang["TimerPrefix"]}{hideCountdown}{_lang["TimerPostfix"]}";
+                    if (hideCountdown <= 0)
+                    {
+                        HidePassword();
+                    }
                 }
             }
         }
@@ -136,25 +152,26 @@ public partial class WindowLockScreen : Window
 
     private void TxtPassword_PasswordChanged(object sender, RoutedEventArgs e)
     {
-        RefreshHideSelfTime();
+        if (_appSettings.EnablePasswordBox)
+        {
+            RefreshHideSelfTime();
+        }
         var txt = TxtPassword.Password;
         if (txt.IsEmpty())
         {
             return;
         }
-
         if (_appSettings.Password != JiuLing.CommonLibs.Security.MD5Utils.GetStringValueToLower(txt))
         {
             return;
         }
-
         OnUnlock?.Invoke(this, EventArgs.Empty);
         this.Close();
     }
 
     private void TxtPassword_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
     {
-        if (e.Key == Key.Enter)
+        if (e.Key == Key.Enter || e.Key == Key.Escape)
         {
             TxtPassword.Password = "";
         }
@@ -187,12 +204,14 @@ public partial class WindowLockScreen : Window
 
     private void PasswordBlock_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        if ((_appSettings.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.MouseDown) != PasswordBoxActiveMethodEnum.MouseDown)
+        if (_appSettings.EnablePasswordBox)
         {
-            return;
+            if ((_appSettings.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.MouseDown) != PasswordBoxActiveMethodEnum.MouseDown)
+            {
+                return;
+            }
+            ShowPassword();
         }
-
-        ShowPassword();
     }
 
     private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -202,14 +221,16 @@ public partial class WindowLockScreen : Window
 
     private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
     {
-        if ((_appSettings.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.KeyboardDown) != PasswordBoxActiveMethodEnum.KeyboardDown)
-        {
-            return;
-        }
-
         if (e.Key != Key.Escape)
         {
             return;
+        }
+        if (_appSettings.EnablePasswordBox)
+        {
+            if ((_appSettings.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.KeyboardDown) != PasswordBoxActiveMethodEnum.KeyboardDown)
+            {
+                return;
+            }
         }
         ShowPassword();
     }

@@ -26,14 +26,16 @@ namespace ComputerLock
 
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if ((_appSettings.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.KeyboardDown) != PasswordBoxActiveMethodEnum.KeyboardDown)
-            {
-                return;
-            }
-
             if (e.Key != Key.Escape)
             {
                 return;
+            }
+            if (_appSettings.EnablePasswordBox)
+            {
+                if ((_appSettings.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.KeyboardDown) != PasswordBoxActiveMethodEnum.KeyboardDown)
+                {
+                    return;
+                }
             }
             OnDeviceInput?.Invoke(this, EventArgs.Empty);
         }

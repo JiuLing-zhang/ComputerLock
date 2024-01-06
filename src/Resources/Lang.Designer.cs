@@ -189,6 +189,24 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string EnablePasswordBox {
+            get {
+                return ResourceManager.GetString("EnablePasswordBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string EnablePasswordBoxTips {
+            get {
+                return ResourceManager.GetString("EnablePasswordBoxTips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string EnterShortcutKey {
             get {
                 return ResourceManager.GetString("EnterShortcutKey", resourceCulture);
@@ -498,6 +516,15 @@ namespace ComputerLock.Resources {
         public static string TopRight {
             get {
                 return ResourceManager.GetString("TopRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string UnLocked {
+            get {
+                return ResourceManager.GetString("UnLocked", resourceCulture);
             }
         }
         

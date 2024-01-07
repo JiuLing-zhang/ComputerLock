@@ -31,6 +31,10 @@ A screen lock tool for Windows.
         <td>一键锁屏</br>Shortcut key screen lock</td>
         <td>✔️</td>
     </tr>
+    <tr>
+        <td>无操作时自动锁屏</br>Automatically lock screen when no operation is performed</td>
+        <td>✔️</td>
+    </tr>
 </table>
 
 ## 权限说明 (About Permission)  

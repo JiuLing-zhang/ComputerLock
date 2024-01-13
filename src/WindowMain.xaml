@@ -15,6 +15,7 @@
         StateChanged="Window_StateChanged"
         Loaded="Window_Loaded"
         Closing="Window_Closing"
+        Closed="Window_Closed"
         KeyDown="Window_KeyDown"        
         WindowStartupLocation="CenterScreen"
         ui:TitleBar.ExtendViewIntoTitleBar="True"

@@ -1,8 +1,10 @@
 ﻿namespace ComputerLock.Platforms;
+//TODO rename
 public interface IWindowTitleBar
 {
     public bool IsMaximized { get; }
-    void Minimize();
-    void Maximize();
-    void Close();
+    public void Minimize();
+    public void Maximize();
+    public void Close();
+    public void Restart();
 }

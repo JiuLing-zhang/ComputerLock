@@ -14,7 +14,7 @@
 @inject UpdateHelper UpdateHelper
 @inject ILocker Locker
 @inject KeyboardHook KeyboardHook
-
+@inject IWindowTitleBar WindowTitleBar
 
 <style>
     .dialog-blurry {
@@ -205,15 +205,38 @@
     {
         AppSettings.AutoLockSecond = autoLockSecond;
         SaveSettings();
-        Snackbar.Add(Lang["Restarting"], Severity.Success);
+        RestartTips();
     }
-
 
     private void PwdBoxLocationChanged(ScreenLocationEnum location)
     {
         AppSettings.PasswordInputLocation = location;
         SaveSettings();
-        Snackbar.Add(Lang["Restarting"], Severity.Success);
+        RestartTips();
+    }
+    private void RestartTips()
+    {
+        Snackbar.Configuration.NewestOnTop = true;
+        Snackbar.Configuration.VisibleStateDuration = int.MaxValue;
+        Snackbar.Configuration.ShowCloseIcon = true;
+        Snackbar.Configuration.SnackbarVariant = Variant.Text;
+        Snackbar.Add(Lang["Restarting"], Severity.Normal, config =>
+        {
+            config.Action = Lang["Restart"];
+            config.HideIcon = true;
+            config.ActionColor = Color.Warning;
+            config.ActionVariant = Variant.Outlined;
+            config.Onclick = snackbar =>
+            {
+                Restart();
+                return Task.CompletedTask;
+            };
+        });
+    }
+
+    private void Restart()
+    {
+        WindowTitleBar.Restart();
     }
 
     private void SaveSettings()

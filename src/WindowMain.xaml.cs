@@ -114,9 +114,12 @@ public partial class WindowMain : Window
             e.Cancel = true;
             return;
         }
-        Dispose();
     }
 
+    private void Window_Closed(object sender, EventArgs e)
+    {
+        Dispose();
+    }
     private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
     {
 

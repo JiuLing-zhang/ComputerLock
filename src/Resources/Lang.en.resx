@@ -276,4 +276,7 @@
   <data name="EnablePasswordBoxTips" xml:space="preserve">
     <value>Press ESC and enter password to unlock</value>
   </data>
+  <data name="Restart" xml:space="preserve">
+    <value>Restart</value>
+  </data>
 </root>

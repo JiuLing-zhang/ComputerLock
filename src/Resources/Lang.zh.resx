@@ -273,4 +273,7 @@
   <data name="EnablePasswordBoxTips" xml:space="preserve">
     <value>锁屏时按ESC后输入密码解锁</value>
   </data>
+  <data name="Restart" xml:space="preserve">
+    <value>重启</value>
+  </data>
 </root>

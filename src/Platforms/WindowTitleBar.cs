@@ -40,4 +40,14 @@ internal class WindowTitleBar : IWindowTitleBar
         }
         Application.Current.MainWindow.Close();
     }
+
+    public void Restart()
+    {
+        if (Application.Current.MainWindow == null)
+        {
+            return;
+        }
+        Application.Current.Shutdown();
+        System.Windows.Forms.Application.Restart();
+    }
 }

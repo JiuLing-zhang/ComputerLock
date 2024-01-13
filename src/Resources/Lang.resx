@@ -256,4 +256,7 @@
   <data name="EnablePasswordBoxTips" xml:space="preserve">
     <value></value>
   </data>
+  <data name="Restart" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

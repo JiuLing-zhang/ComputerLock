@@ -61,7 +61,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似 http://api.jiuling.cc/app/check-update/cdbd0b29d200c61ace8a1ff74605b775/windows 的本地化字符串。
+        ///   查找类似 https://api.jiuling.cc/app/check-update/cdbd0b29d200c61ace8a1ff74605b775/windows 的本地化字符串。
         /// </summary>
         internal static string AutoUpgradePath {
             get {

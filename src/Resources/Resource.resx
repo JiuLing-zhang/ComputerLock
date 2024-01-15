@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AutoUpgradePath" xml:space="preserve">
-    <value>http://api.jiuling.cc/app/check-update/cdbd0b29d200c61ace8a1ff74605b775/windows</value>
+    <value>https://api.jiuling.cc/app/check-update/cdbd0b29d200c61ace8a1ff74605b775/windows</value>
   </data>
   <data name="GitHubUrl" xml:space="preserve">
     <value>https://github.com/JiuLing-zhang/ComputerLock</value>

@@ -259,4 +259,25 @@
   <data name="Restart" xml:space="preserve">
     <value></value>
   </data>
+  <data name="LogFiles" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="OpenLogs" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="RemoveLogs" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="RemoveLogsConfirm" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="RemoveLogsOk" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

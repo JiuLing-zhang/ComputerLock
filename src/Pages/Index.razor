@@ -4,6 +4,7 @@
 @using ComputerLock.Hooks
 @using ComputerLock.Platforms
 @using JiuLing.CommonLibs.ExtensionMethods
+@using JiuLing.CommonLibs.Log
 @using JiuLing.CommonLibs.Text
 
 @inject AppSettings AppSettings
@@ -15,6 +16,7 @@
 @inject ILocker Locker
 @inject KeyboardHook KeyboardHook
 @inject IWindowTitleBar WindowTitleBar
+@inject ILogger Logger;
 
 <style>
     .dialog-blurry {
@@ -157,6 +159,7 @@
 
     private void _keyboardHook_KeyPressed(object sender, KeyPressedEventArgs e)
     {
+        Logger.Write("快捷键解锁");
         Locker.Lock();
     }
 
@@ -271,13 +274,11 @@
     }
     private async Task ClearShortcutKey()
     {
-
         AppSettings.ShortcutKeyForLock = "";
         AppSettings.ShortcutKeyDisplayForLock = "";
         SaveSettings();
         UpdateShortcutKeyForLock();
     }
-
 
     public void UpdateShortcutKeyForLock()
     {
@@ -285,10 +286,12 @@
         {
             try
             {
+                Logger.Write("释放锁屏热键");
                 KeyboardHook.UnregisterHotKey();
             }
             catch (Exception ex)
             {
+                Logger.Write($"释放锁屏热键失败：{ex.Message}。{ex.StackTrace}");
                 //MessageBoxUtils.ShowError($"取消快捷键失败：{ex.Message}");
             }
             _shortcutKeyText = Lang["Invalid"];
@@ -316,7 +319,7 @@
                 {
                     throw new Exception(Lang["ShortcutKeyConfigError"]);
                 }
-
+                Logger.Write("注册锁屏热键");
                 Keys key = (Keys)Convert.ToInt32(result.result);
                 KeyboardHook.RegisterHotKey(keys, key);
 
@@ -324,6 +327,7 @@
             }
             catch (Exception ex)
             {
+                Logger.Write($"绑定锁屏热键失败：{ex.Message}。{ex.StackTrace}");
                 Snackbar.Add($"{Lang["ExRegistFailed"]}{ex.Message}", Severity.Error);
             }
         }

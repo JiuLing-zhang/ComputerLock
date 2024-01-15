@@ -172,8 +172,8 @@
         WindowMoving.MouseUp();
     }
 
-    private void OpenSettingsDialog()
+    private async Task OpenSettingsDialog()
     {
-        _settings.Open();
+        await _settings.OpenAsync();
     }
 }

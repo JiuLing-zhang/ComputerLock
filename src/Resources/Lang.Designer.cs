@@ -171,6 +171,15 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string DisableWindowsLock {
             get {
                 return ResourceManager.GetString("DisableWindowsLock", resourceCulture);
@@ -306,6 +315,15 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string LogFiles {
+            get {
+                return ResourceManager.GetString("LogFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string Minute1 {
             get {
                 return ResourceManager.GetString("Minute1", resourceCulture);
@@ -378,6 +396,15 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string OpenLogs {
+            get {
+                return ResourceManager.GetString("OpenLogs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
@@ -417,6 +444,33 @@ namespace ComputerLock.Resources {
         public static string PwdLocation {
             get {
                 return ResourceManager.GetString("PwdLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string RemoveLogs {
+            get {
+                return ResourceManager.GetString("RemoveLogs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string RemoveLogsConfirm {
+            get {
+                return ResourceManager.GetString("RemoveLogsConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string RemoveLogsOk {
+            get {
+                return ResourceManager.GetString("RemoveLogsOk", resourceCulture);
             }
         }
         
@@ -534,6 +588,15 @@ namespace ComputerLock.Resources {
         public static string UnLocked {
             get {
                 return ResourceManager.GetString("UnLocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string Warning {
+            get {
+                return ResourceManager.GetString("Warning", resourceCulture);
             }
         }
         

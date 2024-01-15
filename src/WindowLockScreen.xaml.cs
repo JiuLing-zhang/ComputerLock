@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using ComputerLock.Enums;
 using Point = System.Windows.Point;
+using JiuLing.CommonLibs.Log;
 
 namespace ComputerLock;
 /// <summary>
@@ -20,6 +21,7 @@ public partial class WindowLockScreen : Window
     private DispatcherTimer _timer = new DispatcherTimer();
     private readonly AppSettings _appSettings;
     private readonly IStringLocalizer<Lang> _lang;
+    private readonly ILogger _logger;
 
     /// <summary>
     /// 引用user32.dll动态链接库（windows api），
@@ -43,11 +45,12 @@ public partial class WindowLockScreen : Window
     public const int MOUSEEVENTF_RIGHTDOWN = 0x0008;
     public const int MOUSEEVENTF_RIGHTUP = 0x0010;
 
-    public WindowLockScreen(AppSettings appSettings, IStringLocalizer<Lang> lang)
+    public WindowLockScreen(AppSettings appSettings, IStringLocalizer<Lang> lang, ILogger logger)
     {
         InitializeComponent();
         _appSettings = appSettings;
         _lang = lang;
+        _logger = logger;
 
         _timer.Interval = TimeSpan.FromSeconds(1);
         _timer.Tick += _timer_Tick;
@@ -56,9 +59,13 @@ public partial class WindowLockScreen : Window
 
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
+        _logger.Write("主屏幕 -> 准备锁定");
         LblPassword.Content = _lang["Password"];
+
+        _logger.Write($"启用密码框：{_appSettings.EnablePasswordBox}");
         if (_appSettings.EnablePasswordBox)
         {
+            _logger.Write($"自动隐藏密码框：{_appSettings.IsHidePasswordWindow}");
             if (_appSettings.IsHidePasswordWindow)
             {
                 LblMessage.Visibility = Visibility.Visible;
@@ -104,12 +111,14 @@ public partial class WindowLockScreen : Window
     {
         if (_appSettings.EnablePasswordBox)
         {
+            _logger.Write("准备显示密码框");
             RefreshHideSelfTime();
             TxtPassword.Visibility = Visibility.Visible;
             PasswordBlock.Opacity = 1;
         }
         else
         {
+            _logger.Write("准备无感解锁");
             TxtPassword.Visibility = Visibility.Visible;
             //TxtPassword.Width = 1;
             PasswordBlock.Width = 1;
@@ -129,6 +138,7 @@ public partial class WindowLockScreen : Window
             {
                 if (_appSettings.IsDisableWindowsLock)
                 {
+                    _logger.Write("移动鼠标，防止 Windows 锁屏");
                     DoMoveMouse();
                 }
             }
@@ -140,6 +150,7 @@ public partial class WindowLockScreen : Window
                     LblMessage.Content = $"{_lang["TimerPrefix"]}{hideCountdown}{_lang["TimerPostfix"]}";
                     if (hideCountdown <= 0)
                     {
+                        _logger.Write("准备自动隐藏密码框");
                         HidePassword();
                     }
                 }
@@ -147,11 +158,13 @@ public partial class WindowLockScreen : Window
         }
         catch (Exception ex)
         {
+            _logger.Write($"定时组件异常。{ex.Message}。{ex.StackTrace}");
         }
     }
 
     private void TxtPassword_PasswordChanged(object sender, RoutedEventArgs e)
     {
+        _logger.Write("检测到密码输入");
         if (_appSettings.EnablePasswordBox)
         {
             RefreshHideSelfTime();
@@ -159,12 +172,14 @@ public partial class WindowLockScreen : Window
         var txt = TxtPassword.Password;
         if (txt.IsEmpty())
         {
+            _logger.Write("输入为空，跳过");
             return;
         }
         if (_appSettings.Password != JiuLing.CommonLibs.Security.MD5Utils.GetStringValueToLower(txt))
         {
             return;
         }
+        _logger.Write("密码正确，通知解锁");
         OnUnlock?.Invoke(this, EventArgs.Empty);
         this.Close();
     }
@@ -173,6 +188,7 @@ public partial class WindowLockScreen : Window
     {
         if (e.Key == Key.Enter || e.Key == Key.Escape)
         {
+            _logger.Write("清空密码框");
             TxtPassword.Password = "";
         }
     }
@@ -187,6 +203,7 @@ public partial class WindowLockScreen : Window
     }
     private void HidePassword()
     {
+        _logger.Write("准备隐藏密码框");
         if (PasswordBlock.Opacity == 1)
         {
             TxtPassword.Visibility = Visibility.Collapsed;
@@ -204,27 +221,32 @@ public partial class WindowLockScreen : Window
 
     private void PasswordBlock_MouseDown(object sender, MouseButtonEventArgs e)
     {
+        _logger.Write("密码框位置检测到点击");
         if (_appSettings.EnablePasswordBox)
         {
             if ((_appSettings.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.MouseDown) != PasswordBoxActiveMethodEnum.MouseDown)
             {
                 return;
             }
+            _logger.Write("准备鼠标解锁密码框");
             ShowPassword();
         }
     }
 
     private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
     {
+        _logger.Write($"主屏幕 -> 准备关闭");
         _timer.Stop();
     }
 
     private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
     {
+        _logger.Write("主屏幕 -> 检测到按键");
         if (e.Key != Key.Escape)
         {
             return;
         }
+        _logger.Write("主屏幕 -> 按下ESC功能键");
         if (_appSettings.EnablePasswordBox)
         {
             if ((_appSettings.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.KeyboardDown) != PasswordBoxActiveMethodEnum.KeyboardDown)
@@ -232,6 +254,7 @@ public partial class WindowLockScreen : Window
                 return;
             }
         }
+        _logger.Write("主屏幕 -> 准备执行解锁");
         ShowPassword();
     }
 }

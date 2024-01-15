@@ -276,4 +276,25 @@
   <data name="Restart" xml:space="preserve">
     <value>重启</value>
   </data>
+  <data name="LogFiles" xml:space="preserve">
+    <value>日志文件</value>
+  </data>
+  <data name="OpenLogs" xml:space="preserve">
+    <value>查看</value>
+  </data>
+  <data name="RemoveLogs" xml:space="preserve">
+    <value>清空</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>警告</value>
+  </data>
+  <data name="RemoveLogsConfirm" xml:space="preserve">
+    <value>确认要删除所有日志吗？</value>
+  </data>
+  <data name="RemoveLogsOk" xml:space="preserve">
+    <value>日志已删除</value>
+  </data>
 </root>

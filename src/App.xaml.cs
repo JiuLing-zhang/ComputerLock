@@ -8,6 +8,7 @@ using System.Windows;
 using ComputerLock.Hooks;
 using Application = System.Windows.Application;
 using System.Text.Json;
+using JiuLing.CommonLibs.Log;
 
 namespace ComputerLock
 {
@@ -54,7 +55,8 @@ namespace ComputerLock
                     return new AppSettings();
                 }
             });
-
+                        
+            services.AddSingleton<ILogger>(LogManager.GetLogger());
             services.AddSingleton<KeyboardHook>();
             services.AddSingleton<UpdateHelper>();
             services.AddSingleton<AutostartHook>();

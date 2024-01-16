@@ -18,6 +18,7 @@ namespace ComputerLock
     public partial class App : System.Windows.Application
     {
         private static System.Threading.Mutex _mutex;
+        private WindowMain? _mainWindow;
         protected override void OnStartup(StartupEventArgs e)
         {
             _mutex = new System.Threading.Mutex(true, AppBase.FriendlyName);
@@ -55,7 +56,7 @@ namespace ComputerLock
                     return new AppSettings();
                 }
             });
-                        
+
             services.AddSingleton<ILogger>(LogManager.GetLogger());
             services.AddSingleton<KeyboardHook>();
             services.AddSingleton<UpdateHelper>();
@@ -88,9 +89,15 @@ namespace ComputerLock
             Thread.CurrentThread.CurrentCulture = cultureInfo;
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
 
-            var mainWindow = sp.GetRequiredService<WindowMain>();
-            Application.Current.MainWindow = mainWindow;
-            mainWindow.Show();
+            _mainWindow = sp.GetRequiredService<WindowMain>();
+            Application.Current.MainWindow = _mainWindow;
+            _mainWindow.Show();
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            _mainWindow?.Dispose();
+            base.OnExit(e);
         }
     }
 }

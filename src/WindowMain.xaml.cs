@@ -28,7 +28,7 @@ public partial class WindowMain : Window
         _logger = logger;
 
         InitializeNotifyIcon();
-        _logger.Write("系统启动");        
+        _logger.Write("系统启动");
 
         if (_appSettings.AutoLockSecond != 0)
         {
@@ -86,7 +86,6 @@ public partial class WindowMain : Window
         btnClose.Click += (_, __) =>
         {
             _logger.Write("托盘关闭");
-            Dispose();
             System.Windows.Application.Current.Shutdown();
         };
         _contextMenuStrip.Items.Add(btnClose);
@@ -129,13 +128,7 @@ public partial class WindowMain : Window
             this.WindowState = WindowState.Minimized;
             e.Cancel = true;
             return;
-        }
-    }
-
-    private void Window_Closed(object sender, EventArgs e)
-    {
-        _logger.Write("系统关闭");
-        Dispose();
+        }        
     }
     private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
     {
@@ -147,7 +140,7 @@ public partial class WindowMain : Window
     }
     public void Dispose()
     {
-        _logger.Write("系统资源释放");
+        _logger.Write("系统资源释放，系统关闭");
         _notifyIcon.Visible = false;
         _activityMonitor?.StopMonitoring();
         _keyboardHook.Dispose();

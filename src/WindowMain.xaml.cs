@@ -3,7 +3,6 @@ using System.Windows;
 using ComputerLock.Hooks;
 using ComputerLock.Platforms;
 using ComputerLock.Resources;
-using JiuLing.CommonLibs.ExtensionMethods;
 using JiuLing.CommonLibs.Log;
 
 namespace ComputerLock;
@@ -128,7 +127,7 @@ public partial class WindowMain : Window
             this.WindowState = WindowState.Minimized;
             e.Cancel = true;
             return;
-        }        
+        }
     }
     private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
     {
@@ -141,7 +140,7 @@ public partial class WindowMain : Window
     public void Dispose()
     {
         _logger.Write("系统资源释放，系统关闭");
-        _notifyIcon.Visible = false;
+        _notifyIcon.Dispose();
         _activityMonitor?.StopMonitoring();
         _keyboardHook.Dispose();
     }

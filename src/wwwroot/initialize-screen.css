@@ -1,0 +1,56 @@
+.initialize-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #FFFFFF;
+}
+
+.initialize-loading {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.initialize-icon,
+.initialize-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.initialize-icon {
+    width: 32px;
+    height: 32px;
+    background: url('icon.ico') no-repeat center center;
+    background-size: contain;
+    z-index: 2;
+}
+
+.initialize-loader {
+    width: 120px;
+    height: 120px;
+    animation: spin 3s linear infinite, border-gradient 3s linear infinite;
+    z-index: 1;
+}
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes border-gradient {
+    0% {
+        box-shadow: 0 0 10px 0 #fb8c00, 0 0 20px 0 #fb8c00, 0 0 30px 0 #fb8c00;
+    }
+
+    100% {
+        box-shadow: 0 0 10px 20px transparent, 0 0 20px 30px transparent, 0 0 30px 40px transparent;
+    }
+}

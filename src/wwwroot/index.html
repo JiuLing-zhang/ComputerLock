@@ -7,12 +7,20 @@
     <title>透明锁屏</title>
     <base href="/" />
     <link href="app.css" rel="stylesheet" />
+    <link href="initialize-screen.css" rel="stylesheet" />
     <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
     <link href="SignDebugger.styles.css" rel="stylesheet" />
 </head>
 
 <body style="overflow-x:hidden">
-    <div id="app">资源加载中...</div>
+    <div id="app">
+        <div class="initialize-container">
+            <div class="initialize-loading">
+                <div class="initialize-loader"></div>
+                <div class="initialize-icon"></div>
+            </div>
+        </div>
+    </div>
 
     <div id="blazor-error-ui">
         An unhandled error has occurred.

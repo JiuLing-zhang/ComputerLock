@@ -1,5 +1,5 @@
-﻿首次运行时需要安装 .Net7 运行时，下载地址：
-https://aka.ms/dotnet/7.0/windowsdesktop-runtime-win-x64.exe
+﻿首次运行时需要安装 .Net8 运行时，下载地址：
+https://aka.ms/dotnet/8.0/windowsdesktop-runtime-win-x64.exe
 
 Windows 7、8 部分用户需要安装依赖项才能运行，参考：
 https://learn.microsoft.com/zh-cn/dotnet/core/install/windows?tabs=net70#additional-deps

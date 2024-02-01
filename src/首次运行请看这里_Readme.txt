@@ -7,3 +7,6 @@ https://learn.microsoft.com/zh-cn/dotnet/core/install/windows?tabs=net70#additio
 如果程序无法启动，请检查是否已安装 WebView2 Runtime，（推荐使用【常青引导程序】进行安装，因为独立安装包已经不支持 Windows 7）下载地址：
 https://developer.microsoft.com/zh-cn/microsoft-edge/webview2/#download
 
+！！！忘记密码！！！
+如果忘记密码，可以通过删除配置文件来重置设置。
+C:\Users\Username\AppData\Local\ComputerLock\config.json

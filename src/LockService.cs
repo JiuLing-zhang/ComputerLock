@@ -27,6 +27,10 @@ internal class LockService
         _lang = lang;
         _appSettings = appSettings;
         _logger = logger;
+
+        // 防止锁屏时系统崩溃、重启等问题导致任务栏被禁用
+        // 启动时默认启用一次
+        TaskManagerHook.EnabledTaskManager();
     }
 
     public void Lock()

@@ -136,7 +136,7 @@
     <value>开机时自动启动</value>
   </data>
   <data name="DisableWindowsLock" xml:space="preserve">
-    <value>禁用Windows锁屏</value>
+    <value>锁定时禁用 Windows 锁屏</value>
   </data>
   <data name="HidePasswordWindow" xml:space="preserve">
     <value>无操作时自动隐藏密码框</value>

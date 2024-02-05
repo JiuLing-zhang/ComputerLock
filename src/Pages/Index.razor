@@ -111,6 +111,7 @@
         <MudSelect T="ScreenLocationEnum"
                    Label="@(Lang["PwdLocation"])"
                    Value="@(AppSettings.PasswordInputLocation)"
+                   Disabled="@(!AppSettings.EnablePasswordBox)"
                    Class="mt-4"
                    ValueChanged="PwdBoxLocationChanged"
                    Dense="true">

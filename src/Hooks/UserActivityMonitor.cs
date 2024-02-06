@@ -5,66 +5,65 @@ using Timer = System.Timers.Timer;
 
 namespace ComputerLock.Hooks;
 
-public class UserActivityMonitor
+public class UserActivityMonitor : IDisposable
 {
-    private readonly Stopwatch _activityStopwatch;
-    private readonly Timer _idleTimer;
+    private Stopwatch _activityStopwatch;
+    private Timer _timer;
 
     private IntPtr _keyboardHook;
     private IntPtr _mouseHook;
 
-    private readonly HookProc _keyboardHookCallback;
-    private readonly HookProc _mouseHookCallback;
+    private HookProc _keyboardHookCallback;
+    private HookProc _mouseHookCallback;
 
     private const int WH_KEYBOARD_LL = 13;
     private const int WH_MOUSE_LL = 14;
     public EventHandler OnIdle;
 
     private int _autoLockSecond;
-    public UserActivityMonitor()
+
+    private bool _isMonitoring = false;
+
+    public void Init(int autoLockSecond)
     {
+        _autoLockSecond = autoLockSecond;
+
         _activityStopwatch = new Stopwatch();
         _activityStopwatch.Start();
 
-        _idleTimer = new Timer();
-        _idleTimer.Interval = 1000;
-        _idleTimer.Elapsed += IdleTimer_Tick;
+        _timer = new Timer();
+        _timer.Interval = 1000;
+        _timer.Elapsed += _timer_Elapsed;
+        _timer.Start();
 
         // 初始化钩子回调函数
         _keyboardHookCallback = KeyboardHookCallback;
         _mouseHookCallback = MouseHookCallback;
-    }
 
-    public void SetAutoLockSecond(int autoLockSecond)
-    {
-        _autoLockSecond = autoLockSecond;
+        // 启动键盘和鼠标钩子
+        _keyboardHook = SetWindowsHookEx(WH_KEYBOARD_LL, _keyboardHookCallback, GetModuleHandle(Process.GetCurrentProcess().MainModule.ModuleName), 0);
+        _mouseHook = SetWindowsHookEx(WH_MOUSE_LL, _mouseHookCallback, GetModuleHandle(Process.GetCurrentProcess().MainModule.ModuleName), 0);
     }
 
     public void StartMonitoring()
     {
-        // 启动键盘和鼠标钩子
-        _keyboardHook = SetWindowsHookEx(WH_KEYBOARD_LL, _keyboardHookCallback, GetModuleHandle(Process.GetCurrentProcess().MainModule.ModuleName), 0);
-        _mouseHook = SetWindowsHookEx(WH_MOUSE_LL, _mouseHookCallback, GetModuleHandle(Process.GetCurrentProcess().MainModule.ModuleName), 0);
-
-        _idleTimer.Start();
+        _activityStopwatch.Restart();
+        _isMonitoring = true;
     }
 
     public void StopMonitoring()
     {
-        // 停止键盘和鼠标钩子
-        UnhookWindowsHookEx(_keyboardHook);
-        UnhookWindowsHookEx(_mouseHook);
-
-        _idleTimer.Stop();
-        _activityStopwatch.Restart();
+        _isMonitoring = false;
     }
-
-    private void IdleTimer_Tick(object sender, ElapsedEventArgs e)
+    private void _timer_Elapsed(object? sender, ElapsedEventArgs e)
     {
-        TimeSpan idleTime = _activityStopwatch.Elapsed;
-        if (idleTime.TotalSeconds > _autoLockSecond)
+        if (_isMonitoring)
         {
-            OnIdle?.Invoke(this, EventArgs.Empty);
+            TimeSpan idleTime = _activityStopwatch.Elapsed;
+            if (idleTime.TotalSeconds > _autoLockSecond)
+            {
+                OnIdle?.Invoke(this, EventArgs.Empty);
+            }
         }
     }
 
@@ -156,4 +155,28 @@ public class UserActivityMonitor
 
     [DllImport("user32.dll")]
     private static extern bool ScreenToClient(IntPtr hWnd, ref Point lpPoint);
+
+    public void Dispose()
+    {
+        // 停止键盘和鼠标钩子
+        if (_keyboardHook != null)
+        {
+            UnhookWindowsHookEx(_keyboardHook);
+        }
+        if (_mouseHook != null)
+        {
+            UnhookWindowsHookEx(_mouseHook);
+        }
+        if (_keyboardHookCallback != null)
+        {
+            _keyboardHookCallback = null;
+        }
+        if (_mouseHookCallback != null)
+        {
+            _mouseHookCallback = null;
+        }
+        _activityStopwatch?.Stop();
+        _timer?.Stop();
+        _timer?.Dispose();
+    }
 }

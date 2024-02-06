@@ -6,7 +6,7 @@ using ComputerLock.Resources;
 using JiuLing.CommonLibs.Log;
 
 namespace ComputerLock;
-public partial class WindowMain : Window
+public partial class WindowMain : Window, IDisposable
 {
     private readonly KeyboardHook _keyboardHook;
     private readonly AppSettings _appSettings;
@@ -33,7 +33,7 @@ public partial class WindowMain : Window
         {
             _logger.Write("自动锁定已生效");
             _activityMonitor = activityMonitor;
-            _activityMonitor.SetAutoLockSecond(_appSettings.AutoLockSecond);
+            _activityMonitor.Init(_appSettings.AutoLockSecond);
             _activityMonitor.OnIdle += (_, __) =>
             {
                 Dispatcher.Invoke(() =>
@@ -141,7 +141,7 @@ public partial class WindowMain : Window
     {
         _logger.Write("系统资源释放，系统关闭");
         _notifyIcon.Dispose();
-        _activityMonitor?.StopMonitoring();
+        _activityMonitor?.Dispose();
         _keyboardHook.Dispose();
     }
 }

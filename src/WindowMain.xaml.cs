@@ -4,6 +4,7 @@ using ComputerLock.Hooks;
 using ComputerLock.Platforms;
 using ComputerLock.Resources;
 using JiuLing.CommonLibs.Log;
+using Microsoft.Win32;
 
 namespace ComputerLock;
 public partial class WindowMain : Window, IDisposable
@@ -54,6 +55,21 @@ public partial class WindowMain : Window, IDisposable
             };
             _logger.Write("自动锁定 -> 启动空闲检测");
             _activityMonitor.StartMonitoring();
+
+            _logger.Write("自动锁定 -> 准备监控系统会话状态");
+            SystemEvents.SessionSwitch += (_, e) =>
+            {
+                if (e.Reason == SessionSwitchReason.SessionLock)
+                {
+                    _logger.Write("Windows系统锁定 -> 暂停空闲检测");
+                    _activityMonitor.StopMonitoring();
+                }
+                else if (e.Reason == SessionSwitchReason.SessionUnlock)
+                {
+                    _logger.Write("Windows系统解锁 -> 启动空闲检测");
+                    _activityMonitor.StartMonitoring();
+                }
+            };
         }
 
     }

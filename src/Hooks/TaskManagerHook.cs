@@ -1,35 +1,33 @@
 ﻿using Microsoft.Win32;
 
-namespace ComputerLock
+namespace ComputerLock.Hooks;
+internal class TaskManagerHook
 {
-    internal class TaskManagerHook
+    private const string RegKey = @"Software\Microsoft\Windows\CurrentVersion\Policies\System";
+    private enum TaskManagerStateEnum
     {
-        private enum TaskManagerStateEnum
-        {
-            Enabled = 0,
-            Disabled = 1
-        }
+        Enabled = 0,
+        Disabled = 1
+    }
 
-        public void EnabledTaskManager()
-        {
-            SetState(TaskManagerStateEnum.Enabled);
-        }
+    public void EnabledTaskManager()
+    {
+        SetState(TaskManagerStateEnum.Enabled);
+    }
 
-        public void DisabledTaskManager()
-        {
-            SetState(TaskManagerStateEnum.Disabled);
-        }
+    public void DisabledTaskManager()
+    {
+        SetState(TaskManagerStateEnum.Disabled);
+    }
 
-        private void SetState(TaskManagerStateEnum state)
+    private void SetState(TaskManagerStateEnum state)
+    {
+        var registryKey = Registry.CurrentUser.CreateSubKey(RegKey);
+        if (registryKey == null)
         {
-            var key = "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System";
-            var registryKey = Registry.CurrentUser.CreateSubKey(key);
-            if (registryKey == null)
-            {
-                throw new Exception("注册表扫描失败");
-            }
-            registryKey.SetValue("DisableTaskMgr", (int)state);
-            registryKey.Close();
+            throw new Exception("注册表扫描失败");
         }
+        registryKey.SetValue("DisableTaskMgr", (int)state);
+        registryKey.Close();
     }
 }

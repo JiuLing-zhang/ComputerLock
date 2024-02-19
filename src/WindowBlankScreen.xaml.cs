@@ -1,6 +1,4 @@
-﻿using ComputerLock.Enums;
-using JiuLing.CommonLibs.Log;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 
 namespace ComputerLock

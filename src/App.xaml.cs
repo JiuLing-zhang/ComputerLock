@@ -1,104 +1,98 @@
 ﻿using System.Globalization;
 using System.IO;
-using ComputerLock.Platforms;
 using Microsoft.Extensions.DependencyInjection;
-using MudBlazor;
 using MudBlazor.Services;
 using System.Windows;
-using ComputerLock.Hooks;
 using Application = System.Windows.Application;
 using System.Text.Json;
-using JiuLing.CommonLibs.Log;
 
-namespace ComputerLock
+namespace ComputerLock;
+/// <summary>
+/// Interaction logic for App.xaml
+/// </summary>
+public partial class App : Application
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : System.Windows.Application
+    private static Mutex _mutex = default!;
+    private WindowMain? _mainWindow;
+    protected override void OnStartup(StartupEventArgs e)
     {
-        private static System.Threading.Mutex _mutex;
-        private WindowMain? _mainWindow;
-        protected override void OnStartup(StartupEventArgs e)
+        _mutex = new Mutex(true, AppBase.FriendlyName);
+        if (!_mutex.WaitOne(0, false))
         {
-            _mutex = new System.Threading.Mutex(true, AppBase.FriendlyName);
-            if (!_mutex.WaitOne(0, false))
+            System.Windows.MessageBox.Show("程序已经运行 The program has been run");
+            Application.Current.Shutdown();
+            return;
+        }
+
+        Environment.CurrentDirectory = Path.GetDirectoryName(AppBase.ExecutablePath);
+
+        Init();
+        base.OnStartup(e);
+    }
+
+    private void Init()
+    {
+        IServiceCollection services = new ServiceCollection();
+        services.AddSingleton<AppSettingWriter>();
+        services.AddSingleton<AppSettings>((_) =>
+        {
+            if (!File.Exists(AppBase.ConfigPath))
             {
-                System.Windows.MessageBox.Show("程序已经运行 The program has been run");
-                System.Windows.Application.Current.Shutdown();
-                return;
+                return new AppSettings();
             }
-
-            Environment.CurrentDirectory = Path.GetDirectoryName(AppBase.ExecutablePath);
-
-            Init();
-            base.OnStartup(e);
-        }
-
-        private void Init()
-        {
-            IServiceCollection services = new ServiceCollection();
-            services.AddSingleton<AppSettingWriter>();
-            services.AddSingleton<AppSettings>((sp) =>
+            string json = File.ReadAllText(AppBase.ConfigPath);
+            try
             {
-                if (!File.Exists(AppBase.ConfigPath))
-                {
-                    return new AppSettings();
-                }
-                string json = File.ReadAllText(AppBase.ConfigPath);
-                try
-                {
-                    var appSettings = JsonSerializer.Deserialize<AppSettings>(json);
-                    return appSettings ?? new AppSettings();
-                }
-                catch (JsonException)
-                {
-                    return new AppSettings();
-                }
-            });
-
-            services.AddSingleton<ILogger>(LogManager.GetLogger());
-            services.AddSingleton<KeyboardHook>();
-            services.AddSingleton<UpdateHelper>();
-            services.AddSingleton<AutostartHook>();
-            services.AddSingleton<TaskManagerHook>();
-            services.AddSingleton<UserActivityMonitor>();
-            services.AddSingleton<WindowMain>();
-            services.AddTransient<WindowLockScreen>();
-            services.AddTransient<WindowBlankScreen>();
-            services.AddSingleton<LockService>();
-            services.AddSingleton<IWindowMoving, WindowMoving>();
-            services.AddSingleton<IWindowTitleBar, WindowTitleBar>();
-            services.AddSingleton<ILocker, Locker>();
-            services.AddLocalization();
-            services.AddWpfBlazorWebView();
-            services.AddBlazorWebViewDeveloperTools();
-            services.AddMudServices(config =>
+                var appSettings = JsonSerializer.Deserialize<AppSettings>(json);
+                return appSettings ?? new AppSettings();
+            }
+            catch (JsonException)
             {
-                config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.TopLeft;
-                config.SnackbarConfiguration.ShowCloseIcon = false;
-                config.SnackbarConfiguration.VisibleStateDuration = 1500;
-                config.SnackbarConfiguration.ShowTransitionDuration = 200;
-                config.SnackbarConfiguration.HideTransitionDuration = 400;
-            });
+                return new AppSettings();
+            }
+        });
 
-            var sp = services.BuildServiceProvider();
-            Resources.Add("services", sp);
-
-            var cultureInfo = new CultureInfo(sp.GetRequiredService<AppSettings>().Lang.ToString());
-            CultureInfo.CurrentCulture = cultureInfo;
-            Thread.CurrentThread.CurrentCulture = cultureInfo;
-            Thread.CurrentThread.CurrentUICulture = cultureInfo;
-
-            _mainWindow = sp.GetRequiredService<WindowMain>();
-            Application.Current.MainWindow = _mainWindow;
-            _mainWindow.Show();
-        }
-
-        protected override void OnExit(ExitEventArgs e)
+        services.AddSingleton(LogManager.GetLogger());
+        services.AddSingleton<KeyboardHook>();
+        services.AddSingleton<UpdateHelper>();
+        services.AddSingleton<AutostartHook>();
+        services.AddSingleton<TaskManagerHook>();
+        services.AddSingleton<UserActivityMonitor>();
+        services.AddSingleton<WindowMain>();
+        services.AddTransient<WindowLockScreen>();
+        services.AddTransient<WindowBlankScreen>();
+        services.AddSingleton<LockService>();
+        services.AddSingleton<IWindowMoving, WindowMoving>();
+        services.AddSingleton<IWindowTitleBar, WindowTitleBar>();
+        services.AddSingleton<ILocker, Locker>();
+        services.AddLocalization();
+        services.AddWpfBlazorWebView();
+        services.AddBlazorWebViewDeveloperTools();
+        services.AddMudServices(config =>
         {
-            _mainWindow?.Dispose();
-            base.OnExit(e);
-        }
+            config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.TopLeft;
+            config.SnackbarConfiguration.ShowCloseIcon = false;
+            config.SnackbarConfiguration.VisibleStateDuration = 1500;
+            config.SnackbarConfiguration.ShowTransitionDuration = 200;
+            config.SnackbarConfiguration.HideTransitionDuration = 400;
+        });
+
+        var sp = services.BuildServiceProvider();
+        Resources.Add("services", sp);
+
+        var cultureInfo = new CultureInfo(sp.GetRequiredService<AppSettings>().Lang.ToString());
+        CultureInfo.CurrentCulture = cultureInfo;
+        Thread.CurrentThread.CurrentCulture = cultureInfo;
+        Thread.CurrentThread.CurrentUICulture = cultureInfo;
+
+        _mainWindow = sp.GetRequiredService<WindowMain>();
+        Application.Current.MainWindow = _mainWindow;
+        _mainWindow.Show();
+    }
+
+    protected override void OnExit(ExitEventArgs e)
+    {
+        _mainWindow?.Dispose();
+        base.OnExit(e);
     }
 }

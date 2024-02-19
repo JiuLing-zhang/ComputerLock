@@ -37,7 +37,7 @@ namespace ComputerLock
                 Duration = TimeSpan.FromMilliseconds(300),
             };
 
-            fadeOutAnimation.Completed += (_, __) => Close();
+            fadeOutAnimation.Completed += (_, _) => Close();
 
             BeginAnimation(UIElement.OpacityProperty, fadeOutAnimation);
         }

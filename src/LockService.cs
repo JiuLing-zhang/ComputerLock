@@ -1,8 +1,4 @@
-﻿using ComputerLock.Hooks;
-using ComputerLock.Resources;
-using JiuLing.CommonLibs.Log;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Localization;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -12,19 +8,18 @@ internal class LockService
     private bool _isLocked = false;
     private readonly IServiceProvider _serviceProvider;
     private readonly SystemKeyHook _systemKeyHook = new();
-    private WindowLockScreen _windowLockScreen;
-    private readonly List<WindowBlankScreen> _blankScreens;
+    private WindowLockScreen? _windowLockScreen;
+    private readonly List<WindowBlankScreen> _blankScreens = [];
     private WindowPopup? _popup;
     private readonly IStringLocalizer<Lang> _lang;
     private readonly AppSettings _appSettings;
     private readonly ILogger _logger;
     private readonly TaskManagerHook _taskManagerHook;
-    public event EventHandler OnLock;
-    public event EventHandler OnUnlock;
+    public event EventHandler? OnLock;
+    public event EventHandler? OnUnlock;
     public LockService(IServiceProvider serviceProvider, IStringLocalizer<Lang> lang, AppSettings appSettings, ILogger logger, TaskManagerHook taskManagerHook)
     {
         _serviceProvider = serviceProvider;
-        _blankScreens = new List<WindowBlankScreen>();
         _lang = lang;
         _appSettings = appSettings;
         _logger = logger;
@@ -60,7 +55,7 @@ internal class LockService
         _logger.Write("锁定服务 -> 禁用任务管理器和系统键");
         _taskManagerHook.DisabledTaskManager();
         _systemKeyHook.DisableSystemKey();
-        if (_blankScreens.Any())
+        if (_blankScreens.Count > 0)
         {
             _blankScreens.Clear();
         }
@@ -69,10 +64,10 @@ internal class LockService
         _windowLockScreen = _serviceProvider.GetRequiredService<WindowLockScreen>();
         _windowLockScreen.Left = primaryScreen.WorkingArea.Left;
         _windowLockScreen.Top = primaryScreen.WorkingArea.Top;
-        _windowLockScreen.OnUnlock += _fmLockScreen_OnUnlock;
-        _windowLockScreen.Closing += (_, __) =>
+        _windowLockScreen.OnUnlock += FmLockScreen_OnUnlock;
+        _windowLockScreen.Closing += (_, _) =>
         {
-            _windowLockScreen.OnUnlock -= _fmLockScreen_OnUnlock;
+            _windowLockScreen.OnUnlock -= FmLockScreen_OnUnlock;
         };
         _windowLockScreen.Show();
         _windowLockScreen.Activate();
@@ -100,7 +95,7 @@ internal class LockService
         OnLock?.Invoke(this, EventArgs.Empty);
     }
 
-    private void _fmLockScreen_OnUnlock(object? sender, EventArgs e)
+    private void FmLockScreen_OnUnlock(object? sender, EventArgs e)
     {
         _logger.Write("锁定服务 -> 准备解锁");
         foreach (var screen in _blankScreens)
@@ -125,7 +120,7 @@ internal class LockService
     private void BlankScreen_OnDeviceInput(object? sender, EventArgs e)
     {
         _logger.Write("锁定服务 -> 收到副屏解锁通知");
-        _windowLockScreen.ShowPassword();
+        _windowLockScreen?.ShowPassword();
     }
 
     private void ShowPopup(string message)

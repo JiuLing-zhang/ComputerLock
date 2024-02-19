@@ -1,13 +1,8 @@
-﻿using ComputerLock.Resources;
-using JiuLing.CommonLibs.ExtensionMethods;
-using Microsoft.Extensions.Localization;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
-using ComputerLock.Enums;
 using Point = System.Windows.Point;
-using JiuLing.CommonLibs.Log;
 
 namespace ComputerLock;
 /// <summary>
@@ -16,12 +11,14 @@ namespace ComputerLock;
 public partial class WindowLockScreen : Window
 {
     private DateTime _hideSelfTime;
-    private int _hideSelfSecond = 3;
-    public event EventHandler<EventArgs>? OnUnlock;
-    private DispatcherTimer _timer = new DispatcherTimer();
+    
+    private readonly int _hideSelfSecond = 3;    
+    private readonly DispatcherTimer _timer = new();
     private readonly AppSettings _appSettings;
     private readonly IStringLocalizer<Lang> _lang;
     private readonly ILogger _logger;
+
+    public event EventHandler<EventArgs>? OnUnlock;
 
     /// <summary>
     /// 引用user32.dll动态链接库（windows api），
@@ -39,7 +36,7 @@ public partial class WindowLockScreen : Window
 
     //点击事件
     [DllImport("User32")]
-    public static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
+    private static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
     public const int MOUSEEVENTF_LEFTDOWN = 0x0002;
     public const int MOUSEEVENTF_LEFTUP = 0x0004;
     public const int MOUSEEVENTF_RIGHTDOWN = 0x0008;
@@ -53,7 +50,7 @@ public partial class WindowLockScreen : Window
         _logger = logger;
 
         _timer.Interval = TimeSpan.FromSeconds(1);
-        _timer.Tick += _timer_Tick;
+        _timer.Tick += Timer_Tick;
         _timer.Start();
     }
 
@@ -129,7 +126,7 @@ public partial class WindowLockScreen : Window
         TxtPassword.Focus();
     }
 
-    private void _timer_Tick(object? sender, EventArgs e)
+    private void Timer_Tick(object? sender, EventArgs e)
     {
         try
         {

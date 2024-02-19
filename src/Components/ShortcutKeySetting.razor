@@ -1,6 +1,6 @@
 ﻿<MudDialog DefaultFocus="DefaultFocus.FirstChild">
     <DialogContent>
-        <MudButton Variant="Variant.Text" onkeydown="@OnKeyDown">@(_shortcutKeyText)</MudButton>
+        <MudButton Variant="Variant.Text" @onkeydown="OnKeyDown">@(_shortcutKeyText)</MudButton>
     </DialogContent>
     <DialogActions>
         <MudButton Color="Color.Primary"

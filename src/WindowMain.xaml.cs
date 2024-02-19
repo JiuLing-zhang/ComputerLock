@@ -1,9 +1,5 @@
 ﻿using System.IO;
 using System.Windows;
-using ComputerLock.Hooks;
-using ComputerLock.Platforms;
-using ComputerLock.Resources;
-using JiuLing.CommonLibs.Log;
 using Microsoft.Win32;
 
 namespace ComputerLock;
@@ -15,8 +11,8 @@ public partial class WindowMain : Window, IDisposable
     private readonly ILocker _locker;
     private readonly ILogger _logger;
 
-    private NotifyIcon _notifyIcon;
-    private ContextMenuStrip _contextMenuStrip;
+    private readonly NotifyIcon _notifyIcon = new();
+    private readonly ContextMenuStrip _contextMenuStrip = new();
 
     public WindowMain(KeyboardHook keyboardHook, AppSettings appSettings, ILocker locker, UserActivityMonitor activityMonitor, ILogger logger)
     {
@@ -35,7 +31,7 @@ public partial class WindowMain : Window, IDisposable
             _logger.Write("自动锁定已生效");
             _activityMonitor = activityMonitor;
             _activityMonitor.Init(_appSettings.AutoLockSecond);
-            _activityMonitor.OnIdle += (_, __) =>
+            _activityMonitor.OnIdle += (_, _) =>
             {
                 Dispatcher.Invoke(() =>
                 {
@@ -43,12 +39,12 @@ public partial class WindowMain : Window, IDisposable
                     _locker.Lock();
                 });
             };
-            _locker.OnLock += (_, __) =>
+            _locker.OnLock += (_, _) =>
             {
                 _logger.Write("自动锁定 -> 暂停空闲检测");
                 _activityMonitor.StopMonitoring();
             };
-            _locker.OnUnlock += (_, __) =>
+            _locker.OnUnlock += (_, _) =>
             {
                 _logger.Write("自动锁定 -> 启动空闲检测");
                 _activityMonitor.StartMonitoring();
@@ -82,15 +78,13 @@ public partial class WindowMain : Window, IDisposable
 
     private void InitializeNotifyIcon()
     {
-        _notifyIcon = new NotifyIcon();
-        _contextMenuStrip = new ContextMenuStrip();
 
         var btnShowWindow = new ToolStripMenuItem(Lang.ShowMainWindow);
-        btnShowWindow.Click += (_, __) => ShowMainWindow();
+        btnShowWindow.Click += (_, _) => ShowMainWindow();
         _contextMenuStrip.Items.Add(btnShowWindow);
 
         var btnLock = new ToolStripMenuItem(Lang.DoLock);
-        btnLock.Click += (_, __) =>
+        btnLock.Click += (_, _) =>
         {
             _logger.Write("托盘锁定");
             _locker.Lock();
@@ -98,7 +92,7 @@ public partial class WindowMain : Window, IDisposable
         _contextMenuStrip.Items.Add(btnLock);
 
         var btnClose = new ToolStripMenuItem(Lang.Exit);
-        btnClose.Click += (_, __) =>
+        btnClose.Click += (_, _) =>
         {
             _logger.Write("托盘关闭");
             System.Windows.Application.Current.Shutdown();
@@ -107,7 +101,7 @@ public partial class WindowMain : Window, IDisposable
 
         _notifyIcon.ContextMenuStrip = _contextMenuStrip;
         Stream iconStream = System.Windows.Application.GetResourceStream(new Uri("pack://application:,,,/ComputerLock;component/icon.ico")).Stream;
-        _notifyIcon.Icon = new System.Drawing.Icon(iconStream);
+        _notifyIcon.Icon = new Icon(iconStream);
         _notifyIcon.Text = Lang.Title;
         _notifyIcon.Click += (object? sender, EventArgs e) =>
         {
@@ -142,7 +136,6 @@ public partial class WindowMain : Window, IDisposable
         {
             this.WindowState = WindowState.Minimized;
             e.Cancel = true;
-            return;
         }
     }
     private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)

@@ -1,18 +1,11 @@
-﻿using ComputerLock.Resources;
-using Microsoft.Extensions.Localization;
-using System.IO;
+﻿using System.IO;
 
 namespace ComputerLock;
-public class AppSettingWriter
+public class AppSettingWriter(IStringLocalizer<Lang> lang)
 {
-    private readonly IStringLocalizer<Lang> _lang;
-    public AppSettingWriter(IStringLocalizer<Lang> lang)
-    {
-        _lang = lang;
-    }
     public void Save(AppSettings appSettings)
     {
-        var directory = Path.GetDirectoryName(AppBase.ConfigPath) ?? throw new ArgumentException(_lang["ConfigFilePathError"]);
+        var directory = Path.GetDirectoryName(AppBase.ConfigPath) ?? throw new ArgumentException(lang["ConfigFilePathError"]);
         if (!Directory.Exists(directory))
         {
             Directory.CreateDirectory(directory);

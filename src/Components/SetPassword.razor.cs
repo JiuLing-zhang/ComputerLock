@@ -4,11 +4,11 @@ namespace ComputerLock.Components;
 public partial class SetPassword
 {
     [CascadingParameter]
-    private MudDialogInstance MudDialog { get; set; }
+    private MudDialogInstance MudDialog { get; set; } = default!;
 
-    private string _currentPassword;
-    private string _newPassword;
-    private string _confirmPassword;
+    private string _currentPassword = "";
+    private string _newPassword = "";
+    private string _confirmPassword = "";
 
     [Inject]
     private IStringLocalizer<Lang> Lang { get; set; } = default!;

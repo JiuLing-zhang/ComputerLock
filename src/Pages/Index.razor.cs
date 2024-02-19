@@ -41,7 +41,7 @@ public partial class Index
         _mouseDownChecked = (AppSettings.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.MouseDown) == PasswordBoxActiveMethodEnum.MouseDown;
         UpdateShortcutKeyForLock();
 
-        KeyboardHook.KeyPressed += (_, __) =>
+        KeyboardHook.KeyPressed += (_, _) =>
         {
             Logger.Write("快捷键解锁");
             Locker.Lock();
@@ -118,7 +118,7 @@ public partial class Index
             config.HideIcon = true;
             config.ActionColor = MudBlazor.Color.Warning;
             config.ActionVariant = Variant.Outlined;
-            config.Onclick = snackbar =>
+            config.Onclick = _ =>
             {
                 Restart();
                 return Task.CompletedTask;
@@ -150,8 +150,7 @@ public partial class Index
             return;
         }
 
-        var shortcutKeyModel = result.Data as ShortcutKeyModel;
-        if (shortcutKeyModel == null)
+        if (result.Data is not ShortcutKeyModel shortcutKeyModel)
         {
             return;
         }
@@ -161,12 +160,13 @@ public partial class Index
         SaveSettings();
         UpdateShortcutKeyForLock();
     }
-    private async Task ClearShortcutKey()
+    private Task ClearShortcutKey()
     {
         AppSettings.ShortcutKeyForLock = "";
         AppSettings.ShortcutKeyDisplayForLock = "";
         SaveSettings();
         UpdateShortcutKeyForLock();
+        return Task.CompletedTask;
     }
 
     public void UpdateShortcutKeyForLock()
@@ -192,15 +192,15 @@ public partial class Index
                 ModifierKeys keys = 0;
                 if (AppSettings.ShortcutKeyForLock.IndexOf("Ctrl") >= 0)
                 {
-                    keys = keys | Hooks.ModifierKeys.Control;
+                    keys |= ModifierKeys.Control;
                 }
                 if (AppSettings.ShortcutKeyForLock.IndexOf("Shift") >= 0)
                 {
-                    keys = keys | Hooks.ModifierKeys.Shift;
+                    keys |= ModifierKeys.Shift;
                 }
                 if (AppSettings.ShortcutKeyForLock.IndexOf("Alt") >= 0)
                 {
-                    keys = keys | Hooks.ModifierKeys.Alt;
+                    keys |= ModifierKeys.Alt;
                 }
 
                 var result = RegexUtils.GetFirst(AppSettings.ShortcutKeyForLock, @"\d+");
@@ -241,6 +241,7 @@ public partial class Index
         {
             return;
         }
+
         AppSettings.Password = result.Data.ToString();
         AppSettings.IsPasswordChanged = true;
         SaveSettings();

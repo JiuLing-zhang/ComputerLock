@@ -2,9 +2,9 @@
 public partial class MainLayout
 {
     private bool _isDarkMode;
-    private MudThemeProvider _mudThemeProvider;
-    private MudTheme _customTheme;
-    private Setting _settings;
+    private MudThemeProvider _mudThemeProvider = default!;
+    private MudTheme _customTheme = default!;
+    private Setting _settings = default!;
 
     [Inject]
     private IWindowMoving WindowMoving { get; set; } = default!;

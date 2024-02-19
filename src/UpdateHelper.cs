@@ -1,18 +1,10 @@
-﻿using ComputerLock.Resources;
-using JiuLing.AutoUpgrade.Shared;
+﻿using JiuLing.AutoUpgrade.Shared;
 using JiuLing.AutoUpgrade.Shell;
-using JiuLing.CommonLibs.ExtensionMethods;
 using System.IO;
 
 namespace ComputerLock;
-internal class UpdateHelper
+internal class UpdateHelper(AppSettings appSettings)
 {
-    private readonly AppSettings _appSettings;
-    public UpdateHelper(AppSettings appSettings)
-    {
-        _appSettings = appSettings;
-    }
-
     public async Task DoAsync(bool isBackgroundCheck)
     {
         var autoUpgradePath = Resource.AutoUpgradePath;
@@ -20,7 +12,7 @@ internal class UpdateHelper
         {
             return;
         }
-        var theme = _appSettings.AppThemeInt switch
+        var theme = appSettings.AppThemeInt switch
         {
             0 => ThemeEnum.System,
             1 => ThemeEnum.Light,
@@ -39,7 +31,7 @@ internal class UpdateHelper
                 config.IsBackgroundCheck = isBackgroundCheck;
                 config.Theme = theme;
                 config.IsCheckSign = true;
-                config.Lang = _appSettings.Lang.ToString();
+                config.Lang = appSettings.Lang.ToString();
                 config.IconPath = iconPath;
             })
             .RunAsync();

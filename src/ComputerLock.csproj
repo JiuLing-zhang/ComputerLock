@@ -19,7 +19,7 @@
 	<ItemGroup>
 		<PackageReference Include="JiuLing.AutoUpgrade" Version="2.1.6" />
 		<PackageReference Include="JiuLing.CommonLibs" Version="1.6.7" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="8.0.6" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="8.0.7" />
 		<PackageReference Include="ModernWpfUI" Version="0.9.6" />
 		<PackageReference Include="MudBlazor" Version="6.15.0" />
 	</ItemGroup>

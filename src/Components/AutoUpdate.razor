@@ -1,8 +1,4 @@
-﻿@using System.Reflection
-@using JiuLing.CommonLibs.ExtensionMethods
-@using JiuLing.CommonLibs.Model
-
-<div class="d-flex flex-column align-center">
+﻿<div class="d-flex flex-column align-center">
     <div class="d-flex align-center">
         <MudText Typo="Typo.overline" Class="cursor-default">
             当前版本
@@ -29,26 +25,3 @@
         }
     </MudButton>
 </div>
-
-@code {
-
-    private bool _isChecking = false;
-    private string _currentVersion = "";
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        _currentVersion = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion.ToString();
-    }
-
-    private async Task CheckUpdateAsync()
-    {
-        _isChecking = true;
-        await InvokeAsync(StateHasChanged);
-
-        var app = JiuLing.AutoUpgrade.Shell.AutoUpgradeFactory.Create();
-        await app.UseHttpMode("http://api.jiuling.cc/app/check-update/d1te99378038a524cd95a4078886a1eb/windows")
-            .RunAsync();
-        _isChecking = false;
-        await InvokeAsync(StateHasChanged);
-    }
-}

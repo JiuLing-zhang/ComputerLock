@@ -1,5 +1,4 @@
 ﻿using Microsoft.Win32;
-using System;
 
 namespace ComputerLock
 {
@@ -11,17 +10,17 @@ namespace ComputerLock
             Disabled = 1
         }
 
-        public static void EnabledTaskManager()
+        public void EnabledTaskManager()
         {
             SetState(TaskManagerStateEnum.Enabled);
         }
 
-        public static void DisabledTaskManager()
+        public void DisabledTaskManager()
         {
             SetState(TaskManagerStateEnum.Disabled);
         }
 
-        private static void SetState(TaskManagerStateEnum state)
+        private void SetState(TaskManagerStateEnum state)
         {
             var key = "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System";
             var registryKey = Registry.CurrentUser.CreateSubKey(key);

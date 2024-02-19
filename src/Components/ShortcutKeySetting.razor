@@ -1,9 +1,4 @@
-﻿@using ComputerLock.Resources
-@using System.Text
-@using JiuLing.CommonLibs.ExtensionMethods
-@inject IStringLocalizer<Lang> Lang
-
-<MudDialog DefaultFocus="DefaultFocus.FirstChild">
+﻿<MudDialog DefaultFocus="DefaultFocus.FirstChild">
     <DialogContent>
         <MudButton Variant="Variant.Text" onkeydown="@OnKeyDown">@(_shortcutKeyText)</MudButton>
     </DialogContent>
@@ -16,69 +11,3 @@
         <MudButton OnClick="Cancel">@(Lang["Cancel"])</MudButton>
     </DialogActions>
 </MudDialog>
-
-@code {
-    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
-
-    private string _shortcutKeyText;
-    private string _shortcutKey;
-    private string _shortcutKeyDisplay;
-
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        _shortcutKeyText = Lang["EnterShortcutKey"];
-    }
-
-    private async Task OnKeyDown(KeyboardEventArgs value)
-    {
-        _shortcutKey = "";
-
-        byte[] buffer = Encoding.ASCII.GetBytes(value.Key);
-        if (buffer.Length != 1)
-        {
-            _shortcutKeyText = Lang["EnterShortcutKey"];
-            _shortcutKey = "";
-            return;
-        }
-
-        var ascii = buffer[0];
-
-        if (value.CtrlKey)
-        {
-            _shortcutKey = "Ctrl + ";
-        }
-        if (value.ShiftKey)
-        {
-            _shortcutKey = _shortcutKey + "Shift + ";
-        }
-        if (value.AltKey)
-        {
-            _shortcutKey = _shortcutKey + "Alt + ";
-        }
-
-        if (ascii >= 97 && ascii <= 122)
-        {
-            ascii = (byte)char.ToUpper((char)ascii);
-        }
-
-        if ((ascii >= 48 && ascii <= 57) || (ascii >= 65 && ascii <= 90))
-        {
-            _shortcutKeyDisplay = _shortcutKey + $"{value.Key}";
-            _shortcutKeyText = _shortcutKeyDisplay;
-            _shortcutKey = _shortcutKey + $"{ascii}";
-        }
-        else
-        {
-            _shortcutKeyText = Lang["EnterShortcutKey"];
-            _shortcutKey = "";
-            return;
-        }
-    }
-
-    private void Submit()
-    {
-        MudDialog.Close(DialogResult.Ok(new ShortcutKeyModel(_shortcutKey, _shortcutKeyDisplay)));
-    }
-    private void Cancel() => MudDialog.Cancel();
-}

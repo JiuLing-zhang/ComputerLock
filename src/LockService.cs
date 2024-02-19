@@ -18,19 +18,21 @@ internal class LockService
     private readonly IStringLocalizer<Lang> _lang;
     private readonly AppSettings _appSettings;
     private readonly ILogger _logger;
+    private readonly TaskManagerHook _taskManagerHook;
     public event EventHandler OnLock;
     public event EventHandler OnUnlock;
-    public LockService(IServiceProvider serviceProvider, IStringLocalizer<Lang> lang, AppSettings appSettings, ILogger logger)
+    public LockService(IServiceProvider serviceProvider, IStringLocalizer<Lang> lang, AppSettings appSettings, ILogger logger, TaskManagerHook taskManagerHook)
     {
         _serviceProvider = serviceProvider;
         _blankScreens = new List<WindowBlankScreen>();
         _lang = lang;
         _appSettings = appSettings;
         _logger = logger;
+        _taskManagerHook = taskManagerHook;
 
         // 防止锁屏时系统崩溃、重启等问题导致任务栏被禁用
         // 启动时默认启用一次
-        TaskManagerHook.EnabledTaskManager();
+        _taskManagerHook.EnabledTaskManager();
     }
 
     public void Lock()
@@ -56,7 +58,7 @@ internal class LockService
         }
 
         _logger.Write("锁定服务 -> 禁用任务管理器和系统键");
-        TaskManagerHook.DisabledTaskManager();
+        _taskManagerHook.DisabledTaskManager();
         _systemKeyHook.DisableSystemKey();
         if (_blankScreens.Any())
         {
@@ -109,7 +111,7 @@ internal class LockService
             screen.Close();
         }
         _logger.Write("锁定服务 -> 恢复任务管理器和系统键");
-        TaskManagerHook.EnabledTaskManager();
+        _taskManagerHook.EnabledTaskManager();
         _systemKeyHook.Dispose();
         _isLocked = false;
         if (_appSettings.LockAnimation)

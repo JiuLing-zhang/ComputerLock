@@ -1,6 +1,4 @@
-﻿using ComputerLock.Enums;
-
-namespace ComputerLock;
+﻿namespace ComputerLock;
 public class AppSettings
 {
     /// <summary>
@@ -55,11 +53,11 @@ public class AppSettings
     /// <summary>
     /// 锁屏快捷键
     /// </summary>
-    public string ShortcutKeyForLock { get; set; }
+    public string ShortcutKeyForLock { get; set; } = "";
     /// <summary>
     /// 锁屏快捷键(映射到按键名称，用于主界面显示)
     /// </summary>
-    public string ShortcutKeyDisplayForLock { get; set; }
+    public string ShortcutKeyDisplayForLock { get; set; } = "";
 
     /// <summary>
     /// 自动检查更新

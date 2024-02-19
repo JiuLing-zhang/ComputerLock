@@ -6,11 +6,11 @@ namespace ComputerLock.Components;
 public partial class ShortcutKeySetting
 {
     [CascadingParameter]
-    private MudDialogInstance MudDialog { get; set; }
+    private MudDialogInstance MudDialog { get; set; } = default!;
 
-    private string _shortcutKeyText;
-    private string _shortcutKey;
-    private string _shortcutKeyDisplay;
+    private string _shortcutKeyText = default!;
+    private string _shortcutKey = "";
+    private string _shortcutKeyDisplay = "";
 
     [Inject]
     private IStringLocalizer<Lang> Lang { get; set; } = default!;
@@ -21,7 +21,7 @@ public partial class ShortcutKeySetting
         _shortcutKeyText = Lang["EnterShortcutKey"];
     }
 
-    private async Task OnKeyDown(KeyboardEventArgs value)
+    private Task OnKeyDown(KeyboardEventArgs value)
     {
         _shortcutKey = "";
 
@@ -30,7 +30,7 @@ public partial class ShortcutKeySetting
         {
             _shortcutKeyText = Lang["EnterShortcutKey"];
             _shortcutKey = "";
-            return;
+            return Task.CompletedTask;
         }
 
         var ascii = buffer[0];
@@ -41,11 +41,11 @@ public partial class ShortcutKeySetting
         }
         if (value.ShiftKey)
         {
-            _shortcutKey = _shortcutKey + "Shift + ";
+            _shortcutKey += "Shift + ";
         }
         if (value.AltKey)
         {
-            _shortcutKey = _shortcutKey + "Alt + ";
+            _shortcutKey += "Alt + ";
         }
 
         if (ascii >= 97 && ascii <= 122)
@@ -57,14 +57,14 @@ public partial class ShortcutKeySetting
         {
             _shortcutKeyDisplay = _shortcutKey + $"{value.Key}";
             _shortcutKeyText = _shortcutKeyDisplay;
-            _shortcutKey = _shortcutKey + $"{ascii}";
+            _shortcutKey += $"{ascii}";
         }
         else
         {
             _shortcutKeyText = Lang["EnterShortcutKey"];
             _shortcutKey = "";
-            return;
         }
+        return Task.CompletedTask;
     }
 
     private void Submit()

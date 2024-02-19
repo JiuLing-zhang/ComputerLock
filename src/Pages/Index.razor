@@ -8,19 +8,19 @@
     }
 </style>
 
-<MudSwitch @bind-Checked="@(AppSettings.IsDisableWindowsLock)"
-           @bind-Checked:after="SaveSettings"
+<MudSwitch @bind-Value="@(AppSettings.IsDisableWindowsLock)"
+           @bind-Value:after="SaveSettings"
            Label="@(Lang["DisableWindowsLock"])"
            Color="Color.Primary" />
 
-<MudSwitch @bind-Checked="@(AppSettings.LockAnimation)"
-           @bind-Checked:after="SaveSettings"
+<MudSwitch @bind-Value="@(AppSettings.LockAnimation)"
+           @bind-Value:after="SaveSettings"
            Label="@(Lang["LockAnimation"])"
            Color="Color.Primary" />
 
 <div class="d-flex align-center">
-    <MudSwitch @bind-Checked="@(AppSettings.EnablePasswordBox)"
-               @bind-Checked:after="SaveSettings"
+    <MudSwitch @bind-Value="@(AppSettings.EnablePasswordBox)"
+               @bind-Value:after="SaveSettings"
                Label="@(Lang["EnablePasswordBox"])"
                Color="Color.Primary" />
     @if (!AppSettings.EnablePasswordBox)
@@ -35,22 +35,22 @@
     }
 </div>
 
-<MudSwitch @bind-Checked="@(AppSettings.IsHidePasswordWindow)"
-           @bind-Checked:after="SaveSettings"
+<MudSwitch @bind-Value="@(AppSettings.IsHidePasswordWindow)"
+           @bind-Value:after="SaveSettings"
            Class="ml-6"
            Disabled="@(!AppSettings.EnablePasswordBox)"
            Label="@(Lang["HidePasswordWindow"])"
            Color="Color.Primary" />
 
-<MudSwitch @bind-Checked="@(_keyboardDownChecked)"
-           @bind-Checked:after="KeyboardDownChecked"
+<MudSwitch @bind-Value="@(_keyboardDownChecked)"
+           @bind-Value:after="KeyboardDownChecked"
            Class="ml-6"
            Disabled="@(!AppSettings.EnablePasswordBox)"
            Label="@(Lang["KeyboardDownActivePwd"])"
            Color="Color.Primary" />
 
-<MudSwitch @bind-Checked="@(_mouseDownChecked)"
-           @bind-Checked:after="MouseDownChecked"
+<MudSwitch @bind-Value="@(_mouseDownChecked)"
+           @bind-Value:after="MouseDownChecked"
            Class="ml-6"
            Disabled="@(!AppSettings.EnablePasswordBox)"
            Label="@(Lang["MouseDownActivePwd"])"

@@ -4,7 +4,7 @@ public partial class TitleBar
     [Parameter]
     public string Class { get; set; } = "";
 
-    private string _maximizerIcon;
+    private string _maximizerIcon = default!;
 
     [Inject]
     private IWindowTitleBar WindowTitleBar { get; set; } = default!;

@@ -6,8 +6,8 @@ public partial class Setting
 {
     private bool _isOpen;
     private bool _isAutostart;
-    private string _version;
-    private string _logPath = System.IO.Path.Combine(Environment.CurrentDirectory, "log");
+    private string _version = "";
+    private readonly string _logPath = Path.Combine(Environment.CurrentDirectory, "log");
     private bool _logLoadingOk = false;
     private double _logFilesSize = 0;
 
@@ -32,8 +32,7 @@ public partial class Setting
     {
         await base.OnInitializedAsync();
         _isAutostart = AutostartHook.IsAutostart();
-        _version = AppBase.Version;
-        _version = $"v{_version.Substring(0, _version.LastIndexOf("."))}";
+        _version = $"v{AppBase.Version[..AppBase.Version.LastIndexOf('.')]}";
     }
 
     public async Task OpenAsync()
@@ -50,7 +49,7 @@ public partial class Setting
             _logLoadingOk = false;
             await InvokeAsync(StateHasChanged);
 
-            if (!System.IO.Directory.Exists(_logPath))
+            if (!Directory.Exists(_logPath))
             {
                 return;
             }
@@ -90,7 +89,7 @@ public partial class Setting
 
         try
         {
-            if (!System.IO.Directory.Exists(_logPath))
+            if (!Directory.Exists(_logPath))
             {
                 return;
             }
@@ -133,12 +132,13 @@ public partial class Setting
         await UpdateHelper.DoAsync(false);
     }
 
-    private async Task LangValueChanged(string lang)
+    private Task LangValueChanged(string lang)
     {
         LangEnum langEnum = (LangEnum)Enum.Parse(typeof(LangEnum), lang);
         AppSettings.Lang = langEnum;
         SaveSettings();
         RestartTips();
+        return Task.CompletedTask;
     }
 
     private void RestartTips()

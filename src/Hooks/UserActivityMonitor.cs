@@ -8,7 +8,7 @@ public class UserActivityMonitor : IDisposable
 {
 
     [DllImport("user32.dll")]
-    static extern bool GetLastInputInfo(ref LastInputInfo plii);
+    private static extern bool GetLastInputInfo(ref LastInputInfo plii);
     struct LastInputInfo
     {
         public uint cbSize;
@@ -26,7 +26,7 @@ public class UserActivityMonitor : IDisposable
 
         _timer = new Timer();
         _timer.Interval = 1000;
-        _timer.Elapsed += _timer_Elapsed;
+        _timer.Elapsed += Timer_Elapsed;
         _timer.Start();
     }
 
@@ -39,7 +39,7 @@ public class UserActivityMonitor : IDisposable
     {
         _isMonitoring = false;
     }
-    private void _timer_Elapsed(object? sender, ElapsedEventArgs e)
+    private void Timer_Elapsed(object? sender, ElapsedEventArgs e)
     {
         if (!_isMonitoring)
         {

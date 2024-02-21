@@ -10,7 +10,6 @@ internal class LockService
     private readonly SystemKeyHook _systemKeyHook = new();
     private WindowLockScreen? _windowLockScreen;
     private readonly List<WindowBlankScreen> _blankScreens = [];
-    private WindowPopup? _popup;
     private readonly IStringLocalizer<Lang> _lang;
     private readonly AppSettings _appSettings;
     private readonly ILogger _logger;
@@ -125,12 +124,12 @@ internal class LockService
 
     private void ShowPopup(string message)
     {
-        _popup = new WindowPopup(message);
+        var popup = new WindowPopup(message);
         double primaryScreenWidth = SystemParameters.PrimaryScreenWidth;
         double primaryScreenHeight = SystemParameters.PrimaryScreenHeight;
-        _popup.Left = (primaryScreenWidth - _popup.Width) / 2;
-        _popup.Top = (primaryScreenHeight - _popup.Height) / 2;
-        _popup.Show();
+        popup.Left = (primaryScreenWidth - popup.Width) / 2;
+        popup.Top = (primaryScreenHeight - popup.Height) / 2;
+        popup.Show();
 
         var timer = new DispatcherTimer()
         {
@@ -139,7 +138,7 @@ internal class LockService
         timer.Tick += (_, __) =>
         {
             timer.Stop();
-            _popup.CloseWindow();
+            popup.CloseWindow();
         };
         timer.Start();
     }

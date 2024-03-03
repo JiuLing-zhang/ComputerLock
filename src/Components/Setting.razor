@@ -34,6 +34,12 @@
             <MudSelectItem Value="@("en")">en</MudSelectItem>
         </MudSelect>
 
+        <MudButton Class="mt-3"
+                   Variant="Variant.Text"
+                   Color="Color.Primary"
+                   Size="Size.Small"
+                   OnClick="ResetSettingsAsync">@(Lang["ResetSettings"])</MudButton>
+
         <div class="mt-10 d-flex align-center">
             <MudChip Label="true"
                      Disabled="true"
@@ -85,6 +91,5 @@
                 GitHub
             </MudButton>
         </div>
-
     </MudDrawerContainer>
 </MudDrawer>

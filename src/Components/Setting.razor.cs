@@ -165,4 +165,20 @@ public partial class Setting
     {
         WindowTitleBar.Restart();
     }
+
+    private async Task ResetSettingsAsync()
+    {
+        bool? result = await DialogService.ShowMessageBox(
+            Lang["Warning"],
+            Lang["ResetSettingsMessage"],
+            yesText: Lang["Save"],
+            cancelText: Lang["Cancel"]);
+        if (result != true)
+        {
+            return;
+        }
+
+        AppSettingWriter.Save(new AppSettings());
+        Restart();
+    }
 }

@@ -297,4 +297,10 @@
   <data name="RemoveLogsOk" xml:space="preserve">
     <value>日志已删除</value>
   </data>
+  <data name="ResetSettings" xml:space="preserve">
+    <value>重置程序设置</value>
+  </data>
+  <data name="ResetSettingsMessage" xml:space="preserve">
+    <value>确定要重置所有设置并重启程序吗？</value>
+  </data>
 </root>

@@ -300,4 +300,10 @@
   <data name="RemoveLogsOk" xml:space="preserve">
     <value>Log deleted</value>
   </data>
+  <data name="ResetSettings" xml:space="preserve">
+    <value>Reset Settings</value>
+  </data>
+  <data name="ResetSettingsMessage" xml:space="preserve">
+    <value>Are you sure you want to reset all settings?</value>
+  </data>
 </root>

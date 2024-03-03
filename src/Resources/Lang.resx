@@ -280,4 +280,10 @@
   <data name="RemoveLogsOk" xml:space="preserve">
     <value></value>
   </data>
+  <data name="ResetSettings" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ResetSettingsMessage" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

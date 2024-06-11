@@ -26,6 +26,11 @@ public class AppSettings
     public bool LockAnimation { get; set; } = true;
 
     /// <summary>
+    /// 程序启动时锁定
+    /// </summary>
+    public bool LockOnStartup { get; set; } = false;
+
+    /// <summary>
     /// 自动锁定的秒数
     /// </summary>
     public int AutoLockSecond { get; set; } = 0;

@@ -56,6 +56,11 @@
            Label="@(Lang["MouseDownActivePwd"])"
            Color="Color.Primary" />
 
+<MudSwitch @bind-Value="@(AppSettings.LockOnStartup)"
+           @bind-Value:after="SaveSettings"
+           Label="@(Lang["LockOnStartup"])"
+           Color="Color.Primary" />
+
 <div class="d-flex align-center mt-2">
     <MudText Typo="Typo.button">@(Lang["LockShortcutKey"])</MudText>
     <MudButton Class="ml-3"

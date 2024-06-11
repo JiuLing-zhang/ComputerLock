@@ -68,6 +68,11 @@ public partial class WindowMain : Window, IDisposable
             };
         }
 
+        if (_appSettings.LockOnStartup)
+        {
+            _logger.Write("程序启动时锁定屏幕");
+            _locker.Lock();
+        }
     }
 
     private void Window_Loaded(object sender, RoutedEventArgs e)

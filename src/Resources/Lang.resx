@@ -286,4 +286,7 @@
   <data name="ResetSettingsMessage" xml:space="preserve">
     <value></value>
   </data>
+  <data name="LockOnStartup" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

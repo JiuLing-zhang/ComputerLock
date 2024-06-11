@@ -303,4 +303,7 @@
   <data name="ResetSettingsMessage" xml:space="preserve">
     <value>确定要重置所有设置并重启程序吗？</value>
   </data>
+  <data name="LockOnStartup" xml:space="preserve">
+    <value>程序启动时锁定屏幕</value>
+  </data>
 </root>

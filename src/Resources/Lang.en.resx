@@ -306,4 +306,7 @@
   <data name="ResetSettingsMessage" xml:space="preserve">
     <value>Are you sure you want to reset all settings?</value>
   </data>
+  <data name="LockOnStartup" xml:space="preserve">
+    <value>Lock screen on startup</value>
+  </data>
 </root>

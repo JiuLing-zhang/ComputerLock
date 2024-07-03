@@ -140,7 +140,7 @@ public partial class Index
         var noHeader = new DialogOptions()
         {
             NoHeader = true,
-            ClassBackground = "dialog-blurry",
+            BackgroundClass = "dialog-blurry",
             CloseOnEscapeKey = false,
         };
         var dialog = await Dialog.ShowAsync<ShortcutKeySetting>("", noHeader);
@@ -227,7 +227,7 @@ public partial class Index
     {
         var noHeader = new DialogOptions()
         {
-            ClassBackground = "dialog-blurry",
+            BackgroundClass = "dialog-blurry",
             CloseOnEscapeKey = false,
             CloseButton = true
         };

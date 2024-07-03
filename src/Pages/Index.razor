@@ -25,7 +25,8 @@
                Color="Color.Primary" />
     @if (!AppSettings.EnablePasswordBox)
     {
-        <MudChip Label="true"
+        <MudChip T="string"
+                 Label="true"
                  Icon="@Icons.Material.Filled.WarningAmber"
                  IconColor="Color.Primary"
                  DisableRipple="true"

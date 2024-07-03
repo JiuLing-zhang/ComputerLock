@@ -93,9 +93,9 @@ public partial class Index
         SaveSettings();
     }
 
-    private void AutoLockChanged(int autoLockSecond)
+    private void AutoLockChanged(int autoLockMinute)
     {
-        AppSettings.AutoLockSecond = autoLockSecond;
+        AppSettings.AutoLockSecond = autoLockMinute * 60;
         SaveSettings();
         RestartTips();
     }

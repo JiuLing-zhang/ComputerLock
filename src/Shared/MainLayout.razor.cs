@@ -23,7 +23,7 @@ public partial class MainLayout
         await base.OnInitializedAsync();
         _customTheme = new MudTheme()
         {
-            Palette = new PaletteLight()
+            PaletteLight = new PaletteLight()
             {
                 Primary = "#fb8c00",
                 Secondary = Colors.Green.Accent4,
@@ -32,7 +32,6 @@ public partial class MainLayout
                 TableStriped = "#F5F5F5",
                 TableHover = "#F1F6FD",
                 DarkLighten = "#CACDD1"
-
             },
             PaletteDark = new PaletteDark()
             {

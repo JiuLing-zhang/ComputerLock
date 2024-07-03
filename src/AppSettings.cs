@@ -36,6 +36,11 @@ public class AppSettings
     public int AutoLockSecond { get; set; } = 0;
 
     /// <summary>
+    /// 自动锁定的分钟数
+    /// </summary>
+    public int AutoLockMinute => AutoLockSecond / 60;
+
+    /// <summary>
     /// 密码框的位置
     /// </summary>
     public ScreenLocationEnum PasswordInputLocation { get; set; } = ScreenLocationEnum.Center;

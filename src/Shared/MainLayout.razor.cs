@@ -18,6 +18,8 @@ public partial class MainLayout
     [Inject]
     private IStringLocalizer<Lang> Lang { get; set; } = default!;
 
+    [Inject]
+    private IDialogService Dialog { get; set; } = default!;
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
@@ -106,5 +108,16 @@ public partial class MainLayout
     private async Task OpenSettingsDialog()
     {
         await _settings.OpenAsync();
+    }
+
+    private async Task OpenPayDialog()
+    {
+        var noHeader = new DialogOptions()
+        {
+            NoHeader = true,
+            BackgroundClass = "dialog-blurry",
+            CloseOnEscapeKey = false,
+        };
+        var dialog = await Dialog.ShowAsync<Pay>("", noHeader);
     }
 }

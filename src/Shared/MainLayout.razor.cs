@@ -118,6 +118,6 @@ public partial class MainLayout
             BackgroundClass = "dialog-blurry",
             CloseOnEscapeKey = false,
         };
-        var dialog = await Dialog.ShowAsync<Pay>("", noHeader);
+        await Dialog.ShowAsync<Pay>("", noHeader);
     }
 }

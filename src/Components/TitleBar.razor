@@ -1,6 +1,6 @@
 ﻿<div class="title-bar d-flex align-start @Class">
 
-    <MudTooltip Text="最小化" Delay="600">
+    <MudTooltip Text="@(Lang["Minimize"])" Delay="600">
         <MudIconButton Icon="@Icons.Material.Filled.Minimize"
                        Size="Size.Medium"
                        OnClick="MinimizeAsync" />
@@ -11,7 +11,7 @@
     Disabled="true"
     OnClick="MaximizeAsync" /> *@
 
-    <MudTooltip Text="关闭" Delay="600">
+    <MudTooltip Text="@(Lang["Quit"])" Delay="600">
         <MudIconButton Icon="@Icons.Material.Filled.Close"
                        Size="Size.Medium"
                        OnClick="CloseAsync" />

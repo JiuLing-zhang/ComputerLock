@@ -9,6 +9,9 @@ public partial class TitleBar
     [Inject]
     private IWindowTitleBar WindowTitleBar { get; set; } = default!;
 
+    [Inject]
+    private IStringLocalizer<Lang> Lang { get; set; } = default!;
+
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();

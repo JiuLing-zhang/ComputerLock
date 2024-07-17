@@ -306,4 +306,28 @@
   <data name="LockOnStartup" xml:space="preserve">
     <value>程序启动时锁定屏幕</value>
   </data>
+  <data name="DeleteShortcutKeys" xml:space="preserve">
+    <value>删除快捷键</value>
+  </data>
+  <data name="Minimize" xml:space="preserve">
+    <value>最小化</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="Tip" xml:space="preserve">
+    <value>打赏</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value>浅色主题</value>
+  </data>
+  <data name="DarkTheme" xml:space="preserve">
+    <value>深色主题</value>
+  </data>
+  <data name="SystemTheme" xml:space="preserve">
+    <value>使用系统主题</value>
+  </data>
 </root>

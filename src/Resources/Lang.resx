@@ -289,4 +289,28 @@
   <data name="LockOnStartup" xml:space="preserve">
     <value></value>
   </data>
+  <data name="DeleteShortcutKeys" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Minimize" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tip" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="DarkTheme" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SystemTheme" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

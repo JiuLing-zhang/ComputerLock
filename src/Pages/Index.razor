@@ -73,7 +73,7 @@
     </MudButton>
     @if (AppSettings.ShortcutKeyForLock.IsNotEmpty())
     {
-        <MudTooltip Text="删除快捷键" Delay="600">
+        <MudTooltip Text="@(Lang["DeleteShortcutKeys"])" Delay="600">
             <MudIconButton Icon="@Icons.Material.Filled.Delete"
                            Size="Size.Small"
                            OnClick="ClearShortcutKey" />

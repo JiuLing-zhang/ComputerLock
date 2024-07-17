@@ -28,7 +28,7 @@
         <MudSpacer />
 
         <div class="d-flex" @onmouseup:stopPropagation="true" @onmousedown:stopPropagation="true">
-            <MudTooltip Text="打赏" Delay="300">
+            <MudTooltip Text="@(Lang["Tip"])" Delay="300">
                 <MudIconButton Icon="@Icons.Material.Filled.Coffee"
                                Size="Size.Medium"
                                OnClick="OpenPayDialog" />
@@ -36,7 +36,7 @@
 
             @if (AppSettings.AppThemeInt == 0)
             {
-                <MudTooltip Text="浅色主题" Delay="300">
+                <MudTooltip Text="@(Lang["LightTheme"])" Delay="300">
                     <MudIconButton Icon="@Icons.Material.Filled.WbSunny"
                                    Size="Size.Medium"
                                    OnClick="ChangeTheme" />
@@ -44,7 +44,7 @@
             }
             else if (AppSettings.AppThemeInt == 1)
             {
-                <MudTooltip Text="深色主题" Delay="300">
+                <MudTooltip Text="@(Lang["DarkTheme"])" Delay="300">
                     <MudIconButton Icon="@Icons.Material.Filled.DarkMode"
                                    Size="Size.Medium"
                                    OnClick="ChangeTheme" />
@@ -52,13 +52,13 @@
             }
             else
             {
-                <MudTooltip Text="使用系统主题" Delay="300">
+                <MudTooltip Text="@(Lang["SystemTheme"])" Delay="300">
                     <MudIconButton Icon="@Icons.Material.Filled.AutoMode"
                                    Size="Size.Medium"
                                    OnClick="ChangeTheme" />
                 </MudTooltip>
             }
-            <MudTooltip Text="设置" Delay="300">
+            <MudTooltip Text="@(Lang["Settings"])" Delay="300">
                 <MudIconButton Icon="@Icons.Material.Filled.Settings"
                                Size="Size.Medium"
                                OnClick="OpenSettingsDialog" />

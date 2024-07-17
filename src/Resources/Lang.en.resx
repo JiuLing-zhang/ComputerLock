@@ -309,4 +309,28 @@
   <data name="LockOnStartup" xml:space="preserve">
     <value>Lock screen on startup</value>
   </data>
+  <data name="DeleteShortcutKeys" xml:space="preserve">
+    <value>Delete shortcut keys</value>
+  </data>
+  <data name="Minimize" xml:space="preserve">
+    <value>Minimize</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>Quit</value>
+  </data>
+  <data name="Tip" xml:space="preserve">
+    <value>Tip</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value>Light theme</value>
+  </data>
+  <data name="DarkTheme" xml:space="preserve">
+    <value>Dark theme</value>
+  </data>
+  <data name="SystemTheme" xml:space="preserve">
+    <value>System theme</value>
+  </data>
 </root>

@@ -1,6 +1,7 @@
 ﻿using JiuLing.AutoUpgrade.Shared;
 using JiuLing.AutoUpgrade.Shell;
 using System.IO;
+using JiuLing.AutoUpgrade.Shell.Enums;
 
 namespace ComputerLock;
 internal class UpdateHelper(AppSettings appSettings)
@@ -33,6 +34,7 @@ internal class UpdateHelper(AppSettings appSettings)
                 config.IsCheckSign = true;
                 config.Lang = appSettings.Lang.ToString();
                 config.IconPath = iconPath;
+                config.VersionFormat = VersionFormatEnum.MajorMinorBuild;
             })
             .RunAsync();
     }

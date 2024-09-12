@@ -39,7 +39,11 @@ public partial class Index
         await base.OnInitializedAsync();
         _keyboardDownChecked = (AppSettings.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.KeyboardDown) == PasswordBoxActiveMethodEnum.KeyboardDown;
         _mouseDownChecked = (AppSettings.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.MouseDown) == PasswordBoxActiveMethodEnum.MouseDown;
-        UpdateShortcutKeyForLock();
+
+        if (AppSettings.ShortcutKeyForLock.IsNotTrimEmpty())
+        {
+            RegisterHotKey();
+        }
 
         KeyboardHook.KeyPressed += (_, _) =>
         {
@@ -155,73 +159,75 @@ public partial class Index
             return;
         }
 
+        // 有历史快捷键时先解除绑定
+        if (AppSettings.ShortcutKeyForLock.IsNotTrimEmpty())
+        {
+            UnregisterHotKey();
+        }
         AppSettings.ShortcutKeyForLock = shortcutKeyModel.ShortcutKey;
         AppSettings.ShortcutKeyDisplayForLock = shortcutKeyModel.ShortcutKeyDisplay;
         SaveSettings();
-        UpdateShortcutKeyForLock();
+        RegisterHotKey();
     }
     private Task ClearShortcutKey()
     {
         AppSettings.ShortcutKeyForLock = "";
         AppSettings.ShortcutKeyDisplayForLock = "";
         SaveSettings();
-        UpdateShortcutKeyForLock();
+        UnregisterHotKey();
         return Task.CompletedTask;
     }
 
-    public void UpdateShortcutKeyForLock()
+    public void RegisterHotKey()
     {
-        if (AppSettings.ShortcutKeyForLock.IsEmpty())
+        try
         {
-            try
+            ModifierKeys keys = 0;
+            if (AppSettings.ShortcutKeyForLock.IndexOf("Ctrl") >= 0)
             {
-                Logger.Write("释放锁屏热键");
-                KeyboardHook.UnregisterHotKey();
+                keys |= ModifierKeys.Control;
             }
-            catch (Exception ex)
+            if (AppSettings.ShortcutKeyForLock.IndexOf("Shift") >= 0)
             {
-                Logger.Write($"释放锁屏热键失败：{ex.Message}。{ex.StackTrace}");
-                //MessageBoxUtils.ShowError($"取消快捷键失败：{ex.Message}");
+                keys |= ModifierKeys.Shift;
             }
-            _shortcutKeyText = Lang["Invalid"];
+            if (AppSettings.ShortcutKeyForLock.IndexOf("Alt") >= 0)
+            {
+                keys |= ModifierKeys.Alt;
+            }
+
+            var result = RegexUtils.GetFirst(AppSettings.ShortcutKeyForLock, @"\d+");
+            if (result.success == false)
+            {
+                throw new Exception(Lang["ShortcutKeyConfigError"]);
+            }
+            Logger.Write("注册锁屏热键");
+            Keys key = (Keys)Convert.ToInt32(result.result);
+            KeyboardHook.RegisterHotKey(keys, key);
+
+            _shortcutKeyText = AppSettings.ShortcutKeyDisplayForLock;
         }
-        else
+        catch (Exception ex)
         {
-            try
-            {
-                ModifierKeys keys = 0;
-                if (AppSettings.ShortcutKeyForLock.IndexOf("Ctrl") >= 0)
-                {
-                    keys |= ModifierKeys.Control;
-                }
-                if (AppSettings.ShortcutKeyForLock.IndexOf("Shift") >= 0)
-                {
-                    keys |= ModifierKeys.Shift;
-                }
-                if (AppSettings.ShortcutKeyForLock.IndexOf("Alt") >= 0)
-                {
-                    keys |= ModifierKeys.Alt;
-                }
-
-                var result = RegexUtils.GetFirst(AppSettings.ShortcutKeyForLock, @"\d+");
-                if (result.success == false)
-                {
-                    throw new Exception(Lang["ShortcutKeyConfigError"]);
-                }
-                Logger.Write("注册锁屏热键");
-                Keys key = (Keys)Convert.ToInt32(result.result);
-                KeyboardHook.RegisterHotKey(keys, key);
-
-                _shortcutKeyText = AppSettings.ShortcutKeyDisplayForLock;
-            }
-            catch (Exception ex)
-            {
-                Logger.Write($"绑定锁屏热键失败：{ex.Message}。{ex.StackTrace}");
-                Snackbar.Add($"{Lang["ExRegistFailed"]}{ex.Message}", Severity.Error);
-            }
+            Logger.Write($"绑定锁屏热键失败：{ex.Message}。{ex.StackTrace}");
+            Snackbar.Add($"{Lang["ExRegistFailed"]}{ex.Message}", Severity.Error);
         }
     }
 
+    public void UnregisterHotKey()
+    {
+        try
+        {
+            Logger.Write("释放锁屏热键");
+            KeyboardHook.UnregisterHotKey();
+        }
+        catch (Exception ex)
+        {
+            Logger.Write($"释放锁屏热键失败：{ex.Message}。{ex.StackTrace}");
+            //MessageBoxUtils.ShowError($"取消快捷键失败：{ex.Message}");
+        }
+        _shortcutKeyText = Lang["Invalid"];
+    }
 
     private async Task SetPassword()
     {

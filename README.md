@@ -9,10 +9,7 @@
 
 一个 `Windows` 下的锁屏工具。 👉👉[English Version](./README_en.md)  
 
-<div align="center">
-<img src="https://github.com/JiuLing-zhang/ComputerLock/raw/main/resources/app.png" width="40%">
-<img src="https://github.com/JiuLing-zhang/ComputerLock/raw/main/resources/app_en.png" width="40%">
-</div>
+<img src="https://github.com/JiuLing-zhang/ComputerLock/raw/main/resources/app.png" width="60%">
 
 ## 适用场景  
 \- ⚡ 厌倦了系统锁屏界面  

@@ -9,10 +9,7 @@
 
 A lock screen tool for Windows. 👉[中文版](./README.md)  
 
-<div align="center">
-<img src="https://github.com/JiuLing-zhang/ComputerLock/raw/main/resources/app.png" width="40%">
-<img src="https://github.com/JiuLing-zhang/ComputerLock/raw/main/resources/app_en.png" width="40%">
-</div>
+<img src="https://github.com/JiuLing-zhang/ComputerLock/raw/main/resources/app_en.png" width="60%">
 
 ## Application Scenarios  
 \- ⚡ Tired of the system's lock screen interface  

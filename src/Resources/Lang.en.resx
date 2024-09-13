@@ -151,7 +151,7 @@
     <value>Please select at least one activation method</value>
   </data>
   <data name="PwdLocation" xml:space="preserve">
-    <value>pwd box position</value>
+    <value>Password Box Pos</value>
   </data>
   <data name="TopLeft" xml:space="preserve">
     <value>TopLeft</value>
@@ -244,7 +244,7 @@
     <value>Locked</value>
   </data>
   <data name="AutoLock" xml:space="preserve">
-    <value>Automatically lock after idle time</value>
+    <value>Idle Auto Lock (min, 0 off)</value>
   </data>
   <data name="Never" xml:space="preserve">
     <value>Never</value>
@@ -271,7 +271,7 @@
     <value>Enable password box</value>
   </data>
   <data name="UnLocked" xml:space="preserve">
-    <value>unLocked</value>
+    <value>Unlocked</value>
   </data>
   <data name="EnablePasswordBoxTips" xml:space="preserve">
     <value>Press ESC and enter password to unlock</value>

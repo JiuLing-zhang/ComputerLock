@@ -4,9 +4,11 @@
 </div>
 
 <div align="center">
+
 ![](https://img.shields.io/github/license/JiuLing-zhang/ComputerLock)
 ![](https://img.shields.io/github/actions/workflow/status/JiuLing-zhang/ComputerLock/release.yml)
 [![](https://img.shields.io/github/v/release/JiuLing-zhang/ComputerLock)](https://github.com/JiuLing-zhang/ComputerLock/releases)
+
 </div>
 
 ## 透明锁屏 (Transparent Lock Screen)  

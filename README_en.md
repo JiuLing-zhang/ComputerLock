@@ -15,9 +15,9 @@ A lock screen tool for Windows. 👉[中文版](./README.md)
 </div>
 
 ## Application Scenarios  
-\- ⚡ Tired of the system's lock screen interface
-\- 🌈 Prevent system from sleeping
-\- 🌀 Worried about forgetting to lock the screen when away
+\- ⚡ Tired of the system's lock screen interface  
+\- 🌈 Prevent system from sleeping  
+\- 🌀 Worried about forgetting to lock the screen when away  
 
 ## Features  
 * 🎈 Automatically Start At Boot 

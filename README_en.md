@@ -7,9 +7,9 @@
 
 </div>
 
-A lock screen tool for Windows. 👉[中文版](./README.md)  
+A lock screen tool for Windows. 👉👉[中文版](./README.md)  
 
-<img src="https://github.com/JiuLing-zhang/ComputerLock/raw/main/resources/app_en.png" width="60%">
+<img src="https://github.com/JiuLing-zhang/ComputerLock/raw/main/resources/app_en.png" width="50%">
 
 ## Application Scenarios  
 \- ⚡ Tired of the system's lock screen interface  

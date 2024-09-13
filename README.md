@@ -1,9 +1,5 @@
-﻿<div align="center">
-<img src="https://github.com/JiuLing-zhang/ComputerLock/raw/main/resources/app.png" width="40%">
-<img src="https://github.com/JiuLing-zhang/ComputerLock/raw/main/resources/app_en.png" width="40%">
-</div>
-
-<div align="center">
+﻿## 透明锁屏 (Transparent Lock Screen)  
+<div>
 
 ![](https://img.shields.io/github/license/JiuLing-zhang/ComputerLock)
 ![](https://img.shields.io/github/actions/workflow/status/JiuLing-zhang/ComputerLock/release.yml)
@@ -11,9 +7,13 @@
 
 </div>
 
-## 透明锁屏 (Transparent Lock Screen)  
 一个 `Windows` 下的锁屏工具。  
 A lock screen tool for Windows.  
+
+<div align="center">
+<img src="https://github.com/JiuLing-zhang/ComputerLock/raw/main/resources/app.png" width="40%">
+<img src="https://github.com/JiuLing-zhang/ComputerLock/raw/main/resources/app_en.png" width="40%">
+</div>
 
 ## 应用场景 (Application Scenarios)  
 * 厌倦了系统锁屏界面

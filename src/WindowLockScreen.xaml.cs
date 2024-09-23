@@ -11,8 +11,8 @@ namespace ComputerLock;
 public partial class WindowLockScreen : Window
 {
     private DateTime _hideSelfTime;
-    
-    private readonly int _hideSelfSecond = 3;    
+
+    private readonly int _hideSelfSecond = 3;
     private readonly DispatcherTimer _timer = new();
     private readonly AppSettings _appSettings;
     private readonly IStringLocalizer<Lang> _lang;

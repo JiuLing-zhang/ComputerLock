@@ -26,6 +26,8 @@ A lock screen tool for Windows. 👉👉[中文版](./README.md)
 * 🎁 Auto Lock After Inactivity 
 * 💎 Multilingual Support
 
+🍭 [View Full Version History](VERSION_HISTORY.md)  
+
 ## About Permission  
 🟡 When the program is on the lock screen, the Task Manager needs to be disabled (via the registry), so it needs administrator privileges to run.  
 🟡 The program uses `user32.dll` to set global shortcut keys and disable some keys, so some antivirus software may flag it as a virus.  

@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using MudBlazor.Services;
 using System.Windows;
 using Application = System.Windows.Application;
-using System.Text.Json;
 
 namespace ComputerLock;
 /// <summary>
@@ -33,25 +32,11 @@ public partial class App : Application
     private void Init()
     {
         IServiceCollection services = new ServiceCollection();
-        services.AddSingleton<AppSettingWriter>();
-        services.AddSingleton<AppSettings>((_) =>
+        services.AddSingleton<AppSettingsProvider>();
+        services.AddSingleton<AppSettings>((sp) =>
         {
-            if (!File.Exists(AppBase.ConfigPath))
-            {
-                return new AppSettings();
-            }
-            string json = File.ReadAllText(AppBase.ConfigPath);
-            try
-            {
-                var appSettings = JsonSerializer.Deserialize<AppSettings>(json);
-                return appSettings ?? new AppSettings();
-            }
-            catch (JsonException)
-            {
-                return new AppSettings();
-            }
+            return sp.GetRequiredService<AppSettingsProvider>().LoadSettings();
         });
-
         services.AddSingleton(LogManager.GetLogger());
         services.AddSingleton<KeyboardHook>();
         services.AddSingleton<UpdateHelper>();

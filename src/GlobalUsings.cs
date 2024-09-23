@@ -1,11 +1,12 @@
-﻿global using ComputerLock.Resources;
+﻿global using ComputerLock.Components;
+global using ComputerLock.Configuration;
 global using ComputerLock.Enums;
 global using ComputerLock.Hooks;
 global using ComputerLock.Platforms;
+global using ComputerLock.Resources;
 global using JiuLing.CommonLibs.ExtensionMethods;
 global using JiuLing.CommonLibs.Log;
 global using JiuLing.CommonLibs.Text;
-global using MudBlazor;
-global using ComputerLock.Components;
 global using Microsoft.AspNetCore.Components;
 global using Microsoft.Extensions.Localization;
+global using MudBlazor;

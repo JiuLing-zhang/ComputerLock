@@ -1,4 +1,4 @@
-﻿namespace ComputerLock;
+﻿namespace ComputerLock.Configuration;
 public class AppSettings
 {
     /// <summary>

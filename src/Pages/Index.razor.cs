@@ -5,7 +5,7 @@ public partial class Index
     private AppSettings AppSettings { get; set; } = default!;
 
     [Inject]
-    private AppSettingWriter AppSettingWriter { get; set; } = default!;
+    private AppSettingsProvider AppSettingsProvider { get; set; } = default!;
 
     [Inject]
     private IStringLocalizer<Lang> Lang { get; set; } = default!;
@@ -137,7 +137,7 @@ public partial class Index
 
     private void SaveSettings()
     {
-        AppSettingWriter.Save(AppSettings);
+        AppSettingsProvider.SaveSettings(AppSettings);
     }
     private async Task SetShortcutKey()
     {

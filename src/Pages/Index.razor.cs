@@ -156,7 +156,7 @@ public partial class Index
             return;
         }
 
-        if (result.Data is not ShortcutKeyModel shortcutKeyModel)
+        if (result.Data is not ShortcutKey shortcutKey)
         {
             return;
         }
@@ -166,8 +166,8 @@ public partial class Index
         {
             UnregisterHotKey();
         }
-        AppSettings.ShortcutKeyForLock = shortcutKeyModel.ShortcutKey;
-        AppSettings.ShortcutKeyDisplayForLock = shortcutKeyModel.ShortcutKeyDisplay;
+        AppSettings.ShortcutKeyForLock = shortcutKey.Key;
+        AppSettings.ShortcutKeyDisplayForLock = shortcutKey.DisplayText;
         SaveSettings();
         RegisterHotKey();
     }

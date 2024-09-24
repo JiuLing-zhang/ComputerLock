@@ -1,6 +1,6 @@
 ﻿namespace ComputerLock.Models;
-internal class ShortcutKeyModel(string shortcutKey, string shortcutKeyDisplay)
+internal class ShortcutKey(string key, string displayText)
 {
-    public string ShortcutKey { get; set; } = shortcutKey;
-    public string ShortcutKeyDisplay { get; set; } = shortcutKeyDisplay;
+    public string Key { get; set; } = key;
+    public string DisplayText { get; set; } = displayText;
 }

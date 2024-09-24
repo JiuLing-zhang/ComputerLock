@@ -7,9 +7,9 @@ internal class AppBase
     /// <summary>
     /// App路径（包含文件名）
     /// </summary>
-    public static string ExecutablePath { get; set; } = Process.GetCurrentProcess().MainModule.FileName;
+    public static string ExecutablePath { get; } = Process.GetCurrentProcess().MainModule.FileName;
 
-    public static string FriendlyName { get; set; } = AppDomain.CurrentDomain.FriendlyName;
+    public static string FriendlyName { get; } = AppDomain.CurrentDomain.FriendlyName;
 
     /// <summary>
     /// App Data文件夹路径
@@ -18,7 +18,7 @@ internal class AppBase
     /// <summary>
     /// 配置文件路径
     /// </summary>
-    public static string ConfigPath { get; set; } = Path.Combine(DataPath, FriendlyName, "config.json");
+    public static string ConfigPath { get; } = Path.Combine(DataPath, FriendlyName, "config.json");
 
-    public static string Version { get; set; } = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString();
+    public static string Version { get; } = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString();
 }

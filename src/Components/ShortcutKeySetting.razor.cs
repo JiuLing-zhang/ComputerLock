@@ -8,9 +8,9 @@ public partial class ShortcutKeySetting
     [CascadingParameter]
     private MudDialogInstance MudDialog { get; set; } = default!;
 
-    private string _shortcutKeyText = default!;
-    private string _shortcutKey = "";
-    private string _shortcutKeyDisplay = "";
+    private string _text = default!;
+    private string _key = "";
+    private string _displayText = "";
 
     [Inject]
     private IStringLocalizer<Lang> Lang { get; set; } = default!;
@@ -18,18 +18,18 @@ public partial class ShortcutKeySetting
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        _shortcutKeyText = Lang["EnterShortcutKey"];
+        _text = Lang["EnterShortcutKey"];
     }
 
     private Task OnKeyDown(KeyboardEventArgs value)
     {
-        _shortcutKey = "";
+        _key = "";
 
         byte[] buffer = Encoding.ASCII.GetBytes(value.Key);
         if (buffer.Length != 1)
         {
-            _shortcutKeyText = Lang["EnterShortcutKey"];
-            _shortcutKey = "";
+            _text = Lang["EnterShortcutKey"];
+            _key = "";
             return Task.CompletedTask;
         }
 
@@ -37,15 +37,15 @@ public partial class ShortcutKeySetting
 
         if (value.CtrlKey)
         {
-            _shortcutKey = "Ctrl + ";
+            _key = "Ctrl + ";
         }
         if (value.ShiftKey)
         {
-            _shortcutKey += "Shift + ";
+            _key += "Shift + ";
         }
         if (value.AltKey)
         {
-            _shortcutKey += "Alt + ";
+            _key += "Alt + ";
         }
 
         if (ascii >= 97 && ascii <= 122)
@@ -55,21 +55,21 @@ public partial class ShortcutKeySetting
 
         if ((ascii >= 48 && ascii <= 57) || (ascii >= 65 && ascii <= 90))
         {
-            _shortcutKeyDisplay = _shortcutKey + $"{value.Key}";
-            _shortcutKeyText = _shortcutKeyDisplay;
-            _shortcutKey += $"{ascii}";
+            _displayText = _key + $"{value.Key}";
+            _text = _displayText;
+            _key += $"{ascii}";
         }
         else
         {
-            _shortcutKeyText = Lang["EnterShortcutKey"];
-            _shortcutKey = "";
+            _text = Lang["EnterShortcutKey"];
+            _key = "";
         }
         return Task.CompletedTask;
     }
 
     private void Submit()
     {
-        MudDialog.Close(DialogResult.Ok(new ShortcutKeyModel(_shortcutKey, _shortcutKeyDisplay)));
+        MudDialog.Close(DialogResult.Ok(new ShortcutKey(_key, _displayText)));
     }
     private void Cancel() => MudDialog.Cancel();
 }

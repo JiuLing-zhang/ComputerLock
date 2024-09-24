@@ -1,10 +1,10 @@
 ﻿<MudDialog DefaultFocus="DefaultFocus.FirstChild">
     <DialogContent>
-        <MudButton Variant="Variant.Text" @onkeydown="OnKeyDown">@(_shortcutKeyText)</MudButton>
+        <MudButton Variant="Variant.Text" @onkeydown="OnKeyDown">@(_text)</MudButton>
     </DialogContent>
     <DialogActions>
         <MudButton Color="Color.Primary"
-                   Disabled="@(_shortcutKey.IsEmpty())"
+                   Disabled="@(_key.IsEmpty())"
                    OnClick="Submit">
             @(Lang["Save"])
         </MudButton>

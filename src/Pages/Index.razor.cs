@@ -1,4 +1,6 @@
-﻿namespace ComputerLock.Pages;
+﻿using ComputerLock.Update;
+
+namespace ComputerLock.Pages;
 public partial class Index
 {
     [Inject]

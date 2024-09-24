@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using ComputerLock.Update;
 
 namespace ComputerLock.Components;
 public partial class Setting

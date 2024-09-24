@@ -2,8 +2,10 @@
 global using ComputerLock.Configuration;
 global using ComputerLock.Enums;
 global using ComputerLock.Hooks;
+global using ComputerLock.Models;
 global using ComputerLock.Platforms;
 global using ComputerLock.Resources;
+global using ComputerLock.Services;
 global using JiuLing.CommonLibs.ExtensionMethods;
 global using JiuLing.CommonLibs.Log;
 global using JiuLing.CommonLibs.Text;

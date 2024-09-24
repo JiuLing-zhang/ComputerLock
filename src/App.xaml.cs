@@ -3,6 +3,7 @@ using System.IO;
 using Microsoft.Extensions.DependencyInjection;
 using MudBlazor.Services;
 using System.Windows;
+using ComputerLock.Update;
 using Application = System.Windows.Application;
 
 namespace ComputerLock;

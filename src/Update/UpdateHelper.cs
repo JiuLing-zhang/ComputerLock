@@ -1,9 +1,9 @@
-﻿using JiuLing.AutoUpgrade.Shared;
+﻿using System.IO;
+using JiuLing.AutoUpgrade.Shared;
 using JiuLing.AutoUpgrade.Shell;
-using System.IO;
 using JiuLing.AutoUpgrade.Shell.Enums;
 
-namespace ComputerLock;
+namespace ComputerLock.Update;
 internal class UpdateHelper(AppSettings appSettings)
 {
     public async Task DoAsync(bool isBackgroundCheck)

@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Threading;
 
-namespace ComputerLock;
+namespace ComputerLock.Services;
 internal class LockService
 {
     private bool _isLocked = false;

@@ -1,0 +1,28 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+    paths-ignore:
+    - '**.md'
+    - '.github/**'
+    - 'resources/**'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore .\src
+
+      - name: Build
+        run: dotnet build .\src

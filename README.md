@@ -2,7 +2,7 @@
 <div>
 
 ![](https://img.shields.io/github/license/JiuLing-zhang/ComputerLock)
-![](https://img.shields.io/github/actions/workflow/status/JiuLing-zhang/ComputerLock/release.yml)
+![](https://img.shields.io/github/actions/workflow/status/JiuLing-zhang/ComputerLock/build.yml)
 [![](https://img.shields.io/github/v/release/JiuLing-zhang/ComputerLock)](https://github.com/JiuLing-zhang/ComputerLock/releases)
 
 </div>

@@ -23,19 +23,18 @@ internal class UpdateHelper(AppSettings appSettings)
         var iconPath = @"wwwroot\icon.ico";
         if (!File.Exists(iconPath))
         {
-            iconPath = "";
+            iconPath = "";  
         }
-        await AutoUpgradeFactory.Create()
-            .UseHttpMode(autoUpgradePath)
-            .SetUpgrade(config =>
-            {
-                config.IsBackgroundCheck = isBackgroundCheck;
-                config.Theme = theme;
-                config.IsCheckSign = true;
-                config.Lang = appSettings.Lang.ToString();
-                config.IconPath = iconPath;
-                config.VersionFormat = VersionFormatEnum.MajorMinorBuild;
-            })
-            .RunAsync();
+
+        await UpgradeFactory.CreateHttpApp(autoUpgradePath)
+            .SetUpgrade(build =>
+        {
+            build.WithBackgroundCheck(isBackgroundCheck)
+            .WithTheme(theme)
+                .WithSignCheck(true)
+                .WithLang(appSettings.Lang.ToString())
+                .WithIcon(iconPath)
+                .WithVersionFormat(VersionFormatEnum.MajorMinorBuild);
+        }).RunAsync();
     }
 }

@@ -8,7 +8,7 @@ public class AppSettings
     /// <summary>
     /// 关闭窗口时最小化到托盘
     /// </summary>
-    public bool IsHideWindowWhenClose    { get; set; } =    true;
+    public bool IsHideWindowWhenClose { get; set; } = true;
 
     /// <summary>
     /// 启动后最小化到托盘

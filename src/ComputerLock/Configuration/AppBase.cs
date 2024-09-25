@@ -7,7 +7,7 @@ internal class AppBase
     /// <summary>
     /// App路径（包含文件名）
     /// </summary>
-    public static string ExecutablePath    { get; } = Process.GetCurrentProcess().MainModule.FileName;
+    public static string ExecutablePath { get; } = Process.GetCurrentProcess().MainModule.FileName;
 
     public static string FriendlyName { get; } = AppDomain.CurrentDomain.FriendlyName;
 

@@ -22,7 +22,8 @@ jobs:
         with:
           repo-token: $
           action: "fix"
-          workspace: "ComputerLock.sln"
+          workspace: "src\ComputerLock.sln"
+          workspaceIsFolder: false 
           only-changed-files: true
 
       - name: Commit files

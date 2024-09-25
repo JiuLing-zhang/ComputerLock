@@ -23,7 +23,7 @@ internal class UpdateHelper(AppSettings appSettings)
         var iconPath = @"wwwroot\icon.ico";
         if (!File.Exists(iconPath))
         {
-            iconPath = "";  
+            iconPath = "";
         }
 
         await UpgradeFactory.CreateHttpApp(autoUpgradePath)

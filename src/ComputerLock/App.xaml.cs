@@ -48,6 +48,7 @@ public partial class App : Application
         services.AddTransient<WindowLockScreen>();
         services.AddTransient<WindowBlankScreen>();
         services.AddSingleton<LockService>();
+        services.AddSingleton<SystemKeyHook>();
         services.AddSingleton<IWindowMoving, WindowMoving>();
         services.AddSingleton<IWindowTitleBar, WindowTitleBar>();
         services.AddSingleton<ILocker, Locker>();

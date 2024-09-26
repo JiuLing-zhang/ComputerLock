@@ -7,7 +7,7 @@ internal class LockService
 {
     private bool _isLocked = false;
     private readonly IServiceProvider _serviceProvider;
-    private readonly SystemKeyHook _systemKeyHook = new();
+    private readonly SystemKeyHook _systemKeyHook;
     private WindowLockScreen? _windowLockScreen;
     private readonly List<WindowBlankScreen> _blankScreens = [];
     private readonly IStringLocalizer<Lang> _lang;
@@ -16,9 +16,10 @@ internal class LockService
     private readonly TaskManagerHook _taskManagerHook;
     public event EventHandler? OnLock;
     public event EventHandler? OnUnlock;
-    public LockService(IServiceProvider serviceProvider, IStringLocalizer<Lang> lang, AppSettings appSettings, ILogger logger, TaskManagerHook taskManagerHook)
+    public LockService(IServiceProvider serviceProvider, SystemKeyHook systemKeyHook, IStringLocalizer<Lang> lang, AppSettings appSettings, ILogger logger, TaskManagerHook taskManagerHook)
     {
         _serviceProvider = serviceProvider;
+        _systemKeyHook = systemKeyHook;
         _lang = lang;
         _appSettings = appSettings;
         _logger = logger;

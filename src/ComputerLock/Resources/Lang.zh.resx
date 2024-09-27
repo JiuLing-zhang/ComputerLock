@@ -330,4 +330,7 @@
   <data name="SystemTheme" xml:space="preserve">
     <value>使用系统主题</value>
   </data>
+  <data name="DisableWindowsRemark" xml:space="preserve">
+    <value>通过移动鼠标来防止 Windows 自动锁屏</value>
+  </data>
 </root>

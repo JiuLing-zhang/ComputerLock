@@ -207,6 +207,15 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string DisableWindowsRemark {
+            get {
+                return ResourceManager.GetString("DisableWindowsRemark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string DoLock {
             get {
                 return ResourceManager.GetString("DoLock", resourceCulture);

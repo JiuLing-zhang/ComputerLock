@@ -313,4 +313,7 @@
   <data name="SystemTheme" xml:space="preserve">
     <value></value>
   </data>
+  <data name="DisableWindowsRemark" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

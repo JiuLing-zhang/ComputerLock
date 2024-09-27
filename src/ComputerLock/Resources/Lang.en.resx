@@ -333,4 +333,7 @@
   <data name="SystemTheme" xml:space="preserve">
     <value>System theme</value>
   </data>
+  <data name="DisableWindowsRemark" xml:space="preserve">
+    <value>Prevent Windows auto-lock by moving the mouse</value>
+  </data>
 </root>

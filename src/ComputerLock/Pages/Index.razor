@@ -8,10 +8,17 @@
     }
 </style>
 
-<MudSwitch @bind-Value="@(AppSettings.IsDisableWindowsLock)"
+<MudSwitch @bind-Value="@(AppSettings.LockOnStartup)"
            @bind-Value:after="SaveSettings"
-           Label="@(Lang["DisableWindowsLock"])"
+           Label="@(Lang["LockOnStartup"])"
            Color="Color.Primary" />
+
+<MudTooltip Text="@(Lang["DisableWindowsRemark"])" Placement="Placement.Bottom">
+    <MudSwitch @bind-Value="@(AppSettings.IsDisableWindowsLock)"
+               @bind-Value:after="SaveSettings"
+               Label="@(Lang["DisableWindowsLock"])"
+               Color="Color.Primary" />
+</MudTooltip>
 
 <MudSwitch @bind-Value="@(AppSettings.LockAnimation)"
            @bind-Value:after="SaveSettings"
@@ -55,11 +62,6 @@
            Class="ml-6"
            Disabled="@(!AppSettings.EnablePasswordBox)"
            Label="@(Lang["MouseDownActivePwd"])"
-           Color="Color.Primary" />
-
-<MudSwitch @bind-Value="@(AppSettings.LockOnStartup)"
-           @bind-Value:after="SaveSettings"
-           Label="@(Lang["LockOnStartup"])"
            Color="Color.Primary" />
 
 <div class="d-flex align-center mt-2">

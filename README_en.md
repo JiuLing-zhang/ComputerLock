@@ -17,16 +17,15 @@ A lock screen tool for Windows. 👉👉[中文版](./README.md)
 \- 🌀 Worried about forgetting to lock the screen when away  
 
 ## Features  
-* 🎈 Automatically Start At Boot 
+* 🎈 Auto-lock on startup 
 * ✨ Transparent Lock 
+* 💖 One-Click Screen Lock 
+* 🎁 Auto Lock After Inactivity 
+* 🍭 Multi-screen support 
 * 🎉 Disable Windows Lock Screen 
 * ⚽ Disable Task Manager 
 * ⭐ Disable System Keys (Ctrl, Win) 
-* 💖 One-Click Screen Lock 
-* 🎁 Auto Lock After Inactivity 
 * 💎 Multilingual Support
-
-🍭 [View Full Version History](VERSION_HISTORY.md)  
 
 ## About Permission  
 🟡 When the program is on the lock screen, the Task Manager needs to be disabled (via the registry), so it needs administrator privileges to run.  
@@ -35,3 +34,6 @@ A lock screen tool for Windows. 👉👉[中文版](./README.md)
 ## Lost Password  
 ✅ **If you forget your password, deleting the configuration file will reset the settings**  
 > `C:\Users\Username\AppData\Local\ComputerLock\config.json`  
+
+## Version History  
+🍭 [View Full Version History](VERSION_HISTORY.md)  

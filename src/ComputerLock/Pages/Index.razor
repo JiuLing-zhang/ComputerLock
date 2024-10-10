@@ -20,11 +20,6 @@
                Color="Color.Primary" />
 </MudTooltip>
 
-<MudSwitch @bind-Value="@(AppSettings.LockAnimation)"
-           @bind-Value:after="SaveSettings"
-           Label="@(Lang["LockAnimation"])"
-           Color="Color.Primary" />
-
 <div class="d-flex align-center">
     <MudSwitch @bind-Value="@(AppSettings.EnablePasswordBox)"
                @bind-Value:after="SaveSettings"
@@ -64,62 +59,65 @@
            Label="@(Lang["MouseDownActivePwd"])"
            Color="Color.Primary" />
 
-<div class="d-flex align-center mt-2">
-    <MudText Typo="Typo.button">@(Lang["LockShortcutKey"])</MudText>
-    <MudButton Class="ml-3"
-               Variant="Variant.Text"
-               Size="Size.Small"
-               Color="Color.Primary"
-               OnClick="SetShortcutKey">
-        @(_shortcutKeyText)
-    </MudButton>
-    @if (AppSettings.ShortcutKeyForLock.IsNotEmpty())
-    {
-        <MudTooltip Text="@(Lang["DeleteShortcutKeys"])" Delay="600">
-            <MudIconButton Icon="@Icons.Material.Filled.Delete"
-                           Size="Size.Small"
-                           OnClick="ClearShortcutKey" />
-        </MudTooltip>
-    }
-</div>
+<MudSelect T="ScreenLocationEnum"
+           Label="@(Lang["PwdLocation"])"
+           Variant="Variant.Outlined"
+           Value="@(AppSettings.PasswordInputLocation)"
+           Disabled="@(!AppSettings.EnablePasswordBox)"
+           Class="ml-6"
+           ValueChanged="PwdBoxLocationChanged"
+           Margin="Margin.Dense"
+           Dense="true">
+    <MudSelectItem Value="@(ScreenLocationEnum.Center)">@(Lang["Center"])</MudSelectItem>
+    <MudSelectItem Value="@(ScreenLocationEnum.TopLeft)">@(Lang["TopLeft"])</MudSelectItem>
+    <MudSelectItem Value="@(ScreenLocationEnum.TopRight)">@(Lang["TopRight"])</MudSelectItem>
+    <MudSelectItem Value="@(ScreenLocationEnum.BottomLeft)">@(Lang["BottomLeft"])</MudSelectItem>
+    <MudSelectItem Value="@(ScreenLocationEnum.BottomRight)">@(Lang["BottomRight"])</MudSelectItem>
+</MudSelect>
 
-<MudGrid>
-    <MudItem xs="6">
-        <MudNumericField T="int"
-                         Label="@(Lang["AutoLock"])"
-                         Value="@(AppSettings.AutoLockMinute)"
-                         Min="0"
-                         Class="mt-4"
-                         ValueChanged="AutoLockChanged">
-        </MudNumericField>
-    </MudItem>
-    <MudItem xs="6">
-        <MudSelect T="ScreenLocationEnum"
-                   Label="@(Lang["PwdLocation"])"
-                   Value="@(AppSettings.PasswordInputLocation)"
-                   Disabled="@(!AppSettings.EnablePasswordBox)"
-                   Class="mt-4"
-                   ValueChanged="PwdBoxLocationChanged"
-                   Dense="true">
-            <MudSelectItem Value="@(ScreenLocationEnum.Center)">@(Lang["Center"])</MudSelectItem>
-            <MudSelectItem Value="@(ScreenLocationEnum.TopLeft)">@(Lang["TopLeft"])</MudSelectItem>
-            <MudSelectItem Value="@(ScreenLocationEnum.TopRight)">@(Lang["TopRight"])</MudSelectItem>
-            <MudSelectItem Value="@(ScreenLocationEnum.BottomLeft)">@(Lang["BottomLeft"])</MudSelectItem>
-            <MudSelectItem Value="@(ScreenLocationEnum.BottomRight)">@(Lang["BottomRight"])</MudSelectItem>
-        </MudSelect>
-    </MudItem>
-</MudGrid>
+<MudSwitch @bind-Value="@(AppSettings.LockAnimation)"
+           @bind-Value:after="SaveSettings"
+           Label="@(Lang["LockAnimation"])"
+           Color="Color.Primary" />
 
-<div class="d-flex align-center mt-4">
-    <MudButton Class="mr-3"
-               Variant="Variant.Text"
-               Size="Size.Small"
-               Color="Color.Primary"
-               OnClick="SetPassword">
-        @(Lang["SetPassword"])
-    </MudButton>
-    @if (!AppSettings.IsPasswordChanged)
-    {
-        <MudText Typo="Typo.caption">@(Lang["PasswordTip"])</MudText>
-    }
-</div> 
+<MudNumericField T="int"
+                 Label="@(Lang["AutoLock"])"
+                 Value="@(AppSettings.AutoLockMinute)"
+                 Margin="Margin.Dense"
+                 Min="0"
+                 Class="mt-2"
+                 Variant="Variant.Outlined"
+                 ValueChanged="AutoLockChanged">
+</MudNumericField>
+
+<MudPaper Class="d-flex justify-space-between mt-4" Elevation="0">
+    <MudPaper Class="d-flex align-center" Elevation="0">
+        <MudText Typo="Typo.button">@(Lang["LockShortcutKey"])</MudText>
+        <MudButton Class="ml-3"
+                   Size="Size.Small"
+                   Color="Color.Primary"
+                   OnClick="SetShortcutKey">
+            @(_shortcutKeyText)
+        </MudButton>
+        @if (AppSettings.ShortcutKeyForLock.IsNotEmpty())
+        {
+            <MudTooltip Text="@(Lang["DeleteShortcutKeys"])" Delay="600">
+                <MudIconButton Icon="@Icons.Material.Filled.Delete"
+                               Size="Size.Small"
+                               OnClick="ClearShortcutKey" />
+            </MudTooltip>
+        }
+    </MudPaper>
+
+    <MudTooltip Text="@(Lang["PasswordTip"])"
+                Delay="50"
+                Placement="Placement.Left"
+                Disabled="@(AppSettings.IsPasswordChanged)">
+        <MudButton Color="Color.Primary"
+                   StartIcon="@Icons.Material.Filled.VpnKey"
+                   IconSize="Size.Small"
+                   OnClick="SetPassword">
+            @(Lang["SetPassword"])
+        </MudButton>
+    </MudTooltip>
+</MudPaper>

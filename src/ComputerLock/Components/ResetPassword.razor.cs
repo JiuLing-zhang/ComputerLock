@@ -1,7 +1,7 @@
 ﻿using DialogResult = MudBlazor.DialogResult;
 
 namespace ComputerLock.Components;
-public partial class SetPassword
+public partial class ResetPassword
 {
     [CascadingParameter]
     private MudDialogInstance MudDialog { get; set; } = default!;

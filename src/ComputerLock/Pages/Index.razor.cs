@@ -231,7 +231,7 @@ public partial class Index
         _shortcutKeyText = Lang["Invalid"];
     }
 
-    private async Task SetPassword()
+    private async Task ResetPassword()
     {
         var noHeader = new DialogOptions()
         {
@@ -239,7 +239,7 @@ public partial class Index
             CloseOnEscapeKey = false,
             CloseButton = true
         };
-        var dialog = await Dialog.ShowAsync<SetPassword>(Lang["SetPassword"], noHeader);
+        var dialog = await Dialog.ShowAsync<ResetPassword>(Lang["ResetPassword"], noHeader);
         var result = await dialog.Result;
         if (result.Canceled)
         {

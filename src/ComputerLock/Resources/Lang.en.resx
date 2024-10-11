@@ -195,8 +195,8 @@
   <data name="PasswordTip" xml:space="preserve">
     <value>Default password is 1</value>
   </data>
-  <data name="SetPassword" xml:space="preserve">
-    <value>Set password</value>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Reset password</value>
   </data>
   <data name="CurrentPassword" xml:space="preserve">
     <value>Current Password</value>

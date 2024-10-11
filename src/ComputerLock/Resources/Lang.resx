@@ -175,7 +175,7 @@
   <data name="PasswordTip" xml:space="preserve">
     <value></value>
   </data>
-  <data name="SetPassword" xml:space="preserve">
+  <data name="ResetPassword" xml:space="preserve">
     <value></value>
   </data>
   <data name="CurrentPassword" xml:space="preserve">

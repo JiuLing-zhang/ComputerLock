@@ -540,6 +540,15 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string ResetPassword {
+            get {
+                return ResourceManager.GetString("ResetPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string ResetSettings {
             get {
                 return ResourceManager.GetString("ResetSettings", resourceCulture);
@@ -588,15 +597,6 @@ namespace ComputerLock.Resources {
         public static string SaveOk {
             get {
                 return ResourceManager.GetString("SaveOk", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        public static string SetPassword {
-            get {
-                return ResourceManager.GetString("SetPassword", resourceCulture);
             }
         }
         

@@ -192,8 +192,8 @@
   <data name="EnterShortcutKey" xml:space="preserve">
     <value>请直接在键盘上输入新的快捷键</value>
   </data>
-  <data name="PasswordTip" xml:space="preserve">
-    <value>初始密码为1</value>
+  <data name="DefaultPasswordTip" xml:space="preserve">
+    <value>如果你现在非要通过托盘锁定屏幕，那么解锁密码是1</value>
   </data>
   <data name="ResetPassword" xml:space="preserve">
     <value>修改密码</value>
@@ -332,5 +332,11 @@
   </data>
   <data name="DisableWindowsRemark" xml:space="preserve">
     <value>通过移动鼠标来防止 Windows 自动锁屏</value>
+  </data>
+  <data name="SetPasswordInput" xml:space="preserve">
+    <value>请设置解锁密码</value>
+  </data>
+  <data name="SetPasswordFinished" xml:space="preserve">
+    <value>完成</value>
   </data>
 </root>

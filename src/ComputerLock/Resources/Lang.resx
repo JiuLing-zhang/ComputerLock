@@ -172,7 +172,7 @@
   <data name="EnterShortcutKey" xml:space="preserve">
     <value></value>
   </data>
-  <data name="PasswordTip" xml:space="preserve">
+  <data name="DefaultPasswordTip" xml:space="preserve">
     <value></value>
   </data>
   <data name="ResetPassword" xml:space="preserve">
@@ -314,6 +314,12 @@
     <value></value>
   </data>
   <data name="DisableWindowsRemark" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SetPasswordInput" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SetPasswordFinished" xml:space="preserve">
     <value></value>
   </data>
 </root>

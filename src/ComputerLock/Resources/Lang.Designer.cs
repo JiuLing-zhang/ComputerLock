@@ -180,6 +180,15 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string DefaultPasswordTip {
+            get {
+                return ResourceManager.GetString("DefaultPasswordTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string Delete {
             get {
                 return ResourceManager.GetString("Delete", resourceCulture);
@@ -486,15 +495,6 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        public static string PasswordTip {
-            get {
-                return ResourceManager.GetString("PasswordTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
         public static string PwdLocation {
             get {
                 return ResourceManager.GetString("PwdLocation", resourceCulture);
@@ -597,6 +597,24 @@ namespace ComputerLock.Resources {
         public static string SaveOk {
             get {
                 return ResourceManager.GetString("SaveOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string SetPasswordFinished {
+            get {
+                return ResourceManager.GetString("SetPasswordFinished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string SetPasswordInput {
+            get {
+                return ResourceManager.GetString("SetPasswordInput", resourceCulture);
             }
         }
         

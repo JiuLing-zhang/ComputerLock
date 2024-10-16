@@ -192,8 +192,8 @@
   <data name="EnterShortcutKey" xml:space="preserve">
     <value>Please enter shortcut key</value>
   </data>
-  <data name="PasswordTip" xml:space="preserve">
-    <value>Default password is 1</value>
+  <data name="DefaultPasswordTip" xml:space="preserve">
+    <value>If you really insist on locking the screen through the tray right now, then the unlock password is 1</value>
   </data>
   <data name="ResetPassword" xml:space="preserve">
     <value>Reset password</value>
@@ -335,5 +335,11 @@
   </data>
   <data name="DisableWindowsRemark" xml:space="preserve">
     <value>Prevent Windows auto-lock by moving the mouse</value>
+  </data>
+  <data name="SetPasswordInput" xml:space="preserve">
+    <value>Please set your unlock password</value>
+  </data>
+  <data name="SetPasswordFinished" xml:space="preserve">
+    <value>Next</value>
   </data>
 </root>

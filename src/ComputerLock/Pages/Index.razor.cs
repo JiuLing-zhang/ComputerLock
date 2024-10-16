@@ -251,7 +251,14 @@ public partial class Index
         }
 
         AppSettings.Password = result.Data.ToString();
+        SaveSettings();
+    }
+
+    private async Task OnPasswordSetFinishedAsync(string password)
+    {
+        AppSettings.Password = password;
         AppSettings.IsPasswordChanged = true;
         SaveSettings();
+        await InvokeAsync(StateHasChanged);
     }
 }

@@ -115,16 +115,11 @@ else
             }
         </MudPaper>
 
-        <MudTooltip Text="@(Lang["PasswordTip"])"
-                    Delay="50"
-                    Placement="Placement.Left"
-                    Disabled="@(AppSettings.IsPasswordChanged)">
-            <MudButton Color="Color.Primary"
-                       StartIcon="@Icons.Material.Filled.VpnKey"
-                       IconSize="Size.Small"
-                       OnClick="ResetPassword">
-                @(Lang["ResetPassword"])
-            </MudButton>
-        </MudTooltip>
+        <MudButton Color="Color.Primary"
+                   StartIcon="@Icons.Material.Filled.VpnKey"
+                   IconSize="Size.Small"
+                   OnClick="ResetPassword">
+            @(Lang["ResetPassword"])
+        </MudButton>
     </MudPaper>
 }

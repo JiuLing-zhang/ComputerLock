@@ -7,11 +7,7 @@ public partial class SetPassword
     [Inject]
     private ISnackbar Snackbar { get; set; } = default!;
 
-
-    private bool _isShow;
     private string _password = "";
-    private InputType _passwordInputType = InputType.Password;
-    private string _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
 
     [Parameter]
     public EventCallback<string> PasswordSetFinished { get; set; }
@@ -19,22 +15,6 @@ public partial class SetPassword
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-    }
-
-    private void ShowPassword()
-    {
-        if (_isShow)
-        {
-            _isShow = false;
-            _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
-            _passwordInputType = InputType.Password;
-        }
-        else
-        {
-            _isShow = true;
-            _passwordInputIcon = Icons.Material.Filled.Visibility;
-            _passwordInputType = InputType.Text;
-        }
     }
 
     private async Task SavePasswordAsync()

@@ -279,6 +279,15 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string HideMouseCursor {
+            get {
+                return ResourceManager.GetString("HideMouseCursor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string HidePasswordWindow {
             get {
                 return ResourceManager.GetString("HidePasswordWindow", resourceCulture);

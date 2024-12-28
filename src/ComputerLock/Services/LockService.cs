@@ -14,9 +14,10 @@ internal class LockService
     private readonly AppSettings _appSettings;
     private readonly ILogger _logger;
     private readonly TaskManagerHook _taskManagerHook;
+    private readonly MouseHook _mouseHook;
     public event EventHandler? OnLock;
     public event EventHandler? OnUnlock;
-    public LockService(IServiceProvider serviceProvider, SystemKeyHook systemKeyHook, IStringLocalizer<Lang> lang, AppSettings appSettings, ILogger logger, TaskManagerHook taskManagerHook)
+    public LockService(IServiceProvider serviceProvider, SystemKeyHook systemKeyHook, IStringLocalizer<Lang> lang, AppSettings appSettings, ILogger logger, TaskManagerHook taskManagerHook, MouseHook mouseHook)
     {
         _serviceProvider = serviceProvider;
         _systemKeyHook = systemKeyHook;
@@ -24,6 +25,7 @@ internal class LockService
         _appSettings = appSettings;
         _logger = logger;
         _taskManagerHook = taskManagerHook;
+        _mouseHook = mouseHook;
 
         // 防止锁屏时系统崩溃、重启等问题导致任务栏被禁用
         // 启动时默认启用一次
@@ -92,6 +94,11 @@ internal class LockService
             _blankScreens.Add(blankScreen);
         }
 
+        if (_appSettings.IsHideMouseCursor)
+        {
+            _logger.Write("锁定服务 -> 隐藏鼠标光标");
+            _mouseHook.HideCursor();
+        }
         OnLock?.Invoke(this, EventArgs.Empty);
     }
 
@@ -114,6 +121,13 @@ internal class LockService
             _logger.Write("锁定服务 -> 解锁动画");
             ShowPopup(_lang["UnLocked"]);
         }
+
+        if (_appSettings.IsHideMouseCursor)
+        {
+            _logger.Write("锁定服务 -> 恢复鼠标光标");
+            _mouseHook.ResetCursorState();
+        }
+
         _logger.Write("锁定服务 -> 通知解锁");
         OnUnlock?.Invoke(this, EventArgs.Empty);
     }

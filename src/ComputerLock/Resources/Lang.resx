@@ -322,4 +322,7 @@
   <data name="SetPasswordFinished" xml:space="preserve">
     <value></value>
   </data>
+  <data name="HideMouseCursor" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

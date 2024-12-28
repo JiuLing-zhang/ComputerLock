@@ -339,4 +339,7 @@
   <data name="SetPasswordFinished" xml:space="preserve">
     <value>完成</value>
   </data>
+  <data name="HideMouseCursor" xml:space="preserve">
+    <value>锁定时隐藏鼠标光标</value>
+  </data>
 </root>

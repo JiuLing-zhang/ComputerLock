@@ -88,4 +88,9 @@ public class AppSettings
     /// 密码框激活方式
     /// </summary>
     public PasswordBoxActiveMethodEnum PasswordBoxActiveMethod { get; set; } = PasswordBoxActiveMethodEnum.KeyboardDown | PasswordBoxActiveMethodEnum.MouseDown;
+
+    /// <summary>
+    /// 自动隐藏鼠标光标
+    /// </summary>
+    public bool IsHideMouseCursor { get; set; } = false;
 }

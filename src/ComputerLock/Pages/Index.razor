@@ -26,6 +26,11 @@ else
                    Color="Color.Primary" />
     </MudTooltip>
 
+    <MudSwitch @bind-Value="@(AppSettings.IsHideMouseCursor)"
+               @bind-Value:after="SaveSettings"
+               Label="@(Lang["HideMouseCursor"])"
+               Color="Color.Primary" />
+
     <div class="d-flex align-center">
         <MudSwitch @bind-Value="@(AppSettings.EnablePasswordBox)"
                    @bind-Value:after="SaveSettings"

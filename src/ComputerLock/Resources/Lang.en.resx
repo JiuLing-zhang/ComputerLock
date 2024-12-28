@@ -342,4 +342,7 @@
   <data name="SetPasswordFinished" xml:space="preserve">
     <value>Next</value>
   </data>
+  <data name="HideMouseCursor" xml:space="preserve">
+    <value>Hide the mouse cursor</value>
+  </data>
 </root>

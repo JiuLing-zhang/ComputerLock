@@ -17,6 +17,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CodeBeam.MudBlazor.Extensions" Version="7.1.0" />
 		<PackageReference Include="JiuLing.AutoUpgrade" Version="2.2.6" />
 		<PackageReference Include="JiuLing.CommonLibs" Version="1.7.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="8.0.100" />

@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MudBlazor.Services;
 using System.Windows;
 using ComputerLock.Update;
+using MudExtensions.Services;
 using Application = System.Windows.Application;
 
 namespace ComputerLock;
@@ -64,6 +65,7 @@ public partial class App : Application
             config.SnackbarConfiguration.ShowTransitionDuration = 200;
             config.SnackbarConfiguration.HideTransitionDuration = 400;
         });
+        services.AddMudExtensions();
 
         var sp = services.BuildServiceProvider();
         Resources.Add("services", sp);

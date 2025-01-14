@@ -23,7 +23,6 @@ namespace ComputerLock
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _logger.Write("副屏幕 -> 准备锁定");
-            WindowState = WindowState.Maximized;
         }
 
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)

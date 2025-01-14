@@ -64,15 +64,13 @@ internal class LockService
 
         _logger.Write("锁定服务 -> 准备主屏幕");
         _windowLockScreen = _serviceProvider.GetRequiredService<WindowLockScreen>();
-        _windowLockScreen.Left = primaryScreen.WorkingArea.Left;
-        _windowLockScreen.Top = primaryScreen.WorkingArea.Top;
         _windowLockScreen.OnUnlock += FmLockScreen_OnUnlock;
         _windowLockScreen.Closing += (_, _) =>
         {
             _windowLockScreen.OnUnlock -= FmLockScreen_OnUnlock;
         };
-        _windowLockScreen.Show();
-        _windowLockScreen.Activate();
+        ShowWindowOnScreen(_windowLockScreen, primaryScreen);
+
         _logger.Write("锁定服务 -> 激活主屏幕");
         for (var i = 0; i <= Screen.AllScreens.Length - 1; i++)
         {
@@ -84,12 +82,9 @@ internal class LockService
             _logger.Write($"锁定服务 -> 准备副屏幕{i}");
 
             var blankScreen = _serviceProvider.GetRequiredService<WindowBlankScreen>();
-            blankScreen.WindowStartupLocation = WindowStartupLocation.Manual;
-            blankScreen.Left = screen.WorkingArea.Left;
-            blankScreen.Top = screen.WorkingArea.Top;
             blankScreen.OnDeviceInput += BlankScreen_OnDeviceInput;
-            blankScreen.Show();
-            blankScreen.Activate();
+            ShowWindowOnScreen(blankScreen, screen);
+
             _logger.Write("锁定服务 -> 激活副屏幕");
             _blankScreens.Add(blankScreen);
         }
@@ -102,6 +97,46 @@ internal class LockService
         OnLock?.Invoke(this, EventArgs.Empty);
     }
 
+    private void ShowWindowOnScreen(Window window, Screen screen)
+    {
+        // 获取包括任务栏的完整屏幕区域
+        var bounds = screen.Bounds;
+
+        // 设置窗口初始位置和大小
+        window.WindowStartupLocation = WindowStartupLocation.Manual;
+        window.Left = bounds.Left;
+        window.Top = bounds.Top;
+        window.Width = bounds.Width;
+        window.Height = bounds.Height;
+
+        // 在窗口加载后，根据屏幕的 DPI 重新调整位置和大小
+        // 必须先显示窗口，然后才能获取 DPI，所以窗口大小和位置需要二次调整
+        window.Loaded += (sender, e) =>
+        {
+            var dpiFactor = GetDpiFactor(window);
+            window.Left = bounds.Left / dpiFactor.X;
+            window.Top = bounds.Top / dpiFactor.Y;
+            window.Width = bounds.Width / dpiFactor.X;
+            window.Height = bounds.Height / dpiFactor.Y;
+        };
+
+        window.WindowStyle = WindowStyle.None;
+        window.ResizeMode = System.Windows.ResizeMode.NoResize;
+
+        window.Show();
+        window.Activate();
+    }
+
+    private (double X, double Y) GetDpiFactor(Window window)
+    {
+        var source = PresentationSource.FromVisual(window);
+        if (source?.CompositionTarget != null)
+        {
+            var transform = source.CompositionTarget.TransformToDevice;
+            return (transform.M11, transform.M22);
+        }
+        return (1.0, 1.0); // 默认比例
+    }
     private void FmLockScreen_OnUnlock(object? sender, EventArgs e)
     {
         _logger.Write("锁定服务 -> 准备解锁");

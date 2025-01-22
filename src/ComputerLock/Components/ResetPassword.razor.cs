@@ -4,7 +4,7 @@ namespace ComputerLock.Components;
 public partial class ResetPassword
 {
     [CascadingParameter]
-    private MudDialogInstance MudDialog { get; set; } = default!;
+    private IMudDialogInstance MudDialog { get; set; } = default!;
 
     private string _currentPassword = "";
     private string _newPassword = "";

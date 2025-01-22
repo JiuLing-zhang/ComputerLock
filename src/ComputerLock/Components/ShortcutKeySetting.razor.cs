@@ -6,7 +6,7 @@ namespace ComputerLock.Components;
 public partial class ShortcutKeySetting
 {
     [CascadingParameter]
-    private MudDialogInstance MudDialog { get; set; } = default!;
+    private IMudDialogInstance MudDialog { get; set; } = default!;
 
     private string _text = default!;
     private string _key = "";

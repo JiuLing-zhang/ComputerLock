@@ -4,7 +4,7 @@ namespace ComputerLock.Hooks
 {
     //引用：https://stackoverflow.com/questions/2450373/set-global-hotkeys-using-c-sharp
 
-    public sealed class KeyboardHook : IDisposable
+    public sealed class HotKeyHook : IDisposable
     {
         // Registers a hot key with Windows.
         [DllImport("user32.dll")]
@@ -62,7 +62,7 @@ namespace ComputerLock.Hooks
         private Window _window = new Window();
         const int _currentId = 1;
 
-        public KeyboardHook()
+        public HotKeyHook()
         {
             // register the event of the inner native window.
             _window.KeyPressed += delegate (object sender, KeyPressedEventArgs args)

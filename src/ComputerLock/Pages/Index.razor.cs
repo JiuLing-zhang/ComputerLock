@@ -25,7 +25,7 @@ public partial class Index
     private ILocker Locker { get; set; } = default!;
 
     [Inject]
-    private KeyboardHook KeyboardHook { get; set; } = default!;
+    private HotKeyHook HotKeyHook { get; set; } = default!;
 
     [Inject]
     private IWindowTitleBar WindowTitleBar { get; set; } = default!;
@@ -47,7 +47,7 @@ public partial class Index
             RegisterHotKey();
         }
 
-        KeyboardHook.KeyPressed += (_, _) =>
+        HotKeyHook.KeyPressed += (_, _) =>
         {
             Logger.Write("快捷键解锁");
             Locker.Lock();
@@ -205,7 +205,7 @@ public partial class Index
             }
             Logger.Write("注册锁屏热键");
             Keys key = (Keys)Convert.ToInt32(result.result);
-            KeyboardHook.RegisterHotKey(keys, key);
+            HotKeyHook.RegisterHotKey(keys, key);
 
             _shortcutKeyText = AppSettings.ShortcutKeyDisplayForLock;
         }
@@ -221,7 +221,7 @@ public partial class Index
         try
         {
             Logger.Write("释放锁屏热键");
-            KeyboardHook.UnregisterHotKey();
+            HotKeyHook.UnregisterHotKey();
         }
         catch (Exception ex)
         {

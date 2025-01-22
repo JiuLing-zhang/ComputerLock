@@ -1,148 +1,106 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace ComputerLock.Hooks
+namespace ComputerLock.Hooks;
+
+/// <summary>
+/// 快捷键钩子
+/// </summary>
+public class HotKeyHook : IDisposable
 {
-    //引用：https://stackoverflow.com/questions/2450373/set-global-hotkeys-using-c-sharp
+    [DllImport("user32.dll")]
+    private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
 
-    public sealed class HotKeyHook : IDisposable
+    [DllImport("user32.dll")]
+    private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
+    private const int HotkeyId = 90;
+    private bool _isRegistered;
+
+    public event Action? HotKeyPressed;
+
+    private sealed class HotKeyNativeWindow : NativeWindow
     {
-        // Registers a hot key with Windows.
-        [DllImport("user32.dll")]
-        private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
-        // Unregisters the hot key with Windows.
-        [DllImport("user32.dll")]
-        private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+        public event Action? OnHotKeyPressed;
 
-        /// <summary>
-        /// Represents the window that is used internally to get the messages.
-        /// </summary>
-        private class Window : NativeWindow, IDisposable
+        public HotKeyNativeWindow()
         {
-            private static int WM_HOTKEY = 0x0312;
+            this.CreateHandle(new CreateParams());
+        }
 
-            public Window()
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == 0x0312) // WM_HOTKEY
             {
-                // create the handle for the window.
-                this.CreateHandle(new CreateParams());
-            }
-
-            /// <summary>
-            /// Overridden to get the notifications.
-            /// </summary>
-            /// <param name="m"></param>
-            protected override void WndProc(ref Message m)
-            {
-                base.WndProc(ref m);
-
-                // check if we got a hot key pressed.
-                if (m.Msg == WM_HOTKEY)
+                if (m.WParam.ToInt32() == HotkeyId)
                 {
-                    // get the keys.
-                    Keys key = (Keys)(((int)m.LParam >> 16) & 0xFFFF);
-                    ModifierKeys modifier = (ModifierKeys)((int)m.LParam & 0xFFFF);
-
-                    // invoke the event to notify the parent.
-                    if (KeyPressed != null)
-                        KeyPressed(this, new KeyPressedEventArgs(modifier, key));
+                    OnHotKeyPressed?.Invoke();
                 }
             }
-
-            public event EventHandler<KeyPressedEventArgs> KeyPressed;
-
-            #region IDisposable Members
-
-            public void Dispose()
+            else
             {
-                this.DestroyHandle();
+                base.WndProc(ref m);
             }
-
-            #endregion
-        }
-
-        private Window _window = new Window();
-        const int _currentId = 1;
-
-        public HotKeyHook()
-        {
-            // register the event of the inner native window.
-            _window.KeyPressed += delegate (object sender, KeyPressedEventArgs args)
-            {
-                if (KeyPressed != null)
-                    KeyPressed(this, args);
-            };
-        }
-
-        /// <summary>
-        /// Registers a hot key in the system.
-        /// </summary>
-        /// <param name="modifier">The modifiers that are associated with the hot key.</param>
-        /// <param name="key">The key itself that is associated with the hot key.</param>
-        public void RegisterHotKey(ModifierKeys modifier, Keys key)
-        {
-            // register the hot key.
-            if (!RegisterHotKey(_window.Handle, _currentId, (uint)modifier, (uint)key))
-                throw new InvalidOperationException("Couldn’t register the hot key.");
-        }
-
-        public void UnregisterHotKey()
-        {
-            // register the hot key.
-            if (!UnregisterHotKey(_window.Handle, _currentId))
-                throw new InvalidOperationException("Couldn’t cancel register the hot key.");
-        }
-
-        /// <summary>
-        /// A hot key has been pressed.
-        /// </summary>
-        public event EventHandler<KeyPressedEventArgs> KeyPressed;
-
-        #region IDisposable Members
-
-        public void Dispose()
-        {
-            UnregisterHotKey(_window.Handle, _currentId);
-
-            // dispose the inner native window.
-            _window.Dispose();
-        }
-
-        #endregion
-    }
-
-    /// <summary>
-    /// Event Args for the event that is fired after the hot key has been pressed.
-    /// </summary>
-    public class KeyPressedEventArgs : EventArgs
-    {
-        private ModifierKeys _modifier;
-        private Keys _key;
-
-        internal KeyPressedEventArgs(ModifierKeys modifier, Keys key)
-        {
-            _modifier = modifier;
-            _key = key;
-        }
-
-        public ModifierKeys Modifier
-        {
-            get { return _modifier; }
-        }
-
-        public Keys Key
-        {
-            get { return _key; }
         }
     }
 
-    /// <summary>
-    /// The enumeration of possible modifiers.
-    /// </summary>
-    [Flags]
-    public enum ModifierKeys : uint
+    private readonly HotKeyNativeWindow _nativeWindow;
+
+    public HotKeyHook()
     {
-        Alt = 1,
-        Control = 2,
-        Shift = 4,
-        Win = 8
+        _nativeWindow = new HotKeyNativeWindow();
+        _nativeWindow.OnHotKeyPressed += () => HotKeyPressed?.Invoke();
+    }
+
+    /// <summary>
+    /// 注册快捷键
+    /// </summary>
+    public void Register(HotKey hotKey)
+    {
+        if (_isRegistered)
+        {
+            Unregister();
+        }
+
+        var success = RegisterHotKey(_nativeWindow.Handle, HotkeyId, (uint)hotKey.Modifiers, (uint)hotKey.Key);
+        if (!success)
+        {
+            throw new Exception("注册快捷键失败");
+        }
+        _isRegistered = success;
+    }
+
+    /// <summary>
+    /// 注销快捷键
+    /// </summary>
+    public void Unregister()
+    {
+        if (!_isRegistered)
+        {
+            return;
+        }
+        UnregisterHotKey(_nativeWindow.Handle, HotkeyId);
+        _isRegistered = false;
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposing)
+        {
+            return;
+        }
+
+        Unregister();
+        _nativeWindow.DestroyHandle();
+    }
+
+    ~HotKeyHook()
+    {
+        Dispose(false);
     }
 }

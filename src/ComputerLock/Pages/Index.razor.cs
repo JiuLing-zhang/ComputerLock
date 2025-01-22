@@ -47,7 +47,7 @@ public partial class Index
             RegisterHotKey();
         }
 
-        HotKeyHook.KeyPressed += (_, _) =>
+        HotKeyHook.HotKeyPressed += () =>
         {
             Logger.Write("快捷键解锁");
             Locker.Lock();
@@ -184,18 +184,18 @@ public partial class Index
     {
         try
         {
-            ModifierKeys keys = 0;
+            HotKeyModifiers modifiers = 0;
             if (AppSettings.ShortcutKeyForLock.IndexOf("Ctrl") >= 0)
             {
-                keys |= ModifierKeys.Control;
+                modifiers |= HotKeyModifiers.Control;
             }
             if (AppSettings.ShortcutKeyForLock.IndexOf("Shift") >= 0)
             {
-                keys |= ModifierKeys.Shift;
+                modifiers |= HotKeyModifiers.Shift;
             }
             if (AppSettings.ShortcutKeyForLock.IndexOf("Alt") >= 0)
             {
-                keys |= ModifierKeys.Alt;
+                modifiers |= HotKeyModifiers.Alt;
             }
 
             var result = RegexUtils.GetFirst(AppSettings.ShortcutKeyForLock, @"\d+");
@@ -205,7 +205,7 @@ public partial class Index
             }
             Logger.Write("注册锁屏热键");
             Keys key = (Keys)Convert.ToInt32(result.result);
-            HotKeyHook.RegisterHotKey(keys, key);
+            HotKeyHook.Register(new HotKey(modifiers, key));
 
             _shortcutKeyText = AppSettings.ShortcutKeyDisplayForLock;
         }
@@ -221,7 +221,7 @@ public partial class Index
         try
         {
             Logger.Write("释放锁屏热键");
-            HotKeyHook.UnregisterHotKey();
+            HotKeyHook.Unregister();
         }
         catch (Exception ex)
         {

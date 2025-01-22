@@ -154,7 +154,7 @@ public partial class Setting
             config.HideIcon = true;
             config.ActionColor = MudBlazor.Color.Warning;
             config.ActionVariant = Variant.Outlined;
-            config.Onclick = snackbar =>
+            config.OnClick = snackbar =>
             {
                 Restart();
                 return Task.CompletedTask;

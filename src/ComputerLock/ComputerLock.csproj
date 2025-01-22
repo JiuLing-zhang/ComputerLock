@@ -17,12 +17,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CodeBeam.MudBlazor.Extensions" Version="7.1.0" />
+		<PackageReference Include="CodeBeam.MudBlazor.Extensions" Version="8.0.0" />
 		<PackageReference Include="JiuLing.AutoUpgrade" Version="2.2.6" />
 		<PackageReference Include="JiuLing.CommonLibs" Version="1.7.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="8.0.100" />
 		<PackageReference Include="ModernWpfUI" Version="0.9.6" />
-		<PackageReference Include="MudBlazor" Version="7.15.0" />
+		<PackageReference Include="MudBlazor" Version="8.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

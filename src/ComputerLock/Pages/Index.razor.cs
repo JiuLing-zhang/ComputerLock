@@ -124,7 +124,7 @@ public partial class Index
             config.HideIcon = true;
             config.ActionColor = MudBlazor.Color.Warning;
             config.ActionVariant = Variant.Outlined;
-            config.Onclick = _ =>
+            config.OnClick = _ =>
             {
                 Restart();
                 return Task.CompletedTask;

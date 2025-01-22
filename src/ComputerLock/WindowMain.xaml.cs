@@ -5,7 +5,7 @@ using Microsoft.Win32;
 namespace ComputerLock;
 public partial class WindowMain : Window, IDisposable
 {
-    private readonly KeyboardHook _keyboardHook;
+    private readonly HotKeyHook _hotKeyHook;
     private readonly AppSettings _appSettings;
     private readonly UserActivityMonitor? _activityMonitor;
     private readonly ILocker _locker;
@@ -14,11 +14,11 @@ public partial class WindowMain : Window, IDisposable
     private readonly NotifyIcon _notifyIcon = new();
     private readonly ContextMenuStrip _contextMenuStrip = new();
 
-    public WindowMain(KeyboardHook keyboardHook, AppSettings appSettings, ILocker locker, UserActivityMonitor activityMonitor, ILogger logger)
+    public WindowMain(HotKeyHook hotKeyHook, AppSettings appSettings, ILocker locker, UserActivityMonitor activityMonitor, ILogger logger)
     {
         InitializeComponent();
 
-        _keyboardHook = keyboardHook;
+        _hotKeyHook = hotKeyHook;
         _appSettings = appSettings;
         _locker = locker;
         _logger = logger;
@@ -156,6 +156,6 @@ public partial class WindowMain : Window, IDisposable
         _logger.Write("系统资源释放，系统关闭");
         _notifyIcon.Dispose();
         _activityMonitor?.Dispose();
-        _keyboardHook.Dispose();
+        _hotKeyHook.Dispose();
     }
 }

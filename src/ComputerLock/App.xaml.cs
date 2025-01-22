@@ -40,7 +40,7 @@ public partial class App : Application
             return sp.GetRequiredService<AppSettingsProvider>().LoadSettings();
         });
         services.AddSingleton(LogManager.GetLogger());
-        services.AddSingleton<KeyboardHook>();
+        services.AddSingleton<HotKeyHook>();
         services.AddSingleton<MouseHook>();
         services.AddSingleton<UpdateHelper>();
         services.AddSingleton<AutostartHook>();

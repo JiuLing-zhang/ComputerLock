@@ -1,6 +1,6 @@
 ﻿using Microsoft.Win32;
 
-namespace ComputerLock.Hooks;
+namespace ComputerLock.Platforms;
 internal class TaskManagerHook
 {
     private const string RegKey = @"Software\Microsoft\Windows\CurrentVersion\Policies\System";

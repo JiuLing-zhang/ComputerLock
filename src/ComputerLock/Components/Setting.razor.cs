@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using ComputerLock.Interfaces;
 using ComputerLock.Update;
 
 namespace ComputerLock.Components;

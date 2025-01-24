@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace ComputerLock.Hooks;
+namespace ComputerLock.Platforms;
 
 /// <summary>
 /// 快捷键钩子

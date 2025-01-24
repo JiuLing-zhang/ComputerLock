@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace ComputerLock.Hooks;
+namespace ComputerLock.Platforms;
 internal class MouseHook
 {
     [DllImport("user32.dll")]

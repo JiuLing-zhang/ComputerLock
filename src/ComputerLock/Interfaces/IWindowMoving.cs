@@ -1,4 +1,4 @@
-﻿namespace ComputerLock.Platforms;
+﻿namespace ComputerLock.Interfaces;
 public interface IWindowMoving
 {
     void MouseDown();

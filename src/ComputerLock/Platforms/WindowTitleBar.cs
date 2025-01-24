@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using ComputerLock.Interfaces;
 using Application = System.Windows.Application;
 
 namespace ComputerLock.Platforms;

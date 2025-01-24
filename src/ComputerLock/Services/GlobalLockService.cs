@@ -1,27 +1,28 @@
-﻿using Microsoft.Win32;
+﻿using ComputerLock.Interfaces;
+using Microsoft.Win32;
 
-namespace ComputerLock.Platforms;
+namespace ComputerLock.Services;
 
 /// <summary>
 /// 锁定器，全局锁定：包括鼠标、键盘、任务管理器、系统快捷键等
 /// </summary>
-internal class Locker : ILocker
+internal class GlobalLockService : IGlobalLockService
 {
     private readonly ILogger _logger;
     private readonly AppSettings _appSettings;
-    private readonly LockService _lockService;
+    private readonly ScreenLockService _screenLockService;
     private UserActivityMonitor? _activityMonitor;
     private readonly HotKeyHook _hotKeyHook;
     private readonly TaskManagerHook _taskManagerHook;
     private readonly MouseHook _mouseHook;
     private readonly SystemKeyHook _systemKeyHook;
 
-    public Locker(ILogger logger, AppSettings appSettings, UserActivityMonitor activityMonitor, LockService lockService, HotKeyHook hotKeyHook, TaskManagerHook taskManagerHook, MouseHook mouseHook, SystemKeyHook systemKeyHook)
+    public GlobalLockService(ILogger logger, AppSettings appSettings, UserActivityMonitor activityMonitor, ScreenLockService screenLockService, HotKeyHook hotKeyHook, TaskManagerHook taskManagerHook, MouseHook mouseHook, SystemKeyHook systemKeyHook)
     {
         _logger = logger;
         _appSettings = appSettings;
-        _lockService = lockService;
-        _lockService.OnUnlock += (_, _) => OnUnlock();
+        _screenLockService = screenLockService;
+        _screenLockService.OnUnlock += (_, _) => OnUnlock();
 
         InitActivityMonitor(activityMonitor);
         _hotKeyHook = hotKeyHook;
@@ -74,7 +75,7 @@ internal class Locker : ILocker
 
     public void Lock()
     {
-        _lockService.Lock();
+        _screenLockService.Lock();
 
         _logger.Write("自动锁定 -> 暂停空闲检测");
         _activityMonitor?.StopMonitoring();

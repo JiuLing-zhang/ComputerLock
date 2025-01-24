@@ -11,23 +11,17 @@ namespace ComputerLock.Services;
 internal class ScreenLockService(
     IServiceProvider serviceProvider,
     IStringLocalizer<Lang> lang,
-    AppSettings appSettings,
     ILogger logger)
 {
-    private bool _isLocked;
-
+    private bool _showAnimation;
     private WindowLockScreen? _windowLockScreen;
     private readonly List<WindowBlankScreen> _blankScreens = [];
     public event EventHandler? OnUnlock;
 
-    public void Lock()
+    public void Lock(bool showAnimation)
     {
+        _showAnimation = showAnimation;
         logger.Write("锁定服务 -> 准备锁定");
-        if (_isLocked)
-        {
-            return;
-        }
-        logger.Write("锁定服务 -> 允许锁定");
         var primaryScreen = Screen.PrimaryScreen;
         if (primaryScreen == null)
         {
@@ -35,8 +29,7 @@ internal class ScreenLockService(
             throw new Exception("没有检测到屏幕 no screen");
         }
 
-        _isLocked = true;
-        if (appSettings.LockAnimation)
+        if (_showAnimation)
         {
             logger.Write("锁定服务 -> 锁定动画");
             ShowPopup(lang["Locked"]);
@@ -127,8 +120,7 @@ internal class ScreenLockService(
             screen.Close();
         }
 
-        _isLocked = false;
-        if (appSettings.LockAnimation)
+        if (_showAnimation)
         {
             logger.Write("锁定服务 -> 解锁动画");
             ShowPopup(lang["UnLocked"]);

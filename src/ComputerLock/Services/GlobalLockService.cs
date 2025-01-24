@@ -75,7 +75,7 @@ internal class GlobalLockService : IGlobalLockService
 
     public void Lock()
     {
-        _screenLockService.Lock();
+        _screenLockService.Lock(_appSettings.LockAnimation);
 
         _logger.Write("自动锁定 -> 暂停空闲检测");
         _activityMonitor?.StopMonitoring();

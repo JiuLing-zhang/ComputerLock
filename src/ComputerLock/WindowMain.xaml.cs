@@ -1,72 +1,26 @@
 ﻿using System.IO;
 using System.Windows;
-using Microsoft.Win32;
 
 namespace ComputerLock;
 public partial class WindowMain : Window, IDisposable
 {
-    private readonly HotKeyHook _hotKeyHook;
     private readonly AppSettings _appSettings;
-    private readonly UserActivityMonitor? _activityMonitor;
     private readonly ILocker _locker;
     private readonly ILogger _logger;
 
     private readonly NotifyIcon _notifyIcon = new();
     private readonly ContextMenuStrip _contextMenuStrip = new();
 
-    public WindowMain(HotKeyHook hotKeyHook, AppSettings appSettings, ILocker locker, UserActivityMonitor activityMonitor, ILogger logger)
+    public WindowMain(AppSettings appSettings, ILocker locker, ILogger logger)
     {
         InitializeComponent();
 
-        _hotKeyHook = hotKeyHook;
         _appSettings = appSettings;
         _locker = locker;
         _logger = logger;
 
         InitializeNotifyIcon();
         _logger.Write("系统启动");
-
-        if (_appSettings.AutoLockSecond != 0)
-        {
-            _logger.Write("自动锁定已生效");
-            _activityMonitor = activityMonitor;
-            _activityMonitor.Init(_appSettings.AutoLockSecond);
-            _activityMonitor.OnIdle += (_, _) =>
-            {
-                Dispatcher.Invoke(() =>
-                {
-                    _logger.Write("自动锁定 -> 锁定");
-                    _locker.Lock();
-                });
-            };
-            _locker.OnLock += (_, _) =>
-            {
-                _logger.Write("自动锁定 -> 暂停空闲检测");
-                _activityMonitor.StopMonitoring();
-            };
-            _locker.OnUnlock += (_, _) =>
-            {
-                _logger.Write("自动锁定 -> 启动空闲检测");
-                _activityMonitor.StartMonitoring();
-            };
-            _logger.Write("自动锁定 -> 启动空闲检测");
-            _activityMonitor.StartMonitoring();
-
-            _logger.Write("自动锁定 -> 准备监控系统会话状态");
-            SystemEvents.SessionSwitch += (_, e) =>
-            {
-                if (e.Reason == SessionSwitchReason.SessionLock)
-                {
-                    _logger.Write("Windows系统锁定 -> 暂停空闲检测");
-                    _activityMonitor.StopMonitoring();
-                }
-                else if (e.Reason == SessionSwitchReason.SessionUnlock)
-                {
-                    _logger.Write("Windows系统解锁 -> 启动空闲检测");
-                    _activityMonitor.StartMonitoring();
-                }
-            };
-        }
 
         if (_appSettings.LockOnStartup)
         {
@@ -108,7 +62,7 @@ public partial class WindowMain : Window, IDisposable
         Stream iconStream = System.Windows.Application.GetResourceStream(new Uri("pack://application:,,,/ComputerLock;component/icon.ico")).Stream;
         _notifyIcon.Icon = new Icon(iconStream);
         _notifyIcon.Text = Lang.Title;
-        _notifyIcon.Click += (object? sender, EventArgs e) =>
+        _notifyIcon.Click += (_, e) =>
         {
             var args = e as MouseEventArgs;
             if (args is not { Button: MouseButtons.Left })
@@ -155,7 +109,6 @@ public partial class WindowMain : Window, IDisposable
     {
         _logger.Write("系统资源释放，系统关闭");
         _notifyIcon.Dispose();
-        _activityMonitor?.Dispose();
-        _hotKeyHook.Dispose();
+        _locker.Dispose();
     }
 }

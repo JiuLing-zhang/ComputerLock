@@ -1,6 +1,6 @@
 ﻿using Microsoft.Win32;
 
-namespace ComputerLock.Hooks;
+namespace ComputerLock.Platforms;
 internal class AutostartHook
 {
     private const string RegKey = @"Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Run";

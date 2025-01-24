@@ -1,7 +1,6 @@
 ﻿global using ComputerLock.Components;
 global using ComputerLock.Configuration;
 global using ComputerLock.Enums;
-global using ComputerLock.Hooks;
 global using ComputerLock.Models;
 global using ComputerLock.Platforms;
 global using ComputerLock.Resources;

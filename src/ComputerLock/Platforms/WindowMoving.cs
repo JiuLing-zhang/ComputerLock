@@ -1,5 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using System.Windows.Threading;
+using ComputerLock.Interfaces;
 using Application = System.Windows.Application;
 
 namespace ComputerLock.Platforms;

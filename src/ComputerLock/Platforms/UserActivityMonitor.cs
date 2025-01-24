@@ -2,7 +2,7 @@
 using System.Timers;
 using Timer = System.Timers.Timer;
 
-namespace ComputerLock.Hooks;
+namespace ComputerLock.Platforms;
 
 public class UserActivityMonitor : IDisposable
 {

@@ -1,4 +1,6 @@
-﻿namespace ComputerLock.Shared;
+﻿using ComputerLock.Interfaces;
+
+namespace ComputerLock.Shared;
 public partial class MainLayout
 {
     private bool _isDarkMode;

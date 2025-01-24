@@ -1,8 +1,7 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace ComputerLock.Hooks;
+namespace ComputerLock.Platforms;
 internal class SystemKeyHook : IDisposable
 {
     // ReSharper disable InconsistentNaming

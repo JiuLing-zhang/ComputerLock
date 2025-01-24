@@ -1,4 +1,6 @@
-﻿namespace ComputerLock.Components;
+﻿using ComputerLock.Interfaces;
+
+namespace ComputerLock.Components;
 public partial class TitleBar
 {
     [Parameter]

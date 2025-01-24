@@ -1,4 +1,5 @@
-﻿using ComputerLock.Update;
+﻿using ComputerLock.Interfaces;
+using ComputerLock.Update;
 
 namespace ComputerLock.Pages;
 public partial class Index
@@ -22,7 +23,7 @@ public partial class Index
     private UpdateHelper UpdateHelper { get; set; } = default!;
 
     [Inject]
-    private ILocker Locker { get; set; } = default!;
+    private IGlobalLockService GlobalLockService { get; set; } = default!;
 
     [Inject]
     private HotKeyHook HotKeyHook { get; set; } = default!;
@@ -50,7 +51,7 @@ public partial class Index
         HotKeyHook.HotKeyPressed += () =>
         {
             Logger.Write("快捷键解锁");
-            Locker.Lock();
+            GlobalLockService.Lock();
         };
 
         if (AppSettings.IsAutoCheckUpdate)

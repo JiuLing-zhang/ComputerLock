@@ -1,22 +1,23 @@
 ﻿using System.IO;
 using System.Windows;
+using ComputerLock.Interfaces;
 
 namespace ComputerLock;
 public partial class WindowMain : Window, IDisposable
 {
     private readonly AppSettings _appSettings;
-    private readonly ILocker _locker;
+    private readonly IGlobalLockService _globalLockService;
     private readonly ILogger _logger;
 
     private readonly NotifyIcon _notifyIcon = new();
     private readonly ContextMenuStrip _contextMenuStrip = new();
 
-    public WindowMain(AppSettings appSettings, ILocker locker, ILogger logger)
+    public WindowMain(AppSettings appSettings, IGlobalLockService globalLockService, ILogger logger)
     {
         InitializeComponent();
 
         _appSettings = appSettings;
-        _locker = locker;
+        _globalLockService = globalLockService;
         _logger = logger;
 
         InitializeNotifyIcon();
@@ -25,7 +26,7 @@ public partial class WindowMain : Window, IDisposable
         if (_appSettings.LockOnStartup)
         {
             _logger.Write("程序启动时锁定屏幕");
-            _locker.Lock();
+            _globalLockService.Lock();
         }
     }
 
@@ -46,7 +47,7 @@ public partial class WindowMain : Window, IDisposable
         btnLock.Click += (_, _) =>
         {
             _logger.Write("托盘锁定");
-            _locker.Lock();
+            _globalLockService.Lock();
         };
         _contextMenuStrip.Items.Add(btnLock);
 
@@ -109,6 +110,6 @@ public partial class WindowMain : Window, IDisposable
     {
         _logger.Write("系统资源释放，系统关闭");
         _notifyIcon.Dispose();
-        _locker.Dispose();
+        _globalLockService.Dispose();
     }
 }

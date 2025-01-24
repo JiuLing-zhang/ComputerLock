@@ -8,7 +8,7 @@ namespace ComputerLock.Services;
 /// <summary>
 /// 负责屏幕窗口的锁定和解锁
 /// </summary>
-internal class LockService(
+internal class ScreenLockService(
     IServiceProvider serviceProvider,
     IStringLocalizer<Lang> lang,
     AppSettings appSettings,

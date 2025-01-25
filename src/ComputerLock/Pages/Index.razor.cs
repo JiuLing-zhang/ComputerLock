@@ -34,6 +34,10 @@ public partial class Index
     [Inject]
     private ILogger Logger { get; set; } = default!;
 
+    [Inject]
+    private GlobalSettings GlobalSettings { get; set; } = default!;
+
+
     private bool _keyboardDownChecked;
     private bool _mouseDownChecked;
     private string _shortcutKeyText = "未设置";
@@ -50,8 +54,16 @@ public partial class Index
 
         HotKeyHook.HotKeyPressed += () =>
         {
-            Logger.Write("快捷键解锁");
-            GlobalLockService.Lock();
+            if (GlobalLockService.IsLocked)
+            {
+                Logger.Write("快捷键解锁");
+                GlobalLockService.Unlock();
+            }
+            else
+            {
+                Logger.Write("快捷键锁定");
+                GlobalLockService.Lock();
+            }
         };
 
         if (AppSettings.IsAutoCheckUpdate)
@@ -162,11 +174,6 @@ public partial class Index
             return;
         }
 
-        // 有历史快捷键时先解除绑定
-        if (AppSettings.ShortcutKeyForLock.IsNotTrimEmpty())
-        {
-            UnregisterHotKey();
-        }
         AppSettings.ShortcutKeyForLock = shortcutKey.Key;
         AppSettings.ShortcutKeyDisplayForLock = shortcutKey.DisplayText;
         SaveSettings();
@@ -178,6 +185,7 @@ public partial class Index
         AppSettings.ShortcutKeyDisplayForLock = "";
         SaveSettings();
         UnregisterHotKey();
+        GlobalSettings.HotKey = null;
         return Task.CompletedTask;
     }
 
@@ -206,7 +214,8 @@ public partial class Index
             }
             Logger.Write("注册锁屏热键");
             Keys key = (Keys)Convert.ToInt32(result.result);
-            HotKeyHook.Register(new HotKey(modifiers, key));
+            GlobalSettings.HotKey = new HotKey(modifiers, key);
+            HotKeyHook.Register(GlobalSettings.HotKey);
 
             _shortcutKeyText = AppSettings.ShortcutKeyDisplayForLock;
         }

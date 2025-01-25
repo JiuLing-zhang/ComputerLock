@@ -1,5 +1,7 @@
 ﻿using ComputerLock.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
+using System.Diagnostics;
 
 namespace ComputerLock.Services;
 
@@ -10,19 +12,21 @@ internal class GlobalLockService : IGlobalLockService
 {
     private readonly ILogger _logger;
     private readonly AppSettings _appSettings;
-    private readonly ScreenLockService _screenLockService;
+    private IScreenLockService? _screenLockService;
     private UserActivityMonitor? _activityMonitor;
     private readonly HotKeyHook _hotKeyHook;
     private readonly TaskManagerHook _taskManagerHook;
     private readonly MouseHook _mouseHook;
     private readonly SystemKeyHook _systemKeyHook;
+    private readonly GlobalSettings _globalSettings;
+    private readonly IServiceProvider _serviceProvider;
 
-    public GlobalLockService(ILogger logger, AppSettings appSettings, UserActivityMonitor activityMonitor, ScreenLockService screenLockService, HotKeyHook hotKeyHook, TaskManagerHook taskManagerHook, MouseHook mouseHook, SystemKeyHook systemKeyHook)
+    public bool IsLocked { get; private set; }
+
+    public GlobalLockService(ILogger logger, AppSettings appSettings, UserActivityMonitor activityMonitor, HotKeyHook hotKeyHook, TaskManagerHook taskManagerHook, MouseHook mouseHook, SystemKeyHook systemKeyHook, GlobalSettings globalSettings, IServiceProvider serviceProvider)
     {
         _logger = logger;
         _appSettings = appSettings;
-        _screenLockService = screenLockService;
-        _screenLockService.OnUnlock += (_, _) => OnUnlock();
 
         InitActivityMonitor(activityMonitor);
         _hotKeyHook = hotKeyHook;
@@ -34,6 +38,8 @@ internal class GlobalLockService : IGlobalLockService
         _taskManagerHook.EnabledTaskManager();
         _mouseHook = mouseHook;
         _systemKeyHook = systemKeyHook;
+        _serviceProvider = serviceProvider;
+        _globalSettings = globalSettings;
     }
 
     /// <summary>
@@ -75,7 +81,18 @@ internal class GlobalLockService : IGlobalLockService
 
     public void Lock()
     {
-        _screenLockService.Lock(_appSettings.LockAnimation);
+        _screenLockService = _serviceProvider.GetRequiredKeyedService<IScreenLockService>(_appSettings.ScreenUnlockMethod);
+
+        if (!_screenLockService.Lock(_appSettings.LockAnimation))
+        {
+            _logger.Write("自动锁定 -> 屏幕锁定失败");
+            return;
+        }
+
+        if (_appSettings.ScreenUnlockMethod == ScreenUnlockMethods.Password)
+        {
+            _screenLockService.OnUnlock += _screenLockService_OnUnlock;
+        }
 
         _logger.Write("自动锁定 -> 暂停空闲检测");
         _activityMonitor?.StopMonitoring();
@@ -89,11 +106,36 @@ internal class GlobalLockService : IGlobalLockService
             _mouseHook.HideCursor();
         }
 
+        if (_appSettings.ScreenUnlockMethod == ScreenUnlockMethods.Hotkey && _globalSettings.HotKey != null)
+        {
+            _logger.Write("锁定服务 -> 允许快捷键解锁 -> 准备处理热键");
+            _systemKeyHook.SetIgnoreHotKey(_globalSettings.HotKey);
+        }
         _systemKeyHook.DisableSystemKey();
+        IsLocked = true;
     }
 
+    /// <summary>
+    /// 解锁（目前只有快捷键锁屏才会显式调用）
+    /// </summary>
+    public void Unlock()
+    {
+        _screenLockService!.Unlock();
+        SystemUnlock();
+        IsLocked = false;
+    }
 
-    private void OnUnlock()
+    private void _screenLockService_OnUnlock(object? sender, EventArgs e)
+    {
+        _screenLockService!.OnUnlock -= _screenLockService_OnUnlock;
+        SystemUnlock();
+        IsLocked = false;
+    }
+
+    /// <summary>
+    /// 系统层面解锁（不包括本程序窗口）
+    /// </summary>
+    private void SystemUnlock()
     {
         _logger.Write("自动锁定 -> 启动空闲检测");
         _activityMonitor?.StartMonitoring();

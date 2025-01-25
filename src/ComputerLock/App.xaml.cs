@@ -50,11 +50,14 @@ public partial class App : Application
         services.AddSingleton<WindowMain>();
         services.AddTransient<WindowLockScreen>();
         services.AddTransient<WindowBlankScreen>();
-        services.AddSingleton<ScreenLockService>();
         services.AddSingleton<SystemKeyHook>();
+        services.AddSingleton<GlobalSettings>();
         services.AddSingleton<IWindowMoving, WindowMoving>();
         services.AddSingleton<IWindowTitleBar, WindowTitleBar>();
         services.AddSingleton<IGlobalLockService, GlobalLockService>();
+        services.AddKeyedSingleton<IScreenLockService, PasswordScreenLockService>(ScreenUnlockMethods.Password);
+        services.AddKeyedSingleton<IScreenLockService, HotkeyScreenLockService>(ScreenUnlockMethods.Hotkey);
+
         services.AddLocalization();
         services.AddWpfBlazorWebView();
         services.AddBlazorWebViewDeveloperTools();

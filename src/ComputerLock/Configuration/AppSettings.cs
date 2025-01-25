@@ -93,4 +93,9 @@ public class AppSettings
     /// 自动隐藏鼠标光标
     /// </summary>
     public bool IsHideMouseCursor { get; set; } = false;
+
+    /// <summary>
+    /// 屏幕解锁方式
+    /// </summary>
+    public ScreenUnlockMethods ScreenUnlockMethod { get; set; } = ScreenUnlockMethods.Password;
 }

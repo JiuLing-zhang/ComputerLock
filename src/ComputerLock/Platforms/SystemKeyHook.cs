@@ -23,6 +23,7 @@ internal class SystemKeyHook : IDisposable
 
     private int _hookId;
     private readonly HookDelegate _hookCallback;
+    private HotKey? _ignoreHotKey; // 使用单个HotKey变量来存储需要忽略的快捷键
 
     public delegate int HookDelegate(int nCode, int wParam, IntPtr lParam);
 
@@ -55,24 +56,99 @@ internal class SystemKeyHook : IDisposable
         _hookId = SetWindowsHookEx(WH_KEYBOARD_LL, _hookCallback, GetModuleHandle(moduleName), 0);
     }
 
+    public void SetIgnoreHotKey(HotKey hotKey)
+    {
+        _ignoreHotKey = hotKey;
+    }
     private int KeyboardHookCallback(int nCode, int wParam, IntPtr lParam)
     {
-        if (nCode >= 0 && (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
+        if (nCode >= 0)
         {
             int vkCode = Marshal.ReadInt32(lParam);
-            if (vkCode == VK_LWIN || vkCode == VK_RWIN ||
-                vkCode == VK_LSHIFT || vkCode == VK_RSHIFT ||
-                vkCode == VK_LCONTROL || vkCode == VK_RCONTROL ||
-                vkCode == VK_LMENU || vkCode == VK_RMENU ||
-                vkCode == VK_TAB)
+
+            if (_ignoreHotKey == null)
             {
-                return 1; // 阻止事件传递
+                if (IsSystemKey(vkCode) && (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
+                {
+                    return 1; // 阻止事件传递
+                }
+                return CallNextHookEx(_hookId, nCode, wParam, lParam); // 其他按键放行
             }
+
+            if (!IsPartOfIgnoreHotKey(vkCode))
+            {
+                if (IsModifierKey(vkCode) && !IsModifierRequired(vkCode))
+                {
+                    return 1; // 阻止事件传递
+                }
+                else if (vkCode != (int)_ignoreHotKey.Key)
+                {
+                    return 1; // 阻止事件传递
+                }
+            }
+            return CallNextHookEx(_hookId, nCode, wParam, lParam); // 放行
         }
         return CallNextHookEx(_hookId, nCode, wParam, lParam);
     }
+
+    private bool IsSystemKey(int vkCode)
+    {
+        return vkCode == VK_LWIN || vkCode == VK_RWIN ||
+               vkCode == VK_LSHIFT || vkCode == VK_RSHIFT ||
+               vkCode == VK_LCONTROL || vkCode == VK_RCONTROL ||
+               vkCode == VK_LMENU || vkCode == VK_RMENU ||
+               vkCode == VK_TAB;
+    }
+
+    private bool IsPartOfIgnoreHotKey(int vkCode)
+    {
+        bool isPartOfIgnoreHotKey = false;
+        if (_ignoreHotKey!.Modifiers.HasFlag(HotKeyModifiers.Control))
+        {
+            isPartOfIgnoreHotKey |= (vkCode == VK_LCONTROL || vkCode == VK_RCONTROL);
+        }
+
+        if (_ignoreHotKey.Modifiers.HasFlag(HotKeyModifiers.Shift))
+        {
+            isPartOfIgnoreHotKey |= (vkCode == VK_LSHIFT || vkCode == VK_RSHIFT);
+        }
+
+        if (_ignoreHotKey.Modifiers.HasFlag(HotKeyModifiers.Alt))
+        {
+            isPartOfIgnoreHotKey |= (vkCode == VK_LMENU || vkCode == VK_RMENU);
+        }
+
+        isPartOfIgnoreHotKey |= (vkCode == (int)_ignoreHotKey.Key);
+        return isPartOfIgnoreHotKey;
+    }
+
+    private bool IsModifierKey(int vkCode)
+    {
+        return vkCode == VK_LCONTROL || vkCode == VK_RCONTROL ||
+               vkCode == VK_LSHIFT || vkCode == VK_RSHIFT ||
+               vkCode == VK_LMENU || vkCode == VK_RMENU;
+    }
+
+    private bool IsModifierRequired(int vkCode)
+    {
+        if (vkCode == VK_LCONTROL || vkCode == VK_RCONTROL)
+        {
+            return _ignoreHotKey!.Modifiers.HasFlag(HotKeyModifiers.Control);
+        }
+        if (vkCode == VK_LSHIFT || vkCode == VK_RSHIFT)
+        {
+            return _ignoreHotKey!.Modifiers.HasFlag(HotKeyModifiers.Shift);
+        }
+        if (vkCode == VK_LMENU || vkCode == VK_RMENU)
+        {
+            return _ignoreHotKey!.Modifiers.HasFlag(HotKeyModifiers.Alt);
+        }
+        return false;
+    }
+
     public void Dispose()
     {
+        _ignoreHotKey = null;
         UnhookWindowsHookEx(_hookId);
     }
 }

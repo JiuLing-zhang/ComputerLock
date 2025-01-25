@@ -5,5 +5,7 @@
 /// </summary>
 public interface IGlobalLockService : IDisposable
 {
+    bool IsLocked { get; }
     void Lock();
+    void Unlock();
 }

@@ -171,8 +171,8 @@
   <data name="Restarting" xml:space="preserve">
     <value>The setting is successful and will take effect after restarting.</value>
   </data>
-  <data name="LockShortcutKey" xml:space="preserve">
-    <value>Lock shortcut key</value>
+  <data name="LockHotkey" xml:space="preserve">
+    <value>Lock hotkey</value>
   </data>
   <data name="Invalid" xml:space="preserve">
     <value>Invalid</value>
@@ -344,5 +344,20 @@
   </data>
   <data name="HideMouseCursor" xml:space="preserve">
     <value>Hide the mouse cursor</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="Advanced" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
+  <data name="PasswordUnlock" xml:space="preserve">
+    <value>Password Unlock</value>
+  </data>
+  <data name="HotkeyUnlock" xml:space="preserve">
+    <value>Hotkey Unlock</value>
+  </data>
+  <data name="HotkeyUnlockTips" xml:space="preserve">
+    <value>If you use this option, please make sure that the hotkey is set, otherwise, it won't unlock! (Appropriate validation may be added in the future).</value>
   </data>
 </root>

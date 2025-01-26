@@ -151,7 +151,7 @@
   <data name="Restarting" xml:space="preserve">
     <value></value>
   </data>
-  <data name="LockShortcutKey" xml:space="preserve">
+  <data name="LockHotkey" xml:space="preserve">
     <value></value>
   </data>
   <data name="Invalid" xml:space="preserve">
@@ -323,6 +323,21 @@
     <value></value>
   </data>
   <data name="HideMouseCursor" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Advanced" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PasswordUnlock" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="HotkeyUnlock" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="HotkeyUnlockTips" xml:space="preserve">
     <value></value>
   </data>
 </root>

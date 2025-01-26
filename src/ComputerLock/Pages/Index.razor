@@ -46,7 +46,7 @@ else
     </MudNumericField>
 
     <MudPaper Class="d-flex align-center" Elevation="0">
-        <MudText Typo="Typo.button">@(Lang["LockShortcutKey"])</MudText>
+        <MudText Typo="Typo.button">@(Lang["LockHotkey"])</MudText>
         <MudButton Class="ml-3"
                    Size="Size.Small"
                    Color="Color.Primary"
@@ -72,8 +72,8 @@ else
                     Size="Size.Small"
                     CheckMark
                     FixedContent>
-        <MudToggleItem Value="@(ScreenUnlockMethods.Password)" Text="@(ScreenUnlockMethods.Password.GetDescription())" />
-        <MudToggleItem Value="@(ScreenUnlockMethods.Hotkey)" Text="@(ScreenUnlockMethods.Hotkey.GetDescription())" />
+        <MudToggleItem Value="@(ScreenUnlockMethods.Password)" Text="@(Lang["PasswordUnlock"])" />
+        <MudToggleItem Value="@(ScreenUnlockMethods.Hotkey)" Text="@(Lang["HotkeyUnlock"])" />
     </MudToggleGroup>
 
     <MudPaper Elevation="0" Height="210px">
@@ -145,7 +145,7 @@ else
         else if (AppSettings.ScreenUnlockMethod == ScreenUnlockMethods.Hotkey)
         {
             <MudAlert Severity="Severity.Success">当前不支持自定义快捷键，解锁和锁屏快捷键相同</MudAlert>
-            <MudAlert Severity="Severity.Error">如果使用此选项，请确保已经设置了快捷键，否则会无法解锁！！（后续可能会加入适当校验）</MudAlert>
+            <MudAlert Severity="Severity.Error">@(Lang["HotkeyUnlockTips"])</MudAlert>
         }
     </MudPaper>
 }

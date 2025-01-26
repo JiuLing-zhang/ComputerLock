@@ -171,7 +171,7 @@
   <data name="Restarting" xml:space="preserve">
     <value>设置成功，重启后生效</value>
   </data>
-  <data name="LockShortcutKey" xml:space="preserve">
+  <data name="LockHotkey" xml:space="preserve">
     <value>锁屏快捷键</value>
   </data>
   <data name="Invalid" xml:space="preserve">
@@ -341,5 +341,20 @@
   </data>
   <data name="HideMouseCursor" xml:space="preserve">
     <value>锁定时隐藏鼠标光标</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>版本信息</value>
+  </data>
+  <data name="Advanced" xml:space="preserve">
+    <value>高级</value>
+  </data>
+  <data name="PasswordUnlock" xml:space="preserve">
+    <value>密码解锁</value>
+  </data>
+  <data name="HotkeyUnlock" xml:space="preserve">
+    <value>快捷键解锁</value>
+  </data>
+  <data name="HotkeyUnlockTips" xml:space="preserve">
+    <value>如果使用此选项，请确保已经设置了快捷键，否则会无法解锁！！（后续可能会加入适当校验）</value>
   </data>
 </root>

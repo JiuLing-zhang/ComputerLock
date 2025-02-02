@@ -18,12 +18,11 @@ internal class GlobalLockService : IGlobalLockService
     private readonly TaskManagerHook _taskManagerHook;
     private readonly MouseHook _mouseHook;
     private readonly SystemKeyHook _systemKeyHook;
-    private readonly GlobalSettings _globalSettings;
     private readonly IServiceProvider _serviceProvider;
 
     public bool IsLocked { get; private set; }
 
-    public GlobalLockService(ILogger logger, AppSettings appSettings, UserActivityMonitor activityMonitor, HotKeyHook hotKeyHook, TaskManagerHook taskManagerHook, MouseHook mouseHook, SystemKeyHook systemKeyHook, GlobalSettings globalSettings, IServiceProvider serviceProvider)
+    public GlobalLockService(ILogger logger, AppSettings appSettings, UserActivityMonitor activityMonitor, HotKeyHook hotKeyHook, TaskManagerHook taskManagerHook, MouseHook mouseHook, SystemKeyHook systemKeyHook, IServiceProvider serviceProvider)
     {
         _logger = logger;
         _appSettings = appSettings;
@@ -39,7 +38,6 @@ internal class GlobalLockService : IGlobalLockService
         _mouseHook = mouseHook;
         _systemKeyHook = systemKeyHook;
         _serviceProvider = serviceProvider;
-        _globalSettings = globalSettings;
     }
 
     /// <summary>
@@ -106,10 +104,10 @@ internal class GlobalLockService : IGlobalLockService
             _mouseHook.HideCursor();
         }
 
-        if (_appSettings.ScreenUnlockMethod == ScreenUnlockMethods.Hotkey && _globalSettings.HotKey != null)
+        if (_appSettings.ScreenUnlockMethod == ScreenUnlockMethods.Hotkey && _appSettings.LockHotKey != null)
         {
             _logger.Write("锁定服务 -> 允许快捷键解锁 -> 准备处理热键");
-            _systemKeyHook.SetIgnoreHotKey(_globalSettings.HotKey);
+            _systemKeyHook.SetIgnoreHotKey(_appSettings.LockHotKey);
         }
         _systemKeyHook.DisableSystemKey();
         IsLocked = true;

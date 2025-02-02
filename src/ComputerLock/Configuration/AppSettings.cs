@@ -1,6 +1,16 @@
-﻿namespace ComputerLock.Configuration;
+﻿using System.Text.Json.Serialization;
+
+namespace ComputerLock.Configuration;
 public class AppSettings
 {
+    [JsonIgnore]
+    private HotKeyTools? _hotKeyTools;
+
+    public void Initialize(HotKeyTools hotKeyTools)
+    {
+        _hotKeyTools = hotKeyTools;
+    }
+
     /// <summary>
     /// 主题
     /// </summary>
@@ -64,10 +74,19 @@ public class AppSettings
     /// 锁屏快捷键
     /// </summary>
     public string ShortcutKeyForLock { get; set; } = "";
+
     /// <summary>
     /// 锁屏快捷键(映射到按键名称，用于主界面显示)
     /// </summary>
-    public string ShortcutKeyDisplayForLock { get; set; } = "";
+    [JsonIgnore]
+    public string LockHotKeyDisplay => _hotKeyTools?.StringKeyToDisplay(ShortcutKeyForLock) ?? "";
+
+    /// <summary>
+    /// 锁屏快捷键
+    /// </summary>
+    [JsonIgnore]
+    public HotKey? LockHotKey => _hotKeyTools?.StringKeyToHotKey(ShortcutKeyForLock);
+
 
     /// <summary>
     /// 自动检查更新

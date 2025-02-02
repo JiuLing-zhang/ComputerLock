@@ -180,7 +180,7 @@ public partial class Setting
             return;
         }
 
-        AppSettingsProvider.SaveSettings(new AppSettings());
+        AppSettingsProvider.RemoveSettings();
         Restart();
     }
 }

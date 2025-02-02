@@ -280,7 +280,7 @@
     <value>日志文件</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>查看</value>
+    <value>查看文件</value>
   </data>
   <data name="RemoveLogs" xml:space="preserve">
     <value>清空</value>

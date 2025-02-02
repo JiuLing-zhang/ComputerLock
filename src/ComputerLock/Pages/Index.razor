@@ -51,7 +51,7 @@ else
                    Size="Size.Small"
                    Color="Color.Primary"
                    OnClick="SetShortcutKey">
-            @(_shortcutKeyText)
+            @(AppSettings.LockHotKeyDisplay)
         </MudButton>
         @if (AppSettings.ShortcutKeyForLock.IsNotEmpty())
         {

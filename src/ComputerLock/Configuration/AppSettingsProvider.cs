@@ -32,4 +32,12 @@ internal class AppSettingsProvider(IStringLocalizer<Lang> lang)
         string appConfigString = System.Text.Json.JsonSerializer.Serialize(settings);
         File.WriteAllText(AppBase.ConfigPath, appConfigString);
     }
+
+    public void RemoveSettings()
+    {
+        if (File.Exists(AppBase.ConfigPath))
+        {
+            File.Delete(AppBase.ConfigPath);
+        }
+    }
 }

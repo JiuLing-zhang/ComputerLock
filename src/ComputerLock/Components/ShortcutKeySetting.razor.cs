@@ -10,10 +10,12 @@ public partial class ShortcutKeySetting
 
     private string _text = default!;
     private string _key = "";
-    private string _displayText = "";
 
     [Inject]
     private IStringLocalizer<Lang> Lang { get; set; } = default!;
+
+    [Inject]
+    private HotKeyTools HotKeyTools { get; set; } = default!;
 
     protected override async Task OnInitializedAsync()
     {
@@ -55,9 +57,8 @@ public partial class ShortcutKeySetting
 
         if ((ascii >= 48 && ascii <= 57) || (ascii >= 65 && ascii <= 90))
         {
-            _displayText = _key + $"{value.Key}";
-            _text = _displayText;
             _key += $"{ascii}";
+            _text = HotKeyTools.StringKeyToDisplay(_key);
         }
         else
         {
@@ -69,7 +70,7 @@ public partial class ShortcutKeySetting
 
     private void Submit()
     {
-        MudDialog.Close(DialogResult.Ok(new ShortcutKey(_key, _displayText)));
+        MudDialog.Close(DialogResult.Ok(_key));
     }
     private void Cancel() => MudDialog.Cancel();
 }

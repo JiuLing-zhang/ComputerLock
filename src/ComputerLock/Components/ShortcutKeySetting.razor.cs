@@ -15,7 +15,7 @@ public partial class ShortcutKeySetting
     private IStringLocalizer<Lang> Lang { get; set; } = default!;
 
     [Inject]
-    private HotKeyTools HotKeyTools { get; set; } = default!;
+    private HotkeyTools HotkeyTools { get; set; } = default!;
 
     protected override async Task OnInitializedAsync()
     {
@@ -58,7 +58,7 @@ public partial class ShortcutKeySetting
         if ((ascii >= 48 && ascii <= 57) || (ascii >= 65 && ascii <= 90))
         {
             _key += $"{ascii}";
-            _text = HotKeyTools.StringKeyToDisplay(_key);
+            _text = HotkeyTools.StringKeyToDisplay(_key);
         }
         else
         {

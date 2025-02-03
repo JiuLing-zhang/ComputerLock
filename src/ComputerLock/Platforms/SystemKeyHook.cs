@@ -23,7 +23,7 @@ internal class SystemKeyHook : IDisposable
 
     private int _hookId;
     private readonly HookDelegate _hookCallback;
-    private HotKey? _ignoreHotKey; // 使用单个HotKey变量来存储需要忽略的快捷键
+    private Hotkey? _ignoreHotkey; // 使用单个Hotkey变量来存储需要忽略的快捷键
 
     public delegate int HookDelegate(int nCode, int wParam, IntPtr lParam);
 
@@ -56,9 +56,9 @@ internal class SystemKeyHook : IDisposable
         _hookId = SetWindowsHookEx(WH_KEYBOARD_LL, _hookCallback, GetModuleHandle(moduleName), 0);
     }
 
-    public void SetIgnoreHotKey(HotKey hotKey)
+    public void SetIgnoreHotkey(Hotkey hotKey)
     {
-        _ignoreHotKey = hotKey;
+        _ignoreHotkey = hotKey;
     }
     private int KeyboardHookCallback(int nCode, int wParam, IntPtr lParam)
     {
@@ -66,7 +66,7 @@ internal class SystemKeyHook : IDisposable
         {
             int vkCode = Marshal.ReadInt32(lParam);
 
-            if (_ignoreHotKey == null)
+            if (_ignoreHotkey == null)
             {
                 if (IsSystemKey(vkCode) && (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
                 {
@@ -75,13 +75,13 @@ internal class SystemKeyHook : IDisposable
                 return CallNextHookEx(_hookId, nCode, wParam, lParam); // 其他按键放行
             }
 
-            if (!IsPartOfIgnoreHotKey(vkCode))
+            if (!IsPartOfIgnoreHotkey(vkCode))
             {
                 if (IsModifierKey(vkCode) && !IsModifierRequired(vkCode))
                 {
                     return 1; // 阻止事件传递
                 }
-                else if (vkCode != (int)_ignoreHotKey.Key)
+                else if (vkCode != (int)_ignoreHotkey.Key)
                 {
                     return 1; // 阻止事件传递
                 }
@@ -100,26 +100,26 @@ internal class SystemKeyHook : IDisposable
                vkCode == VK_TAB;
     }
 
-    private bool IsPartOfIgnoreHotKey(int vkCode)
+    private bool IsPartOfIgnoreHotkey(int vkCode)
     {
-        bool isPartOfIgnoreHotKey = false;
-        if (_ignoreHotKey!.Modifiers.HasFlag(HotKeyModifiers.Control))
+        bool isPartOfIgnoreHotkey = false;
+        if (_ignoreHotkey!.Modifiers.HasFlag(HotkeyModifiers.Control))
         {
-            isPartOfIgnoreHotKey |= (vkCode == VK_LCONTROL || vkCode == VK_RCONTROL);
+            isPartOfIgnoreHotkey |= (vkCode == VK_LCONTROL || vkCode == VK_RCONTROL);
         }
 
-        if (_ignoreHotKey.Modifiers.HasFlag(HotKeyModifiers.Shift))
+        if (_ignoreHotkey.Modifiers.HasFlag(HotkeyModifiers.Shift))
         {
-            isPartOfIgnoreHotKey |= (vkCode == VK_LSHIFT || vkCode == VK_RSHIFT);
+            isPartOfIgnoreHotkey |= (vkCode == VK_LSHIFT || vkCode == VK_RSHIFT);
         }
 
-        if (_ignoreHotKey.Modifiers.HasFlag(HotKeyModifiers.Alt))
+        if (_ignoreHotkey.Modifiers.HasFlag(HotkeyModifiers.Alt))
         {
-            isPartOfIgnoreHotKey |= (vkCode == VK_LMENU || vkCode == VK_RMENU);
+            isPartOfIgnoreHotkey |= (vkCode == VK_LMENU || vkCode == VK_RMENU);
         }
 
-        isPartOfIgnoreHotKey |= (vkCode == (int)_ignoreHotKey.Key);
-        return isPartOfIgnoreHotKey;
+        isPartOfIgnoreHotkey |= (vkCode == (int)_ignoreHotkey.Key);
+        return isPartOfIgnoreHotkey;
     }
 
     private bool IsModifierKey(int vkCode)
@@ -133,22 +133,22 @@ internal class SystemKeyHook : IDisposable
     {
         if (vkCode == VK_LCONTROL || vkCode == VK_RCONTROL)
         {
-            return _ignoreHotKey!.Modifiers.HasFlag(HotKeyModifiers.Control);
+            return _ignoreHotkey!.Modifiers.HasFlag(HotkeyModifiers.Control);
         }
         if (vkCode == VK_LSHIFT || vkCode == VK_RSHIFT)
         {
-            return _ignoreHotKey!.Modifiers.HasFlag(HotKeyModifiers.Shift);
+            return _ignoreHotkey!.Modifiers.HasFlag(HotkeyModifiers.Shift);
         }
         if (vkCode == VK_LMENU || vkCode == VK_RMENU)
         {
-            return _ignoreHotKey!.Modifiers.HasFlag(HotKeyModifiers.Alt);
+            return _ignoreHotkey!.Modifiers.HasFlag(HotkeyModifiers.Alt);
         }
         return false;
     }
 
     public void Dispose()
     {
-        _ignoreHotKey = null;
+        _ignoreHotkey = null;
         UnhookWindowsHookEx(_hookId);
     }
 }

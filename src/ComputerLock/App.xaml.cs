@@ -40,12 +40,12 @@ public partial class App : Application
         services.AddSingleton<AppSettings>((sp) =>
         {
             var appSettings = sp.GetRequiredService<AppSettingsProvider>().LoadSettings();
-            var hotKeyTools = sp.GetRequiredService<HotKeyTools>();
-            appSettings.Initialize(hotKeyTools);
+            var hotkeyTools = sp.GetRequiredService<HotkeyTools>();
+            appSettings.Initialize(hotkeyTools);
             return appSettings;
         });
         services.AddSingleton(LogManager.GetLogger());
-        services.AddSingleton<HotKeyHook>();
+        services.AddSingleton<HotkeyHook>();
         services.AddSingleton<MouseHook>();
         services.AddSingleton<UpdateHelper>();
         services.AddSingleton<AutostartHook>();
@@ -55,7 +55,7 @@ public partial class App : Application
         services.AddTransient<WindowLockScreen>();
         services.AddTransient<WindowBlankScreen>();
         services.AddSingleton<SystemKeyHook>();
-        services.AddSingleton<HotKeyTools>();
+        services.AddSingleton<HotkeyTools>();
         services.AddSingleton<IWindowMoving, WindowMoving>();
         services.AddSingleton<IWindowTitleBar, WindowTitleBar>();
         services.AddSingleton<IGlobalLockService, GlobalLockService>();

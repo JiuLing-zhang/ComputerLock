@@ -26,7 +26,7 @@ public partial class Index
     private IGlobalLockService GlobalLockService { get; set; } = default!;
 
     [Inject]
-    private HotKeyHook HotKeyHook { get; set; } = default!;
+    private HotkeyHook HotkeyHook { get; set; } = default!;
 
     [Inject]
     private IWindowTitleBar WindowTitleBar { get; set; } = default!;
@@ -45,10 +45,10 @@ public partial class Index
 
         if (AppSettings.ShortcutKeyForLock.IsNotTrimEmpty())
         {
-            RegisterHotKey();
+            RegisterHotkey();
         }
 
-        HotKeyHook.HotKeyPressed += () =>
+        HotkeyHook.HotkeyPressed += () =>
         {
             if (GlobalLockService.IsLocked)
             {
@@ -167,24 +167,24 @@ public partial class Index
 
         AppSettings.ShortcutKeyForLock = result.Data!.ToString()!;
         SaveSettings();
-        RegisterHotKey();
+        RegisterHotkey();
     }
     private Task ClearShortcutKey()
     {
         AppSettings.ShortcutKeyForLock = "";
         SaveSettings();
-        UnregisterHotKey();
+        UnregisterHotkey();
         return Task.CompletedTask;
     }
 
-    public void RegisterHotKey()
+    public void RegisterHotkey()
     {
         try
         {
-            if (AppSettings.LockHotKey != null)
+            if (AppSettings.LockHotkey != null)
             {
                 Logger.Write("注册锁屏热键");
-                HotKeyHook.Register(AppSettings.LockHotKey);
+                HotkeyHook.Register(AppSettings.LockHotkey);
             }
         }
         catch (Exception ex)
@@ -194,12 +194,12 @@ public partial class Index
         }
     }
 
-    public void UnregisterHotKey()
+    public void UnregisterHotkey()
     {
         try
         {
             Logger.Write("释放锁屏热键");
-            HotKeyHook.Unregister();
+            HotkeyHook.Unregister();
         }
         catch (Exception ex)
         {

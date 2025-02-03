@@ -1,32 +1,32 @@
 ﻿namespace ComputerLock.Models;
 
-public class HotKeyTools(IStringLocalizer<Lang> lang)
+public class HotkeyTools(IStringLocalizer<Lang> lang)
 {
-    public HotKey? StringKeyToHotKey(string shortcutKey)
+    public Hotkey? StringKeyToHotkey(string shortcutKey)
     {
         if (shortcutKey.IsEmpty())
         {
             return null;
         }
 
-        HotKeyModifiers modifiers = 0;
+        HotkeyModifiers modifiers = 0;
         if (shortcutKey.IndexOf("Ctrl") >= 0)
         {
-            modifiers |= HotKeyModifiers.Control;
+            modifiers |= HotkeyModifiers.Control;
         }
         if (shortcutKey.IndexOf("Shift") >= 0)
         {
-            modifiers |= HotKeyModifiers.Shift;
+            modifiers |= HotkeyModifiers.Shift;
         }
         if (shortcutKey.IndexOf("Alt") >= 0)
         {
-            modifiers |= HotKeyModifiers.Alt;
+            modifiers |= HotkeyModifiers.Alt;
         }
 
         string[] keyParts = shortcutKey.Split([" + "], StringSplitOptions.None);
         int keyCode = int.Parse(keyParts[^1]);
         Keys key = (Keys)keyCode;
-        return new HotKey(modifiers, key);
+        return new Hotkey(modifiers, key);
     }
 
     public string StringKeyToDisplay(string shortcutKey)

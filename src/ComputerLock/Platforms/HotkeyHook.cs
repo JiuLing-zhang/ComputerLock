@@ -5,7 +5,7 @@ namespace ComputerLock.Platforms;
 /// <summary>
 /// 快捷键钩子
 /// </summary>
-public class HotKeyHook : IDisposable
+public class HotkeyHook : IDisposable
 {
     [DllImport("user32.dll")]
     private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
@@ -16,13 +16,13 @@ public class HotKeyHook : IDisposable
     private const int HotkeyId = 90;
     private bool _isRegistered;
 
-    public event Action? HotKeyPressed;
+    public event Action? HotkeyPressed;
 
-    private sealed class HotKeyNativeWindow : NativeWindow
+    private sealed class HotkeyNativeWindow : NativeWindow
     {
-        public event Action? OnHotKeyPressed;
+        public event Action? OnHotkeyPressed;
 
-        public HotKeyNativeWindow()
+        public HotkeyNativeWindow()
         {
             this.CreateHandle(new CreateParams());
         }
@@ -33,7 +33,7 @@ public class HotKeyHook : IDisposable
             {
                 if (m.WParam.ToInt32() == HotkeyId)
                 {
-                    OnHotKeyPressed?.Invoke();
+                    OnHotkeyPressed?.Invoke();
                 }
             }
             else
@@ -43,18 +43,18 @@ public class HotKeyHook : IDisposable
         }
     }
 
-    private readonly HotKeyNativeWindow _nativeWindow;
+    private readonly HotkeyNativeWindow _nativeWindow;
 
-    public HotKeyHook()
+    public HotkeyHook()
     {
-        _nativeWindow = new HotKeyNativeWindow();
-        _nativeWindow.OnHotKeyPressed += () => HotKeyPressed?.Invoke();
+        _nativeWindow = new HotkeyNativeWindow();
+        _nativeWindow.OnHotkeyPressed += () => HotkeyPressed?.Invoke();
     }
 
     /// <summary>
     /// 注册快捷键
     /// </summary>
-    public void Register(HotKey hotKey)
+    public void Register(Hotkey hotKey)
     {
         if (_isRegistered)
         {
@@ -99,7 +99,7 @@ public class HotKeyHook : IDisposable
         _nativeWindow.DestroyHandle();
     }
 
-    ~HotKeyHook()
+    ~HotkeyHook()
     {
         Dispose(false);
     }

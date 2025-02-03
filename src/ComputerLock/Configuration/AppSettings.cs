@@ -4,11 +4,11 @@ namespace ComputerLock.Configuration;
 public class AppSettings
 {
     [JsonIgnore]
-    private HotKeyTools? _hotKeyTools;
+    private HotkeyTools? _hotkeyTools;
 
-    public void Initialize(HotKeyTools hotKeyTools)
+    public void Initialize(HotkeyTools hotkeyTools)
     {
-        _hotKeyTools = hotKeyTools;
+        _hotkeyTools = hotkeyTools;
     }
 
     /// <summary>
@@ -79,13 +79,13 @@ public class AppSettings
     /// 锁屏快捷键(映射到按键名称，用于主界面显示)
     /// </summary>
     [JsonIgnore]
-    public string LockHotKeyDisplay => _hotKeyTools?.StringKeyToDisplay(ShortcutKeyForLock) ?? "";
+    public string LockHotkeyDisplay => _hotkeyTools?.StringKeyToDisplay(ShortcutKeyForLock) ?? "";
 
     /// <summary>
     /// 锁屏快捷键
     /// </summary>
     [JsonIgnore]
-    public HotKey? LockHotKey => _hotKeyTools?.StringKeyToHotKey(ShortcutKeyForLock);
+    public Hotkey? LockHotkey => _hotkeyTools?.StringKeyToHotkey(ShortcutKeyForLock);
 
 
     /// <summary>

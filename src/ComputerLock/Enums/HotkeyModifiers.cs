@@ -4,7 +4,7 @@
 /// 热键修饰键
 /// </summary>
 [Flags]
-public enum HotKeyModifiers : uint
+public enum HotkeyModifiers : uint
 {
     Alt = 1,
     Control = 2,

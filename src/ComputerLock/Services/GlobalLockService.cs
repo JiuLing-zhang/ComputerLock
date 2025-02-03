@@ -14,7 +14,7 @@ internal class GlobalLockService : IGlobalLockService
     private readonly AppSettings _appSettings;
     private IScreenLockService? _screenLockService;
     private UserActivityMonitor? _activityMonitor;
-    private readonly HotKeyHook _hotKeyHook;
+    private readonly HotkeyHook _hotkeyHook;
     private readonly TaskManagerHook _taskManagerHook;
     private readonly MouseHook _mouseHook;
     private readonly SystemKeyHook _systemKeyHook;
@@ -22,13 +22,13 @@ internal class GlobalLockService : IGlobalLockService
 
     public bool IsLocked { get; private set; }
 
-    public GlobalLockService(ILogger logger, AppSettings appSettings, UserActivityMonitor activityMonitor, HotKeyHook hotKeyHook, TaskManagerHook taskManagerHook, MouseHook mouseHook, SystemKeyHook systemKeyHook, IServiceProvider serviceProvider)
+    public GlobalLockService(ILogger logger, AppSettings appSettings, UserActivityMonitor activityMonitor, HotkeyHook hotkeyHook, TaskManagerHook taskManagerHook, MouseHook mouseHook, SystemKeyHook systemKeyHook, IServiceProvider serviceProvider)
     {
         _logger = logger;
         _appSettings = appSettings;
 
         InitActivityMonitor(activityMonitor);
-        _hotKeyHook = hotKeyHook;
+        _hotkeyHook = hotkeyHook;
         _taskManagerHook = taskManagerHook;
 
         // 防止锁屏时系统崩溃、重启等问题导致任务栏被禁用
@@ -104,10 +104,10 @@ internal class GlobalLockService : IGlobalLockService
             _mouseHook.HideCursor();
         }
 
-        if (_appSettings.ScreenUnlockMethod == ScreenUnlockMethods.Hotkey && _appSettings.LockHotKey != null)
+        if (_appSettings.ScreenUnlockMethod == ScreenUnlockMethods.Hotkey && _appSettings.LockHotkey != null)
         {
             _logger.Write("锁定服务 -> 允许快捷键解锁 -> 准备处理热键");
-            _systemKeyHook.SetIgnoreHotKey(_appSettings.LockHotKey);
+            _systemKeyHook.SetIgnoreHotkey(_appSettings.LockHotkey);
         }
         _systemKeyHook.DisableSystemKey();
         IsLocked = true;
@@ -152,7 +152,7 @@ internal class GlobalLockService : IGlobalLockService
 
     public void Dispose()
     {
-        _hotKeyHook.Dispose();
+        _hotkeyHook.Dispose();
         _activityMonitor?.Dispose();
     }
 }

@@ -46,9 +46,9 @@ else
     </MudNumericField>
 
     <HotkeyInput Title="@(Lang["LockHotkey"])"
-                 Hotkey="@(AppSettings.ShortcutKeyForLock)"
-                 OnHotkeySet="SetHotkey"
-                 OnHotkeyClear="ClearHotkey" />
+                 Hotkey="@(AppSettings.LockHotkeyString)"
+                 OnHotkeySet="SetLockHotkey"
+                 OnHotkeyClear="ClearLockHotkey" />
 
     <MudToggleGroup @bind-Value="@(AppSettings.ScreenUnlockMethod)"
                     @bind-Value:after="SaveSettings"
@@ -131,8 +131,23 @@ else
         }
         else if (AppSettings.ScreenUnlockMethod == ScreenUnlockMethods.Hotkey)
         {
-            <MudAlert Severity="Severity.Success">当前不支持自定义快捷键，解锁和锁屏快捷键相同</MudAlert>
             <MudAlert Severity="Severity.Error">@(Lang["HotkeyUnlockTips"])</MudAlert>
+
+            <MudPaper Class="mt-1 d-flex align-center" Elevation="0">
+                <HotkeyInput Title="@(Lang["UnlockHotkey"])"
+                             Hotkey="@(AppSettings.UnlockHotkeyString)"
+                             Disabled="@AppSettings.IsUnlockUseLockHotkey"
+                             OnHotkeySet="SetUnlockHotkey"
+                             OnHotkeyClear="ClearUnlockHotkey" />
+
+                <MudCheckBox @bind-Value="@(AppSettings.IsUnlockUseLockHotkey)"
+                             @bind-Value:after="SaveSettings"
+                             class="ml-3"
+                             Label="@(Lang["UseLockHotkey"])"
+                             Size="Size.Small"
+                             Dense="true"
+                             Color="Color.Primary"></MudCheckBox>
+            </MudPaper>
         }
     </MudPaper>
 }

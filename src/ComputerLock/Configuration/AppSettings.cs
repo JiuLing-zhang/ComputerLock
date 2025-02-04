@@ -73,20 +73,36 @@ public class AppSettings
     /// <summary>
     /// 锁屏快捷键
     /// </summary>
-    public string ShortcutKeyForLock { get; set; } = "";
+    [JsonPropertyName("ShortcutKeyForLock")]
+    public string LockHotkeyString { get; set; } = "";
 
     /// <summary>
     /// 锁屏快捷键(映射到按键名称，用于主界面显示)
     /// </summary>
     [JsonIgnore]
-    public string LockHotkeyDisplay => _hotkeyTools?.StringKeyToDisplay(ShortcutKeyForLock) ?? "";
+    public string LockHotkeyDisplay => _hotkeyTools?.StringKeyToDisplay(LockHotkeyString) ?? "";
 
     /// <summary>
     /// 锁屏快捷键
     /// </summary>
     [JsonIgnore]
-    public Hotkey? LockHotkey => _hotkeyTools?.StringKeyToHotkey(ShortcutKeyForLock);
+    public Hotkey? LockHotkey => _hotkeyTools?.StringKeyToHotkey(LockHotkeyString);
 
+    /// <summary>
+    /// 解锁时使用锁屏快捷键
+    /// </summary>
+    public bool IsUnlockUseLockHotkey { get; set; } = true;
+
+    /// <summary>
+    /// 解锁快捷键
+    /// </summary>
+    public string UnlockHotkeyString { get; set; } = "";
+
+    /// <summary>
+    /// 解锁快捷键
+    /// </summary>
+    [JsonIgnore]
+    public Hotkey? UnlockHotkey => _hotkeyTools?.StringKeyToHotkey(UnlockHotkeyString);
 
     /// <summary>
     /// 自动检查更新

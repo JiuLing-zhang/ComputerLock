@@ -52,16 +52,18 @@ public class HotkeyHook : IDisposable
     /// </summary>
     public void Register(int id, Hotkey hotKey)
     {
+        if (ids.Contains(id))
+        {
+            Unregister(id);
+        }
+
         var success = RegisterHotKey(_nativeWindow.Handle, id, (uint)hotKey.Modifiers, (uint)hotKey.Key);
         if (!success)
         {
             throw new Exception($"注册快捷键失败。id({id})");
         }
 
-        if (!ids.Contains(id))
-        {
-            ids.Add(id);
-        }
+        ids.Add(id);
     }
 
     /// <summary>

@@ -765,6 +765,24 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string UnlockHotkey {
+            get {
+                return ResourceManager.GetString("UnlockHotkey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string UseLockHotkey {
+            get {
+                return ResourceManager.GetString("UseLockHotkey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string Version {
             get {
                 return ResourceManager.GetString("Version", resourceCulture);

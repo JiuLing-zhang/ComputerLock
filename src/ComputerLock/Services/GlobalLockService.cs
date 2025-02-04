@@ -104,10 +104,23 @@ internal class GlobalLockService : IGlobalLockService
             _mouseHook.HideCursor();
         }
 
-        if (_appSettings.ScreenUnlockMethod == ScreenUnlockMethods.Hotkey && _appSettings.LockHotkey != null)
+        if (_appSettings.ScreenUnlockMethod == ScreenUnlockMethods.Hotkey)
         {
             _logger.Write("锁定服务 -> 允许快捷键解锁 -> 准备处理热键");
-            _systemKeyHook.SetIgnoreHotkey(_appSettings.LockHotkey);
+            if (_appSettings.IsUnlockUseLockHotkey)
+            {
+                if (_appSettings.LockHotkey != null)
+                {
+                    _systemKeyHook.SetIgnoreHotkey(_appSettings.LockHotkey);
+                }
+            }
+            else
+            {
+                if (_appSettings.UnlockHotkey != null)
+                {
+                    _systemKeyHook.SetIgnoreHotkey(_appSettings.UnlockHotkey);
+                }
+            }
         }
         _systemKeyHook.DisableSystemKey();
         IsLocked = true;

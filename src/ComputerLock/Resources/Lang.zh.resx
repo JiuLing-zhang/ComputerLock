@@ -357,4 +357,10 @@
   <data name="HotkeyUnlockTips" xml:space="preserve">
     <value>如果使用此选项，请确保已经设置了快捷键，否则会无法解锁！！（后续可能会加入适当校验）</value>
   </data>
+  <data name="UnlockHotkey" xml:space="preserve">
+    <value>解锁快捷键</value>
+  </data>
+  <data name="UseLockHotkey" xml:space="preserve">
+    <value>使用锁屏快捷键</value>
+  </data>
 </root>

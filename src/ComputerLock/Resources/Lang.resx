@@ -340,4 +340,10 @@
   <data name="HotkeyUnlockTips" xml:space="preserve">
     <value></value>
   </data>
+  <data name="UnlockHotkey" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UseLockHotkey" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

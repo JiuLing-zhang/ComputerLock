@@ -43,22 +43,40 @@ public partial class Index
         _keyboardDownChecked = (AppSettings.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.KeyboardDown) == PasswordBoxActiveMethodEnum.KeyboardDown;
         _mouseDownChecked = (AppSettings.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.MouseDown) == PasswordBoxActiveMethodEnum.MouseDown;
 
-        if (AppSettings.ShortcutKeyForLock.IsNotTrimEmpty())
+        if (AppSettings.LockHotkeyString.IsNotTrimEmpty())
         {
-            RegisterHotkey();
+            RegisterLockHotkey();
+        }
+        if (AppSettings.UnlockHotkeyString.IsNotTrimEmpty())
+        {
+            RegisterUnlockHotkey();
         }
 
         HotkeyHook.HotkeyPressed += (id) =>
         {
-            if (GlobalLockService.IsLocked)
+            if (id == (int)HotkeyType.Lock)
             {
-                Logger.Write("快捷键解锁");
-                GlobalLockService.Unlock();
+                if (!GlobalLockService.IsLocked)
+                {
+                    Logger.Write("快捷键锁定");
+                    GlobalLockService.Lock();
+                }
+                else
+                {
+                    if (AppSettings.ScreenUnlockMethod == ScreenUnlockMethods.Hotkey && AppSettings.IsUnlockUseLockHotkey)
+                    {
+                        Logger.Write("快捷键解锁");
+                        GlobalLockService.Unlock();
+                    }
+                }
             }
-            else
+            else if (id == (int)HotkeyType.Unlock)
             {
-                Logger.Write("快捷键锁定");
-                GlobalLockService.Lock();
+                if (GlobalLockService.IsLocked)
+                {
+                    Logger.Write("快捷键解锁");
+                    GlobalLockService.Unlock();
+                }
             }
         };
 
@@ -150,22 +168,37 @@ public partial class Index
     {
         AppSettingsProvider.SaveSettings(AppSettings);
     }
-    private Task SetHotkey(string hotkey)
+    private Task SetLockHotkey(string hotkey)
     {
-        AppSettings.ShortcutKeyForLock = hotkey;
+        AppSettings.LockHotkeyString = hotkey;
         SaveSettings();
-        RegisterHotkey();
+        RegisterLockHotkey();
         return Task.CompletedTask;
     }
-    private Task ClearHotkey()
+    private Task ClearLockHotkey()
     {
-        AppSettings.ShortcutKeyForLock = "";
+        AppSettings.LockHotkeyString = "";
         SaveSettings();
-        UnregisterHotkey();
+        UnregisterLockHotkey();
         return Task.CompletedTask;
     }
 
-    public void RegisterHotkey()
+    private Task SetUnlockHotkey(string hotkey)
+    {
+        AppSettings.UnlockHotkeyString = hotkey;
+        SaveSettings();
+        RegisterUnlockHotkey();
+        return Task.CompletedTask;
+    }
+    private Task ClearUnlockHotkey()
+    {
+        AppSettings.UnlockHotkeyString = "";
+        SaveSettings();
+        UnregisterUnlockHotkey();
+        return Task.CompletedTask;
+    }
+
+    public void RegisterLockHotkey()
     {
         try
         {
@@ -181,8 +214,7 @@ public partial class Index
             Snackbar.Add($"{Lang["ExRegistFailed"]}{ex.Message}", Severity.Error);
         }
     }
-
-    public void UnregisterHotkey()
+    public void UnregisterLockHotkey()
     {
         try
         {
@@ -196,6 +228,35 @@ public partial class Index
         }
     }
 
+    public void RegisterUnlockHotkey()
+    {
+        try
+        {
+            if (AppSettings.UnlockHotkey != null)
+            {
+                Logger.Write("注册解锁热键");
+                HotkeyHook.Register((int)HotkeyType.Unlock, AppSettings.UnlockHotkey);
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.Write($"绑定解锁热键失败：{ex.Message}。{ex.StackTrace}");
+            Snackbar.Add($"{Lang["ExRegistFailed"]}{ex.Message}", Severity.Error);
+        }
+    }
+    public void UnregisterUnlockHotkey()
+    {
+        try
+        {
+            Logger.Write("释放解锁热键");
+            HotkeyHook.Unregister((int)HotkeyType.Unlock);
+        }
+        catch (Exception ex)
+        {
+            Logger.Write($"释放解锁热键失败：{ex.Message}。{ex.StackTrace}");
+            //MessageBoxUtils.ShowError($"取消快捷键失败：{ex.Message}");
+        }
+    }
     private async Task ResetPassword()
     {
         var noHeader = new DialogOptions()

@@ -360,4 +360,10 @@
   <data name="HotkeyUnlockTips" xml:space="preserve">
     <value>If you use this option, please make sure that the hotkey is set, otherwise, it won't unlock! (Appropriate validation may be added in the future).</value>
   </data>
+  <data name="UnlockHotkey" xml:space="preserve">
+    <value>Unlock Hotkey</value>
+  </data>
+  <data name="UseLockHotkey" xml:space="preserve">
+    <value>Use Lock Hotkey</value>
+  </data>
 </root>

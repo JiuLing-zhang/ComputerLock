@@ -48,7 +48,7 @@ public partial class Index
             RegisterHotkey();
         }
 
-        HotkeyHook.HotkeyPressed += () =>
+        HotkeyHook.HotkeyPressed += (id) =>
         {
             if (GlobalLockService.IsLocked)
             {
@@ -172,7 +172,7 @@ public partial class Index
             if (AppSettings.LockHotkey != null)
             {
                 Logger.Write("注册锁屏热键");
-                HotkeyHook.Register(AppSettings.LockHotkey);
+                HotkeyHook.Register((int)HotkeyType.Lock, AppSettings.LockHotkey);
             }
         }
         catch (Exception ex)
@@ -187,7 +187,7 @@ public partial class Index
         try
         {
             Logger.Write("释放锁屏热键");
-            HotkeyHook.Unregister();
+            HotkeyHook.Unregister((int)HotkeyType.Lock);
         }
         catch (Exception ex)
         {

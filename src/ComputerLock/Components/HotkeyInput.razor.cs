@@ -7,6 +7,9 @@ public partial class HotkeyInput
     public string Title { get; set; } = null!;
 
     [Parameter]
+    public bool Disabled { get; set; } = false;
+
+    [Parameter]
     public string Hotkey { get; set; } = null!;
 
     [Parameter]

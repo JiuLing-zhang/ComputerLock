@@ -3,7 +3,7 @@ using System.Text;
 using DialogResult = MudBlazor.DialogResult;
 
 namespace ComputerLock.Components;
-public partial class ShortcutKeySetting
+public partial class HotkeySetting
 {
     [CascadingParameter]
     private IMudDialogInstance MudDialog { get; set; } = default!;

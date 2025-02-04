@@ -7,20 +7,19 @@ namespace ComputerLock.Platforms;
 /// </summary>
 public class HotkeyHook : IDisposable
 {
+    private List<int> ids = new List<int>();
+
     [DllImport("user32.dll")]
     private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
 
     [DllImport("user32.dll")]
     private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
-    private const int HotkeyId = 90;
-    private bool _isRegistered;
-
-    public event Action? HotkeyPressed;
+    public event Action<int>? HotkeyPressed;
 
     private sealed class HotkeyNativeWindow : NativeWindow
     {
-        public event Action? OnHotkeyPressed;
+        public event Action<int>? OnHotkeyPressed;
 
         public HotkeyNativeWindow()
         {
@@ -31,10 +30,7 @@ public class HotkeyHook : IDisposable
         {
             if (m.Msg == 0x0312) // WM_HOTKEY
             {
-                if (m.WParam.ToInt32() == HotkeyId)
-                {
-                    OnHotkeyPressed?.Invoke();
-                }
+                OnHotkeyPressed?.Invoke(m.WParam.ToInt32());
             }
             else
             {
@@ -48,38 +44,32 @@ public class HotkeyHook : IDisposable
     public HotkeyHook()
     {
         _nativeWindow = new HotkeyNativeWindow();
-        _nativeWindow.OnHotkeyPressed += () => HotkeyPressed?.Invoke();
+        _nativeWindow.OnHotkeyPressed += (id) => HotkeyPressed?.Invoke(id);
     }
 
     /// <summary>
     /// 注册快捷键
     /// </summary>
-    public void Register(Hotkey hotKey)
+    public void Register(int id, Hotkey hotKey)
     {
-        if (_isRegistered)
-        {
-            Unregister();
-        }
-
-        var success = RegisterHotKey(_nativeWindow.Handle, HotkeyId, (uint)hotKey.Modifiers, (uint)hotKey.Key);
+        var success = RegisterHotKey(_nativeWindow.Handle, id, (uint)hotKey.Modifiers, (uint)hotKey.Key);
         if (!success)
         {
-            throw new Exception("注册快捷键失败");
+            throw new Exception($"注册快捷键失败。id({id})");
         }
-        _isRegistered = success;
+
+        if (!ids.Contains(id))
+        {
+            ids.Add(id);
+        }
     }
 
     /// <summary>
     /// 注销快捷键
     /// </summary>
-    public void Unregister()
+    public void Unregister(int id)
     {
-        if (!_isRegistered)
-        {
-            return;
-        }
-        UnregisterHotKey(_nativeWindow.Handle, HotkeyId);
-        _isRegistered = false;
+        UnregisterHotKey(_nativeWindow.Handle, id);
     }
 
     public void Dispose()
@@ -95,7 +85,10 @@ public class HotkeyHook : IDisposable
             return;
         }
 
-        Unregister();
+        foreach (var id in ids)
+        {
+            Unregister(id);
+        }
         _nativeWindow.DestroyHandle();
     }
 

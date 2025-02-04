@@ -1,0 +1,17 @@
+﻿<MudPaper Class="d-flex align-center" Elevation="0">
+    <MudText Typo="Typo.button">@(Title)</MudText>
+    <MudButton Class="ml-3"
+               Size="Size.Small"
+               Color="Color.Primary"
+               OnClick="SetShortcutKey">
+        @(_lockHotkeyDisplay)
+    </MudButton>
+    @if (Hotkey.IsNotEmpty())
+    {
+        <MudTooltip Text="@(Lang["DeleteShortcutKeys"])" Delay="600">
+            <MudIconButton Icon="@Icons.Material.Filled.Delete"
+                           Size="Size.Small"
+                           OnClick="ClearShortcutKey" />
+        </MudTooltip>
+    }
+</MudPaper>

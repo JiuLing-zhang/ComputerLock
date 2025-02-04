@@ -150,26 +150,14 @@ public partial class Index
     {
         AppSettingsProvider.SaveSettings(AppSettings);
     }
-    private async Task SetShortcutKey()
+    private Task SetHotkey(string hotkey)
     {
-        var noHeader = new DialogOptions()
-        {
-            NoHeader = true,
-            BackgroundClass = "dialog-blurry",
-            CloseOnEscapeKey = false,
-        };
-        var dialog = await Dialog.ShowAsync<HotkeySetting>("", noHeader);
-        var result = await dialog.Result;
-        if (result!.Canceled)
-        {
-            return;
-        }
-
-        AppSettings.ShortcutKeyForLock = result.Data!.ToString()!;
+        AppSettings.ShortcutKeyForLock = hotkey;
         SaveSettings();
         RegisterHotkey();
+        return Task.CompletedTask;
     }
-    private Task ClearShortcutKey()
+    private Task ClearHotkey()
     {
         AppSettings.ShortcutKeyForLock = "";
         SaveSettings();

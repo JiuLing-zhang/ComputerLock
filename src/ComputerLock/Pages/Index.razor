@@ -45,23 +45,10 @@ else
                      ValueChanged="AutoLockChanged">
     </MudNumericField>
 
-    <MudPaper Class="d-flex align-center" Elevation="0">
-        <MudText Typo="Typo.button">@(Lang["LockHotkey"])</MudText>
-        <MudButton Class="ml-3"
-                   Size="Size.Small"
-                   Color="Color.Primary"
-                   OnClick="SetShortcutKey">
-            @(AppSettings.LockHotkeyDisplay)
-        </MudButton>
-        @if (AppSettings.ShortcutKeyForLock.IsNotEmpty())
-        {
-            <MudTooltip Text="@(Lang["DeleteShortcutKeys"])" Delay="600">
-                <MudIconButton Icon="@Icons.Material.Filled.Delete"
-                               Size="Size.Small"
-                               OnClick="ClearShortcutKey" />
-            </MudTooltip>
-        }
-    </MudPaper>
+    <HotkeyInput Title="@(Lang["LockHotkey"])"
+                 Hotkey="@(AppSettings.ShortcutKeyForLock)"
+                 OnHotkeySet="SetHotkey"
+                 OnHotkeyClear="ClearHotkey" />
 
     <MudToggleGroup @bind-Value="@(AppSettings.ScreenUnlockMethod)"
                     @bind-Value:after="SaveSettings"

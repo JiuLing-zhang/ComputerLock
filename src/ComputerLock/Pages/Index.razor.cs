@@ -158,7 +158,7 @@ public partial class Index
             BackgroundClass = "dialog-blurry",
             CloseOnEscapeKey = false,
         };
-        var dialog = await Dialog.ShowAsync<ShortcutKeySetting>("", noHeader);
+        var dialog = await Dialog.ShowAsync<HotkeySetting>("", noHeader);
         var result = await dialog.Result;
         if (result!.Canceled)
         {

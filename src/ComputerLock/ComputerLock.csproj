@@ -58,4 +58,11 @@
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\VERSION_HISTORY.md">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
 </Project>

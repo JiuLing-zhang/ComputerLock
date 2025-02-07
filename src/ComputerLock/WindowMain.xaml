@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ComputerLock"
-        xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation/blazor"
+        xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         mc:Ignorable="d"
         Title="透明锁屏"
@@ -22,10 +22,10 @@
         ui:TitleBar.Style="{DynamicResource AppTitleBarStyle}"
         ui:WindowHelper.UseModernWindowStyle="True">
     <Grid>
-        <wpf:BlazorWebView HostPage="wwwroot\index.html" Services="{DynamicResource services}">
-            <wpf:BlazorWebView.RootComponents>
-                <wpf:RootComponent Selector="#app" ComponentType="{x:Type local:WebApp}" />
-            </wpf:BlazorWebView.RootComponents>
-        </wpf:BlazorWebView>
+        <blazor:BlazorWebView HostPage="wwwroot\index.html" Services="{DynamicResource services}">
+            <blazor:BlazorWebView.RootComponents>
+                <blazor:RootComponent Selector="#app" ComponentType="{x:Type local:WebApp}" />
+            </blazor:BlazorWebView.RootComponents>
+        </blazor:BlazorWebView>
     </Grid>
 </Window>

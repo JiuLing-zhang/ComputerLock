@@ -43,11 +43,11 @@ public partial class Index
         _keyboardDownChecked = (AppSettings.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.KeyboardDown) == PasswordBoxActiveMethodEnum.KeyboardDown;
         _mouseDownChecked = (AppSettings.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.MouseDown) == PasswordBoxActiveMethodEnum.MouseDown;
 
-        if (AppSettings.LockHotkeyString.IsNotTrimEmpty())
+        if (AppSettings.LockHotkeyString.IsNotEmpty())
         {
             RegisterLockHotkey();
         }
-        if (AppSettings.UnlockHotkeyString.IsNotTrimEmpty())
+        if (AppSettings.UnlockHotkeyString.IsNotEmpty())
         {
             RegisterUnlockHotkey();
         }

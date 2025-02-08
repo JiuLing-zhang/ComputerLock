@@ -792,6 +792,15 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string VersionHistory {
+            get {
+                return ResourceManager.GetString("VersionHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string Warning {
             get {
                 return ResourceManager.GetString("Warning", resourceCulture);

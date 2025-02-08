@@ -34,7 +34,7 @@ public partial class Setting
     {
         await base.OnInitializedAsync();
         _isAutostart = AutostartHook.IsAutostart();
-        _version = $"v{AppBase.Version[..AppBase.Version.LastIndexOf('.')]}";
+        _version = $"v{AppBase.VersionString[..AppBase.VersionString.LastIndexOf('.')]}";
     }
 
     public async Task OpenAsync()
@@ -182,5 +182,10 @@ public partial class Setting
 
         AppSettingsProvider.RemoveSettings();
         Restart();
+    }
+
+    private async Task OpenVersionHistory()
+    {
+        await DialogService.ShowAsync<VersionHistoryDialog>("");
     }
 }

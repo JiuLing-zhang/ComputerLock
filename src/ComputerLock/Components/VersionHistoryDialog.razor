@@ -1,0 +1,38 @@
+﻿@using System.IO
+
+<MudDialog>
+    <TitleContent>
+        @Lang["VersionHistory"]
+    </TitleContent>
+    <DialogContent>
+        <MudMarkdown Value="@_value" />
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Close">@(Lang["Quit"])</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code
+{
+    private string _value = null!;
+
+    [Inject]
+    private IStringLocalizer<Lang> Lang { get; set; } = null!;
+
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; } = null!;
+
+    private void Close() => MudDialog.Cancel();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        const string markdownFileName = "VERSION_HISTORY.md";
+        if (!File.Exists(markdownFileName))
+        {
+            _value = "什么也没找到\ud83d\ude01\ud83d\ude01";
+            return;
+        }
+        _value = await File.ReadAllTextAsync(markdownFileName);
+    }
+}

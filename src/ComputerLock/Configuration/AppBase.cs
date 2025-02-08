@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 
 namespace ComputerLock.Configuration;
 internal class AppBase
@@ -20,5 +21,14 @@ internal class AppBase
     /// </summary>
     public static string ConfigPath { get; } = Path.Combine(DataPath, FriendlyName, "config.json");
 
-    public static string Version { get; } = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString();
+    /// <summary>
+    /// 版本文件路径
+    /// </summary>
+    public static string VersionFilePath { get; } = Path.Combine(DataPath, FriendlyName, "version");
+
+    /// <summary>
+    /// 版本号
+    /// </summary>
+    public static Version Version { get; } = Assembly.GetExecutingAssembly().GetName().Version ?? throw new InvalidOperationException("App Version");
+    public static string VersionString { get; } = Version.ToString();
 }

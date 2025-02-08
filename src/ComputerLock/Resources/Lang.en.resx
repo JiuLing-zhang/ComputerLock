@@ -366,4 +366,7 @@
   <data name="UseLockHotkey" xml:space="preserve">
     <value>Use Lock Hotkey</value>
   </data>
+  <data name="VersionHistory" xml:space="preserve">
+    <value>Version History</value>
+  </data>
 </root>

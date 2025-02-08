@@ -346,4 +346,7 @@
   <data name="UseLockHotkey" xml:space="preserve">
     <value></value>
   </data>
+  <data name="VersionHistory" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

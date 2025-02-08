@@ -23,6 +23,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="8.0.100" />
 		<PackageReference Include="ModernWpfUI" Version="0.9.6" />
 		<PackageReference Include="MudBlazor" Version="8.2.0" />
+		<PackageReference Include="MudBlazor.Markdown" Version="8.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

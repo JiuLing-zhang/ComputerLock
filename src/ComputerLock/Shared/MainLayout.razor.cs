@@ -22,6 +22,10 @@ public partial class MainLayout
 
     [Inject]
     private IDialogService Dialog { get; set; } = default!;
+
+    [Inject]
+    private VersionLogChecker VersionLogChecker { get; set; } = default!;
+
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
@@ -52,6 +56,11 @@ public partial class MainLayout
                 OverlayDark = "#7575757A"
             }
         };
+
+        if (await VersionLogChecker.CheckShowUpdateLogAsync())
+        {
+            await Dialog.ShowAsync<VersionHistoryDialog>("");
+        }
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

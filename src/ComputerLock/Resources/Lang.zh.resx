@@ -363,4 +363,7 @@
   <data name="UseLockHotkey" xml:space="preserve">
     <value>使用锁屏快捷键</value>
   </data>
+  <data name="VersionHistory" xml:space="preserve">
+    <value>更新记录</value>
+  </data>
 </root>

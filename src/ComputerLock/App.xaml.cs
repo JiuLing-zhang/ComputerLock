@@ -44,6 +44,7 @@ public partial class App : Application
             appSettings.Initialize(hotkeyTools);
             return appSettings;
         });
+        services.AddSingleton((_) => new VersionLogChecker(AppBase.Version, AppBase.VersionFilePath));
         services.AddSingleton(LogManager.GetLogger());
         services.AddSingleton<HotkeyHook>();
         services.AddSingleton<MouseHook>();
@@ -74,6 +75,7 @@ public partial class App : Application
             config.SnackbarConfiguration.HideTransitionDuration = 400;
         });
         services.AddMudExtensions();
+        services.AddMudMarkdownServices();
 
         var sp = services.BuildServiceProvider();
         Resources.Add("services", sp);

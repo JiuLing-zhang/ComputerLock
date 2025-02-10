@@ -51,27 +51,27 @@ internal class GlobalLockService : IGlobalLockService
         }
         _activityMonitor = userActivityMonitor;
 
-        _logger.Write("自动锁定已生效");
+        _logger.Write("空闲自动锁定已生效");
         _activityMonitor.Init(_appSettings.AutoLockSecond);
         _activityMonitor.OnIdle += (_, _) =>
         {
-            _logger.Write("自动锁定 -> 锁定");
+            _logger.Write("空闲自动锁定 -> 执行空闲锁定");
             Lock();
         };
-        _logger.Write("自动锁定 -> 启动空闲检测");
+        _logger.Write("空闲自动锁定 -> 启动空闲检测");
         _activityMonitor.StartMonitoring();
 
-        _logger.Write("自动锁定 -> 准备监控系统会话状态");
+        _logger.Write("空闲自动锁定 -> 准备监控系统会话状态");
         SystemEvents.SessionSwitch += (_, e) =>
         {
             if (e.Reason == SessionSwitchReason.SessionLock)
             {
-                _logger.Write("Windows系统锁定 -> 暂停空闲检测");
+                _logger.Write("空闲自动锁定 -> Windows系统锁定，暂停空闲检测");
                 _activityMonitor.StopMonitoring();
             }
             else if (e.Reason == SessionSwitchReason.SessionUnlock)
             {
-                _logger.Write("Windows系统解锁 -> 启动空闲检测");
+                _logger.Write("空闲自动锁定 -> Windows系统解锁，恢复空闲检测");
                 _activityMonitor.StartMonitoring();
             }
         };
@@ -83,7 +83,7 @@ internal class GlobalLockService : IGlobalLockService
 
         if (!_screenLockService.Lock(_appSettings.LockAnimation))
         {
-            _logger.Write("自动锁定 -> 屏幕锁定失败");
+            _logger.Write("全局锁定 -> 屏幕锁定失败");
             return;
         }
 
@@ -92,21 +92,21 @@ internal class GlobalLockService : IGlobalLockService
             _screenLockService.OnUnlock += _screenLockService_OnUnlock;
         }
 
-        _logger.Write("自动锁定 -> 暂停空闲检测");
+        _logger.Write("全局锁定 -> 暂停空闲检测");
         _activityMonitor?.StopMonitoring();
 
-        _logger.Write("锁定服务 -> 禁用任务管理器和系统键");
+        _logger.Write("全局锁定 -> 禁用任务管理器和系统键");
         _taskManagerHook.DisabledTaskManager();
 
         if (_appSettings.IsHideMouseCursor)
         {
-            _logger.Write("锁定服务 -> 隐藏鼠标光标");
+            _logger.Write("全局锁定 -> 隐藏鼠标光标");
             _mouseHook.HideCursor();
         }
 
         if (_appSettings.ScreenUnlockMethod == ScreenUnlockMethods.Hotkey)
         {
-            _logger.Write("锁定服务 -> 允许快捷键解锁 -> 准备处理热键");
+            _logger.Write("全局锁定 -> 允许快捷键解锁，准备放行快捷键");
             if (_appSettings.IsUnlockUseLockHotkey)
             {
                 if (_appSettings.LockHotkey != null)
@@ -148,15 +148,15 @@ internal class GlobalLockService : IGlobalLockService
     /// </summary>
     private void SystemUnlock()
     {
-        _logger.Write("自动锁定 -> 启动空闲检测");
+        _logger.Write("系统锁定 -> 启动空闲检测");
         _activityMonitor?.StartMonitoring();
 
-        _logger.Write("锁定服务 -> 恢复任务管理器和系统键");
+        _logger.Write("系统锁定 -> 恢复任务管理器和系统键");
         _taskManagerHook.EnabledTaskManager();
 
         if (_appSettings.IsHideMouseCursor)
         {
-            _logger.Write("锁定服务 -> 恢复鼠标光标");
+            _logger.Write("系统锁定 -> 恢复鼠标光标");
             _mouseHook.ResetCursorState();
         }
 

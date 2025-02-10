@@ -12,6 +12,7 @@
 <img src="https://github.com/JiuLing-zhang/ComputerLock/raw/main/resources/app.png" width="50%">
 
 ## 适用场景  
+\- 💖 展示内容时担心误操作
 \- ⚡ 厌倦了系统锁屏界面  
 \- 🌈 防止系统休眠  
 \- 🌀 担心离开后忘记锁屏  
@@ -19,7 +20,6 @@
 ## 功能特点  
 * 🎈 启动自动锁屏 
 * ✨ 透明锁屏 
-* 💖 一键锁屏 
 * 🎁 无操作时自动锁屏 
 * 🍭 多显示器支持
 * 🎉 禁用 `Windows` 锁屏 

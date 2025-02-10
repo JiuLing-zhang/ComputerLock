@@ -95,8 +95,7 @@ internal class SystemKeyHook : IDisposable
     {
         return vkCode == VK_LWIN || vkCode == VK_RWIN ||
                vkCode == VK_LSHIFT || vkCode == VK_RSHIFT ||
-               vkCode == VK_LCONTROL || vkCode == VK_RCONTROL ||
-               vkCode == VK_LMENU || vkCode == VK_RMENU ||
+               vkCode == VK_LCONTROL || vkCode == VK_RCONTROL ||                
                vkCode == VK_TAB;
     }
 

@@ -74,7 +74,7 @@ public partial class Index
             {
                 if (GlobalLockService.IsLocked)
                 {
-                    Logger.Write("快捷键解锁");
+                    Logger.Write("快捷键解锁（独立解锁）");
                     GlobalLockService.Unlock();
                 }
             }

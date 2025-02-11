@@ -1,7 +1,6 @@
 ﻿using ComputerLock.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
-using System.Diagnostics;
 
 namespace ComputerLock.Services;
 
@@ -19,10 +18,11 @@ internal class GlobalLockService : IGlobalLockService
     private readonly MouseHook _mouseHook;
     private readonly SystemKeyHook _systemKeyHook;
     private readonly IServiceProvider _serviceProvider;
-
+    private readonly IWindowsMessageBox _messageBox;
+    private readonly IStringLocalizer<Lang> _lang;
     public bool IsLocked { get; private set; }
 
-    public GlobalLockService(ILogger logger, AppSettings appSettings, UserActivityMonitor activityMonitor, HotkeyHook hotkeyHook, TaskManagerHook taskManagerHook, MouseHook mouseHook, SystemKeyHook systemKeyHook, IServiceProvider serviceProvider)
+    public GlobalLockService(ILogger logger, AppSettings appSettings, UserActivityMonitor activityMonitor, HotkeyHook hotkeyHook, TaskManagerHook taskManagerHook, MouseHook mouseHook, SystemKeyHook systemKeyHook, IServiceProvider serviceProvider, IWindowsMessageBox messageBox, IStringLocalizer<Lang> lang)
     {
         _logger = logger;
         _appSettings = appSettings;
@@ -38,6 +38,8 @@ internal class GlobalLockService : IGlobalLockService
         _mouseHook = mouseHook;
         _systemKeyHook = systemKeyHook;
         _serviceProvider = serviceProvider;
+        _messageBox = messageBox;
+        _lang = lang;
     }
 
     /// <summary>
@@ -79,6 +81,12 @@ internal class GlobalLockService : IGlobalLockService
 
     public void Lock()
     {
+        if (!CheckLockConfig(out var message))
+        {
+            _messageBox.Show(message);
+            return;
+        }
+
         _screenLockService = _serviceProvider.GetRequiredKeyedService<IScreenLockService>(_appSettings.ScreenUnlockMethod);
 
         if (!_screenLockService.Lock(_appSettings.LockAnimation))
@@ -124,6 +132,31 @@ internal class GlobalLockService : IGlobalLockService
         }
         _systemKeyHook.DisableSystemKey();
         IsLocked = true;
+    }
+
+    private bool CheckLockConfig(out string error)
+    {
+        if (_appSettings.ScreenUnlockMethod == ScreenUnlockMethods.Hotkey)
+        {
+            if (_appSettings.IsUnlockUseLockHotkey)
+            {
+                if (_appSettings.LockHotkey == null)
+                {
+                    error = _lang["LockHotkeyUndefined"];
+                    return false;
+                }
+            }
+            else
+            {
+                if (_appSettings.UnlockHotkey == null)
+                {
+                    error = _lang["UnlockHotkeyUndefined"];
+                    return false;
+                }
+            }
+        }
+        error = "";
+        return true;
     }
 
     /// <summary>

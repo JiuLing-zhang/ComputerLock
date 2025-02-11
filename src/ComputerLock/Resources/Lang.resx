@@ -337,9 +337,6 @@
   <data name="HotkeyUnlock" xml:space="preserve">
     <value></value>
   </data>
-  <data name="HotkeyUnlockTips" xml:space="preserve">
-    <value></value>
-  </data>
   <data name="UnlockHotkey" xml:space="preserve">
     <value></value>
   </data>
@@ -347,6 +344,12 @@
     <value></value>
   </data>
   <data name="VersionHistory" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LockHotkeyUndefined" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UnlockHotkeyUndefined" xml:space="preserve">
     <value></value>
   </data>
 </root>

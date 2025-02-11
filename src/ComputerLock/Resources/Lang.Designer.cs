@@ -333,15 +333,6 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        public static string HotkeyUnlockTips {
-            get {
-                return ResourceManager.GetString("HotkeyUnlockTips", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
         public static string Invalid {
             get {
                 return ResourceManager.GetString("Invalid", resourceCulture);
@@ -390,6 +381,15 @@ namespace ComputerLock.Resources {
         public static string LockHotkey {
             get {
                 return ResourceManager.GetString("LockHotkey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string LockHotkeyUndefined {
+            get {
+                return ResourceManager.GetString("LockHotkeyUndefined", resourceCulture);
             }
         }
         
@@ -768,6 +768,15 @@ namespace ComputerLock.Resources {
         public static string UnlockHotkey {
             get {
                 return ResourceManager.GetString("UnlockHotkey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string UnlockHotkeyUndefined {
+            get {
+                return ResourceManager.GetString("UnlockHotkeyUndefined", resourceCulture);
             }
         }
         

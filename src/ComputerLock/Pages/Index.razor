@@ -131,8 +131,6 @@ else
         }
         else if (AppSettings.ScreenUnlockMethod == ScreenUnlockMethods.Hotkey)
         {
-            <MudAlert Severity="Severity.Error">@(Lang["HotkeyUnlockTips"])</MudAlert>
-
             <MudPaper Class="mt-1 d-flex align-center" Elevation="0">
                 <HotkeyInput Title="@(Lang["UnlockHotkey"])"
                              Hotkey="@(AppSettings.UnlockHotkeyString)"

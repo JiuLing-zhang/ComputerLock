@@ -20,28 +20,6 @@ public partial class WindowLockScreen : Window
 
     public event EventHandler<EventArgs>? OnUnlock;
 
-    /// <summary>
-    /// 引用user32.dll动态链接库（windows api），
-    /// 使用库中定义 API：SetCursorPos 
-    /// </summary>
-    [DllImport("user32.dll")]
-    private static extern int SetCursorPos(int x, int y);
-    /// <summary>
-    /// 移动鼠标到指定的坐标点
-    /// </summary>
-    public void MoveMouseToPoint(Point p)
-    {
-        SetCursorPos((int)p.X, (int)p.Y);
-    }
-
-    //点击事件
-    [DllImport("User32")]
-    private static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
-    public const int MOUSEEVENTF_LEFTDOWN = 0x0002;
-    public const int MOUSEEVENTF_LEFTUP = 0x0004;
-    public const int MOUSEEVENTF_RIGHTDOWN = 0x0008;
-    public const int MOUSEEVENTF_RIGHTUP = 0x0010;
-
     public WindowLockScreen(AppSettings appSettings, IStringLocalizer<Lang> lang, ILogger logger)
     {
         InitializeComponent();
@@ -131,14 +109,6 @@ public partial class WindowLockScreen : Window
         try
         {
             var time = DateTime.Now;
-            if (time.Second % 30 == 0)
-            {
-                if (_appSettings.IsDisableWindowsLock)
-                {
-                    _logger.Write("功能屏幕 -> 移动鼠标，防止 Windows 锁屏");
-                    DoMoveMouse();
-                }
-            }
             if (_appSettings.EnablePasswordBox)
             {
                 if (_appSettings.IsHidePasswordWindow)
@@ -189,15 +159,7 @@ public partial class WindowLockScreen : Window
             TxtPassword.Password = "";
         }
     }
-    private void DoMoveMouse()
-    {
-        var random = new Random();
-        var x = random.Next(0, 100);
-        var y = random.Next(0, 100);
 
-        MoveMouseToPoint(new Point(x, y));
-        mouse_event(MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP, x, y, 0, 0);
-    }
     private void HidePassword()
     {
         _logger.Write("功能屏幕 -> 准备隐藏密码框");

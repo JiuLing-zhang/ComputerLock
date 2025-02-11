@@ -21,7 +21,7 @@ internal class GlobalLockService : IGlobalLockService
     private readonly IWindowsMessageBox _messageBox;
     private readonly IStringLocalizer<Lang> _lang;
     public bool IsLocked { get; private set; }
-
+    private CancellationTokenSource? _cts;
     public GlobalLockService(ILogger logger, AppSettings appSettings, UserActivityMonitor activityMonitor, HotkeyHook hotkeyHook, TaskManagerHook taskManagerHook, MouseHook mouseHook, SystemKeyHook systemKeyHook, IServiceProvider serviceProvider, IWindowsMessageBox messageBox, IStringLocalizer<Lang> lang)
     {
         _logger = logger;
@@ -131,6 +131,29 @@ internal class GlobalLockService : IGlobalLockService
             }
         }
         _systemKeyHook.DisableSystemKey();
+
+        if (_appSettings.IsDisableWindowsLock)
+        {
+            _cts = new CancellationTokenSource();
+            _logger.Write("全局锁定 -> 禁用 Windows 锁屏");
+            Task.Run(async () =>
+            {
+                while (true)
+                {
+                    _logger.Write("全局锁定 -> 移动鼠标，防止 Windows 锁屏");
+                    _mouseHook.MoveAndClick();
+                    try
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(30), _cts.Token);
+                    }
+                    catch (TaskCanceledException)
+                    {
+                        _logger.Write("全局锁定 -> 鼠标任务释放");
+                        break;
+                    }
+                }
+            }, _cts.Token);
+        }
         IsLocked = true;
     }
 
@@ -194,6 +217,13 @@ internal class GlobalLockService : IGlobalLockService
         }
 
         _systemKeyHook.Dispose();
+
+        if (_cts != null)
+        {
+            _cts.Cancel();
+            _cts.Dispose();
+            _cts = null;
+        }
     }
 
     public void Dispose()

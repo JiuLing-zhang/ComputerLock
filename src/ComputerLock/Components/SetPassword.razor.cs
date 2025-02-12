@@ -1,6 +1,11 @@
-﻿namespace ComputerLock.Components;
+﻿using DialogResult = MudBlazor.DialogResult;
+
+namespace ComputerLock.Components;
 public partial class SetPassword
 {
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; } = default!;
+
     [Inject]
     private IStringLocalizer<Lang> Lang { get; set; } = default!;
 
@@ -9,15 +14,12 @@ public partial class SetPassword
 
     private string _password = "";
 
-    [Parameter]
-    public EventCallback<string> PasswordSetFinished { get; set; }
-
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
     }
 
-    private async Task SavePasswordAsync()
+    private void Submit()
     {
         if (_password.IsEmpty())
         {
@@ -26,6 +28,7 @@ public partial class SetPassword
         }
 
         var password = JiuLing.CommonLibs.Security.MD5Utils.GetStringValueToLower(_password);
-        await PasswordSetFinished.InvokeAsync(password);
+        MudDialog.Close(DialogResult.Ok(password));
+        Snackbar.Add(Lang["SaveOk"], Severity.Success);
     }
 }

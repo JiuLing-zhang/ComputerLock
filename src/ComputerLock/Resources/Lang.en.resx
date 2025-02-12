@@ -192,9 +192,6 @@
   <data name="EnterShortcutKey" xml:space="preserve">
     <value>Please enter shortcut key</value>
   </data>
-  <data name="DefaultPasswordTip" xml:space="preserve">
-    <value>If you really insist on locking the screen through the tray right now, then the unlock password is 1</value>
-  </data>
   <data name="ResetPassword" xml:space="preserve">
     <value>Reset password</value>
   </data>
@@ -248,21 +245,6 @@
   </data>
   <data name="Never" xml:space="preserve">
     <value>Never</value>
-  </data>
-  <data name="Minute1" xml:space="preserve">
-    <value>1 minute</value>
-  </data>
-  <data name="Minute2" xml:space="preserve">
-    <value>2 minute</value>
-  </data>
-  <data name="Minute3" xml:space="preserve">
-    <value>3 minute</value>
-  </data>
-  <data name="Minute5" xml:space="preserve">
-    <value>5 minute</value>
-  </data>
-  <data name="Minute10" xml:space="preserve">
-    <value>10 minute</value>
   </data>
   <data name="LockAnimation" xml:space="preserve">
     <value>Show animation when locked</value>
@@ -371,5 +353,8 @@
   </data>
   <data name="UnlockHotkeyUndefined" xml:space="preserve">
     <value>The screen unlock hotkey is not set</value>
+  </data>
+  <data name="UnlockPasswordUndefined" xml:space="preserve">
+    <value>The screen unlock password is not set</value>
   </data>
 </root>

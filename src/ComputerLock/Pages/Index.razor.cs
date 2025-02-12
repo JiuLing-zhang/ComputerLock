@@ -265,9 +265,17 @@ public partial class Index
             CloseOnEscapeKey = false,
             CloseButton = true
         };
-        var dialog = await Dialog.ShowAsync<ResetPassword>(Lang["ResetPassword"], noHeader);
+        IDialogReference dialog;
+        if (AppSettings.Password.IsEmpty())
+        {
+            dialog = await Dialog.ShowAsync<SetPassword>(Lang["ResetPassword"], noHeader);
+        }
+        else
+        {
+            dialog = await Dialog.ShowAsync<ResetPassword>(Lang["ResetPassword"], noHeader);
+        }
         var result = await dialog.Result;
-        if (result.Canceled)
+        if (result == null || result.Canceled)
         {
             return;
         }
@@ -276,15 +284,7 @@ public partial class Index
             return;
         }
 
-        AppSettings.Password = result.Data.ToString();
+        AppSettings.Password = result.Data.ToString()!;
         SaveSettings();
-    }
-
-    private async Task OnPasswordSetFinishedAsync(string password)
-    {
-        AppSettings.Password = password;
-        AppSettings.IsPasswordChanged = true;
-        SaveSettings();
-        await InvokeAsync(StateHasChanged);
     }
 }

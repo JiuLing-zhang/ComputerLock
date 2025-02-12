@@ -178,6 +178,14 @@ internal class GlobalLockService : IGlobalLockService
                 }
             }
         }
+        else if (_appSettings.ScreenUnlockMethod == ScreenUnlockMethods.Password)
+        {
+            if (_appSettings.Password.IsEmpty())
+            {
+                error = _lang["UnlockPasswordUndefined"];
+                return false;
+            }
+        }
         error = "";
         return true;
     }

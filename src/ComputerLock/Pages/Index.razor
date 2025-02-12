@@ -1,6 +1,5 @@
 ﻿@page "/"
 @using ComputerLock.Enums
-@using JiuLing.CommonLibs.ExtensionMethods
 
 <style>
     .dialog-blurry {
@@ -8,144 +7,136 @@
     }
 </style>
 
-@if (!AppSettings.IsPasswordChanged)
-{
-    <SetPassword PasswordSetFinished="OnPasswordSetFinishedAsync"></SetPassword>
-}
-else
-{
-    <MudSwitch @bind-Value="@(AppSettings.LockOnStartup)"
+<MudSwitch @bind-Value="@(AppSettings.LockOnStartup)"
+           @bind-Value:after="SaveSettings"
+           Label="@(Lang["LockOnStartup"])"
+           Color="Color.Primary" />
+
+<MudTooltip Text="@(Lang["DisableWindowsRemark"])" Placement="Placement.Bottom">
+    <MudSwitch @bind-Value="@(AppSettings.IsDisableWindowsLock)"
                @bind-Value:after="SaveSettings"
-               Label="@(Lang["LockOnStartup"])"
+               Label="@(Lang["DisableWindowsLock"])"
                Color="Color.Primary" />
+</MudTooltip>
 
-    <MudTooltip Text="@(Lang["DisableWindowsRemark"])" Placement="Placement.Bottom">
-        <MudSwitch @bind-Value="@(AppSettings.IsDisableWindowsLock)"
-                   @bind-Value:after="SaveSettings"
-                   Label="@(Lang["DisableWindowsLock"])"
-                   Color="Color.Primary" />
-    </MudTooltip>
+<MudSwitch @bind-Value="@(AppSettings.IsHideMouseCursor)"
+           @bind-Value:after="SaveSettings"
+           Label="@(Lang["HideMouseCursor"])"
+           Color="Color.Primary" />
 
-    <MudSwitch @bind-Value="@(AppSettings.IsHideMouseCursor)"
-               @bind-Value:after="SaveSettings"
-               Label="@(Lang["HideMouseCursor"])"
-               Color="Color.Primary" />
+<MudSwitch @bind-Value="@(AppSettings.LockAnimation)"
+           @bind-Value:after="SaveSettings"
+           Label="@(Lang["LockAnimation"])"
+           Color="Color.Primary" />
 
-    <MudSwitch @bind-Value="@(AppSettings.LockAnimation)"
-               @bind-Value:after="SaveSettings"
-               Label="@(Lang["LockAnimation"])"
-               Color="Color.Primary" />
+<MudNumericField T="int"
+                 Label="@(Lang["AutoLock"])"
+                 Value="@(AppSettings.AutoLockMinute)"
+                 Margin="Margin.Dense"
+                 Min="0"
+                 Variant="Variant.Outlined"
+                 ValueChanged="AutoLockChanged">
+</MudNumericField>
 
-    <MudNumericField T="int"
-                     Label="@(Lang["AutoLock"])"
-                     Value="@(AppSettings.AutoLockMinute)"
-                     Margin="Margin.Dense"
-                     Min="0"
-                     Variant="Variant.Outlined"
-                     ValueChanged="AutoLockChanged">
-    </MudNumericField>
+<HotkeyInput Title="@(Lang["LockHotkey"])"
+             Hotkey="@(AppSettings.LockHotkeyString)"
+             OnHotkeySet="SetLockHotkey"
+             OnHotkeyClear="ClearLockHotkey" />
 
-    <HotkeyInput Title="@(Lang["LockHotkey"])"
-                 Hotkey="@(AppSettings.LockHotkeyString)"
-                 OnHotkeySet="SetLockHotkey"
-                 OnHotkeyClear="ClearLockHotkey" />
+<MudToggleGroup @bind-Value="@(AppSettings.ScreenUnlockMethod)"
+                @bind-Value:after="SaveSettings"
+                T="ScreenUnlockMethods"
+                SelectionMode="SelectionMode.SingleSelection"
+                Class="mt-2"
+                Color="Color.Primary"
+                Size="Size.Small"
+                CheckMark
+                FixedContent>
+    <MudToggleItem Value="@(ScreenUnlockMethods.Password)" Text="@(Lang["PasswordUnlock"])" />
+    <MudToggleItem Value="@(ScreenUnlockMethods.Hotkey)" Text="@(Lang["HotkeyUnlock"])" />
+</MudToggleGroup>
 
-    <MudToggleGroup @bind-Value="@(AppSettings.ScreenUnlockMethod)"
-                    @bind-Value:after="SaveSettings"
-                    T="ScreenUnlockMethods"
-                    SelectionMode="SelectionMode.SingleSelection"
-                    Class="mt-2"
-                    Color="Color.Primary"
-                    Size="Size.Small"
-                    CheckMark
-                    FixedContent>
-        <MudToggleItem Value="@(ScreenUnlockMethods.Password)" Text="@(Lang["PasswordUnlock"])" />
-        <MudToggleItem Value="@(ScreenUnlockMethods.Hotkey)" Text="@(Lang["HotkeyUnlock"])" />
-    </MudToggleGroup>
+<MudPaper Elevation="0" Height="210px">
 
-    <MudPaper Elevation="0" Height="210px">
+    @if (AppSettings.ScreenUnlockMethod == ScreenUnlockMethods.Password)
+    {
+        <MudButton Color="Color.Primary"
+                   IconSize="Size.Small"
+                   OnClick="ResetPassword">
+            @(Lang["ResetPassword"])
+        </MudButton>
 
-        @if (AppSettings.ScreenUnlockMethod == ScreenUnlockMethods.Password)
-        {
-            <div class="d-flex align-center">
-                <MudSwitch @bind-Value="@(AppSettings.EnablePasswordBox)"
-                           @bind-Value:after="SaveSettings"
-                           Label="@(Lang["EnablePasswordBox"])"
-                           Color="Color.Primary" />
-                @if (!AppSettings.EnablePasswordBox)
-                {
-                    <MudChip T="string"
-                             Label="true"
-                             Icon="@Icons.Material.Filled.WarningAmber"
-                             IconColor="Color.Primary"
-                             DisableRipple="true"
-                             Size="Size.Small">
-                        @(Lang["EnablePasswordBoxTips"])
-                    </MudChip>
-                }
-            </div>
-
-            <MudSwitch @bind-Value="@(AppSettings.IsHidePasswordWindow)"
+        <div class="d-flex align-center">
+            <MudSwitch @bind-Value="@(AppSettings.EnablePasswordBox)"
                        @bind-Value:after="SaveSettings"
-                       Class="ml-6"
-                       Disabled="@(!AppSettings.EnablePasswordBox)"
-                       Label="@(Lang["HidePasswordWindow"])"
+                       Label="@(Lang["EnablePasswordBox"])"
                        Color="Color.Primary" />
+            @if (!AppSettings.EnablePasswordBox)
+            {
+                <MudChip T="string"
+                         Label="true"
+                         Icon="@Icons.Material.Filled.WarningAmber"
+                         IconColor="Color.Primary"
+                         DisableRipple="true"
+                         Size="Size.Small">
+                    @(Lang["EnablePasswordBoxTips"])
+                </MudChip>
+            }
+        </div>
 
-            <MudSwitch @bind-Value="@(_keyboardDownChecked)"
-                       @bind-Value:after="KeyboardDownChecked"
-                       Class="ml-6"
-                       Disabled="@(!AppSettings.EnablePasswordBox)"
-                       Label="@(Lang["KeyboardDownActivePwd"])"
-                       Color="Color.Primary" />
+        <MudSwitch @bind-Value="@(AppSettings.IsHidePasswordWindow)"
+                   @bind-Value:after="SaveSettings"
+                   Class="ml-6"
+                   Disabled="@(!AppSettings.EnablePasswordBox)"
+                   Label="@(Lang["HidePasswordWindow"])"
+                   Color="Color.Primary" />
 
-            <MudSwitch @bind-Value="@(_mouseDownChecked)"
-                       @bind-Value:after="MouseDownChecked"
-                       Class="ml-6"
-                       Disabled="@(!AppSettings.EnablePasswordBox)"
-                       Label="@(Lang["MouseDownActivePwd"])"
-                       Color="Color.Primary" />
+        <MudSwitch @bind-Value="@(_keyboardDownChecked)"
+                   @bind-Value:after="KeyboardDownChecked"
+                   Class="ml-6"
+                   Disabled="@(!AppSettings.EnablePasswordBox)"
+                   Label="@(Lang["KeyboardDownActivePwd"])"
+                   Color="Color.Primary" />
 
-            <MudSelect T="ScreenLocationEnum"
-                       Label="@(Lang["PwdLocation"])"
-                       Variant="Variant.Outlined"
-                       Value="@(AppSettings.PasswordInputLocation)"
-                       Disabled="@(!AppSettings.EnablePasswordBox)"
-                       Class="ml-6"
-                       ValueChanged="PwdBoxLocationChanged"
-                       Margin="Margin.Dense"
-                       Dense="true">
-                <MudSelectItem Value="@(ScreenLocationEnum.Center)">@(Lang["Center"])</MudSelectItem>
-                <MudSelectItem Value="@(ScreenLocationEnum.TopLeft)">@(Lang["TopLeft"])</MudSelectItem>
-                <MudSelectItem Value="@(ScreenLocationEnum.TopRight)">@(Lang["TopRight"])</MudSelectItem>
-                <MudSelectItem Value="@(ScreenLocationEnum.BottomLeft)">@(Lang["BottomLeft"])</MudSelectItem>
-                <MudSelectItem Value="@(ScreenLocationEnum.BottomRight)">@(Lang["BottomRight"])</MudSelectItem>
-            </MudSelect>
+        <MudSwitch @bind-Value="@(_mouseDownChecked)"
+                   @bind-Value:after="MouseDownChecked"
+                   Class="ml-6"
+                   Disabled="@(!AppSettings.EnablePasswordBox)"
+                   Label="@(Lang["MouseDownActivePwd"])"
+                   Color="Color.Primary" />
 
-            <MudButton Color="Color.Primary"
-                       StartIcon="@Icons.Material.Filled.VpnKey"
-                       IconSize="Size.Small"
-                       OnClick="ResetPassword">
-                @(Lang["ResetPassword"])
-            </MudButton>
-        }
-        else if (AppSettings.ScreenUnlockMethod == ScreenUnlockMethods.Hotkey)
-        {
-            <MudPaper Class="mt-1 d-flex align-center" Elevation="0">
-                <HotkeyInput Title="@(Lang["UnlockHotkey"])"
-                             Hotkey="@(AppSettings.UnlockHotkeyString)"
-                             Disabled="@AppSettings.IsUnlockUseLockHotkey"
-                             OnHotkeySet="SetUnlockHotkey"
-                             OnHotkeyClear="ClearUnlockHotkey" />
+        <MudSelect T="ScreenLocationEnum"
+                   Label="@(Lang["PwdLocation"])"
+                   Variant="Variant.Outlined"
+                   Value="@(AppSettings.PasswordInputLocation)"
+                   Disabled="@(!AppSettings.EnablePasswordBox)"
+                   Class="ml-6"
+                   ValueChanged="PwdBoxLocationChanged"
+                   Margin="Margin.Dense"
+                   Dense="true">
+            <MudSelectItem Value="@(ScreenLocationEnum.Center)">@(Lang["Center"])</MudSelectItem>
+            <MudSelectItem Value="@(ScreenLocationEnum.TopLeft)">@(Lang["TopLeft"])</MudSelectItem>
+            <MudSelectItem Value="@(ScreenLocationEnum.TopRight)">@(Lang["TopRight"])</MudSelectItem>
+            <MudSelectItem Value="@(ScreenLocationEnum.BottomLeft)">@(Lang["BottomLeft"])</MudSelectItem>
+            <MudSelectItem Value="@(ScreenLocationEnum.BottomRight)">@(Lang["BottomRight"])</MudSelectItem>
+        </MudSelect>
+    }
+    else if (AppSettings.ScreenUnlockMethod == ScreenUnlockMethods.Hotkey)
+    {
+        <MudPaper Class="mt-1 d-flex align-center" Elevation="0">
+            <HotkeyInput Title="@(Lang["UnlockHotkey"])"
+                         Hotkey="@(AppSettings.UnlockHotkeyString)"
+                         Disabled="@AppSettings.IsUnlockUseLockHotkey"
+                         OnHotkeySet="SetUnlockHotkey"
+                         OnHotkeyClear="ClearUnlockHotkey" />
 
-                <MudCheckBox @bind-Value="@(AppSettings.IsUnlockUseLockHotkey)"
-                             @bind-Value:after="SaveSettings"
-                             class="ml-3"
-                             Label="@(Lang["UseLockHotkey"])"
-                             Size="Size.Small"
-                             Dense="true"
-                             Color="Color.Primary"></MudCheckBox>
-            </MudPaper>
-        }
-    </MudPaper>
-}
+            <MudCheckBox @bind-Value="@(AppSettings.IsUnlockUseLockHotkey)"
+                         @bind-Value:after="SaveSettings"
+                         class="ml-3"
+                         Label="@(Lang["UseLockHotkey"])"
+                         Size="Size.Small"
+                         Dense="true"
+                         Color="Color.Primary"></MudCheckBox>
+        </MudPaper>
+    }
+</MudPaper>

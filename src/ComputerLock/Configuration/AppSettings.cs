@@ -61,14 +61,9 @@ public class AppSettings
     public LangEnum Lang { get; set; } = LangEnum.zh;
 
     /// <summary>
-    /// 默认密码 1
+    /// 解锁密码
     /// </summary>
-    public string Password { get; set; } = "c4ca4238a0b923820dcc509a6f75849b";
-
-    /// <summary>
-    /// 初始密码已修改
-    /// </summary>
-    public bool IsPasswordChanged { get; set; } = false;
+    public string Password { get; set; } = "";
 
     /// <summary>
     /// 锁屏快捷键

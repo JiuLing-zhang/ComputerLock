@@ -352,4 +352,7 @@
   <data name="UnlockHotkeyUndefined" xml:space="preserve">
     <value></value>
   </data>
+  <data name="UnlockPasswordUndefined" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

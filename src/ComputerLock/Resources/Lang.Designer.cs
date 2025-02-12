@@ -783,6 +783,15 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string UnlockPasswordUndefined {
+            get {
+                return ResourceManager.GetString("UnlockPasswordUndefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string UseLockHotkey {
             get {
                 return ResourceManager.GetString("UseLockHotkey", resourceCulture);

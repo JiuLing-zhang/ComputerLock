@@ -12,7 +12,7 @@
 <img src="https://github.com/JiuLing-zhang/ComputerLock/raw/main/resources/app.png" width="50%">
 
 ## 适用场景  
-\- 💖 展示内容时担心误操作
+\- 💖 展示内容时担心误操作  
 \- ⚡ 厌倦了系统锁屏界面  
 \- 🌈 防止系统休眠  
 \- 🌀 担心离开后忘记锁屏  

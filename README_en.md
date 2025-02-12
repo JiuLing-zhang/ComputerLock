@@ -12,7 +12,7 @@ A lock screen tool for Windows. 👉👉[中文版](./README.md)
 <img src="https://github.com/JiuLing-zhang/ComputerLock/raw/main/resources/app_en.png" width="50%">
 
 ## Application Scenarios  
-\- 💖 Worried about accidental operations when presenting
+\- 💖 Worried about accidental operations when presenting  
 \- ⚡ Tired of the system's lock screen interface  
 \- 🌈 Prevent system from sleeping  
 \- 🌀 Worried about forgetting to lock the screen when away  

@@ -33,7 +33,7 @@ public class AppSettings
     /// <summary>
     /// Windows 锁定时自动解锁程序
     /// </summary>
-    public bool IsUnlockWhenWindowsLock { get; set; } = false;
+    public bool IsUnlockWhenWindowsLock { get; set; } = true;
 
     /// <summary>
     /// 锁定时显示动画

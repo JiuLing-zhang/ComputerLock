@@ -235,7 +235,7 @@
     <value>已锁定</value>
   </data>
   <data name="AutoLock" xml:space="preserve">
-    <value>空闲自动锁定（分钟，0不启用）</value>
+    <value>无操作时自动锁定（分钟，0不启用）</value>
   </data>
   <data name="Never" xml:space="preserve">
     <value>从不</value>

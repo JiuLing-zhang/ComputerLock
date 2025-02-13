@@ -20,7 +20,7 @@
                    Color="Color.Primary" />
     </MudTooltip>
 </div>
-<div class="d-flex">
+<div class="d-flex align-center">
     <MudSwitch @bind-Value="@(AppSettings.IsUnlockWhenWindowsLock)"
                @bind-Value:after="SaveSettings"
                Label="@(Lang["IdleWhenWindowsLock"])"

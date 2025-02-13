@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -168,9 +168,6 @@
   <data name="Center" xml:space="preserve">
     <value>Center</value>
   </data>
-  <data name="Restarting" xml:space="preserve">
-    <value>The setting is successful and will take effect after restarting.</value>
-  </data>
   <data name="LockHotkey" xml:space="preserve">
     <value>Lock hotkey</value>
   </data>
@@ -257,9 +254,6 @@
   </data>
   <data name="EnablePasswordBoxTips" xml:space="preserve">
     <value>Press ESC and enter password to unlock</value>
-  </data>
-  <data name="Restart" xml:space="preserve">
-    <value>Restart</value>
   </data>
   <data name="LogFiles" xml:space="preserve">
     <value>Log Files</value>

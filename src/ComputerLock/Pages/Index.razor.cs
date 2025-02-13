@@ -130,38 +130,13 @@ public partial class Index
     {
         AppSettings.AutoLockSecond = autoLockMinute * 60;
         SaveSettings();
-        RestartTips();
+        GlobalLockService.UpdateAutoLockSettings();
     }
 
     private void PwdBoxLocationChanged(ScreenLocationEnum location)
     {
         AppSettings.PasswordInputLocation = location;
         SaveSettings();
-        RestartTips();
-    }
-    private void RestartTips()
-    {
-        Snackbar.Configuration.NewestOnTop = true;
-        Snackbar.Configuration.VisibleStateDuration = int.MaxValue;
-        Snackbar.Configuration.ShowCloseIcon = true;
-        Snackbar.Configuration.SnackbarVariant = Variant.Text;
-        Snackbar.Add(Lang["Restarting"], Severity.Normal, config =>
-        {
-            config.Action = Lang["Restart"];
-            config.HideIcon = true;
-            config.ActionColor = MudBlazor.Color.Warning;
-            config.ActionVariant = Variant.Outlined;
-            config.OnClick = _ =>
-            {
-                Restart();
-                return Task.CompletedTask;
-            };
-        });
-    }
-
-    private void Restart()
-    {
-        WindowTitleBar.Restart();
     }
 
     private void SaveSettings()

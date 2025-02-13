@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -168,9 +168,6 @@
   <data name="Center" xml:space="preserve">
     <value>居中</value>
   </data>
-  <data name="Restarting" xml:space="preserve">
-    <value>设置成功，重启后生效</value>
-  </data>
   <data name="LockHotkey" xml:space="preserve">
     <value>锁屏快捷键</value>
   </data>
@@ -254,9 +251,6 @@
   </data>
   <data name="EnablePasswordBoxTips" xml:space="preserve">
     <value>锁屏时按ESC后输入密码解锁</value>
-  </data>
-  <data name="Restart" xml:space="preserve">
-    <value>重启</value>
   </data>
   <data name="LogFiles" xml:space="preserve">
     <value>日志文件</value>

@@ -4,9 +4,8 @@ using Timer = System.Timers.Timer;
 
 namespace ComputerLock.Platforms;
 
-public class UserActivityMonitor : IDisposable
+public class UserActivityMonitor
 {
-
     [DllImport("user32.dll")]
     private static extern bool GetLastInputInfo(ref LastInputInfo plii);
     struct LastInputInfo
@@ -17,35 +16,44 @@ public class UserActivityMonitor : IDisposable
 
     private Timer? _timer;
     public EventHandler? OnIdle;
-
     private int _autoLockMillisecond;
-    private bool _isMonitoring = false;
-    public void Init(int autoLockSecond)
+    private readonly object _lock = new();
+
+    public void SetAutoLockSecond(int autoLockSecond)
     {
         _autoLockMillisecond = autoLockSecond * 1000;
-
-        _timer = new Timer();
-        _timer.Interval = 1000;
-        _timer.Elapsed += Timer_Elapsed;
-        _timer.Start();
     }
 
     public void StartMonitoring()
     {
-        _isMonitoring = true;
+        lock (_lock)
+        {
+            if (_timer == null)
+            {
+                _timer = new Timer();
+                _timer.Interval = 1000;
+                _timer.Elapsed += Timer_Elapsed;
+            }
+            _timer.Start();
+        }
     }
 
     public void StopMonitoring()
     {
-        _isMonitoring = false;
+        lock (_lock)
+        {
+            if (_timer != null)
+            {
+                _timer.Elapsed -= Timer_Elapsed;
+                _timer.Stop();
+                _timer.Dispose();
+                _timer = null;
+            }
+        }
     }
+
     private void Timer_Elapsed(object? sender, ElapsedEventArgs e)
     {
-        if (!_isMonitoring)
-        {
-            return;
-        }
-
         var lastInputInfo = new LastInputInfo();
         lastInputInfo.cbSize = (uint)Marshal.SizeOf(lastInputInfo);
 
@@ -57,11 +65,5 @@ public class UserActivityMonitor : IDisposable
                 OnIdle?.Invoke(this, EventArgs.Empty);
             }
         }
-    }
-
-    public void Dispose()
-    {
-        _timer?.Stop();
-        _timer?.Dispose();
     }
 }

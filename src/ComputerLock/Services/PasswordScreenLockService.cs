@@ -65,12 +65,9 @@ internal class PasswordScreenLockService(IServiceProvider serviceProvider, IStri
 
     public override void Unlock()
     {
-        // 密码解锁时，没有显式调用解锁方法，而是通过事件触发解锁
-    }
-
-    private void FmLockScreen_OnUnlock(object? sender, EventArgs e)
-    {
         logger.Write("密码屏幕锁定 -> 功能屏幕准备解锁");
+        _windowLockScreen!.Close();
+
         foreach (var screen in _blankScreens)
         {
             logger.Write("密码屏幕锁定 -> 释放空白屏幕资源");
@@ -84,7 +81,10 @@ internal class PasswordScreenLockService(IServiceProvider serviceProvider, IStri
             logger.Write("密码屏幕锁定 -> 解锁动画");
             ShowPopup(lang["UnLocked"]);
         }
+    }
 
+    private void FmLockScreen_OnUnlock(object? sender, EventArgs e)
+    {
         logger.Write("密码屏幕锁定 -> 通知解锁");
         OnUnlock?.Invoke(this, EventArgs.Empty);
     }

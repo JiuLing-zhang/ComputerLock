@@ -93,8 +93,11 @@ internal class GlobalLockService : IGlobalLockService
         }
         else
         {
-            _logger.Write("系统 -> Windows 系统锁定，程序解锁");
-            Unlock();
+            if (IsLocked)
+            {
+                _logger.Write("系统 -> Windows 系统锁定，程序解锁");
+                Unlock();
+            }
         }
     }
 
@@ -266,8 +269,7 @@ internal class GlobalLockService : IGlobalLockService
     private void _screenLockService_OnUnlock(object? sender, EventArgs e)
     {
         _screenLockService!.OnUnlock -= _screenLockService_OnUnlock;
-        SystemUnlock();
-        IsLocked = false;
+        Unlock();
     }
 
     /// <summary>

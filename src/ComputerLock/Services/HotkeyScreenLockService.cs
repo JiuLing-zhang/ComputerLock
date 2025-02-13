@@ -53,7 +53,7 @@ internal class HotkeyScreenLockService(
         logger.Write("快捷键屏幕锁定 -> 准备解锁");
         foreach (var screen in _blankScreens)
         {
-            logger.Write("快捷键屏幕锁定 -> 释放副屏幕资源");
+            logger.Write("快捷键屏幕锁定 -> 释放空白屏幕资源");
             screen.Unlock();
             screen.Close();
         }

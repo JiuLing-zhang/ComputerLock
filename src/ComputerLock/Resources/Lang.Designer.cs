@@ -333,6 +333,15 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string IdleWhenWindowsLock {
+            get {
+                return ResourceManager.GetString("IdleWhenWindowsLock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string Invalid {
             get {
                 return ResourceManager.GetString("Invalid", resourceCulture);
@@ -669,6 +678,15 @@ namespace ComputerLock.Resources {
         public static string ShowMainWindow {
             get {
                 return ResourceManager.GetString("ShowMainWindow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string SuggestedToEnable {
+            get {
+                return ResourceManager.GetString("SuggestedToEnable", resourceCulture);
             }
         }
         

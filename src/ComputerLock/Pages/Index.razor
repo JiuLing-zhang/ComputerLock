@@ -21,6 +21,16 @@
     </MudTooltip>
 </div>
 <div class="d-flex">
+    <MudSwitch @bind-Value="@(AppSettings.IsUnlockWhenWindowsLock)"
+               @bind-Value:after="SaveSettings"
+               Label="@(Lang["IdleWhenWindowsLock"])"
+               Color="Color.Primary" />
+    <MudChip T="string"
+             Size="Size.Small"
+             Variant="Variant.Text"
+             Color="Color.Primary">@(Lang["SuggestedToEnable"])</MudChip>
+</div>
+<div class="d-flex">
     <MudSwitch @bind-Value="@(AppSettings.IsHideMouseCursor)"
                @bind-Value:after="SaveSettings"
                Label="@(Lang["HideMouseCursor"])"

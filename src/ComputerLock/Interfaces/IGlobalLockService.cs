@@ -8,4 +8,9 @@ public interface IGlobalLockService : IDisposable
     bool IsLocked { get; }
     void Lock();
     void Unlock();
+
+    /// <summary>
+    /// 更新自动锁定设置
+    /// </summary>    
+    void UpdateAutoLockSettings();
 }

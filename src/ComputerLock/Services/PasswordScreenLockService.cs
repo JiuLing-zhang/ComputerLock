@@ -42,7 +42,7 @@ internal class PasswordScreenLockService(IServiceProvider serviceProvider, IStri
             {
                 _windowLockScreen.OnUnlock -= FmLockScreen_OnUnlock;
             };
-            logger.Write("密码屏幕锁定 -> 激活主屏幕");
+            logger.Write("密码屏幕锁定 -> 激活功能屏幕");
             ShowWindowOnScreen(_windowLockScreen, primaryScreen);
 
             for (var i = 0; i <= Screen.AllScreens.Length - 1; i++)
@@ -52,10 +52,10 @@ internal class PasswordScreenLockService(IServiceProvider serviceProvider, IStri
                 {
                     continue;
                 }
-                logger.Write($"密码屏幕锁定 -> 准备副屏幕{i}");
+                logger.Write($"密码屏幕锁定 -> 准备空白屏幕{i}");
                 var blankScreen = serviceProvider.GetRequiredService<WindowBlankScreen>();
                 blankScreen.OnDeviceInput += BlankScreen_OnDeviceInput;
-                logger.Write($"密码屏幕锁定 -> 激活副屏幕{i}");
+                logger.Write($"密码屏幕锁定 -> 激活空白屏幕{i}");
                 ShowWindowOnScreen(blankScreen, screen);
                 _blankScreens.Add(blankScreen);
             }
@@ -70,10 +70,10 @@ internal class PasswordScreenLockService(IServiceProvider serviceProvider, IStri
 
     private void FmLockScreen_OnUnlock(object? sender, EventArgs e)
     {
-        logger.Write("密码屏幕锁定 -> 主屏幕准备解锁");
+        logger.Write("密码屏幕锁定 -> 功能屏幕准备解锁");
         foreach (var screen in _blankScreens)
         {
-            logger.Write("密码屏幕锁定 -> 释放副屏幕资源");
+            logger.Write("密码屏幕锁定 -> 释放空白屏幕资源");
             screen.OnDeviceInput -= BlankScreen_OnDeviceInput;
             screen.Unlock();
             screen.Close();

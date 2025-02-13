@@ -31,6 +31,11 @@ public class AppSettings
     public bool IsDisableWindowsLock { get; set; } = true;
 
     /// <summary>
+    /// Windows 锁定时自动解锁程序
+    /// </summary>
+    public bool IsUnlockWhenWindowsLock { get; set; } = false;
+
+    /// <summary>
     /// 锁定时显示动画
     /// </summary>
     public bool LockAnimation { get; set; } = true;

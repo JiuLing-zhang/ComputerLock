@@ -21,6 +21,7 @@ internal class GlobalLockService : IGlobalLockService
     private readonly IWindowsMessageBox _messageBox;
     private readonly IStringLocalizer<Lang> _lang;
     public bool IsLocked { get; private set; }
+    private bool _isWindowsLocked;
     private CancellationTokenSource? _cts;
     public GlobalLockService(ILogger logger, AppSettings appSettings, UserActivityMonitor activityMonitor, HotkeyHook hotkeyHook, TaskManagerHook taskManagerHook, MouseHook mouseHook, SystemKeyHook systemKeyHook, IServiceProvider serviceProvider, IWindowsMessageBox messageBox, IStringLocalizer<Lang> lang)
     {
@@ -41,8 +42,10 @@ internal class GlobalLockService : IGlobalLockService
         _lang = lang;
 
         InitActivityMonitor();
-    }
 
+        _logger.Write("空闲自动锁定 -> 准备监控系统会话状态");
+        SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;
+    }
 
     /// <summary>
     /// 初始化空闲检测
@@ -55,34 +58,68 @@ internal class GlobalLockService : IGlobalLockService
             Lock();
         };
 
-        _logger.Write("空闲自动锁定 -> 准备监控系统会话状态");
-        SystemEvents.SessionSwitch += (_, e) =>
+        AutoLockStart();
+    }
+
+    /// <summary>
+    /// Windows 事件监控
+    /// </summary>
+    private void SystemEvents_SessionSwitch(object sender, SessionSwitchEventArgs e)
+    {
+        if (e.Reason == SessionSwitchReason.SessionLock)
         {
-            // 如果已经手动锁定，不处理系统锁定事件
-            if (IsLocked)
+            _isWindowsLocked = true;
+            WindowsLock();
+        }
+        else if (e.Reason == SessionSwitchReason.SessionUnlock)
+        {
+            _isWindowsLocked = false;
+            WindowsUnlock();
+        }
+    }
+
+    /// <summary>
+    /// Windows 操作系统锁定
+    /// </summary>
+    private void WindowsLock()
+    {
+        if (!_appSettings.IsUnlockWhenWindowsLock)
+        {
+            if (!IsLocked)
             {
-                return;
-            }
-            if (e.Reason == SessionSwitchReason.SessionLock)
-            {
-                // Windows 操作系统锁定
-                _logger.Write("空闲自动锁定 -> Windows系统锁定，暂停空闲检测");
+                _logger.Write("系统 -> Windows 系统锁定，暂停空闲检测");
                 _activityMonitor.StopMonitoring();
             }
-            else if (e.Reason == SessionSwitchReason.SessionUnlock)
-            {
-                // Windows 操作系统解锁
-                _logger.Write($"空闲自动锁定 -> Windows系统解锁，恢复空闲检测，{_appSettings.AutoLockSecond} 秒");
-                _activityMonitor.SetAutoLockSecond(_appSettings.AutoLockSecond);
-                _activityMonitor.StartMonitoring();
-            }
-        };
+        }
+        else
+        {
+            _logger.Write("系统 -> Windows 系统锁定，程序解锁");
+            Unlock();
+        }
+    }
 
-        AutoLockStart();
+    /// <summary>
+    /// Windows 操作系统解锁
+    /// </summary>
+    private void WindowsUnlock()
+    {
+        if (!_appSettings.IsUnlockWhenWindowsLock)
+        {
+            if (!IsLocked)
+            {
+                _logger.Write($"系统 -> Windows 系统解锁");
+                AutoLockStart();
+            }
+        }
     }
 
     private void AutoLockStart()
     {
+        if (_isWindowsLocked && _appSettings.IsUnlockWhenWindowsLock)
+        {
+            _logger.Write($"系统 -> Windows 锁定状态，不启用空闲检测");
+        }
+
         if (_appSettings.AutoLockSecond > 0)
         {
             _logger.Write($"系统 -> 启动空闲检测，{_appSettings.AutoLockSecond} 秒");
@@ -93,6 +130,12 @@ internal class GlobalLockService : IGlobalLockService
 
     public void Lock()
     {
+        if (_isWindowsLocked && _appSettings.IsUnlockWhenWindowsLock)
+        {
+            _logger.Write($"系统 -> Windows 锁定状态禁止程序锁定");
+            return;
+        }
+
         if (!CheckLockConfig(out var message))
         {
             _messageBox.Show(message);
@@ -214,6 +257,8 @@ internal class GlobalLockService : IGlobalLockService
 
     public void UpdateAutoLockSettings()
     {
+        _logger.Write("系统 -> 更新自动锁定设置");
+        _logger.Write("系统 -> 停止空闲检测");
         _activityMonitor.StopMonitoring();
         AutoLockStart();
     }
@@ -254,5 +299,6 @@ internal class GlobalLockService : IGlobalLockService
     public void Dispose()
     {
         _hotkeyHook.Dispose();
+        SystemEvents.SessionSwitch -= SystemEvents_SessionSwitch;
     }
 }

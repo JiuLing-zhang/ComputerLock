@@ -115,7 +115,7 @@ public partial class WindowLockScreen : Window
                 {
                     var hideCountdown = Convert.ToInt32(_hideSelfTime.Subtract(time).TotalSeconds);
                     LblMessage.Content = $"{_lang["TimerPrefix"]}{hideCountdown}{_lang["TimerPostfix"]}";
-                    if (hideCountdown <= 0)
+                    if (hideCountdown == 0)
                     {
                         _logger.Write("功能屏幕 -> 准备自动隐藏密码框");
                         HidePassword();

@@ -351,4 +351,10 @@
   <data name="UnlockPasswordUndefined" xml:space="preserve">
     <value>The screen unlock password is not set</value>
   </data>
+  <data name="IdleWhenWindowsLock" xml:space="preserve">
+    <value>System unlock when windows lock</value>
+  </data>
+  <data name="SuggestedToEnable" xml:space="preserve">
+    <value>Suggested to Enable</value>
+  </data>
 </root>

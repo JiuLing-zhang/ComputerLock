@@ -369,4 +369,10 @@
   <data name="UnlockPasswordUndefined" xml:space="preserve">
     <value />
   </data>
+  <data name="IdleWhenWindowsLock" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SuggestedToEnable" xml:space="preserve">
+    <value />
+  </data>
 </root>

@@ -148,7 +148,6 @@ public partial class WindowLockScreen : Window
         }
         _logger.Write("功能屏幕 -> 密码正确，通知解锁");
         OnUnlock?.Invoke(this, EventArgs.Empty);
-        this.Close();
     }
 
     private void TxtPassword_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)

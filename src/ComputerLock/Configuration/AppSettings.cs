@@ -107,7 +107,7 @@ public class AppSettings
     /// <summary>
     /// 自动检查更新
     /// </summary>
-    public bool IsAutoCheckUpdate { get; set; } = false;
+    public bool IsAutoCheckUpdate { get; set; } = true;
 
     /// <summary>
     /// 启用密码框

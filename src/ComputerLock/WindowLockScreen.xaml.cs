@@ -1,8 +1,8 @@
-﻿using System.Runtime.InteropServices;
-using System.Windows;
+﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 using System.Windows.Threading;
-using Point = System.Windows.Point;
 
 namespace ComputerLock;
 /// <summary>
@@ -19,6 +19,8 @@ public partial class WindowLockScreen : Window
     private readonly ILogger _logger;
 
     public event EventHandler<EventArgs>? OnUnlock;
+
+    private Storyboard? _breathingTop;
 
     public WindowLockScreen(AppSettings appSettings, IStringLocalizer<Lang> lang, ILogger logger)
     {
@@ -49,6 +51,12 @@ public partial class WindowLockScreen : Window
             RefreshHideSelfTime();
         }
         HidePassword();
+
+        if (_appSettings.LockStatusDisplay == LockStatusDisplay.BreathingTop)
+        {
+            _logger.Write("功能屏幕 -> 启用顶部呼吸灯");
+            BreathingLightHelper.InitializeBreathingLight(TopBreathingLight);
+        }
     }
 
     private void Window_SizeChanged(object sender, SizeChangedEventArgs e)

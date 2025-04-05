@@ -133,4 +133,9 @@ public class AppSettings
     /// 屏幕解锁方式
     /// </summary>
     public ScreenUnlockMethods ScreenUnlockMethod { get; set; } = ScreenUnlockMethods.Password;
+
+    /// <summary>
+    /// 锁屏状态展示
+    /// </summary>
+    public LockStatusDisplay LockStatusDisplay { get; set; } = LockStatusDisplay.None;
 }

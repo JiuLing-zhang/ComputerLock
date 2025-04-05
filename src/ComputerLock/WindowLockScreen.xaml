@@ -14,8 +14,7 @@
         Loaded="Window_Loaded"
         SizeChanged="Window_SizeChanged"
         Closing="Window_Closing"
-        KeyDown="Window_KeyDown"
-        >
+        KeyDown="Window_KeyDown">
 
     <Window.Resources>
         <Style x:Key="CustomPasswordBoxStyle" TargetType="PasswordBox">
@@ -26,18 +25,25 @@
     </Window.Resources>
 
     <Grid>
-        <Grid.Background>
+        <Panel.Background>
             <SolidColorBrush Color="#000000" Opacity="0.01"/>
-        </Grid.Background>
-        <Border Width="230"
-                Height="55"
-                x:Name="PasswordBlock"
+        </Panel.Background>
+
+        <!-- 顶部呼吸灯，默认隐藏 -->
+        <Grid VerticalAlignment="Top">
+            <Border x:Name="TopBreathingLight" Background="#fb8c00" Height="4" 
+                    HorizontalAlignment="Stretch" Visibility="Collapsed"/>
+        </Grid>
+
+        <Border MouseDown="PasswordBlock_MouseDown" 
+                x:Name="PasswordBlock" 
+                Width="230" 
+                Height="55" 
                 Opacity="1"
                 CornerRadius="10"
-                BorderBrush="Transparent"
-                Background="#EAEAEA"
-                BorderThickness="1"
-                MouseDown="PasswordBlock_MouseDown">
+                BorderBrush="Transparent" 
+                Background="#EAEAEA" 
+                BorderThickness="1">
             <Grid Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -49,25 +55,23 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-
-                <Label Grid.Row="0"
-                       Grid.Column="0"
-                       Foreground="#000000"
-                       Opacity="0.5"                       
-                       x:Name="LblPassword"/>
-                <Label Grid.Row="0"
-                       Grid.Column="2"
-                       Foreground="#000000"
-                       Opacity="0.5"
-                       x:Name="LblMessage"/>
-
-                <PasswordBox Grid.Row="2"
-                             Grid.Column="0"
-                             Grid.ColumnSpan="3"
+                <Label x:Name="LblPassword" 
+                       Grid.Row="0"
+                       Grid.Column="0" 
+                       Foreground="#000000" 
+                       Opacity="0.5"/>
+                <Label x:Name="LblMessage"
+                       Grid.Row="0" 
+                       Grid.Column="2" 
+                       Foreground="#000000" 
+                       Opacity="0.5"/>
+                <PasswordBox PasswordChanged="TxtPassword_PasswordChanged" 
+                             KeyDown="TxtPassword_KeyDown" 
                              x:Name="TxtPassword"
-                             Style="{StaticResource CustomPasswordBoxStyle}"
-                             PasswordChanged="TxtPassword_PasswordChanged"
-                             KeyDown="TxtPassword_KeyDown"/>
+                             Grid.Row="2"
+                             Grid.Column="0" 
+                             Grid.ColumnSpan="3"
+                             Style="{StaticResource CustomPasswordBoxStyle}"/>
             </Grid>
         </Border>
     </Grid>

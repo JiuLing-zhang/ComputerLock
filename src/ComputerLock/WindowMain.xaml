@@ -8,7 +8,7 @@
         xmlns:ui="http://schemas.modernwpf.com/2019"
         mc:Ignorable="d"
         Title="透明锁屏"
-        Height="620"
+        Height="670"
         Width="620"
         ResizeMode="NoResize"
         WindowState="Normal"

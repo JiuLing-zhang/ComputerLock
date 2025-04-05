@@ -15,8 +15,6 @@ namespace ComputerLock
 
         private readonly AppSettings _appSettings;
         private readonly ILogger _logger;
-
-        private Storyboard? _breathingTop;
         public WindowBlankScreen(AppSettings appSettings, ILogger logger)
         {
             InitializeComponent();

@@ -20,8 +20,6 @@ public partial class WindowLockScreen : Window
 
     public event EventHandler<EventArgs>? OnUnlock;
 
-    private Storyboard? _breathingTop;
-
     public WindowLockScreen(AppSettings appSettings, IStringLocalizer<Lang> lang, ILogger logger)
     {
         InitializeComponent();

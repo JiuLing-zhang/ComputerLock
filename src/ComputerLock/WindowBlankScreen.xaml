@@ -14,7 +14,18 @@
         Loaded="Window_Loaded"
         KeyDown="Window_KeyDown"
         Closing="Window_Closing">
-    <Grid Background="#000000" Opacity="0.01">
-
+    <Grid>
+        <Panel.Background>
+            <SolidColorBrush Color="#000000" Opacity="0.01"/>
+        </Panel.Background>
+        <Grid VerticalAlignment="Top">
+            
+            <!-- 顶部呼吸灯，默认隐藏 -->
+            <Border x:Name="TopBreathingLight"
+                    Background="#fb8c00" 
+                    Height="4" 
+                    HorizontalAlignment="Stretch"
+                    Visibility="Collapsed"/>
+        </Grid>
     </Grid>
 </Window>

@@ -42,6 +42,18 @@
                Label="@(Lang["LockAnimation"])"
                Color="Color.Primary" />
 </div>
+
+<MudSelect T="LockStatusDisplay"
+           Label="@(Lang["LockStatusDisplay"])"
+           Variant="Variant.Outlined"
+           Value="@(AppSettings.LockStatusDisplay)"
+           ValueChanged="LockStatusDisplayChanged"
+           Margin="Margin.Dense"
+           Dense="true">
+    <MudSelectItem Value="@(LockStatusDisplay.None)">@(Lang["LockStatusDisplayNone"])</MudSelectItem>
+    <MudSelectItem Value="@(LockStatusDisplay.BreathingTop)">@(Lang["LockStatusDisplayBreathingTop"])</MudSelectItem>
+</MudSelect>
+
 <MudNumericField T="int"
                  Label="@(Lang["AutoLock"])"
                  Value="@(AppSettings.AutoLockMinute)"

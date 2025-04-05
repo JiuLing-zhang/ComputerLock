@@ -375,4 +375,13 @@
   <data name="SuggestedToEnable" xml:space="preserve">
     <value />
   </data>
+  <data name="LockStatusDisplay" xml:space="preserve">
+	  <value />
+  </data>
+  <data name="LockStatusDisplayNone" xml:space="preserve">
+	  <value />
+  </data>
+  <data name="LockStatusDisplayBreathingTop" xml:space="preserve">
+	  <value />
+  </data>
 </root>

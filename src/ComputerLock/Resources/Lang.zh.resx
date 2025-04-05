@@ -354,4 +354,13 @@
   <data name="SuggestedToEnable" xml:space="preserve">
     <value>建议开启</value>
   </data>
+  <data name="LockStatusDisplay" xml:space="preserve">
+	  <value>锁屏状态展示</value>
+  </data>
+  <data name="LockStatusDisplayNone" xml:space="preserve">
+	  <value>关闭</value>
+  </data>
+  <data name="LockStatusDisplayBreathingTop" xml:space="preserve">
+	  <value>顶部呼吸灯</value>
+  </data>
 </root>

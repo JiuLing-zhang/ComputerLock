@@ -1,5 +1,7 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 
 namespace ComputerLock
 {
@@ -13,6 +15,8 @@ namespace ComputerLock
 
         private readonly AppSettings _appSettings;
         private readonly ILogger _logger;
+
+        private Storyboard? _breathingTop;
         public WindowBlankScreen(AppSettings appSettings, ILogger logger)
         {
             InitializeComponent();
@@ -23,6 +27,11 @@ namespace ComputerLock
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _logger.Write("空白屏幕 -> 准备锁定");
+            if (_appSettings.LockStatusDisplay == LockStatusDisplay.BreathingTop)
+            {
+                _logger.Write("空白屏幕 -> 启用顶部呼吸灯");
+                BreathingLightHelper.InitializeBreathingLight(TopBreathingLight);
+            }
         }
 
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)

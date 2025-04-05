@@ -139,6 +139,12 @@ public partial class Index
         SaveSettings();
     }
 
+    private void LockStatusDisplayChanged(LockStatusDisplay lockStatusDisplay)
+    {
+        AppSettings.LockStatusDisplay = lockStatusDisplay;
+        SaveSettings();
+    }
+
     private void SaveSettings()
     {
         AppSettingsProvider.SaveSettings(AppSettings);

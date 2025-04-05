@@ -19,10 +19,10 @@
 	<ItemGroup>
 		<PackageReference Include="CodeBeam.MudBlazor.Extensions" Version="8.0.0" />
 		<PackageReference Include="JiuLing.AutoUpgrade" Version="2.3.0" />
-		<PackageReference Include="JiuLing.CommonLibs" Version="1.7.2" />
+		<PackageReference Include="JiuLing.CommonLibs" Version="1.7.4" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="8.0.100" />
 		<PackageReference Include="ModernWpfUI" Version="0.9.6" />
-		<PackageReference Include="MudBlazor" Version="8.2.0" />
+		<PackageReference Include="MudBlazor" Version="8.5.1" />
 		<PackageReference Include="MudBlazor.Markdown" Version="8.0.0" />
 	</ItemGroup>
 

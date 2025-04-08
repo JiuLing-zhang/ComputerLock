@@ -123,4 +123,7 @@
   <data name="GitHubUrl" xml:space="preserve">
     <value>https://github.com/JiuLing-zhang/ComputerLock</value>
   </data>
+  <data name="HomePage" xml:space="preserve">
+	  <value>https://jiuling.cc/computer-lock</value>
+  </data>
 </root>

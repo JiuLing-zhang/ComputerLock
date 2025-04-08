@@ -363,4 +363,7 @@
   <data name="LockStatusDisplayBreathingTop" xml:space="preserve">
 	  <value>顶部呼吸灯</value>
   </data>
+  <data name="HomePage" xml:space="preserve">
+	  <value>主页</value>
+  </data>
 </root>

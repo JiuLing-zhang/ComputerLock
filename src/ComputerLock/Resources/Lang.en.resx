@@ -366,4 +366,7 @@
   <data name="LockStatusDisplayBreathingTop" xml:space="preserve">
 	  <value>BreathingTop</value>
   </data>
+  <data name="HomePage" xml:space="preserve">
+	  <value>Home Page</value>
+  </data>
 </root>

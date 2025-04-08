@@ -77,5 +77,14 @@ namespace ComputerLock.Resources {
                 return ResourceManager.GetString("GitHubUrl", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   查找类似 https://jiuling.cc/computer-lock 的本地化字符串。
+        /// </summary>
+        internal static string HomePage {
+            get {
+                return ResourceManager.GetString("HomePage", resourceCulture);
+            }
+        }
     }
 }

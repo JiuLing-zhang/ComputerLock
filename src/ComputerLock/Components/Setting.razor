@@ -101,5 +101,34 @@
                    Color="Color.Primary"
                    Size="Size.Small"
                    OnClick="ResetSettingsAsync">@(Lang["ResetSettings"])</MudButton>
+
+        <MudDivider Class="mt-4 mb-8" />
+
+        <div class="d-flex flex-column align-center text-center">
+            <MudAvatar Size="Size.Medium"
+                       Class="mb-2">
+                <MudImage Src="images/icon.png"></MudImage>
+            </MudAvatar>
+
+            <MudText Typo="Typo.subtitle1" Class="mb-2">@(Lang["Title"])</MudText>
+
+            <div class="d-flex justify-center gap-3" style="opacity:0.5;">
+                <MudLink Href="@(Resource.HomePage)"
+                         Target="_blank"
+                         Color="Color.Default"
+                         Class="d-flex align-center gap-1">
+                    <MudIcon Icon="@Icons.Material.Filled.Home" />
+                    <span>@(Lang["HomePage"])</span>
+                </MudLink>
+                <MudLink Href="@(Resource.GitHubUrl)"
+                         Target="_blank"
+                         Color="Color.Default"
+                         Class="d-flex align-center gap-1">
+                    <MudIcon Icon="@Icons.Custom.Brands.GitHub" />
+                    <span>GitHub</span>
+                </MudLink>
+            </div>
+        </div>
+
     </MudDrawerContainer>
 </MudDrawer>

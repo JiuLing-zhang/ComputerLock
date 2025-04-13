@@ -14,7 +14,7 @@ public class AppSettings
     /// <summary>
     /// 主题
     /// </summary>
-    public int AppThemeInt { get; set; } = 0;
+    public ThemeEnum AppThemeInt { get; set; } = ThemeEnum.System;
     /// <summary>
     /// 关闭窗口时最小化到托盘
     /// </summary>

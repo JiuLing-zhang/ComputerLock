@@ -1,74 +1,60 @@
 ﻿@inherits LayoutComponentBase
 
-<style>
-    .mud-appbar .mud-toolbar-gutters {
-        padding-left: 10px;
-        padding-right: 0px;
-    }
-
-    .mud-appbar .mud-button-root .mud-icon-button-label .mud-icon-root {
-        width: 0.7em;
-        height: 0.7em;
-    }
-</style>
-
 <MudThemeProvider @ref="@_mudThemeProvider" @bind-IsDarkMode="@_isDarkMode" Theme="_customTheme" />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
-<MudLayout>
-    <MudAppBar Class="px-0" Elevation="25" Dense="true" @onmouseup="MouseUp" @onmousedown="MouseDown">
+<style>
+    .dialog-blurry {
+        backdrop-filter: blur(10px);
+    }
+</style>
 
-        <div class="d-flex align-center" @onmouseup:stopPropagation="true" @onmousedown:stopPropagation="true">
-            <div class="app-icon"></div>
-            <MudText Typo="Typo.subtitle2" Class="ml-1 mt-1 cursor-default">@(Lang["Title"])</MudText>
+<MudLayout>
+    <MudAppBar Class="px-2"
+               Elevation="25"
+               Gutters="false"
+               @onmouseup="MouseUp"
+               @onmousedown="MouseDown">
+
+        <div class="d-flex align-end">
+            <MudImage Src="images/icon.png"
+                      Class="rounded-circle"
+                      Style="height:24px; width:24px;"></MudImage>
+            <MudText Typo="Typo.body2" Color="Color.Secondary" Class="ml-1">@(Lang["Title"])</MudText>
         </div>
 
         <MudSpacer />
 
-        <div class="d-flex" @onmouseup:stopPropagation="true" @onmousedown:stopPropagation="true">
-            <MudTooltip Text="@(Lang["Tip"])" Delay="300">
-                <MudIconButton Icon="@Icons.Material.Filled.Coffee"
-                               Size="Size.Medium"
-                               OnClick="OpenPayDialog" />
-            </MudTooltip>
+        <div class="d-flex align-end"
+             @onmouseup:stopPropagation="true"
+             @onmousedown:stopPropagation="true">
+            <MudButton StartIcon="@Icons.Material.Filled.Coffee"
+                       Color="Color.Secondary"
+                       Variant="Variant.Text"
+                       Size="Size.Small"
+                       Class="mr-2"
+                       OnClick="OpenDonationDialog">
+                支持作者
+            </MudButton>
 
-            @if (AppSettings.AppThemeInt == 0)
-            {
-                <MudTooltip Text="@(Lang["LightTheme"])" Delay="300">
-                    <MudIconButton Icon="@Icons.Material.Filled.WbSunny"
-                                   Size="Size.Medium"
-                                   OnClick="ChangeTheme" />
-                </MudTooltip>
-            }
-            else if (AppSettings.AppThemeInt == 1)
-            {
-                <MudTooltip Text="@(Lang["DarkTheme"])" Delay="300">
-                    <MudIconButton Icon="@Icons.Material.Filled.DarkMode"
-                                   Size="Size.Medium"
-                                   OnClick="ChangeTheme" />
-                </MudTooltip>
-            }
-            else
-            {
-                <MudTooltip Text="@(Lang["SystemTheme"])" Delay="300">
-                    <MudIconButton Icon="@Icons.Material.Filled.AutoMode"
-                                   Size="Size.Medium"
-                                   OnClick="ChangeTheme" />
-                </MudTooltip>
-            }
-            <MudTooltip Text="@(Lang["Settings"])" Delay="300">
-                <MudIconButton Icon="@Icons.Material.Filled.Settings"
-                               Size="Size.Medium"
-                               OnClick="OpenSettingsDialog" />
-            </MudTooltip>
             <TitleBar />
         </div>
     </MudAppBar>
-    <MudMainContent Class="mx-4 my-2">
-        @Body
-    </MudMainContent>
 
-    <Setting @ref="@_settings" />
+    <MudDrawer Elevation="2" Open="true" ClipMode="DrawerClipMode.Always" Variant="DrawerVariant.Persistent">
+        <MudNavMenu>
+            <MudNavLink Href="/lock-settings" Icon="@Icons.Material.Filled.Lock">锁屏设置</MudNavLink>
+            <MudNavLink Href="/unlock-settings" Icon="@Icons.Material.Filled.VpnKey">解锁方式</MudNavLink>
+            <MudNavLink Href="/general-settings" Icon="@Icons.Material.Filled.Settings">通用设置</MudNavLink>
+            <MudNavLink Href="/about" Icon="@Icons.Material.Filled.Info">关于</MudNavLink>
+        </MudNavMenu>
+    </MudDrawer>
+
+    <MudMainContent>
+        <MudPaper Class="py-4 px-3" Style="height: calc(100vh - 32px);">
+            @Body
+        </MudPaper>
+    </MudMainContent>
 </MudLayout>

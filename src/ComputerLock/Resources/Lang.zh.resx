@@ -298,13 +298,13 @@
     <value>设置</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
-    <value>浅色主题</value>
+	  <value>浅色</value>
   </data>
   <data name="DarkTheme" xml:space="preserve">
-    <value>深色主题</value>
+	  <value>深色</value>
   </data>
   <data name="SystemTheme" xml:space="preserve">
-    <value>使用系统主题</value>
+	  <value>跟随系统</value>
   </data>
   <data name="DisableWindowsRemark" xml:space="preserve">
     <value>通过移动鼠标来防止 Windows 自动锁屏</value>

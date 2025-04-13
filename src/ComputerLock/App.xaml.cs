@@ -57,6 +57,7 @@ public partial class App : Application
         services.AddTransient<WindowBlankScreen>();
         services.AddSingleton<SystemKeyHook>();
         services.AddSingleton<HotkeyTools>();
+        services.AddSingleton<ThemeSwitchService>();
         services.AddSingleton<IWindowsMessageBox, WindowsMessageBox>();
         services.AddSingleton<IWindowMoving, WindowMoving>();
         services.AddSingleton<IWindowTitleBar, WindowTitleBar>();

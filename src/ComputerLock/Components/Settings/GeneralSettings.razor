@@ -1,0 +1,92 @@
+﻿@page "/general-settings"
+
+<MudText Typo="Typo.h6" Class="mb-3">通用设置</MudText>
+
+<MudCheckBox Value="@(_isAutostart)"
+             T="bool"
+             ValueChanged="AutostartChange"
+             Label="@(Lang["Autostart"])"
+             Color="Color.Primary"
+             Style="max-width: fit-content;" />
+<MudCheckBox @bind-Value="@(AppSettings.IsHideWindowWhenLaunch)"
+             @bind-Value:after="SaveSettings"
+             Label="@(Lang["HideWindowWhenLaunch"])"
+             Color="Color.Primary"
+             Style="max-width: fit-content;" />
+<MudCheckBox @bind-Value="@(AppSettings.IsHideWindowWhenClose)"
+             @bind-Value:after="SaveSettings"
+             Label="@(Lang["HideWindowWhenClose"])"
+             Color="Color.Primary"
+             Style="max-width: fit-content;" />
+
+<MudSelect T="ThemeEnum"
+           Class="mt-4"
+           Dense="true"
+           Margin="Margin.Dense"
+           Label="外观"
+           Variant="Variant.Outlined"
+           Value="@(AppSettings.AppThemeInt)"
+           ValueChanged="ThemeChanged">
+    <MudSelectItem Value="@(ThemeEnum.System)">@(Lang["SystemTheme"])</MudSelectItem>
+    <MudSelectItem Value="@(ThemeEnum.Light)">@(Lang["LightTheme"])</MudSelectItem>
+    <MudSelectItem Value="@(ThemeEnum.Dark)">@(Lang["DarkTheme"])</MudSelectItem>
+</MudSelect>
+
+<MudSelect Class="mt-4"
+           T="string"
+           Variant="Variant.Outlined"
+           Dense="true"
+           Margin="Margin.Dense"
+           Label="语言 Lang"
+           Value="@(AppSettings.Lang.ToString())"
+           ValueChanged="LangValueChanged">
+    <MudSelectItem Value="@("zh")">中文</MudSelectItem>
+    <MudSelectItem Value="@("en")">en</MudSelectItem>
+</MudSelect>
+
+<MudDivider Class="my-4" />
+
+<div class="d-flex align-center">
+    <MudText Typo="Typo.subtitle2">@(Lang["LogFiles"])</MudText>
+    @if (_logLoadingOk)
+    {
+        <MudChip T="string"
+                 Label="true"
+                 Disabled="true"
+                 Variant="Variant.Text"
+                 Size="Size.Small">
+            @($"{_logFilesSize / 1024 / 1024:N2} MB")
+        </MudChip>
+    }
+</div>
+<div class="d-flex align-center">
+    @if (!_logLoadingOk)
+    {
+        <MudProgressCircular Color="Color.Primary"
+                             Class="ml-2"
+                             Size="Size.Small"
+                             Indeterminate="true" />
+    }
+    else
+    {
+        <MudButton Variant="Variant.Text"
+                   Color="Color.Primary"
+                   Size="Size.Small"
+                   OnClick="OpenLogPath">@(Lang["OpenLogs"])</MudButton>
+        <MudButton Variant="Variant.Text"
+                   Color="Color.Primary"
+                   Size="Size.Small"
+                   OnClick="ClearLogAsync">@(Lang["Delete"])</MudButton>
+    }
+</div>
+
+<MudDivider Class="my-3" />
+
+<div class="d-flex align-center">
+    <MudText Typo="Typo.subtitle2">@(Lang["Advanced"])</MudText>
+</div>
+<MudButton Class="mt-2"
+           Variant="Variant.Text"
+           Color="Color.Primary"
+           Size="Size.Small"
+           OnClick="ResetSettingsAsync">@(Lang["ResetSettings"])</MudButton>

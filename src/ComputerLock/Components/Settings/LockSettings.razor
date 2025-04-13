@@ -1,0 +1,77 @@
+﻿@page "/lock-settings"
+
+<MudText Typo="Typo.h6" Class="mb-3">锁屏设置</MudText>
+
+<MudCheckBox @bind-Value="@(AppSettings.LockOnStartup)"
+             @bind-Value:after="SaveSettings"
+             Label="@(Lang["LockOnStartup"])"
+             Color="Color.Primary"
+             Style="max-width: fit-content;" />
+
+<MudDivider />
+
+<div class="d-flex flex-column">
+    <MudCheckBox @bind-Value="@(AppSettings.IsDisableWindowsLock)"
+                 @bind-Value:after="SaveSettings"
+                 Label="@(Lang["DisableWindowsLock"])"
+                 Color="Color.Primary"
+                 Style="max-width: fit-content;" />
+
+    <MudText Color="Color.Secondary" Typo="Typo.body2" Class="ml-12" Style="opacity:0.5;">
+        @(Lang["DisableWindowsRemark"])
+    </MudText>
+</div>
+
+<div class="d-flex align-center">
+    <MudCheckBox @bind-Value="@(AppSettings.IsUnlockWhenWindowsLock)"
+                 @bind-Value:after="SaveSettings"
+                 Label="@(Lang["IdleWhenWindowsLock"])"
+                 Color="Color.Primary"
+                 Style="max-width: fit-content;" />
+    <MudChip T="string"
+             Size="Size.Small"
+             Variant="Variant.Outlined"
+             Label="true"
+             Color="Color.Secondary">@(Lang["SuggestedToEnable"])</MudChip>
+</div>
+
+<MudDivider />
+
+<MudCheckBox @bind-Value="@(AppSettings.IsHideMouseCursor)"
+             @bind-Value:after="SaveSettings"
+             Label="@(Lang["HideMouseCursor"])"
+             Color="Color.Primary"
+             Style="max-width: fit-content;" />
+
+<MudCheckBox @bind-Value="@(AppSettings.LockAnimation)"
+             @bind-Value:after="SaveSettings"
+             Label="@(Lang["LockAnimation"])"
+             Color="Color.Primary"
+             Style="max-width: fit-content;" />
+
+<MudSelect T="LockStatusDisplay"
+           Class="mt-4"
+           Dense="true"
+           Margin="Margin.Dense"
+           Label="@(Lang["LockStatusDisplay"])"
+           Variant="Variant.Outlined"
+           Value="@(AppSettings.LockStatusDisplay)"
+           ValueChanged="LockStatusDisplayChanged">
+    <MudSelectItem Value="@(LockStatusDisplay.None)">@(Lang["LockStatusDisplayNone"])</MudSelectItem>
+    <MudSelectItem Value="@(LockStatusDisplay.BreathingTop)">@(Lang["LockStatusDisplayBreathingTop"])</MudSelectItem>
+</MudSelect>
+
+<MudNumericField T="int"
+                 Class="my-4"
+                 Margin="Margin.Dense"
+                 Label="@(Lang["AutoLock"])"
+                 Value="@(AppSettings.AutoLockMinute)"
+                 Min="0"
+                 Variant="Variant.Outlined"
+                 ValueChanged="AutoLockChanged">
+</MudNumericField>
+
+<HotkeyInput Title="@(Lang["LockHotkey"])"
+             Hotkey="@(AppSettings.LockHotkeyString)"
+             OnHotkeySet="SetLockHotkey"
+             OnHotkeyClear="ClearLockHotkey" />

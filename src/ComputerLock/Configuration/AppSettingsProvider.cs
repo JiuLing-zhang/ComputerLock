@@ -2,7 +2,7 @@
 using System.Text.Json;
 
 namespace ComputerLock.Configuration;
-internal class AppSettingsProvider(IStringLocalizer<Lang> lang)
+public class AppSettingsProvider(IStringLocalizer<Lang> lang)
 {
     public AppSettings LoadSettings()
     {

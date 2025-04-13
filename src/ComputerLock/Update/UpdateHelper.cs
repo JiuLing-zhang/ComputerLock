@@ -1,7 +1,7 @@
-﻿using System.IO;
-using JiuLing.AutoUpgrade.Shared;
-using JiuLing.AutoUpgrade.Shell;
+﻿using JiuLing.AutoUpgrade.Shell;
 using JiuLing.AutoUpgrade.Shell.Enums;
+using System.IO;
+using ThemeEnum = JiuLing.AutoUpgrade.Shared.ThemeEnum;
 
 namespace ComputerLock.Update;
 internal class UpdateHelper(AppSettings appSettings)
@@ -15,10 +15,10 @@ internal class UpdateHelper(AppSettings appSettings)
         }
         var theme = appSettings.AppThemeInt switch
         {
-            0 => ThemeEnum.System,
-            1 => ThemeEnum.Light,
-            2 => ThemeEnum.Dark,
-            _ => ThemeEnum.Light
+            Enums.ThemeEnum.System => ThemeEnum.System,
+            Enums.ThemeEnum.Light => ThemeEnum.Light,
+            Enums.ThemeEnum.Dark => ThemeEnum.Dark,
+            _ => ThemeEnum.System
         };
         var iconPath = @"wwwroot\icon.ico";
         if (!File.Exists(iconPath))

@@ -1,11 +1,11 @@
+﻿@inject NavigationManager Navigation
 <Router AppAssembly="@typeof(WebApp).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
     </Found>
     <NotFound>
-        <PageTitle>Not found</PageTitle>
-        <LayoutView Layout="@typeof(MainLayout)">
-            <p role="alert">Sorry, there's nothing at this address.</p>
-        </LayoutView>
+        @{
+            Navigation.NavigateTo("/lock-settings");
+        }
     </NotFound>
 </Router>

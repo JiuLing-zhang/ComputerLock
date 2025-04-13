@@ -1,0 +1,62 @@
+﻿@page "/about"
+
+<MudText Typo="Typo.h6" Class="mb-3">关于</MudText>
+
+<div class="d-flex align-center">
+    <MudText Typo="Typo.subtitle2">@(Lang["Version"])</MudText>
+    <MudChip T="string"
+             Label="true"
+             Disabled="true"
+             Variant="Variant.Text">
+        @(_version)
+    </MudChip>
+
+    <MudButton Variant="Variant.Text"
+               Color="Color.Secondary"
+               Size="Size.Small"
+               OnClick="OpenVersionHistory">@(Lang["VersionHistory"])</MudButton>
+</div>
+
+<MudStack Row="true" Spacing="2">
+    <MudButton Variant="Variant.Text"
+               Color="Color.Secondary"
+               Size="Size.Small"
+               OnClick="CheckUpdateAsync">@(Lang["CheckUpdate"])</MudButton>
+
+    <MudCheckBox @bind-Value="@(AppSettings.IsAutoCheckUpdate)"
+                 @bind-Value:after="SaveSettings"
+                 Label="@(Lang["AutoCheckUpdate"])"
+                 Color="Color.Secondary"
+                 Size="Size.Small"
+                 Style="max-width: fit-content;" />
+</MudStack>
+
+<MudDivider Class="mt-4 mb-10" />
+
+<div class="d-flex flex-column align-center text-center">
+    <MudAvatar Class="mb-2">
+        <MudImage Src="images/icon.png"></MudImage>
+    </MudAvatar>
+
+    <MudText Typo="Typo.subtitle1" Class="mb-2">@(Lang["Title"])</MudText>
+
+    <MudStack Row="true" Spacing="2">
+        <MudButton Href="@(Resource.HomePage)"
+                   Target="_blank"
+                   Variant="Variant.Text"
+                   StartIcon="@Icons.Material.Filled.Home"
+                   Size="Size.Small"
+                   Style="text-transform:none">
+            @(Lang["HomePage"])
+        </MudButton>
+
+        <MudButton Href="@(Resource.GitHubUrl)"
+                   Target="_blank"
+                   Variant="Variant.Text"
+                   StartIcon="@Icons.Custom.Brands.GitHub"
+                   Size="Size.Small"
+                   Style="text-transform:none">
+            GitHub
+        </MudButton>
+    </MudStack>
+</div>

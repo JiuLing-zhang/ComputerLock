@@ -1,20 +1,15 @@
-﻿<div class="title-bar d-flex align-start @Class">
+﻿<div class="d-flex align-start @Class">
 
-    <MudTooltip Text="@(Lang["Minimize"])" Delay="600">
-        <MudIconButton Icon="@Icons.Material.Filled.Minimize"
-                       Size="Size.Medium"
-                       OnClick="MinimizeAsync" />
-    </MudTooltip>
+    <MudIconButton Icon="@Icons.Material.Filled.Minimize"
+                   Size="Size.Small"
+                   OnClick="MinimizeAsync" />
 
     @*     <MudIconButton Icon=@(_maximizerIcon)
     Size="Size.Medium"
     Disabled="true"
     OnClick="MaximizeAsync" /> *@
 
-    <MudTooltip Text="@(Lang["Quit"])" Delay="600">
-        <MudIconButton Icon="@Icons.Material.Filled.Close"
-                       Size="Size.Medium"
-                       OnClick="CloseAsync" />
-    </MudTooltip>
-
+    <MudIconButton Icon="@Icons.Material.Filled.Close"
+                   Size="Size.Small"
+                   OnClick="CloseAsync" />
 </div>

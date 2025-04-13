@@ -1,0 +1,29 @@
+﻿<MudDialog>
+    <DialogContent>
+        <MudPaper Elevation="0" Class="px-3 py-2 d-flex flex-column align-center">
+            <MudText Typo="Typo.subtitle1" Class="mb-2" Color="Color.Secondary">
+                如果你喜欢这款软件，不妨支持一下作者！
+            </MudText>
+
+            <MudChip T="string" Label="true">请使用微信扫一扫</MudChip>
+
+            <MudImage Src="images/wxPay.jpg"
+                      Width="320" Height="320"
+                      Elevation="4"
+                      Class="rounded-lg" />
+
+            <MudDivider Class="my-2" />
+
+            <MudText Typo="Typo.caption" Color="Color.Secondary" Class="mb-1">
+                已有 <strong>5</strong> 人支持
+            </MudText>
+
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="https://jiuling.cc/donation">
+                查看打赏记录
+            </MudButton>
+        </MudPaper>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Close">关闭</MudButton>
+    </DialogActions>
+</MudDialog>

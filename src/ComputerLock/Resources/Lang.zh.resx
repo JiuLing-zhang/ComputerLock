@@ -127,7 +127,7 @@
     <value>关闭窗口时最小化到托盘</value>
   </data>
   <data name="AutoCheckUpdate" xml:space="preserve">
-    <value>自动更新</value>
+    <value>自动检查更新</value>
   </data>
   <data name="CheckUpdate" xml:space="preserve">
     <value>检查更新</value>
@@ -148,7 +148,7 @@
     <value>鼠标点击密码框位置时显示</value>
   </data>
   <data name="ActiveMethodEmpty" xml:space="preserve">
-    <value>请选择至少一种激活方式</value>
+	  <value>至少需要为密码框启用一种激活方式</value>
   </data>
   <data name="PwdLocation" xml:space="preserve">
     <value>密码框位置</value>
@@ -190,7 +190,7 @@
     <value>请直接在键盘上输入新的快捷键</value>
   </data>
   <data name="ResetPassword" xml:space="preserve">
-    <value>设置解锁密码</value>
+	  <value>修改密码</value>
   </data>
   <data name="CurrentPassword" xml:space="preserve">
     <value>当前密码</value>
@@ -244,13 +244,13 @@
     <value>锁定和解锁时显示动画</value>
   </data>
   <data name="EnablePasswordBox" xml:space="preserve">
-    <value>屏幕显示解锁密码框</value>
+	  <value>显示密码框</value>
   </data>
   <data name="UnLocked" xml:space="preserve">
     <value>已解锁</value>
   </data>
   <data name="EnablePasswordBoxTips" xml:space="preserve">
-    <value>锁屏时按ESC后输入密码解锁</value>
+	  <value>锁屏状态下，先按 ESC 键，然后输入密码即可解锁</value>
   </data>
   <data name="LogFiles" xml:space="preserve">
     <value>日志文件</value>
@@ -291,9 +291,6 @@
   <data name="Quit" xml:space="preserve">
     <value>关闭</value>
   </data>
-  <data name="Tip" xml:space="preserve">
-    <value>打赏</value>
-  </data>
   <data name="Settings" xml:space="preserve">
     <value>设置</value>
   </data>
@@ -319,7 +316,7 @@
     <value>锁定时隐藏鼠标光标</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>版本信息</value>
+	  <value>当前版本</value>
   </data>
   <data name="Advanced" xml:space="preserve">
     <value>高级</value>
@@ -365,5 +362,8 @@
   </data>
   <data name="HomePage" xml:space="preserve">
 	  <value>主页</value>
+  </data>
+  <data name="SetPassword" xml:space="preserve">
+	  <value>设置密码</value>
   </data>
 </root>

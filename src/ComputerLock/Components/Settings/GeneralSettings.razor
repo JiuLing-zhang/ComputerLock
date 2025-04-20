@@ -54,6 +54,7 @@
                  Label="true"
                  Disabled="true"
                  Variant="Variant.Text"
+                 Color="Color.Secondary"
                  Size="Size.Small">
             @($"{_logFilesSize / 1024 / 1024:N2} MB")
         </MudChip>
@@ -62,7 +63,7 @@
 <div class="d-flex align-center">
     @if (!_logLoadingOk)
     {
-        <MudProgressCircular Color="Color.Primary"
+        <MudProgressCircular Color="Color.Secondary"
                              Class="ml-2"
                              Size="Size.Small"
                              Indeterminate="true" />
@@ -87,6 +88,6 @@
 </div>
 <MudButton Class="mt-2"
            Variant="Variant.Text"
-           Color="Color.Primary"
+           Color="Color.Error"
            Size="Size.Small"
            OnClick="ResetSettingsAsync">@(Lang["ResetSettings"])</MudButton>

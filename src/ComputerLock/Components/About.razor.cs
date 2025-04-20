@@ -24,7 +24,8 @@ public partial class About
 
     private async Task OpenVersionHistory()
     {
-        await DialogService.ShowAsync<VersionHistoryDialog>("");
+        var options = new DialogOptions { NoHeader = true, CloseOnEscapeKey = false, BackdropClick = false, BackgroundClass = "dialog-backdrop-filter", FullWidth = true };
+        await DialogService.ShowAsync<VersionHistoryDialog>("", options);
     }
 
     private async Task CheckUpdateAsync()

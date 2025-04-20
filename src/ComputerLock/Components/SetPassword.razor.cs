@@ -31,4 +31,6 @@ public partial class SetPassword
         MudDialog.Close(DialogResult.Ok(password));
         Snackbar.Add(Lang["SaveOk"], Severity.Success);
     }
+
+    private void Cancel() => MudDialog.Cancel();
 }

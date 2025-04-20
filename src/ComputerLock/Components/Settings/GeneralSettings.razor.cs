@@ -100,9 +100,11 @@ public partial class GeneralSettings
 
     private async Task ClearLogAsync()
     {
+        var options = new DialogOptions { NoHeader = true, CloseOnEscapeKey = false, BackdropClick = false, BackgroundClass = "dialog-backdrop-filter" };
         bool? result = await DialogService.ShowMessageBox(
-            Lang["Warning"],
+            "",
             Lang["RemoveLogsConfirm"],
+            options: options,
             yesText: Lang["Delete"],
             cancelText: Lang["Cancel"]);
         if (result != true)
@@ -163,9 +165,11 @@ public partial class GeneralSettings
 
     private async Task ResetSettingsAsync()
     {
+        var options = new DialogOptions { NoHeader = true, CloseOnEscapeKey = false, BackdropClick = false, BackgroundClass = "dialog-backdrop-filter" };
         bool? result = await DialogService.ShowMessageBox(
-            Lang["Warning"],
+            "",
             Lang["ResetSettingsMessage"],
+            options: options,
             yesText: Lang["Save"],
             cancelText: Lang["Cancel"]);
         if (result != true)

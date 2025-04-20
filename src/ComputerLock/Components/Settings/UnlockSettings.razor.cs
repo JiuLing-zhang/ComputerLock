@@ -37,22 +37,18 @@ public partial class UnlockSettings
         AppSettingsProvider.SaveSettings(AppSettings);
     }
 
-    private async Task ResetPassword()
+    private async Task PasswordEdit()
     {
-        var noHeader = new DialogOptions()
-        {
-            BackgroundClass = "dialog-blurry",
-            CloseOnEscapeKey = false,
-            CloseButton = true
-        };
         IDialogReference dialog;
+        var options = new DialogOptions { NoHeader = true, CloseOnEscapeKey = false, BackdropClick = false, BackgroundClass = "dialog-backdrop-filter" };
+
         if (AppSettings.Password.IsEmpty())
         {
-            dialog = await Dialog.ShowAsync<SetPassword>(Lang["ResetPassword"], noHeader);
+            dialog = await Dialog.ShowAsync<SetPassword>("", options);
         }
         else
         {
-            dialog = await Dialog.ShowAsync<ResetPassword>(Lang["ResetPassword"], noHeader);
+            dialog = await Dialog.ShowAsync<ResetPassword>("", options);
         }
         var result = await dialog.Result;
         if (result == null || result.Canceled)
@@ -75,7 +71,7 @@ public partial class UnlockSettings
             if (!_mouseDownChecked)
             {
                 _keyboardDownChecked = true;
-                Snackbar.Add(Lang["ActiveMethodEmpty"], Severity.Warning);
+                Snackbar.Add(Lang["ActiveMethodEmpty"], Severity.Error);
                 return;
             }
         }
@@ -88,7 +84,7 @@ public partial class UnlockSettings
             if (!_keyboardDownChecked)
             {
                 _mouseDownChecked = true;
-                Snackbar.Add(Lang["ActiveMethodEmpty"], Severity.Warning);
+                Snackbar.Add(Lang["ActiveMethodEmpty"], Severity.Error);
                 return;
             }
         }

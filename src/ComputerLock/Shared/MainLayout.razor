@@ -2,14 +2,8 @@
 
 <MudThemeProvider @ref="@_mudThemeProvider" @bind-IsDarkMode="@_isDarkMode" Theme="_customTheme" />
 <MudPopoverProvider />
-<MudDialogProvider />
+<MudDialogProvider/>
 <MudSnackbarProvider />
-
-<style>
-    .dialog-blurry {
-        backdrop-filter: blur(10px);
-    }
-</style>
 
 <MudLayout>
     <MudAppBar Class="px-2"
@@ -22,7 +16,7 @@
             <MudImage Src="images/icon.png"
                       Class="rounded-circle"
                       Style="height:24px; width:24px;"></MudImage>
-            <MudText Typo="Typo.body2" Color="Color.Secondary" Class="ml-1">@(Lang["Title"])</MudText>
+            <MudText Typo="Typo.body2" Color="Color.Primary" Class="ml-1">@(Lang["Title"])</MudText>
         </div>
 
         <MudSpacer />

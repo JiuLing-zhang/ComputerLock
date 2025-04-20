@@ -1,15 +1,19 @@
 ﻿@using System.IO
 
 <MudDialog>
-    <TitleContent>
-        @Lang["VersionHistory"]
-    </TitleContent>
     <DialogContent>
-        <MudMarkdown Value="@_value" />
+        <MudPaper Width="100%" Elevation="0" Class="pb-2">
+            <MudStack Row="true" Justify="Justify.SpaceBetween" Class="mb-4">
+                <MudText Typo="Typo.h6">@(Lang["VersionHistory"])</MudText>
+                <MudIconButton Icon="@Icons.Material.Filled.Close"
+                               Color="Color.Default"
+                               Size="Size.Small"
+                               OnClick="Close" />
+            </MudStack>
+
+            <MudMarkdown Value="@_value"/>
+        </MudPaper>
     </DialogContent>
-    <DialogActions>
-        <MudButton OnClick="Close">@(Lang["Quit"])</MudButton>
-    </DialogActions>
 </MudDialog>
 
 @code

@@ -1,13 +1,15 @@
 ﻿<MudDialog DefaultFocus="DefaultFocus.FirstChild">
     <DialogContent>
-        <MudButton Variant="Variant.Text" @onkeydown="OnKeyDown">@(_text)</MudButton>
+        <MudPaper Width="220px" Elevation="0" Class="d-flex justify-center">
+            <MudButton Variant="Variant.Text" Color="Color.Secondary" @onkeydown="OnKeyDown">@(_text)</MudButton>
+        </MudPaper>
     </DialogContent>
     <DialogActions>
+        <MudButton OnClick="Cancel">@(Lang["Cancel"])</MudButton>
         <MudButton Color="Color.Primary"
                    Disabled="@(_key.IsEmpty())"
                    OnClick="Submit">
             @(Lang["Save"])
         </MudButton>
-        <MudButton OnClick="Cancel">@(Lang["Cancel"])</MudButton>
     </DialogActions>
 </MudDialog>

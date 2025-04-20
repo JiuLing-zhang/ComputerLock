@@ -31,13 +31,8 @@ public partial class HotkeyInput
 
     private async Task SetShortcutKey()
     {
-        var noHeader = new DialogOptions()
-        {
-            NoHeader = true,
-            BackgroundClass = "dialog-blurry",
-            CloseOnEscapeKey = false,
-        };
-        var dialog = await Dialog.ShowAsync<HotkeySetting>("", noHeader);
+        var options = new DialogOptions { NoHeader = true, CloseOnEscapeKey = false, BackdropClick = false, BackgroundClass = "dialog-backdrop-filter" };
+        var dialog = await Dialog.ShowAsync<HotkeySetting>("", options);
         var result = await dialog.Result;
         if (result!.Canceled)
         {

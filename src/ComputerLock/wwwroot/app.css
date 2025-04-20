@@ -17,3 +17,14 @@ body,
     background-size: cover;
     background-image: url("icon.ico");
 }
+
+.dialog-backdrop-filter {
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.mud-nav-link.active:not(.mud-nav-link-disabled),
+.mud-nav-link.active:not(.mud-nav-link-disabled) .mud-icon-root {
+    color: var(--mud-palette-primary) !important;
+    font-weight: var(--mud-typography-default-weight) !important;
+}

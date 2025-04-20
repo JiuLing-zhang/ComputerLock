@@ -15,9 +15,6 @@ public partial class MainLayout
     private AppSettings AppSettings { get; set; } = null!;
 
     [Inject]
-    private AppSettingsProvider AppSettingsProvider { get; set; } = null!;
-
-    [Inject]
     private IStringLocalizer<Lang> Lang { get; set; } = null!;
 
     [Inject]
@@ -60,10 +57,10 @@ public partial class MainLayout
 
             PaletteLight = new PaletteLight()
             {
-                Primary = "#fb8c00",
-                Secondary = "#FFD54F",
+                Primary = "#FFA500",
+                Secondary = "#FF7043",
                 AppbarBackground = "#F5F5F5",
-                AppbarText = "#fb8c00",
+                AppbarText = "#FFA500",
                 Background = "#FFFFFF",
                 Surface = "#FFFFFF",
                 TableStriped = "#FAFAFA",
@@ -83,11 +80,11 @@ public partial class MainLayout
 
             PaletteDark = new PaletteDark()
             {
-                Primary = "#fb8c00",
-                Secondary = "#FFA726",
+                Primary = "#FFA500",
+                Secondary = "#FF7043",
                 AppbarBackground = "#212121",
-                AppbarText = "#fb8c00",
-                Background = "#333333",
+                AppbarText = "#FFA500",
+                Background = "#212121",
                 Surface = "#424242",
                 TableStriped = "#292929",
                 TableHover = "#37474F",
@@ -194,14 +191,8 @@ public partial class MainLayout
     }
     private async Task OpenDonationDialog()
     {
-        var noHeader = new DialogOptions()
-        {
-            NoHeader = true,
-            BackgroundClass = "dialog-blurry",
-            CloseOnEscapeKey = false,
-            FullWidth = true
-        };
-        await Dialog.ShowAsync<Donation>("", noHeader);
+        var options = new DialogOptions { NoHeader = true, CloseOnEscapeKey = false, BackdropClick = false, BackgroundClass = "dialog-backdrop-filter" };
+        await Dialog.ShowAsync<Donation>("", options);
     }
 
     public void RegisterLockHotkey()

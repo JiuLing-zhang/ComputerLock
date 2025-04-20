@@ -51,4 +51,6 @@ public partial class ResetPassword
         MudDialog.Close(DialogResult.Ok(newPassword));
         Snackbar.Add(Lang["SaveOk"], Severity.Success);
     }
+
+    private void Cancel() => MudDialog.Cancel();
 }

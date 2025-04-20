@@ -1,11 +1,21 @@
 ﻿<MudDialog>
     <DialogContent>
-        <MudPaper Elevation="0" Class="px-3 py-2 d-flex flex-column align-center">
-            <MudText Typo="Typo.subtitle1" Class="mb-2" Color="Color.Secondary">
-                如果你喜欢这款软件，不妨支持一下作者！
-            </MudText>
+        <MudPaper Elevation="0" Class="d-flex flex-column align-center">
+            <MudStack Row="true" Justify="Justify.SpaceBetween" Class="mb-2">
+                <MudText Typo="Typo.subtitle1" Color="Color.Secondary">
+                    如果你喜欢这款软件，不妨支持一下作者！
+                </MudText>
+                <MudIconButton Icon="@Icons.Material.Filled.Close"
+                               Color="Color.Default"
+                               Size="Size.Small"
+                               OnClick="Close" />
+            </MudStack>
 
-            <MudChip T="string" Label="true">请使用微信扫一扫</MudChip>
+            <MudPaper Class="py-2 mb-3" Width="320px" Style="background-color: rgba(255, 165, 0, 0.15); border-radius: 8px;">
+                <MudText Typo="Typo.body1" Style="color: #FF7043;" Align="Align.Center">
+                    💖 请使用 <strong>微信</strong> 扫码 💖
+                </MudText>
+            </MudPaper>
 
             <MudImage Src="images/wxPay.jpg"
                       Width="320" Height="320"
@@ -14,16 +24,24 @@
 
             <MudDivider Class="my-2" />
 
-            <MudText Typo="Typo.caption" Color="Color.Secondary" Class="mb-1">
-                已有 <strong>5</strong> 人支持
-            </MudText>
+            <MudStack Row="true" Spacing="6" AlignItems="AlignItems.Center">
+                <MudText Typo="Typo.subtitle1" Color="Color.Secondary">
+                    已有
+                    <strong>
+                        @if (_donationCount.HasValue)
+                        {
+                            @_donationCount
+                        }
+                        else
+                        {
+                            @("loading")
+                        }
+                    </strong>
+                    人支持
+                </MudText>
 
-            <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="https://jiuling.cc/donation">
-                查看打赏记录
-            </MudButton>
+                <MudLink Href="https://jiuling.cc/donation" Color="Color.Secondary" Underline="Underline.None">查看赞赏记录</MudLink>
+            </MudStack>
         </MudPaper>
     </DialogContent>
-    <DialogActions>
-        <MudButton OnClick="Close">关闭</MudButton>
-    </DialogActions>
 </MudDialog>

@@ -675,6 +675,15 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string SetPassword {
+            get {
+                return ResourceManager.GetString("SetPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string SetPasswordFinished {
             get {
                 return ResourceManager.GetString("SetPasswordFinished", resourceCulture);
@@ -750,15 +759,6 @@ namespace ComputerLock.Resources {
         public static string TimerPrefix {
             get {
                 return ResourceManager.GetString("TimerPrefix", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        public static string Tip {
-            get {
-                return ResourceManager.GetString("Tip", resourceCulture);
             }
         }
         

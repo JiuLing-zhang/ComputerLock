@@ -312,9 +312,6 @@
   <data name="Quit" xml:space="preserve">
     <value />
   </data>
-  <data name="Tip" xml:space="preserve">
-    <value />
-  </data>
   <data name="Settings" xml:space="preserve">
     <value />
   </data>
@@ -385,6 +382,9 @@
 	  <value />
   </data>
   <data name="HomePage" xml:space="preserve">
+	  <value />
+  </data>
+  <data name="SetPassword" xml:space="preserve">
 	  <value />
   </data>
 </root>

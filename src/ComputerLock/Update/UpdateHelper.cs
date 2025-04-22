@@ -13,7 +13,7 @@ internal class UpdateHelper(AppSettings appSettings)
         {
             return;
         }
-        var theme = appSettings.AppThemeInt switch
+        var theme = appSettings.AppTheme switch
         {
             Enums.ThemeEnum.System => ThemeEnum.System,
             Enums.ThemeEnum.Light => ThemeEnum.Light,

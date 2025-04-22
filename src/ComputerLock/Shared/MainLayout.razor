@@ -30,7 +30,7 @@
                        Size="Size.Small"
                        Class="mr-2"
                        OnClick="OpenDonationDialog">
-                支持作者
+                @(Lang["Donate"])
             </MudButton>
 
             <TitleBar />
@@ -39,10 +39,10 @@
 
     <MudDrawer Elevation="2" Open="true" ClipMode="DrawerClipMode.Always" Variant="DrawerVariant.Persistent">
         <MudNavMenu>
-            <MudNavLink Href="/lock-settings" Icon="@Icons.Material.Filled.Lock">锁屏设置</MudNavLink>
-            <MudNavLink Href="/unlock-settings" Icon="@Icons.Material.Filled.VpnKey">解锁方式</MudNavLink>
-            <MudNavLink Href="/general-settings" Icon="@Icons.Material.Filled.Settings">通用设置</MudNavLink>
-            <MudNavLink Href="/about" Icon="@Icons.Material.Filled.Info">关于</MudNavLink>
+            <MudNavLink Href="/lock-settings" Icon="@Icons.Material.Filled.Lock">@(Lang["LockOptions"])</MudNavLink>
+            <MudNavLink Href="/unlock-settings" Icon="@Icons.Material.Filled.VpnKey">@(Lang["UnlockOptions"])</MudNavLink>
+            <MudNavLink Href="/general-settings" Icon="@Icons.Material.Filled.Settings">@(Lang["GeneralSettings"])</MudNavLink>
+            <MudNavLink Href="/about" Icon="@Icons.Material.Filled.Info">@(Lang["About"])</MudNavLink>
         </MudNavMenu>
     </MudDrawer>
 

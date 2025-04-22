@@ -174,9 +174,6 @@
   <data name="Invalid" xml:space="preserve">
     <value>未设置</value>
   </data>
-  <data name="ShortcutKeyConfigError" xml:space="preserve">
-    <value>快捷键配置异常</value>
-  </data>
   <data name="ExRegistFailed" xml:space="preserve">
     <value>锁屏快捷键注册失败:</value>
   </data>
@@ -237,9 +234,6 @@
   <data name="AutoLock" xml:space="preserve">
     <value>无操作时自动锁定（分钟，0不启用）</value>
   </data>
-  <data name="Never" xml:space="preserve">
-    <value>从不</value>
-  </data>
   <data name="LockAnimation" xml:space="preserve">
     <value>锁定和解锁时显示动画</value>
   </data>
@@ -258,14 +252,8 @@
   <data name="OpenLogs" xml:space="preserve">
     <value>查看文件</value>
   </data>
-  <data name="RemoveLogs" xml:space="preserve">
-    <value>清空</value>
-  </data>
   <data name="Delete" xml:space="preserve">
     <value>删除</value>
-  </data>
-  <data name="Warning" xml:space="preserve">
-    <value>警告</value>
   </data>
   <data name="RemoveLogsConfirm" xml:space="preserve">
     <value>确认要删除所有日志吗？</value>
@@ -281,18 +269,6 @@
   </data>
   <data name="LockOnStartup" xml:space="preserve">
     <value>程序启动时锁定屏幕</value>
-  </data>
-  <data name="DeleteShortcutKeys" xml:space="preserve">
-    <value>删除快捷键</value>
-  </data>
-  <data name="Minimize" xml:space="preserve">
-    <value>最小化</value>
-  </data>
-  <data name="Quit" xml:space="preserve">
-    <value>关闭</value>
-  </data>
-  <data name="Settings" xml:space="preserve">
-    <value>设置</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
 	  <value>浅色</value>
@@ -365,5 +341,23 @@
   </data>
   <data name="SetPassword" xml:space="preserve">
 	  <value>设置密码</value>
+  </data>
+  <data name="Donate" xml:space="preserve">
+	  <value>支持作者</value>
+  </data>
+  <data name="LockOptions" xml:space="preserve">
+	  <value>锁屏设置</value>
+  </data>
+  <data name="UnlockOptions" xml:space="preserve">
+	  <value>解锁方式</value>
+  </data>
+  <data name="GeneralSettings" xml:space="preserve">
+	  <value>通用设置</value>
+  </data>
+  <data name="About" xml:space="preserve">
+	  <value>关于</value>
+  </data>
+  <data name="Appearance" xml:space="preserve">
+	  <value>外观</value>
   </data>
 </root>

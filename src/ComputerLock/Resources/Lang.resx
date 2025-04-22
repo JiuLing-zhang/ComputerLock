@@ -174,9 +174,6 @@
   <data name="Invalid" xml:space="preserve">
     <value />
   </data>
-  <data name="ShortcutKeyConfigError" xml:space="preserve">
-    <value />
-  </data>
   <data name="ExRegistFailed" xml:space="preserve">
     <value />
   </data>
@@ -243,9 +240,6 @@
   <data name="AutoLock" xml:space="preserve">
     <value />
   </data>
-  <data name="Never" xml:space="preserve">
-    <value />
-  </data>
   <data name="Minute1" xml:space="preserve">
     <value />
   </data>
@@ -279,13 +273,7 @@
   <data name="OpenLogs" xml:space="preserve">
     <value />
   </data>
-  <data name="RemoveLogs" xml:space="preserve">
-    <value />
-  </data>
   <data name="Delete" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Warning" xml:space="preserve">
     <value />
   </data>
   <data name="RemoveLogsConfirm" xml:space="preserve">
@@ -301,18 +289,6 @@
     <value />
   </data>
   <data name="LockOnStartup" xml:space="preserve">
-    <value />
-  </data>
-  <data name="DeleteShortcutKeys" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Minimize" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Quit" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Settings" xml:space="preserve">
     <value />
   </data>
   <data name="LightTheme" xml:space="preserve">
@@ -385,6 +361,24 @@
 	  <value />
   </data>
   <data name="SetPassword" xml:space="preserve">
+	  <value />
+  </data>
+  <data name="Donate" xml:space="preserve">
+	  <value />
+  </data>
+  <data name="LockOptions" xml:space="preserve">
+	  <value />
+  </data>
+  <data name="UnlockOptions" xml:space="preserve">
+	  <value />
+  </data>
+  <data name="GeneralSettings" xml:space="preserve">
+	  <value />
+  </data>
+  <data name="About" xml:space="preserve">
+	  <value />
+  </data>
+  <data name="Appearance" xml:space="preserve">
 	  <value />
   </data>
 </root>

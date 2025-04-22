@@ -130,7 +130,7 @@
     <value>Automatic update</value>
   </data>
   <data name="CheckUpdate" xml:space="preserve">
-    <value>Check now</value>
+	  <value>Check for Updates</value>
   </data>
   <data name="Autostart" xml:space="preserve">
     <value>Starts automatically on startup</value>
@@ -173,9 +173,6 @@
   </data>
   <data name="Invalid" xml:space="preserve">
     <value>Invalid</value>
-  </data>
-  <data name="ShortcutKeyConfigError" xml:space="preserve">
-    <value>Abnormal shortcut key configuration</value>
   </data>
   <data name="ExRegistFailed" xml:space="preserve">
     <value>Lock screen shortcut key registration failed:</value>
@@ -240,9 +237,6 @@
   <data name="AutoLock" xml:space="preserve">
     <value>Idle Auto Lock (min, 0 off)</value>
   </data>
-  <data name="Never" xml:space="preserve">
-    <value>Never</value>
-  </data>
   <data name="LockAnimation" xml:space="preserve">
     <value>Show animation when locked</value>
   </data>
@@ -261,14 +255,8 @@
   <data name="OpenLogs" xml:space="preserve">
     <value>View</value>
   </data>
-  <data name="RemoveLogs" xml:space="preserve">
-    <value>Remove</value>
-  </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
-  </data>
-  <data name="Warning" xml:space="preserve">
-    <value>Warning</value>
   </data>
   <data name="RemoveLogsConfirm" xml:space="preserve">
     <value>Are you sure you want to delete all logs?</value>
@@ -285,26 +273,14 @@
   <data name="LockOnStartup" xml:space="preserve">
     <value>Lock screen on startup</value>
   </data>
-  <data name="DeleteShortcutKeys" xml:space="preserve">
-    <value>Delete shortcut keys</value>
-  </data>
-  <data name="Minimize" xml:space="preserve">
-    <value>Minimize</value>
-  </data>
-  <data name="Quit" xml:space="preserve">
-    <value>Quit</value>
-  </data>
-  <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
-  </data>
   <data name="LightTheme" xml:space="preserve">
-    <value>Light theme</value>
+	  <value>Light Theme</value>
   </data>
   <data name="DarkTheme" xml:space="preserve">
-    <value>Dark theme</value>
+	  <value>Dark Theme</value>
   </data>
   <data name="SystemTheme" xml:space="preserve">
-    <value>System theme</value>
+	  <value>Follow System</value>
   </data>
   <data name="DisableWindowsRemark" xml:space="preserve">
     <value>Prevent Windows auto-lock by moving the mouse</value>
@@ -368,5 +344,23 @@
   </data>
   <data name="SetPassword" xml:space="preserve">
 	  <value>Set Password</value>
+  </data>
+  <data name="Donate" xml:space="preserve">
+	  <value>Buy Me a Coffee</value>
+  </data>
+  <data name="LockOptions" xml:space="preserve">
+	  <value>Lock Options</value>
+  </data>
+  <data name="UnlockOptions" xml:space="preserve">
+	  <value>Unlock Options</value>
+  </data>
+  <data name="GeneralSettings" xml:space="preserve">
+	  <value>General Settings</value>
+  </data>
+  <data name="About" xml:space="preserve">
+	  <value>About</value>
+  </data>
+  <data name="Appearance" xml:space="preserve">
+	  <value>Appearance</value>
   </data>
 </root>

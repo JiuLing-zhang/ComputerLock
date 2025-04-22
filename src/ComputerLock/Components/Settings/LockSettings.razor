@@ -1,6 +1,6 @@
 ﻿@page "/lock-settings"
 
-<MudText Typo="Typo.h6" Class="mb-3">锁屏设置</MudText>
+<MudText Typo="Typo.h6" Class="mb-3">@(Lang["LockOptions"])</MudText>
 
 <MudCheckBox @bind-Value="@(AppSettings.LockOnStartup)"
              @bind-Value:after="SaveSettings"

@@ -63,6 +63,15 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string ActiveMethodEmpty {
             get {
                 return ResourceManager.GetString("ActiveMethodEmpty", resourceCulture);
@@ -75,6 +84,15 @@ namespace ComputerLock.Resources {
         public static string Advanced {
             get {
                 return ResourceManager.GetString("Advanced", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string Appearance {
+            get {
+                return ResourceManager.GetString("Appearance", resourceCulture);
             }
         }
         
@@ -207,15 +225,6 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        public static string DeleteShortcutKeys {
-            get {
-                return ResourceManager.GetString("DeleteShortcutKeys", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
         public static string DisableWindowsLock {
             get {
                 return ResourceManager.GetString("DisableWindowsLock", resourceCulture);
@@ -237,6 +246,15 @@ namespace ComputerLock.Resources {
         public static string DoLock {
             get {
                 return ResourceManager.GetString("DoLock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string Donate {
+            get {
+                return ResourceManager.GetString("Donate", resourceCulture);
             }
         }
         
@@ -282,6 +300,15 @@ namespace ComputerLock.Resources {
         public static string ExRegistFailed {
             get {
                 return ResourceManager.GetString("ExRegistFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string GeneralSettings {
+            get {
+                return ResourceManager.GetString("GeneralSettings", resourceCulture);
             }
         }
         
@@ -423,6 +450,15 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string LockOptions {
+            get {
+                return ResourceManager.GetString("LockOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string LockStatusDisplay {
             get {
                 return ResourceManager.GetString("LockStatusDisplay", resourceCulture);
@@ -453,15 +489,6 @@ namespace ComputerLock.Resources {
         public static string LogFiles {
             get {
                 return ResourceManager.GetString("LogFiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        public static string Minimize {
-            get {
-                return ResourceManager.GetString("Minimize", resourceCulture);
             }
         }
         
@@ -516,15 +543,6 @@ namespace ComputerLock.Resources {
         public static string MouseDownActivePwd {
             get {
                 return ResourceManager.GetString("MouseDownActivePwd", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        public static string Never {
-            get {
-                return ResourceManager.GetString("Never", resourceCulture);
             }
         }
         
@@ -588,24 +606,6 @@ namespace ComputerLock.Resources {
         public static string PwdLocation {
             get {
                 return ResourceManager.GetString("PwdLocation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        public static string Quit {
-            get {
-                return ResourceManager.GetString("Quit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        public static string RemoveLogs {
-            get {
-                return ResourceManager.GetString("RemoveLogs", resourceCulture);
             }
         }
         
@@ -696,24 +696,6 @@ namespace ComputerLock.Resources {
         public static string SetPasswordInput {
             get {
                 return ResourceManager.GetString("SetPasswordInput", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        public static string Settings {
-            get {
-                return ResourceManager.GetString("Settings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        public static string ShortcutKeyConfigError {
-            get {
-                return ResourceManager.GetString("ShortcutKeyConfigError", resourceCulture);
             }
         }
         
@@ -819,6 +801,15 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string UnlockOptions {
+            get {
+                return ResourceManager.GetString("UnlockOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string UnlockPasswordUndefined {
             get {
                 return ResourceManager.GetString("UnlockPasswordUndefined", resourceCulture);
@@ -849,15 +840,6 @@ namespace ComputerLock.Resources {
         public static string VersionHistory {
             get {
                 return ResourceManager.GetString("VersionHistory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        public static string Warning {
-            get {
-                return ResourceManager.GetString("Warning", resourceCulture);
             }
         }
         

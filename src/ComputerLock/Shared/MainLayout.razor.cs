@@ -112,7 +112,7 @@ public partial class MainLayout
             await Dialog.ShowAsync<VersionHistoryDialog>("");
         }
 
-        await SwitchThemeAsync(AppSettings.AppThemeInt);
+        await SwitchThemeAsync(AppSettings.AppTheme);
 
         InitializeEventBinding();
     }

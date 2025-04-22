@@ -54,7 +54,7 @@ public partial class GeneralSettings
 
     private void ThemeChanged(ThemeEnum theme)
     {
-        AppSettings.AppThemeInt = theme;
+        AppSettings.AppTheme = theme;
         SaveSettings();
         ThemeSwitchService.SetDarkMode(theme);
     }

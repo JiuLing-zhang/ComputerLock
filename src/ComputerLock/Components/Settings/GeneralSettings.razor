@@ -1,6 +1,6 @@
 ﻿@page "/general-settings"
 
-<MudText Typo="Typo.h6" Class="mb-3">通用设置</MudText>
+<MudText Typo="Typo.h6" Class="mb-3">@(Lang["GeneralSettings"])</MudText>
 
 <MudCheckBox Value="@(_isAutostart)"
              T="bool"
@@ -23,9 +23,9 @@
            Class="mt-4"
            Dense="true"
            Margin="Margin.Dense"
-           Label="外观"
+           Label="@(Lang["Appearance"])"
            Variant="Variant.Outlined"
-           Value="@(AppSettings.AppThemeInt)"
+           Value="@(AppSettings.AppTheme)"
            ValueChanged="ThemeChanged">
     <MudSelectItem Value="@(ThemeEnum.System)">@(Lang["SystemTheme"])</MudSelectItem>
     <MudSelectItem Value="@(ThemeEnum.Light)">@(Lang["LightTheme"])</MudSelectItem>
@@ -37,11 +37,11 @@
            Variant="Variant.Outlined"
            Dense="true"
            Margin="Margin.Dense"
-           Label="语言 Lang"
+           Label="语言 / Language"
            Value="@(AppSettings.Lang.ToString())"
            ValueChanged="LangValueChanged">
     <MudSelectItem Value="@("zh")">中文</MudSelectItem>
-    <MudSelectItem Value="@("en")">en</MudSelectItem>
+    <MudSelectItem Value="@("en")">English</MudSelectItem>
 </MudSelect>
 
 <MudDivider Class="my-4" />

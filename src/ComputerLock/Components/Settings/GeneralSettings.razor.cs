@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using System.IO;
-using ComputerLock.Interfaces;
-
+using Application = System.Windows.Application;
 namespace ComputerLock.Components.Settings;
 
 public partial class GeneralSettings
@@ -21,8 +20,6 @@ public partial class GeneralSettings
     private AutostartHook AutostartHook { get; set; } = null!;
     [Inject]
     private ISnackbar Snackbar { get; set; } = null!;
-    [Inject]
-    private IWindowTitleBar WindowTitleBar { get; set; } = null!;
     [Inject]
     private IDialogService DialogService { get; set; } = null!;
     [Inject]
@@ -90,7 +87,12 @@ public partial class GeneralSettings
 
     private void Restart()
     {
-        WindowTitleBar.Restart();
+        if (Application.Current.MainWindow == null)
+        {
+            return;
+        }
+        Application.Current.Shutdown();
+        System.Windows.Forms.Application.Restart();
     }
 
     private void OpenLogPath()

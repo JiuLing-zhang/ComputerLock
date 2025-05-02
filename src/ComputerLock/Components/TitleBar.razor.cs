@@ -1,4 +1,4 @@
-﻿using ComputerLock.Interfaces;
+﻿using JiuLing.TitleBarKit;
 
 namespace ComputerLock.Components;
 public partial class TitleBar
@@ -9,7 +9,7 @@ public partial class TitleBar
     private string _maximizerIcon = default!;
 
     [Inject]
-    private IWindowTitleBar WindowTitleBar { get; set; } = default!;
+    private TitleBarService TitleBarService { get; set; } = default!;
 
     [Inject]
     private IStringLocalizer<Lang> Lang { get; set; } = default!;
@@ -22,24 +22,24 @@ public partial class TitleBar
 
     private Task MinimizeAsync()
     {
-        WindowTitleBar.Minimize();
+        TitleBarService.TitleBar.Minimize();
         return Task.CompletedTask;
     }
 
     private async Task MaximizeAsync()
     {
-        WindowTitleBar.Maximize();
+        TitleBarService.TitleBar.Maximize();
         await SetMaximizerIconAsync();
     }
     private Task CloseAsync()
     {
-        WindowTitleBar.Close();
+        TitleBarService.TitleBar.Close();
         return Task.CompletedTask;
     }
 
     private Task SetMaximizerIconAsync()
     {
-        if (WindowTitleBar.IsMaximized)
+        if (TitleBarService.TitleBar.IsMaximized)
         {
             _maximizerIcon = Icons.Material.Filled.CloseFullscreen;
         }

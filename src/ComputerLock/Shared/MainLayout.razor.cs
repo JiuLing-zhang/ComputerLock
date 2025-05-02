@@ -1,5 +1,6 @@
 ﻿using ComputerLock.Interfaces;
 using ComputerLock.Update;
+using JiuLing.TitleBarKit;
 
 namespace ComputerLock.Shared;
 public partial class MainLayout
@@ -9,7 +10,7 @@ public partial class MainLayout
     private MudTheme _customTheme = null!;
 
     [Inject]
-    private IWindowMoving WindowMoving { get; set; } = null!;
+    private TitleBarService TitleBarService { get; set; } = null!;
 
     [Inject]
     private AppSettings AppSettings { get; set; } = null!;
@@ -182,13 +183,9 @@ public partial class MainLayout
 
     private void MouseDown()
     {
-        WindowMoving.MouseDown();
+        TitleBarService.Draggable.DragMove();
     }
 
-    private void MouseUp()
-    {
-        WindowMoving.MouseUp();
-    }
     private async Task OpenDonationDialog()
     {
         var options = new DialogOptions { NoHeader = true, CloseOnEscapeKey = false, BackdropClick = false, BackgroundClass = "dialog-backdrop-filter" };

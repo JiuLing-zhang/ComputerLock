@@ -5,6 +5,7 @@ using MudBlazor.Services;
 using System.Windows;
 using ComputerLock.Interfaces;
 using ComputerLock.Update;
+using JiuLing.TitleBarKit;
 using MudExtensions.Services;
 using Application = System.Windows.Application;
 
@@ -58,13 +59,12 @@ public partial class App : Application
         services.AddSingleton<SystemKeyHook>();
         services.AddSingleton<HotkeyTools>();
         services.AddSingleton<ThemeSwitchService>();
-        services.AddSingleton<IWindowsMessageBox, WindowsMessageBox>();
-        services.AddSingleton<IWindowMoving, WindowMoving>();
-        services.AddSingleton<IWindowTitleBar, WindowTitleBar>();
+        services.AddSingleton<IWindowsMessageBox, WindowsMessageBox>(); 
         services.AddSingleton<IGlobalLockService, GlobalLockService>();
         services.AddKeyedSingleton<IScreenLockService, PasswordScreenLockService>(ScreenUnlockMethods.Password);
         services.AddKeyedSingleton<IScreenLockService, HotkeyScreenLockService>(ScreenUnlockMethods.Hotkey);
 
+        services.AddWpfTitleBar();
         services.AddLocalization();
         services.AddWpfBlazorWebView();
         services.AddBlazorWebViewDeveloperTools();

@@ -100,10 +100,13 @@ public partial class WindowMain : Window, IDisposable
     }
     private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
     {
-        if (e.Key == System.Windows.Input.Key.Escape)
+        if (_appSettings.IsHideWindowWhenEsc)
         {
-            this.WindowState = WindowState.Minimized;
-            this.ShowInTaskbar = false;
+            if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                this.WindowState = WindowState.Minimized;
+                this.ShowInTaskbar = false;
+            }
         }
     }
     public void Dispose()

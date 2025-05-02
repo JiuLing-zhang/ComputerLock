@@ -342,6 +342,15 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string HideWindowWhenEsc {
+            get {
+                return ResourceManager.GetString("HideWindowWhenEsc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string HideWindowWhenLaunch {
             get {
                 return ResourceManager.GetString("HideWindowWhenLaunch", resourceCulture);

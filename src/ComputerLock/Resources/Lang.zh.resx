@@ -360,4 +360,7 @@
   <data name="Appearance" xml:space="preserve">
 	  <value>外观</value>
   </data>
+  <data name="HideWindowWhenEsc" xml:space="preserve">
+	  <value>按下 ESC 键后最小化到托盘</value>
+  </data>
 </root>

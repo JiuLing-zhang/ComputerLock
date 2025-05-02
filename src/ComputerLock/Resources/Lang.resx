@@ -381,4 +381,7 @@
   <data name="Appearance" xml:space="preserve">
 	  <value />
   </data>
+  <data name="HideWindowWhenEsc" xml:space="preserve">
+	  <value />
+  </data>
 </root>

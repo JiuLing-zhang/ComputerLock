@@ -13,6 +13,11 @@
              Label="@(Lang["HideWindowWhenLaunch"])"
              Color="Color.Primary"
              Style="max-width: fit-content;" />
+<MudCheckBox @bind-Value="@(AppSettings.IsHideWindowWhenEsc)"
+             @bind-Value:after="SaveSettings"
+             Label="@(Lang["HideWindowWhenEsc"])"
+             Color="Color.Primary"
+             Style="max-width: fit-content;" />
 <MudCheckBox @bind-Value="@(AppSettings.IsHideWindowWhenClose)"
              @bind-Value:after="SaveSettings"
              Label="@(Lang["HideWindowWhenClose"])"

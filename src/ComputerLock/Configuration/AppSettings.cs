@@ -16,6 +16,12 @@ public class AppSettings
     /// </summary>
     [JsonPropertyName("AppThemeInt")]
     public ThemeEnum AppTheme { get; set; } = ThemeEnum.System;
+
+    /// <summary>
+    /// 按下 ESC 键后最小化到托盘
+    /// </summary>
+    public bool IsHideWindowWhenEsc { get; set; } = false;
+
     /// <summary>
     /// 关闭窗口时最小化到托盘
     /// </summary>

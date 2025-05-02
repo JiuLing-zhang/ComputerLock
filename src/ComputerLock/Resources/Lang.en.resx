@@ -124,7 +124,7 @@
     <value>Minimize to pallet after startup</value>
   </data>
   <data name="HideWindowWhenClose" xml:space="preserve">
-    <value>Minimize to tray after closing</value>
+	  <value>Minimize to tray when window is closed</value>
   </data>
   <data name="AutoCheckUpdate" xml:space="preserve">
     <value>Automatic update</value>
@@ -362,5 +362,8 @@
   </data>
   <data name="Appearance" xml:space="preserve">
 	  <value>Appearance</value>
+  </data>
+  <data name="HideWindowWhenEsc" xml:space="preserve">
+	  <value>Minimize to tray on pressing ESC</value>
   </data>
 </root>

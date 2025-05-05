@@ -59,7 +59,7 @@ public partial class App : Application
         services.AddSingleton<SystemKeyHook>();
         services.AddSingleton<HotkeyTools>();
         services.AddSingleton<ThemeSwitchService>();
-        services.AddSingleton<IWindowsMessageBox, WindowsMessageBox>(); 
+        services.AddSingleton<IWindowsMessageBox, WindowsMessageBox>();
         services.AddSingleton<IGlobalLockService, GlobalLockService>();
         services.AddKeyedSingleton<IScreenLockService, PasswordScreenLockService>(ScreenUnlockMethods.Password);
         services.AddKeyedSingleton<IScreenLockService, HotkeyScreenLockService>(ScreenUnlockMethods.Hotkey);

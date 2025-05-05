@@ -22,24 +22,24 @@ public partial class TitleBar
 
     private Task MinimizeAsync()
     {
-        TitleBarService.TitleBar.Minimize();
+        TitleBarService.Controller.Minimize();
         return Task.CompletedTask;
     }
 
     private async Task MaximizeAsync()
     {
-        TitleBarService.TitleBar.Maximize();
+        TitleBarService.Controller.Maximize();
         await SetMaximizerIconAsync();
     }
     private Task CloseAsync()
     {
-        TitleBarService.TitleBar.Close();
+        TitleBarService.Controller.Close();
         return Task.CompletedTask;
     }
 
     private Task SetMaximizerIconAsync()
     {
-        if (TitleBarService.TitleBar.IsMaximized)
+        if (TitleBarService.Controller.IsMaximized)
         {
             _maximizerIcon = Icons.Material.Filled.CloseFullscreen;
         }

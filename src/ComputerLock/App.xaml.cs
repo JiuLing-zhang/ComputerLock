@@ -64,7 +64,7 @@ public partial class App : Application
         services.AddKeyedSingleton<IScreenLockService, PasswordScreenLockService>(ScreenUnlockMethods.Password);
         services.AddKeyedSingleton<IScreenLockService, HotkeyScreenLockService>(ScreenUnlockMethods.Hotkey);
 
-        services.AddWpfTitleBar();
+        services.AddWpfTitleBarKit();
         services.AddLocalization();
         services.AddWpfBlazorWebView();
         services.AddBlazorWebViewDeveloperTools();

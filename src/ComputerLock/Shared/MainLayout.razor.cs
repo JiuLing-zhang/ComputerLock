@@ -183,7 +183,7 @@ public partial class MainLayout
 
     private void MouseDown()
     {
-        TitleBarService.Draggable.DragMove();
+        TitleBarService.DragHandler.DragMove();
     }
 
     private async Task OpenDonationDialog()

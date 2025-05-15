@@ -204,7 +204,7 @@ internal class GlobalLockService : IGlobalLockService
                     _mouseHook.MoveAndClick();
                     try
                     {
-                        await Task.Delay(TimeSpan.FromSeconds(30), _cts.Token);
+                        await Task.Delay(TimeSpan.FromSeconds(55), _cts.Token);
                     }
                     catch (TaskCanceledException)
                     {

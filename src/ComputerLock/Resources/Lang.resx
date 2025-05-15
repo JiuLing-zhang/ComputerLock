@@ -384,4 +384,10 @@
   <data name="HideWindowWhenEsc" xml:space="preserve">
 	  <value />
   </data>
+  <data name="EnableSoftwareRendering" xml:space="preserve">
+	  <value />
+  </data>
+  <data name="EnableSoftwareRenderingRemark" xml:space="preserve">
+	  <value />
+  </data>
 </root>

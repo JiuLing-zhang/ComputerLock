@@ -67,7 +67,6 @@ public partial class App : Application
         services.AddWpfTitleBarKit();
         services.AddLocalization();
         services.AddWpfBlazorWebView();
-        services.AddBlazorWebViewDeveloperTools();
         services.AddMudServices(config =>
         {
             config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.TopLeft;
@@ -86,6 +85,11 @@ public partial class App : Application
         CultureInfo.CurrentCulture = cultureInfo;
         Thread.CurrentThread.CurrentCulture = cultureInfo;
         Thread.CurrentThread.CurrentUICulture = cultureInfo;
+
+        if (sp.GetRequiredService<AppSettings>().IsEnableSoftwareRendering)
+        {
+            System.Windows.Media.RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;
+        }
 
         _mainWindow = sp.GetRequiredService<WindowMain>();
         Application.Current.MainWindow = _mainWindow;

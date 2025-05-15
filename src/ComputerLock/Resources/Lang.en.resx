@@ -366,4 +366,10 @@
   <data name="HideWindowWhenEsc" xml:space="preserve">
 	  <value>Minimize to tray on pressing ESC</value>
   </data>
+  <data name="EnableSoftwareRendering" xml:space="preserve">
+	  <value>Enable Software Rendering</value>
+  </data>
+  <data name="EnableSoftwareRenderingRemark" xml:space="preserve">
+	  <value>Reduces memory usage when enabled, but may affect animation smoothness.</value>
+  </data>
 </root>

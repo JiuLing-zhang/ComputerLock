@@ -145,4 +145,9 @@ public class AppSettings
     /// 锁屏状态展示
     /// </summary>
     public LockStatusDisplay LockStatusDisplay { get; set; } = LockStatusDisplay.None;
+
+    /// <summary>
+    /// 启用软件渲染
+    /// </summary>
+    public bool IsEnableSoftwareRendering { get; set; } = true;
 }

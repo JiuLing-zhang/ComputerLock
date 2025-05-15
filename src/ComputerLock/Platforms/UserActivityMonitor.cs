@@ -6,14 +6,6 @@ namespace ComputerLock.Platforms;
 
 public class UserActivityMonitor
 {
-    [DllImport("user32.dll")]
-    private static extern bool GetLastInputInfo(ref LastInputInfo plii);
-    struct LastInputInfo
-    {
-        public uint cbSize;
-        public uint dwTime;
-    }
-
     private Timer? _timer;
     public EventHandler? OnIdle;
     private int _autoLockMillisecond;
@@ -54,10 +46,10 @@ public class UserActivityMonitor
 
     private void Timer_Elapsed(object? sender, ElapsedEventArgs e)
     {
-        var lastInputInfo = new LastInputInfo();
+        var lastInputInfo = new WinApi.LastInputInfo();
         lastInputInfo.cbSize = (uint)Marshal.SizeOf(lastInputInfo);
 
-        if (GetLastInputInfo(ref lastInputInfo))
+        if (WinApi.GetLastInputInfo(ref lastInputInfo))
         {
             long elapsedMillisecond = (long)Environment.TickCount64 - lastInputInfo.dwTime;
             if (elapsedMillisecond > _autoLockMillisecond)

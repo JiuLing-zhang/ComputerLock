@@ -1,22 +1,6 @@
-﻿using System.Runtime.InteropServices;
-
-namespace ComputerLock.Platforms;
+﻿namespace ComputerLock.Platforms;
 internal class MouseHook
 {
-    [DllImport("user32.dll")]
-    private static extern int ShowCursor(bool bShow);
-
-    [DllImport("user32.dll")]
-    private static extern int SetCursorPos(int x, int y);
-
-    [DllImport("user32.dll")]
-    private static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
-
-    public const int MOUSEEVENTF_LEFTDOWN = 0x0002;
-    public const int MOUSEEVENTF_LEFTUP = 0x0004;
-    public const int MOUSEEVENTF_RIGHTDOWN = 0x0008;
-    public const int MOUSEEVENTF_RIGHTUP = 0x0010;
-
     private int _cursorCount = 0;
     private Random _random = new Random();
 
@@ -27,7 +11,7 @@ internal class MouseHook
     {
         if (_cursorCount >= 0) // 如果光标可见
         {
-            _cursorCount = ShowCursor(false); // 隐藏光标
+            _cursorCount = WinApi.ShowCursor(false); // 隐藏光标
         }
     }
 
@@ -38,7 +22,7 @@ internal class MouseHook
     {
         if (_cursorCount < 0) // 如果光标不可见
         {
-            _cursorCount = ShowCursor(true); // 显示光标
+            _cursorCount = WinApi.ShowCursor(true); // 显示光标
         }
     }
 
@@ -49,13 +33,13 @@ internal class MouseHook
     {
         while (_cursorCount < 0) // 如果光标隐藏
         {
-            ShowCursor(true); // 显示光标
+            WinApi.ShowCursor(true); // 显示光标
             _cursorCount++;
         }
 
         while (_cursorCount > 0) // 如果光标多次显示
         {
-            ShowCursor(false); // 隐藏光标
+            WinApi.ShowCursor(false); // 隐藏光标
             _cursorCount--;
         }
     }
@@ -69,7 +53,7 @@ internal class MouseHook
         var y = _random.Next(0, 100);
 
         var p = new Point(x, y);
-        SetCursorPos((int)p.X, (int)p.Y);
-        mouse_event(MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP, x, y, 0, 0);
+        WinApi.SetCursorPos((int)p.X, (int)p.Y);
+        WinApi.mouse_event(WinApi.MOUSEEVENTF_RIGHTDOWN | WinApi.MOUSEEVENTF_RIGHTUP, x, y, 0, 0);
     }
 }

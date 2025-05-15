@@ -4,41 +4,9 @@ using System.Runtime.InteropServices;
 namespace ComputerLock.Platforms;
 internal class SystemKeyHook : IDisposable
 {
-    // ReSharper disable InconsistentNaming
-    private const int WH_KEYBOARD_LL = 13;
-    private const int WM_KEYDOWN = 0x0100;
-    private const int WM_SYSKEYDOWN = 0x0104;
-
-    private const int VK_LWIN = 0x5B;
-    private const int VK_RWIN = 0x5C;
-    private const int VK_LSHIFT = 0xA0;
-    private const int VK_RSHIFT = 0xA1;
-    private const int VK_LCONTROL = 0xA2;
-    private const int VK_RCONTROL = 0xA3;
-    //ALT
-    private const int VK_LMENU = 0xA4;
-    private const int VK_RMENU = 0xA5;
-    private const int VK_TAB = 0x09;
-    // ReSharper restore InconsistentNaming
-
     private int _hookId;
-    private readonly HookDelegate _hookCallback;
+    private readonly WinApi.HookDelegate _hookCallback;
     private Hotkey? _ignoreHotkey; // 使用单个Hotkey变量来存储需要忽略的快捷键
-
-    public delegate int HookDelegate(int nCode, int wParam, IntPtr lParam);
-
-    [DllImport("user32.dll")]
-    public static extern int SetWindowsHookEx(int idHook, HookDelegate callback, IntPtr hInstance, uint threadId);
-
-    [DllImport("user32.dll")]
-    public static extern int UnhookWindowsHookEx(int idHook);
-
-    [DllImport("user32.dll")]
-    public static extern int CallNextHookEx(int idHook, int nCode, int wParam, IntPtr lParam);
-
-    [DllImport("kernel32.dll")]
-    public static extern IntPtr GetModuleHandle(string lpModuleName);
-
 
     public SystemKeyHook()
     {
@@ -53,7 +21,7 @@ internal class SystemKeyHook : IDisposable
         {
             return;
         }
-        _hookId = SetWindowsHookEx(WH_KEYBOARD_LL, _hookCallback, GetModuleHandle(moduleName), 0);
+        _hookId = WinApi.SetWindowsHookEx(WinApi.WH_KEYBOARD_LL, _hookCallback, WinApi.GetModuleHandle(moduleName), 0);
     }
 
     public void SetIgnoreHotkey(Hotkey hotKey)
@@ -68,11 +36,11 @@ internal class SystemKeyHook : IDisposable
 
             if (_ignoreHotkey == null)
             {
-                if (IsSystemKey(vkCode) && (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
+                if (IsSystemKey(vkCode) && (wParam == WinApi.WM_KEYDOWN || wParam == WinApi.WM_SYSKEYDOWN))
                 {
                     return 1; // 阻止事件传递
                 }
-                return CallNextHookEx(_hookId, nCode, wParam, lParam); // 其他按键放行
+                return WinApi.CallNextHookEx(_hookId, nCode, wParam, lParam); // 其他按键放行
             }
 
             if (!IsPartOfIgnoreHotkey(vkCode))
@@ -86,17 +54,17 @@ internal class SystemKeyHook : IDisposable
                     return 1; // 阻止事件传递
                 }
             }
-            return CallNextHookEx(_hookId, nCode, wParam, lParam); // 放行
+            return WinApi.CallNextHookEx(_hookId, nCode, wParam, lParam); // 放行
         }
-        return CallNextHookEx(_hookId, nCode, wParam, lParam);
+        return WinApi.CallNextHookEx(_hookId, nCode, wParam, lParam);
     }
 
     private bool IsSystemKey(int vkCode)
     {
-        return vkCode == VK_LWIN || vkCode == VK_RWIN ||
-               vkCode == VK_LSHIFT || vkCode == VK_RSHIFT ||
-               vkCode == VK_LCONTROL || vkCode == VK_RCONTROL ||
-               vkCode == VK_TAB;
+        return vkCode == WinApi.VK_LWIN || vkCode == WinApi.VK_RWIN ||
+               vkCode == WinApi.VK_LSHIFT || vkCode == WinApi.VK_RSHIFT ||
+               vkCode == WinApi.VK_LCONTROL || vkCode == WinApi.VK_RCONTROL ||
+               vkCode == WinApi.VK_TAB;
     }
 
     private bool IsPartOfIgnoreHotkey(int vkCode)
@@ -104,17 +72,17 @@ internal class SystemKeyHook : IDisposable
         bool isPartOfIgnoreHotkey = false;
         if (_ignoreHotkey!.Modifiers.HasFlag(HotkeyModifiers.Control))
         {
-            isPartOfIgnoreHotkey |= (vkCode == VK_LCONTROL || vkCode == VK_RCONTROL);
+            isPartOfIgnoreHotkey |= (vkCode == WinApi.VK_LCONTROL || vkCode == WinApi.VK_RCONTROL);
         }
 
         if (_ignoreHotkey.Modifiers.HasFlag(HotkeyModifiers.Shift))
         {
-            isPartOfIgnoreHotkey |= (vkCode == VK_LSHIFT || vkCode == VK_RSHIFT);
+            isPartOfIgnoreHotkey |= (vkCode == WinApi.VK_LSHIFT || vkCode == WinApi.VK_RSHIFT);
         }
 
         if (_ignoreHotkey.Modifiers.HasFlag(HotkeyModifiers.Alt))
         {
-            isPartOfIgnoreHotkey |= (vkCode == VK_LMENU || vkCode == VK_RMENU);
+            isPartOfIgnoreHotkey |= (vkCode == WinApi.VK_LMENU || vkCode == WinApi.VK_RMENU);
         }
 
         isPartOfIgnoreHotkey |= (vkCode == (int)_ignoreHotkey.Key);
@@ -123,22 +91,22 @@ internal class SystemKeyHook : IDisposable
 
     private bool IsModifierKey(int vkCode)
     {
-        return vkCode == VK_LCONTROL || vkCode == VK_RCONTROL ||
-               vkCode == VK_LSHIFT || vkCode == VK_RSHIFT ||
-               vkCode == VK_LMENU || vkCode == VK_RMENU;
+        return vkCode == WinApi.VK_LCONTROL || vkCode == WinApi.VK_RCONTROL ||
+               vkCode == WinApi.VK_LSHIFT || vkCode == WinApi.VK_RSHIFT ||
+               vkCode == WinApi.VK_LMENU || vkCode == WinApi.VK_RMENU;
     }
 
     private bool IsModifierRequired(int vkCode)
     {
-        if (vkCode == VK_LCONTROL || vkCode == VK_RCONTROL)
+        if (vkCode == WinApi.VK_LCONTROL || vkCode == WinApi.VK_RCONTROL)
         {
             return _ignoreHotkey!.Modifiers.HasFlag(HotkeyModifiers.Control);
         }
-        if (vkCode == VK_LSHIFT || vkCode == VK_RSHIFT)
+        if (vkCode == WinApi.VK_LSHIFT || vkCode == WinApi.VK_RSHIFT)
         {
             return _ignoreHotkey!.Modifiers.HasFlag(HotkeyModifiers.Shift);
         }
-        if (vkCode == VK_LMENU || vkCode == VK_RMENU)
+        if (vkCode == WinApi.VK_LMENU || vkCode == WinApi.VK_RMENU)
         {
             return _ignoreHotkey!.Modifiers.HasFlag(HotkeyModifiers.Alt);
         }
@@ -148,6 +116,6 @@ internal class SystemKeyHook : IDisposable
     public void Dispose()
     {
         _ignoreHotkey = null;
-        UnhookWindowsHookEx(_hookId);
+        WinApi.UnhookWindowsHookEx(_hookId);
     }
 }

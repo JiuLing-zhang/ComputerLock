@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-namespace ComputerLock.Platforms;
+﻿namespace ComputerLock.Platforms;
 
 /// <summary>
 /// 快捷键钩子
@@ -8,12 +6,6 @@ namespace ComputerLock.Platforms;
 public class HotkeyHook : IDisposable
 {
     private List<int> ids = new List<int>();
-
-    [DllImport("user32.dll")]
-    private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
-
-    [DllImport("user32.dll")]
-    private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
     public event Action<int>? HotkeyPressed;
 
@@ -57,7 +49,7 @@ public class HotkeyHook : IDisposable
             Unregister(id);
         }
 
-        var success = RegisterHotKey(_nativeWindow.Handle, id, (uint)hotKey.Modifiers, (uint)hotKey.Key);
+        var success = WinApi.RegisterHotKey(_nativeWindow.Handle, id, (uint)hotKey.Modifiers, (uint)hotKey.Key);
         if (!success)
         {
             throw new Exception($"注册快捷键失败。id({id})");
@@ -71,7 +63,7 @@ public class HotkeyHook : IDisposable
     /// </summary>
     public void Unregister(int id)
     {
-        UnregisterHotKey(_nativeWindow.Handle, id);
+        WinApi.UnregisterHotKey(_nativeWindow.Handle, id);
     }
 
     public void Dispose()

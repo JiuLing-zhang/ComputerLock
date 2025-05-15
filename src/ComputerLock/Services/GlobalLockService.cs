@@ -68,11 +68,13 @@ internal class GlobalLockService : IGlobalLockService
     {
         if (e.Reason == SessionSwitchReason.SessionLock)
         {
+            _logger.Write("系统 -> Windows 系统已锁定");
             _isWindowsLocked = true;
             WindowsLock();
         }
         else if (e.Reason == SessionSwitchReason.SessionUnlock)
         {
+            _logger.Write("系统 -> Windows 系统已解除锁定");
             _isWindowsLocked = false;
             WindowsUnlock();
         }

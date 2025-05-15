@@ -44,6 +44,14 @@ public partial class GeneralSettings
         }
         _isAutostart = AutostartHook.IsAutostart();
     }
+
+    private void SoftwareRenderingChange(bool isChecked)
+    {
+        AppSettings.IsEnableSoftwareRendering = isChecked;
+        SaveSettings();
+        RestartTips();
+    }
+
     private void SaveSettings()
     {
         AppSettingsProvider.SaveSettings(AppSettings);

@@ -363,4 +363,10 @@
   <data name="HideWindowWhenEsc" xml:space="preserve">
 	  <value>按下 ESC 键后最小化到托盘</value>
   </data>
+  <data name="EnableSoftwareRendering" xml:space="preserve">
+	  <value>启用软件渲染</value>
+  </data>
+  <data name="EnableSoftwareRenderingRemark" xml:space="preserve">
+	  <value>启用时可减少内存占用，但可能影响动画流畅性</value>
+  </data>
 </root>

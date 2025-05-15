@@ -279,6 +279,24 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string EnableSoftwareRendering {
+            get {
+                return ResourceManager.GetString("EnableSoftwareRendering", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string EnableSoftwareRenderingRemark {
+            get {
+                return ResourceManager.GetString("EnableSoftwareRenderingRemark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string EnterShortcutKey {
             get {
                 return ResourceManager.GetString("EnterShortcutKey", resourceCulture);

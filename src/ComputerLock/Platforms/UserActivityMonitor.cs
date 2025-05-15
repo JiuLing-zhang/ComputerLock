@@ -55,6 +55,7 @@ public class UserActivityMonitor
             if (elapsedMillisecond > _autoLockMillisecond)
             {
                 OnIdle?.Invoke(this, EventArgs.Empty);
+                StopMonitoring();
             }
         }
     }

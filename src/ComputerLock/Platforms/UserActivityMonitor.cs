@@ -13,7 +13,10 @@ public class UserActivityMonitor
 
     public void SetAutoLockSecond(int autoLockSecond)
     {
-        _autoLockMillisecond = autoLockSecond * 1000;
+        lock (_lock)
+        {
+            _autoLockMillisecond = autoLockSecond * 1000;
+        }
     }
 
     public void StartMonitoring()
@@ -51,11 +54,13 @@ public class UserActivityMonitor
 
         if (WinApi.GetLastInputInfo(ref lastInputInfo))
         {
-            long elapsedMillisecond = (long)Environment.TickCount64 - lastInputInfo.dwTime;
+            long elapsedMillisecond = Environment.TickCount64 - lastInputInfo.dwTime;
             if (elapsedMillisecond > _autoLockMillisecond)
             {
                 OnIdle?.Invoke(this, EventArgs.Empty);
-                StopMonitoring();
+
+                // 避免死锁，异步停止监控
+                Task.Run(StopMonitoring);
             }
         }
     }

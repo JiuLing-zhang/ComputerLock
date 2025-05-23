@@ -20,8 +20,8 @@
                 Color="Color.Default"
                 CheckMark
                 FixedContent>
-    <MudToggleItem Value="@(ScreenUnlockMethods.Password)" Text="@(Lang["PasswordUnlock"])" />
-    <MudToggleItem Value="@(ScreenUnlockMethods.Hotkey)" Text="@(Lang["HotkeyUnlock"])" />
+    <MudToggleItem Value="@(ScreenUnlockMethods.Password)" Text="@($"🧩 {Lang["PasswordUnlock"]}")" />
+    <MudToggleItem Value="@(ScreenUnlockMethods.Hotkey)" Text="@($"⚡ {Lang["HotkeyUnlock"]}")" />
 </MudToggleGroup>
 
 <MudPaper Elevation="0" Class="mt-2 pa-2">

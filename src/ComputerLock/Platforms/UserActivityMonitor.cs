@@ -1,67 +1,114 @@
 ﻿using System.Runtime.InteropServices;
-using System.Timers;
-using Timer = System.Timers.Timer;
+using System.Windows.Threading;
+using Dispatcher = System.Windows.Threading.Dispatcher;
 
-namespace ComputerLock.Platforms;
-
-public class UserActivityMonitor
+namespace ComputerLock.Platforms
 {
-    private Timer? _timer;
-    public EventHandler? OnIdle;
-    private int _autoLockMillisecond;
-    private readonly object _lock = new();
-
-    public void SetAutoLockSecond(int autoLockSecond)
+    public class UserActivityMonitor : IDisposable
     {
-        lock (_lock)
-        {
-            _autoLockMillisecond = autoLockSecond * 1000;
-        }
-    }
+        private readonly DispatcherTimer _timer;
+        private int _autoLockMillisecond;
+        private bool _isMonitoring;
+        private readonly Dispatcher _dispatcher;
+        private bool _disposed;
 
-    public void StartMonitoring()
-    {
-        lock (_lock)
+        public event EventHandler? OnIdle;
+
+        public UserActivityMonitor()
         {
-            if (_timer == null)
-            {
-                _timer = new Timer();
-                _timer.Interval = 1000;
-                _timer.Elapsed += Timer_Elapsed;
-            }
+            _dispatcher = Dispatcher.CurrentDispatcher;
+
+            _timer = new DispatcherTimer(TimeSpan.FromSeconds(1), DispatcherPriority.Normal, Timer_Tick, _dispatcher);
             _timer.Start();
         }
-    }
 
-    public void StopMonitoring()
-    {
-        lock (_lock)
+        public void SetAutoLockSecond(int autoLockSecond)
         {
-            if (_timer != null)
+            RunOnUIThread(() =>
             {
-                _timer.Elapsed -= Timer_Elapsed;
-                _timer.Stop();
-                _timer.Dispose();
-                _timer = null;
+                _autoLockMillisecond = autoLockSecond * 1000;
+            });
+        }
+
+        public void StartMonitoring()
+        {
+            RunOnUIThread(() =>
+            {
+                _isMonitoring = true;
+            });
+        }
+
+        public void StopMonitoring()
+        {
+            RunOnUIThread(() =>
+            {
+                _isMonitoring = false;
+            });
+        }
+
+        private void Timer_Tick(object? sender, EventArgs e)
+        {
+            if (!_isMonitoring || _disposed)
+            {
+                return;
+            }
+
+            var lastInputInfo = new WinApi.LastInputInfo();
+            lastInputInfo.cbSize = (uint)Marshal.SizeOf(lastInputInfo);
+
+            if (WinApi.GetLastInputInfo(ref lastInputInfo))
+            {
+                long elapsedMillisecond = Environment.TickCount64 - lastInputInfo.dwTime;
+                if (elapsedMillisecond > _autoLockMillisecond)
+                {
+                    OnIdle?.Invoke(this, EventArgs.Empty);
+                    // 触发一次后停止监控
+                    StopMonitoring();
+                }
             }
         }
-    }
 
-    private void Timer_Elapsed(object? sender, ElapsedEventArgs e)
-    {
-        var lastInputInfo = new WinApi.LastInputInfo();
-        lastInputInfo.cbSize = (uint)Marshal.SizeOf(lastInputInfo);
-
-        if (WinApi.GetLastInputInfo(ref lastInputInfo))
+        private void RunOnUIThread(Action action)
         {
-            long elapsedMillisecond = Environment.TickCount64 - lastInputInfo.dwTime;
-            if (elapsedMillisecond > _autoLockMillisecond)
+            if (_disposed)
             {
-                OnIdle?.Invoke(this, EventArgs.Empty);
-
-                // 避免死锁，异步停止监控
-                Task.Run(StopMonitoring);
+                return;
             }
+
+            if (_dispatcher.CheckAccess())
+            {
+                action();
+            }
+            else
+            {
+                _dispatcher.Invoke(action);
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                RunOnUIThread(() =>
+                {
+                    _timer.Stop();
+                    _timer.Tick -= Timer_Tick;
+                });
+
+                OnIdle = null;
+            }
+            _disposed = true;
         }
     }
 }

@@ -5,15 +5,15 @@ using System.Windows.Media.Animation;
 namespace ComputerLock;
 public static class BreathingLightHelper
 {
-    public static void InitializeBreathingLight(Border breathingLight)
+    public static void InitializeBreathingLight(UIElement element)
     {
-        breathingLight.Visibility = Visibility.Visible;
-        StartBreathingAnimation(breathingLight);
+        element.Visibility = Visibility.Visible;
+        StartBreathingAnimation(element);
     }
 
-    private static void StartBreathingAnimation(Border breathingLight)
+    private static void StartBreathingAnimation(UIElement element)
     {
-        var breathingAnimation = new Storyboard();
+        var animation = new Storyboard();
 
         var opacityAnimation = new DoubleAnimation
         {
@@ -24,10 +24,10 @@ public static class BreathingLightHelper
             RepeatBehavior = RepeatBehavior.Forever
         };
 
-        Storyboard.SetTarget(opacityAnimation, breathingLight);
-        Storyboard.SetTargetProperty(opacityAnimation, new PropertyPath(Border.OpacityProperty));
+        Storyboard.SetTarget(opacityAnimation, element);
+        Storyboard.SetTargetProperty(opacityAnimation, new PropertyPath("Opacity"));
 
-        breathingAnimation.Children.Add(opacityAnimation);
-        breathingAnimation.Begin();
+        animation.Children.Add(opacityAnimation);
+        animation.Begin();
     }
 }

@@ -331,7 +331,7 @@
     <value>Suggested to Enable</value>
   </data>
   <data name="LockStatusDisplay" xml:space="preserve">
-	  <value>Lock Screen Status Display</value>
+	  <value>Lock Screen Indicator</value>
   </data>
   <data name="LockStatusDisplayNone" xml:space="preserve">
 	  <value>None</value>
@@ -371,5 +371,11 @@
   </data>
   <data name="EnableSoftwareRenderingRemark" xml:space="preserve">
 	  <value>Reduces memory usage when enabled, but may affect animation smoothness.</value>
+  </data>
+  <data name="LockStatusDisplayDotTopLeft" xml:space="preserve">
+	  <value>Top-left Dot</value>
+  </data>
+  <data name="LockStatusDisplayDotTopRight" xml:space="preserve">
+	  <value>Top-right Dot</value>
   </data>
 </root>

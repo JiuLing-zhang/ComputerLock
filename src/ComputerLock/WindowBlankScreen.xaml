@@ -16,16 +16,38 @@
         Closing="Window_Closing">
     <Grid>
         <Panel.Background>
-            <SolidColorBrush Color="#000000" Opacity="0.01"/>
+            <SolidColorBrush Color="#01000000"/>
         </Panel.Background>
+
+        <!-- 顶部呼吸灯，默认隐藏 -->
         <Grid VerticalAlignment="Top">
-            
-            <!-- 顶部呼吸灯，默认隐藏 -->
             <Border x:Name="TopBreathingLight"
                     Background="#fb8c00" 
                     Height="4" 
                     HorizontalAlignment="Stretch"
                     Visibility="Collapsed"/>
         </Grid>
+
+        <!-- 左上角小圆点 -->
+        <Ellipse x:Name="DotTopLeft"
+                 Width="10"
+                 Height="10"
+                 Fill="#fb8c00"
+                 Opacity="0.3"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
+                 Margin="2"
+                 Visibility="Collapsed"/>
+
+        <!-- 右上角小圆点 -->
+        <Ellipse x:Name="DotTopRight"
+                 Width="10"
+                 Height="10"
+                 Fill="#fb8c00"
+                 Opacity="0.3"
+                 HorizontalAlignment="Right"
+                 VerticalAlignment="Top"
+                 Margin="2"
+                 Visibility="Collapsed"/>
     </Grid>
 </Window>

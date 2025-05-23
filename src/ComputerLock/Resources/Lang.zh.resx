@@ -328,10 +328,10 @@
     <value>建议开启</value>
   </data>
   <data name="LockStatusDisplay" xml:space="preserve">
-	  <value>锁屏状态展示</value>
+	  <value>锁屏状态提示方式</value>
   </data>
   <data name="LockStatusDisplayNone" xml:space="preserve">
-	  <value>关闭</value>
+	  <value>不提示</value>
   </data>
   <data name="LockStatusDisplayBreathingTop" xml:space="preserve">
 	  <value>顶部呼吸灯</value>
@@ -368,5 +368,11 @@
   </data>
   <data name="EnableSoftwareRenderingRemark" xml:space="preserve">
 	  <value>启用时可减少内存占用，但可能影响动画流畅性</value>
+  </data>
+  <data name="LockStatusDisplayDotTopLeft" xml:space="preserve">
+	  <value>左上角圆点</value>
+  </data>
+  <data name="LockStatusDisplayDotTopRight" xml:space="preserve">
+	  <value>右上角圆点</value>
   </data>
 </root>

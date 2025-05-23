@@ -13,5 +13,13 @@ public enum LockStatusDisplay
     /// <summary>
     /// 顶部呼吸灯
     /// </summary>
-    BreathingTop = 2
+    BreathingTop = 2,
+    /// <summary>
+    /// 左上角圆点
+    /// </summary>
+    DotTopLeft = 4,
+    /// <summary>
+    /// 右上角圆点
+    /// </summary>
+    DotTopRight = 8,
 }

@@ -504,6 +504,24 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string LockStatusDisplayDotTopLeft {
+            get {
+                return ResourceManager.GetString("LockStatusDisplayDotTopLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string LockStatusDisplayDotTopRight {
+            get {
+                return ResourceManager.GetString("LockStatusDisplayDotTopRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string LockStatusDisplayNone {
             get {
                 return ResourceManager.GetString("LockStatusDisplayNone", resourceCulture);

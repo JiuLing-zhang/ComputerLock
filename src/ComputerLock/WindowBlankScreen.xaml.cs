@@ -23,10 +23,20 @@ namespace ComputerLock
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _logger.Write("空白屏幕 -> 准备锁定");
-            if (_appSettings.LockStatusDisplay == LockStatusDisplay.BreathingTop)
+            if (_appSettings.LockStatusDisplay.HasFlag(LockStatusDisplay.BreathingTop))
             {
                 _logger.Write("空白屏幕 -> 启用顶部呼吸灯");
                 BreathingLightHelper.InitializeBreathingLight(TopBreathingLight);
+            }
+            if (_appSettings.LockStatusDisplay.HasFlag(LockStatusDisplay.DotTopLeft))
+            {
+                _logger.Write("空白屏幕 -> 启用左上角圆点");
+                BreathingLightHelper.InitializeBreathingLight(DotTopLeft);
+            }
+            if (_appSettings.LockStatusDisplay.HasFlag(LockStatusDisplay.DotTopRight))
+            {
+                _logger.Write("空白屏幕 -> 启用右上角圆点");
+                BreathingLightHelper.InitializeBreathingLight(DotTopRight);
             }
         }
 

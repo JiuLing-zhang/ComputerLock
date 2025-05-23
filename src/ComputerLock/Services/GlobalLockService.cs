@@ -302,6 +302,7 @@ internal class GlobalLockService : IGlobalLockService
 
     public void Dispose()
     {
+        _activityMonitor.Dispose();
         _hotkeyHook.Dispose();
         SystemEvents.SessionSwitch -= SystemEvents_SessionSwitch;
     }

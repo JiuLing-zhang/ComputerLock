@@ -26,7 +26,7 @@
 
     <Grid>
         <Panel.Background>
-            <SolidColorBrush Color="#000000" Opacity="0.01"/>
+            <SolidColorBrush Color="#01000000"/>
         </Panel.Background>
 
         <!-- 顶部呼吸灯，默认隐藏 -->
@@ -35,6 +35,27 @@
                     HorizontalAlignment="Stretch" Visibility="Collapsed"/>
         </Grid>
 
+        <!-- 左上角小圆点 -->
+        <Border x:Name="DotTopLeft"
+                Width="10" 
+                Height="10"
+                Background="#fb8c00"
+                CornerRadius="5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="2"
+                Visibility="Collapsed" />
+
+        <!-- 右上角小圆点 -->
+        <Border x:Name="DotTopRight"
+                Width="10" Height="10"
+                Background="#fb8c00"
+                CornerRadius="5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="2"
+                Visibility="Collapsed" />
+        
         <Border MouseDown="PasswordBlock_MouseDown" 
                 x:Name="PasswordBlock" 
                 Width="230" 

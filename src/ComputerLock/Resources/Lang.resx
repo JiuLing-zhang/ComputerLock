@@ -390,4 +390,10 @@
   <data name="EnableSoftwareRenderingRemark" xml:space="preserve">
 	  <value />
   </data>
+  <data name="LockStatusDisplayDotTopLeft" xml:space="preserve">
+	  <value />
+  </data>
+  <data name="LockStatusDisplayDotTopRight" xml:space="preserve">
+	  <value />
+  </data>
 </root>

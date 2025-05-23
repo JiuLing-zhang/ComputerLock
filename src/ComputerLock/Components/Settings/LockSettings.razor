@@ -56,8 +56,10 @@
            Variant="Variant.Outlined"
            Value="@(AppSettings.LockStatusDisplay)"
            ValueChanged="LockStatusDisplayChanged">
-    <MudSelectItem Value="@(LockStatusDisplay.None)">@(Lang["LockStatusDisplayNone"])</MudSelectItem>
-    <MudSelectItem Value="@(LockStatusDisplay.BreathingTop)">@(Lang["LockStatusDisplayBreathingTop"])</MudSelectItem>
+    <MudSelectItem Value="@(LockStatusDisplay.None)">@($"🚫 {Lang["LockStatusDisplayNone"]}")</MudSelectItem>
+    <MudSelectItem Value="@(LockStatusDisplay.BreathingTop)">@($"💡 {Lang["LockStatusDisplayBreathingTop"]}")</MudSelectItem>
+    <MudSelectItem Value="@(LockStatusDisplay.DotTopLeft)">@($"🔵 {Lang["LockStatusDisplayDotTopLeft"]}")</MudSelectItem>
+    <MudSelectItem Value="@(LockStatusDisplay.DotTopRight)">@($"🔴 {Lang["LockStatusDisplayDotTopRight"]}")</MudSelectItem>
 </MudSelect>
 
 <MudNumericField T="int"

@@ -44,9 +44,9 @@
            Variant="Variant.Outlined"
            Value="@(AppSettings.AppTheme)"
            ValueChanged="ThemeChanged">
-    <MudSelectItem Value="@(ThemeEnum.System)">@(Lang["SystemTheme"])</MudSelectItem>
-    <MudSelectItem Value="@(ThemeEnum.Light)">@(Lang["LightTheme"])</MudSelectItem>
-    <MudSelectItem Value="@(ThemeEnum.Dark)">@(Lang["DarkTheme"])</MudSelectItem>
+    <MudSelectItem Value="@(ThemeEnum.System)">@($"🌓 {Lang["SystemTheme"]}")</MudSelectItem>
+    <MudSelectItem Value="@(ThemeEnum.Light)">@($"☀️ {Lang["LightTheme"]}")</MudSelectItem>
+    <MudSelectItem Value="@(ThemeEnum.Dark)">@($"🌙 {Lang["DarkTheme"]}")</MudSelectItem>
 </MudSelect>
 
 <MudSelect Class="mt-4"

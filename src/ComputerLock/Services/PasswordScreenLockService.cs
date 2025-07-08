@@ -3,7 +3,7 @@ using Application = System.Windows.Application;
 
 namespace ComputerLock.Services;
 
-internal class PasswordScreenLockService(IServiceProvider serviceProvider, IStringLocalizer<Lang> lang, ILogger logger)
+internal class PasswordScreenLockService(IServiceProvider serviceProvider, IStringLocalizer<Lang> lang, ILogger logger, PopupService popupService)
     : ScreenLockBaseService
 {
     private bool _showAnimation;
@@ -25,7 +25,7 @@ internal class PasswordScreenLockService(IServiceProvider serviceProvider, IStri
         if (_showAnimation)
         {
             logger.Write("密码屏幕锁定 -> 锁定动画");
-            ShowPopup(lang["Locked"]);
+            popupService.ShowMessage(lang["Locked"]);
         }
 
         if (_blankScreens.Count > 0)
@@ -79,7 +79,7 @@ internal class PasswordScreenLockService(IServiceProvider serviceProvider, IStri
         if (_showAnimation)
         {
             logger.Write("密码屏幕锁定 -> 解锁动画");
-            ShowPopup(lang["UnLocked"]);
+            popupService.ShowMessage(lang["UnLocked"]);
         }
     }
 

@@ -5,7 +5,7 @@ namespace ComputerLock.Services;
 internal class HotkeyScreenLockService(
     IServiceProvider serviceProvider,
     IStringLocalizer<Lang> lang,
-    ILogger logger) : ScreenLockBaseService
+    ILogger logger, PopupService popupService) : ScreenLockBaseService
 {
     private bool _showAnimation;
     private readonly List<WindowBlankScreen> _blankScreens = [];
@@ -25,7 +25,7 @@ internal class HotkeyScreenLockService(
         if (_showAnimation)
         {
             logger.Write("快捷键屏幕锁定 -> 锁定动画");
-            ShowPopup(lang["Locked"]);
+            popupService.ShowMessage(lang["Locked"]);
         }
 
         if (_blankScreens.Count > 0)
@@ -61,7 +61,7 @@ internal class HotkeyScreenLockService(
         if (_showAnimation)
         {
             logger.Write("快捷键屏幕锁定 -> 解锁动画");
-            ShowPopup(lang["UnLocked"]);
+            popupService.ShowMessage(lang["UnLocked"]);
         }
     }
 }

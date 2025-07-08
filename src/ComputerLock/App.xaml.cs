@@ -53,6 +53,7 @@ public partial class App : Application
         services.AddSingleton<AutostartHook>();
         services.AddSingleton<TaskManagerHook>();
         services.AddSingleton<UserActivityMonitor>();
+        services.AddSingleton<PopupService>();
         services.AddSingleton<WindowMain>();
         services.AddTransient<WindowLockScreen>();
         services.AddTransient<WindowBlankScreen>();

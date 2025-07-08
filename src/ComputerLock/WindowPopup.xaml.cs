@@ -1,45 +1,53 @@
 ﻿using System.Windows;
 using System.Windows.Media.Animation;
 
-namespace ComputerLock
+namespace ComputerLock;
+/// <summary>
+/// WindowPopup.xaml 的交互逻辑
+/// </summary>
+public partial class WindowPopup : Window
 {
-    /// <summary>
-    /// WindowPopup.xaml 的交互逻辑
-    /// </summary>
-    public partial class WindowPopup : Window
+    public WindowPopup(string message)
     {
-        public WindowPopup(string message)
+        InitializeComponent();
+        TxtMessage.Text = message;
+        Loaded += WindowPopup_Loaded;
+    }
+    private void WindowPopup_Loaded(object sender, RoutedEventArgs e)
+    {
+        // 在窗口加载完成后开始渐入动画
+        var fadeInAnimation = new DoubleAnimation
         {
-            InitializeComponent();
-            TxtMessage.Text = message;
-            Loaded += WindowPopup_Loaded;
-        }
-        private void WindowPopup_Loaded(object sender, RoutedEventArgs e)
+            From = 0,
+            To = 1,
+            Duration = TimeSpan.FromMilliseconds(300),
+        };
+
+        BeginAnimation(UIElement.OpacityProperty, fadeInAnimation);
+
+        UpdateWindowPosition();
+    }
+
+    private void UpdateWindowPosition()
+    {
+        double primaryScreenWidth = SystemParameters.PrimaryScreenWidth;
+        double primaryScreenHeight = SystemParameters.PrimaryScreenHeight;
+        Left = (primaryScreenWidth - ActualWidth) / 2;
+        Top = (primaryScreenHeight - ActualHeight) / 2;
+    }
+
+    public void CloseWindow()
+    {
+        // 在窗口关闭时开始渐出动画
+        var fadeOutAnimation = new DoubleAnimation
         {
-            // 在窗口加载完成后开始渐入动画
-            var fadeInAnimation = new DoubleAnimation
-            {
-                From = 0,
-                To = 1,
-                Duration = TimeSpan.FromMilliseconds(300),
-            };
+            From = 1,
+            To = 0,
+            Duration = TimeSpan.FromMilliseconds(300),
+        };
 
-            BeginAnimation(UIElement.OpacityProperty, fadeInAnimation);
-        }
+        fadeOutAnimation.Completed += (_, _) => Close();
 
-        public void CloseWindow()
-        {
-            // 在窗口关闭时开始渐出动画
-            var fadeOutAnimation = new DoubleAnimation
-            {
-                From = 1,
-                To = 0,
-                Duration = TimeSpan.FromMilliseconds(300),
-            };
-
-            fadeOutAnimation.Completed += (_, _) => Close();
-
-            BeginAnimation(UIElement.OpacityProperty, fadeOutAnimation);
-        }
+        BeginAnimation(UIElement.OpacityProperty, fadeOutAnimation);
     }
 }

@@ -6,7 +6,7 @@
         mc:Ignorable="d"        
         Title="WindowPopup"
         Height="50"
-        Width="120"
+        SizeToContent="Width"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
@@ -16,9 +16,11 @@
         <Border BorderBrush="Black"
                 BorderThickness="1"
                 CornerRadius="5"
-                Background="White">
+                Background="White"
+                Padding="20,0">
             <TextBlock x:Name="TxtMessage"
                        FontSize="18"
+                       TextWrapping="NoWrap"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"/>
         </Border>

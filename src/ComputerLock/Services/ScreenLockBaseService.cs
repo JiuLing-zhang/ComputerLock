@@ -1,7 +1,5 @@
 ﻿using ComputerLock.Interfaces;
 using System.Windows;
-using System.Windows.Threading;
-using Application = System.Windows.Application;
 
 namespace ComputerLock.Services;
 
@@ -50,29 +48,5 @@ public abstract class ScreenLockBaseService : IScreenLockService
             return (transform.M11, transform.M22);
         }
         return (1.0, 1.0); // 默认比例
-    }
-
-    protected void ShowPopup(string message)
-    {
-        Application.Current.Dispatcher.Invoke(() =>
-        {
-            var popup = new WindowPopup(message);
-            double primaryScreenWidth = SystemParameters.PrimaryScreenWidth;
-            double primaryScreenHeight = SystemParameters.PrimaryScreenHeight;
-            popup.Left = (primaryScreenWidth - popup.Width) / 2;
-            popup.Top = (primaryScreenHeight - popup.Height) / 2;
-            popup.Show();
-
-            var timer = new DispatcherTimer()
-            {
-                Interval = TimeSpan.FromMilliseconds(1100),
-            };
-            timer.Tick += (_, _) =>
-            {
-                timer.Stop();
-                popup.CloseWindow();
-            };
-            timer.Start();
-        });
     }
 }

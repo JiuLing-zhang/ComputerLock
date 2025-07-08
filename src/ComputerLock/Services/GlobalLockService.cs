@@ -20,10 +20,11 @@ internal class GlobalLockService : IGlobalLockService
     private readonly IServiceProvider _serviceProvider;
     private readonly IWindowsMessageBox _messageBox;
     private readonly IStringLocalizer<Lang> _lang;
+    private readonly PopupService _popupService;
     public bool IsLocked { get; private set; }
     private bool _isWindowsLocked;
     private CancellationTokenSource? _cts;
-    public GlobalLockService(ILogger logger, AppSettings appSettings, UserActivityMonitor activityMonitor, HotkeyHook hotkeyHook, TaskManagerHook taskManagerHook, MouseHook mouseHook, SystemKeyHook systemKeyHook, IServiceProvider serviceProvider, IWindowsMessageBox messageBox, IStringLocalizer<Lang> lang)
+    public GlobalLockService(ILogger logger, AppSettings appSettings, UserActivityMonitor activityMonitor, HotkeyHook hotkeyHook, TaskManagerHook taskManagerHook, MouseHook mouseHook, SystemKeyHook systemKeyHook, IServiceProvider serviceProvider, IWindowsMessageBox messageBox, IStringLocalizer<Lang> lang, PopupService popupService)
     {
         _logger = logger;
         _appSettings = appSettings;
@@ -40,8 +41,10 @@ internal class GlobalLockService : IGlobalLockService
         _serviceProvider = serviceProvider;
         _messageBox = messageBox;
         _lang = lang;
+        _popupService = popupService;
 
         InitActivityMonitor();
+        InitUserInputHandling();
 
         _logger.Write("空闲自动锁定 -> 准备监控系统会话状态");
         SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;
@@ -59,6 +62,27 @@ internal class GlobalLockService : IGlobalLockService
         };
 
         AutoLockStart();
+    }
+
+    private void InitUserInputHandling()
+    {
+        _systemKeyHook.OnUserInput += (_, _) =>
+        {
+            if (_appSettings.LockTips && IsLocked)
+            {
+                _logger.Write("用户输入 -> 检测到键盘输入");
+                _popupService.ShowMessage(_lang["LockTipsValue"]);
+            }
+        };
+
+        _mouseHook.OnUserInput += (_, _) =>
+        {
+            if (_appSettings.LockTips && IsLocked)
+            {
+                _logger.Write("用户输入 -> 检测到鼠标输入");
+                _popupService.ShowMessage(_lang["LockTipsValue"]);
+            }
+        };
     }
 
     /// <summary>
@@ -172,6 +196,9 @@ internal class GlobalLockService : IGlobalLockService
             _mouseHook.HideCursor();
         }
 
+        _logger.Write("全局锁定 -> 启用鼠标钩子");
+        _mouseHook.InstallHook();
+
         if (_appSettings.ScreenUnlockMethod == ScreenUnlockMethods.Hotkey)
         {
             _logger.Write("全局锁定 -> 允许快捷键解锁，准备放行快捷键");
@@ -190,7 +217,7 @@ internal class GlobalLockService : IGlobalLockService
                 }
             }
         }
-        _systemKeyHook.DisableSystemKey();
+        _systemKeyHook.InstallHook();
 
         if (_appSettings.IsDisableWindowsLock)
         {

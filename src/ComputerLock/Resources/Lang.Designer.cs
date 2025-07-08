@@ -531,6 +531,33 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string LockTips {
+            get {
+                return ResourceManager.GetString("LockTips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string LockTipsRemark {
+            get {
+                return ResourceManager.GetString("LockTipsRemark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string LockTipsValue {
+            get {
+                return ResourceManager.GetString("LockTipsValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string LogFiles {
             get {
                 return ResourceManager.GetString("LogFiles", resourceCulture);

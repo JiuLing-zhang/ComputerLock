@@ -119,7 +119,7 @@ public class AppSettings
     /// <summary>
     /// 启用密码框
     /// </summary>
-    public bool EnablePasswordBox { get; set; } = true;
+    public bool EnablePasswordBox { get; set; } = false;
 
     /// <summary>
     /// 自动隐藏密码框
@@ -139,7 +139,7 @@ public class AppSettings
     /// <summary>
     /// 屏幕解锁方式
     /// </summary>
-    public ScreenUnlockMethods ScreenUnlockMethod { get; set; } = ScreenUnlockMethods.Password;
+    public ScreenUnlockMethods ScreenUnlockMethod { get; set; } = ScreenUnlockMethods.Hotkey;
 
     /// <summary>
     /// 锁屏状态展示

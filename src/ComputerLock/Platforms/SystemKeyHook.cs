@@ -1,34 +1,23 @@
-﻿using System.Diagnostics;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace ComputerLock.Platforms;
-internal class SystemKeyHook : IDisposable
+/// <summary>
+/// 系统按键钩子，用于禁用系统按键
+/// </summary>
+internal class SystemKeyHook : WindowsInputHook
 {
-    private int _hookId;
-    private readonly WinApi.HookDelegate _hookCallback;
     private Hotkey? _ignoreHotkey; // 使用单个Hotkey变量来存储需要忽略的快捷键
 
-    public SystemKeyHook()
-    {
-        _hookCallback = KeyboardHookCallback;
-    }
+    protected override int HookType => WinApi.WH_KEYBOARD_LL;
 
-    public void DisableSystemKey()
-    {
-        using Process curProcess = Process.GetCurrentProcess();
-        string? moduleName = curProcess.MainModule?.ModuleName;
-        if (moduleName == null)
-        {
-            return;
-        }
-        _hookId = WinApi.SetWindowsHookEx(WinApi.WH_KEYBOARD_LL, _hookCallback, WinApi.GetModuleHandle(moduleName), 0);
-    }
+    public event EventHandler? OnUserInput;
 
     public void SetIgnoreHotkey(Hotkey hotKey)
     {
         _ignoreHotkey = hotKey;
     }
-    private int KeyboardHookCallback(int nCode, int wParam, IntPtr lParam)
+
+    protected override int HookCallback(int nCode, int wParam, IntPtr lParam)
     {
         if (nCode >= 0)
         {
@@ -38,6 +27,7 @@ internal class SystemKeyHook : IDisposable
             {
                 if (IsSystemKey(vkCode) && (wParam == WinApi.WM_KEYDOWN || wParam == WinApi.WM_SYSKEYDOWN))
                 {
+                    OnUserInput?.Invoke(this, EventArgs.Empty);
                     return 1; // 阻止事件传递
                 }
                 return WinApi.CallNextHookEx(_hookId, nCode, wParam, lParam); // 其他按键放行
@@ -111,11 +101,5 @@ internal class SystemKeyHook : IDisposable
             return _ignoreHotkey!.Modifiers.HasFlag(HotkeyModifiers.Alt);
         }
         return false;
-    }
-
-    public void Dispose()
-    {
-        _ignoreHotkey = null;
-        WinApi.UnhookWindowsHookEx(_hookId);
     }
 }

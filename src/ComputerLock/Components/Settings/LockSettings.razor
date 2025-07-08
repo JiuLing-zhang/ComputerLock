@@ -48,6 +48,17 @@
              Color="Color.Primary"
              Style="max-width: fit-content;" />
 
+<div class="d-flex flex-column">
+    <MudCheckBox @bind-Value="@(AppSettings.LockTips)"
+                 @bind-Value:after="SaveSettings"
+                 Label="@(Lang["LockTips"])"
+                 Color="Color.Primary"
+                 Style="max-width: fit-content;" />
+    <MudText Typo="Typo.caption" Color="Color.Secondary" Class="ml-12">
+        @(Lang["LockTipsRemark"])
+    </MudText>
+</div>
+
 <MudSelect T="LockStatusDisplay"
            Class="mt-4"
            Dense="true"

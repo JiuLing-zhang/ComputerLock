@@ -396,4 +396,13 @@
   <data name="LockStatusDisplayDotTopRight" xml:space="preserve">
 	  <value />
   </data>
+  <data name="LockTipsValue" xml:space="preserve">
+	  <value />
+  </data>
+  <data name="LockTips" xml:space="preserve">
+	  <value />
+  </data>
+  <data name="LockTipsRemark" xml:space="preserve">
+	  <value />
+  </data>
 </root>

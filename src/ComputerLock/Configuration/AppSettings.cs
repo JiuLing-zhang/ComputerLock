@@ -48,6 +48,11 @@ public class AppSettings
     public bool LockAnimation { get; set; } = true;
 
     /// <summary>
+    /// 锁定提示
+    /// </summary>
+    public bool LockTips { get; set; } = false;
+
+    /// <summary>
     /// 程序启动时锁定
     /// </summary>
     public bool LockOnStartup { get; set; } = false;

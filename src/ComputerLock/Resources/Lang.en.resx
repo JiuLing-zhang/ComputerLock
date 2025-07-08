@@ -378,4 +378,13 @@
   <data name="LockStatusDisplayDotTopRight" xml:space="preserve">
 	  <value>Top-right Dot</value>
   </data>
+  <data name="LockTipsValue" xml:space="preserve">
+	  <value>Unlock required</value>
+  </data>
+  <data name="LockTips" xml:space="preserve">
+	  <value>Prompt tips on input when locked</value>
+  </data>
+  <data name="LockTipsRemark" xml:space="preserve">
+	  <value>No prompt on keyboard when using shortcut unlock</value>
+  </data>
 </root>

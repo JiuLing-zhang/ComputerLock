@@ -375,4 +375,13 @@
   <data name="LockStatusDisplayDotTopRight" xml:space="preserve">
 	  <value>右上角圆点</value>
   </data>
+  <data name="LockTipsValue" xml:space="preserve">
+	  <value>请先解锁</value>
+  </data>
+  <data name="LockTips" xml:space="preserve">
+	  <value>程序锁定时操作电脑显示解锁提示</value>
+  </data>
+  <data name="LockTipsRemark" xml:space="preserve">
+	  <value>快捷键解锁时，按下键盘不会提示</value>
+  </data>
 </root>

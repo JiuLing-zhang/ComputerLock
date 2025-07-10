@@ -52,7 +52,7 @@ public partial class MainLayout
         {
             LayoutProperties = new LayoutProperties
             {
-                AppbarHeight = "32px",
+                AppbarHeight = "36px",
                 DrawerWidthLeft = "200px"
             },
 
@@ -64,8 +64,6 @@ public partial class MainLayout
                 AppbarText = "#FFA500",
                 Background = "#FFFFFF",
                 Surface = "#FFFFFF",
-                TableStriped = "#FAFAFA",
-                TableHover = "#E3F2FD",
                 LinesDefault = "#E0E0E0",
 
                 Success = "#43A047",
@@ -76,7 +74,8 @@ public partial class MainLayout
                 TextSecondary = "#616161",
                 DrawerBackground = "#FFFFFF",
                 DrawerText = "#212121",
-                ActionDefault = "#9E9E9E"
+                ActionDefault = "#FFE2B0",
+                HoverOpacity = 0.2
             },
 
             PaletteDark = new PaletteDark()
@@ -87,8 +86,6 @@ public partial class MainLayout
                 AppbarText = "#FFA500",
                 Background = "#212121",
                 Surface = "#424242",
-                TableStriped = "#292929",
-                TableHover = "#37474F",
                 LinesDefault = "#555555",
 
                 Success = "#66BB6A",
@@ -99,7 +96,8 @@ public partial class MainLayout
                 TextSecondary = "#B0BEC5",
                 DrawerBackground = "#2C2C2C",
                 DrawerText = "#FFFFFF",
-                ActionDefault = "#BDBDBD"
+                ActionDefault = "#505050",
+                HoverOpacity = 0.2
             }
         };
 

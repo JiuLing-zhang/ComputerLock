@@ -1,8 +1,8 @@
 ﻿<div class="d-flex align-start @Class">
-
-    <MudIconButton Icon="@Icons.Material.Filled.Minimize"
+    <MudIconButton Icon="@Icons.Material.Filled.Remove"
                    Size="Size.Small"
-                   OnClick="MinimizeAsync" />
+                   OnClick="MinimizeAsync"
+                   Class="titlebar-btn" />
 
     @*     <MudIconButton Icon=@(_maximizerIcon)
     Size="Size.Medium"
@@ -11,5 +11,6 @@
 
     <MudIconButton Icon="@Icons.Material.Filled.Close"
                    Size="Size.Small"
-                   OnClick="CloseAsync" />
+                   OnClick="CloseAsync"
+                   Class="titlebar-btn close-btn" />
 </div>

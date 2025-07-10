@@ -2,10 +2,10 @@
 
 <MudThemeProvider @ref="@_mudThemeProvider" @bind-IsDarkMode="@_isDarkMode" Theme="_customTheme" />
 <MudPopoverProvider />
-<MudDialogProvider/>
+<MudDialogProvider />
 <MudSnackbarProvider />
 
-<MudLayout>
+<MudLayout Class="@(_isDarkMode ? "dark-mode" : "light-mode")">
     <MudAppBar Class="px-2"
                Elevation="25"
                Gutters="false"

@@ -10,6 +10,10 @@ body,
     display: none;
 }
 
+.mud-appbar.mud-appbar-fixed-top {
+    padding-right: 0 !important;
+}
+
 .app-icon {
     width: 20px;
     height: 20px;
@@ -27,4 +31,33 @@ body,
 .mud-nav-link.active:not(.mud-nav-link-disabled) .mud-icon-root {
     color: var(--mud-palette-primary) !important;
     font-weight: var(--mud-typography-default-weight) !important;
+}
+
+.titlebar-btn.mud-icon-button {
+    border-radius: 0 !important;
+    padding: 8px !important;
+    color: #424242 !important;
+}
+
+    .titlebar-btn.mud-icon-button:hover {
+        background-color: #E0E0E0 !important;
+    }
+
+
+.dark-mode .titlebar-btn.mud-icon-button {
+    color: #CCCCCC !important;
+}
+
+    .dark-mode .titlebar-btn.mud-icon-button:hover {
+        background-color: #333333 !important;
+    }
+
+.close-btn.mud-icon-button:hover {
+    background-color: #E57373 !important;
+    color: #FFFFFF !important;
+}
+
+.dark-mode .close-btn.mud-icon-button:hover {
+    background-color: #E81123 !important;
+    color: #FFFFFF !important;
 }

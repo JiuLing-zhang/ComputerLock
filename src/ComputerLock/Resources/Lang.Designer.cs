@@ -117,6 +117,15 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string AutoLockTip {
+            get {
+                return ResourceManager.GetString("AutoLockTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string Autostart {
             get {
                 return ResourceManager.GetString("Autostart", resourceCulture);
@@ -324,6 +333,42 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        public static string General_Group_Advanced {
+            get {
+                return ResourceManager.GetString("General_Group_Advanced", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string General_Group_Appearance {
+            get {
+                return ResourceManager.GetString("General_Group_Appearance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string General_Group_Logs {
+            get {
+                return ResourceManager.GetString("General_Group_Logs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string General_Group_Startup {
+            get {
+                return ResourceManager.GetString("General_Group_Startup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         public static string GeneralSettings {
             get {
                 return ResourceManager.GetString("GeneralSettings", resourceCulture);
@@ -426,6 +471,42 @@ namespace ComputerLock.Resources {
         public static string LightTheme {
             get {
                 return ResourceManager.GetString("LightTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string Lock_Group_Behavior {
+            get {
+                return ResourceManager.GetString("Lock_Group_Behavior", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string Lock_Group_Display {
+            get {
+                return ResourceManager.GetString("Lock_Group_Display", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string Lock_Group_Tips {
+            get {
+                return ResourceManager.GetString("Lock_Group_Tips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string Lock_Group_WindowsIntegration {
+            get {
+                return ResourceManager.GetString("Lock_Group_WindowsIntegration", resourceCulture);
             }
         }
         

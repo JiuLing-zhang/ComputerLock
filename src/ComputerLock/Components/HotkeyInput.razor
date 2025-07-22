@@ -1,17 +1,21 @@
-﻿<MudPaper Class="d-flex align-center" Elevation="0">
-    <MudText Typo="Typo.button" Style="@(Disabled ? "opacity:0.5;" : "")">@(Title)</MudText>
-    <MudButton Class="ml-3"
-               Color="Color.Secondary"
-               Disabled="Disabled"
-               OnClick="SetShortcutKey">
-        @(_lockHotkeyDisplay)
-    </MudButton>
-    @if (Hotkey.IsNotEmpty())
-    {
-        <MudButton Variant="Variant.Text"
+﻿<MudPaper Elevation="0">
+    <MudText Typo="Typo.subtitle2" Class="input-title" Style="@(Disabled ? "opacity:0.5;" : "")">@(Title)</MudText>
+    <div class="d-flex align-center">
+        <MudButton Color="Color.Secondary"
                    Disabled="Disabled"
-                   OnClick="ClearShortcutKey">
-            @(Lang["Delete"])
+                   Size="Size.Small"
+                   Variant="Variant.Outlined"
+                   OnClick="SetShortcutKey">
+            @(_lockHotkeyDisplay)
         </MudButton>
-    }
+        @if (Hotkey.IsNotEmpty())
+        {
+            <MudButton Variant="Variant.Text"
+                       Disabled="Disabled"
+                       Size="Size.Small"
+                       OnClick="ClearShortcutKey">
+                @(Lang["Delete"])
+            </MudButton>
+        }
+    </div>
 </MudPaper>

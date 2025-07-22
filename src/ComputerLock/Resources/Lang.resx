@@ -405,4 +405,32 @@
   <data name="LockTipsRemark" xml:space="preserve">
 	  <value />
   </data>
+  <!-- Group Titles -->
+  <data name="General_Group_Startup" xml:space="preserve">
+    <value />
+  </data>
+  <data name="General_Group_Appearance" xml:space="preserve">
+    <value />
+  </data>
+  <data name="General_Group_Logs" xml:space="preserve">
+    <value />
+  </data>
+  <data name="General_Group_Advanced" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Lock_Group_Behavior" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Lock_Group_WindowsIntegration" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Lock_Group_Display" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Lock_Group_Tips" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AutoLockTip" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

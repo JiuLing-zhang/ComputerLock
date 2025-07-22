@@ -412,7 +412,16 @@
   <data name="Lock_Group_Tips" xml:space="preserve">
     <value>Unlock Tips</value>
   </data>
-  <data name="AutoLockTip" xml:space="preserve">
-    <value>Minutes (0 to disable)</value>
+  <data name="MinSetTip" xml:space="preserve">
+    <value>(0 to disable)</value>
+  </data>
+  <data name="Min" xml:space="preserve">
+    <value>min</value>
+  </data>
+  <data name="AutoPower" xml:space="preserve">
+    <value>Automatically Execute After Locking</value>
+  </data>
+  <data name="MinAfter" xml:space="preserve">
+    <value>min</value>
   </data>
 </root>

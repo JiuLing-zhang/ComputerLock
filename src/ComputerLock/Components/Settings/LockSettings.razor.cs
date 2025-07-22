@@ -23,10 +23,11 @@ public partial class LockSettings
     [Inject]
     private HotkeyHook HotkeyHook { get; set; } = null!;
 
-
     [Inject]
     private ILogger Logger { get; set; } = null!;
 
+    [Inject]
+    private PowerManager PowerManager { get; set; } = null!;
     private void SaveSettings()
     {
         AppSettingsProvider.SaveSettings(AppSettings);
@@ -44,7 +45,6 @@ public partial class LockSettings
         SaveSettings();
         GlobalLockService.UpdateAutoLockSettings();
     }
-
     private Task SetLockHotkey(string hotkey)
     {
         AppSettings.LockHotkeyString = hotkey;
@@ -89,5 +89,22 @@ public partial class LockSettings
             Logger.Write($"释放锁屏热键失败：{ex.Message}。{ex.StackTrace}");
             //MessageBoxUtils.ShowError($"取消快捷键失败：{ex.Message}");
         }
+    }
+
+    private void AutoPowerChanged(int autoPowerMinute)
+    {
+        AppSettings.AutoPowerSecond = autoPowerMinute * 60;
+        SaveSettings();
+    }
+
+    private void PowerActionTypeChanged(PowerActionType powerActionType)
+    {
+        if (powerActionType == PowerActionType.Hibernate && !PowerManager.IsHibernateSupported())
+        {
+            Snackbar.Add("系统可能未启用休眠功能，该功能可能无效。", Severity.Error);
+            return;
+        }
+        AppSettings.AutoPowerActionType = powerActionType;
+        SaveSettings();
     }
 }

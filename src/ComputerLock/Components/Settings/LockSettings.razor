@@ -14,7 +14,7 @@
                      Dense="true" />
 
         <div>
-            <MudText Typo="Typo.subtitle2" Class="input-title">@(Lang["AutoLock"])</MudText>
+            <MudText Typo="Typo.subtitle2" Class="input-title">@($"{Lang["AutoLock"]}{Lang["MinSetTip"]}")</MudText>
             <MudNumericField T="int"
                              Label=""
                              Value="@(AppSettings.AutoLockMinute)"
@@ -22,10 +22,10 @@
                              Variant="Variant.Outlined"
                              Margin="Margin.Dense"
                              Class="max-width-fix"
+                             Style="width:120px;"
+                             Adornment="Adornment.End"
+                             AdornmentText="@(Lang["Min"])"
                              ValueChanged="AutoLockChanged" />
-            <MudText Typo="Typo.caption" Class="input-tip">
-                @(Lang["AutoLockTip"])
-            </MudText>
         </div>
 
         <HotkeyInput Title="@(Lang["LockHotkey"])"
@@ -64,6 +64,34 @@
                      Label="true"
                      Color="Color.Secondary"
                      Class="ml-2">@(Lang["SuggestedToEnable"])</MudChip>
+        </div>
+
+        <div>
+            <MudText Typo="Typo.subtitle2" Class="input-title">@($"{Lang["AutoPower"]}{Lang["MinSetTip"]}")</MudText>
+            <MudStack Row="true" Spacing="2" AlignItems="AlignItems.Center">
+                <MudNumericField T="int"
+                                 Label=""
+                                 Value="@(AppSettings.AutoPowerMinute)"
+                                 Min="0"
+                                 Variant="Variant.Outlined"
+                                 Margin="Margin.Dense"
+                                 Class="max-width-fix"
+                                 Style="width:120px;"
+                                 Adornment="Adornment.End"
+                                 AdornmentText="@(Lang["MinAfter"])"
+                                 ValueChanged="AutoPowerChanged" />
+
+                <MudChipSet T="PowerActionType"
+                            CheckMark
+                            Size="Size.Small"
+                            Disabled="@(AppSettings.AutoPowerSecond==0)"
+                            SelectedValue="AppSettings.AutoPowerActionType"
+                            SelectedValueChanged="PowerActionTypeChanged"
+                            SelectionMode="SelectionMode.SingleSelection">
+                    <MudChip Value="@PowerActionType.Shutdown" SelectedColor="Color.Secondary" Variant="Variant.Outlined">关机</MudChip>
+                    <MudChip Value="@PowerActionType.Hibernate" SelectedColor="Color.Secondary" Variant="Variant.Outlined">休眠</MudChip>
+                </MudChipSet>
+            </MudStack>
         </div>
     </MudStack>
 </MudPaper>

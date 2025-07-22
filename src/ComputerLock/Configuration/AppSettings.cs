@@ -155,4 +155,19 @@ public class AppSettings
     /// 启用软件渲染
     /// </summary>
     public bool IsEnableSoftwareRendering { get; set; } = true;
+
+    /// <summary>
+    /// 锁定后执行关机/休眠（秒）
+    /// </summary>
+    public int AutoPowerSecond { get; set; } = 0;
+
+    /// <summary>
+    /// 锁定后执行关机/休眠（分钟）
+    /// </summary>
+    public int AutoPowerMinute => AutoPowerSecond / 60;
+
+    /// <summary>
+    /// 锁定后自动执行的电源操作类型
+    /// </summary>
+    public PowerActionType AutoPowerActionType { get; set; } = PowerActionType.Shutdown;
 }

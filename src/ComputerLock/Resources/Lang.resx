@@ -430,7 +430,16 @@
   <data name="Lock_Group_Tips" xml:space="preserve">
     <value />
   </data>
-  <data name="AutoLockTip" xml:space="preserve">
+  <data name="MinSetTip" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Min" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AutoPower" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MinAfter" xml:space="preserve">
     <value></value>
   </data>
 </root>

@@ -117,9 +117,9 @@ namespace ComputerLock.Resources {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
-        public static string AutoLockTip {
+        public static string AutoPower {
             get {
-                return ResourceManager.GetString("AutoLockTip", resourceCulture);
+                return ResourceManager.GetString("AutoPower", resourceCulture);
             }
         }
         
@@ -642,6 +642,33 @@ namespace ComputerLock.Resources {
         public static string LogFiles {
             get {
                 return ResourceManager.GetString("LogFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string Min {
+            get {
+                return ResourceManager.GetString("Min", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string MinAfter {
+            get {
+                return ResourceManager.GetString("MinAfter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string MinSetTip {
+            get {
+                return ResourceManager.GetString("MinSetTip", resourceCulture);
             }
         }
         

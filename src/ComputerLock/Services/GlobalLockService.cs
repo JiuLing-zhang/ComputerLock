@@ -24,7 +24,9 @@ internal class GlobalLockService : IGlobalLockService
     public bool IsLocked { get; private set; }
     private bool _isWindowsLocked;
     private CancellationTokenSource? _cts;
-    public GlobalLockService(ILogger logger, AppSettings appSettings, UserActivityMonitor activityMonitor, HotkeyHook hotkeyHook, TaskManagerHook taskManagerHook, MouseHook mouseHook, SystemKeyHook systemKeyHook, IServiceProvider serviceProvider, IWindowsMessageBox messageBox, IStringLocalizer<Lang> lang, PopupService popupService)
+    private CancellationTokenSource? _powerActionCts;
+    private PowerManager _powerManager;
+    public GlobalLockService(ILogger logger, AppSettings appSettings, UserActivityMonitor activityMonitor, HotkeyHook hotkeyHook, TaskManagerHook taskManagerHook, MouseHook mouseHook, SystemKeyHook systemKeyHook, IServiceProvider serviceProvider, IWindowsMessageBox messageBox, IStringLocalizer<Lang> lang, PopupService popupService, PowerManager powerManager)
     {
         _logger = logger;
         _appSettings = appSettings;
@@ -42,6 +44,7 @@ internal class GlobalLockService : IGlobalLockService
         _messageBox = messageBox;
         _lang = lang;
         _popupService = popupService;
+        _powerManager = powerManager;
 
         InitActivityMonitor();
         InitUserInputHandling();
@@ -241,6 +244,36 @@ internal class GlobalLockService : IGlobalLockService
                 }
             }, _cts.Token);
         }
+        if (_appSettings.AutoPowerSecond > 0)
+        {
+            _powerActionCts = new CancellationTokenSource();
+            _logger.Write($"全局锁定 -> {_appSettings.AutoPowerSecond}秒后自动执行{_appSettings.AutoPowerActionType.GetDescription()}");
+            Task.Run(async () =>
+            {
+                try
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(_appSettings.AutoPowerSecond), _powerActionCts.Token);
+                    if (_appSettings.AutoPowerActionType == PowerActionType.Shutdown)
+                    {
+                        _logger.Write("准备执行关机");
+                        _powerManager.Shutdown();
+                    }
+                    else if (_appSettings.AutoPowerActionType == PowerActionType.Hibernate)
+                    {
+                        _logger.Write("准备执行休眠");
+                        _powerManager.Hibernate();
+                    }
+                }
+                catch (TaskCanceledException)
+                {
+                    _logger.Write("自动关机/休眠任务已取消");
+                }
+                catch (Exception ex)
+                {
+                    _logger.Write($"自动关机/休眠任务异常：{ex.Message}.{ex.StackTrace}");
+                }
+            }, _powerActionCts.Token);
+        }
         IsLocked = true;
     }
 
@@ -284,7 +317,15 @@ internal class GlobalLockService : IGlobalLockService
     {
         _screenLockService!.Unlock();
         SystemUnlock();
+
+        if (_powerActionCts != null)
+        {
+            _powerActionCts.Cancel();
+            _powerActionCts.Dispose();
+            _powerActionCts = null;
+        }
         IsLocked = false;
+
     }
 
     public void UpdateAutoLockSettings()

@@ -232,7 +232,7 @@
     <value>已锁定</value>
   </data>
   <data name="AutoLock" xml:space="preserve">
-    <value>无操作时自动锁定（分钟，0不启用）</value>
+    <value>无操作时自动锁定</value>
   </data>
   <data name="LockAnimation" xml:space="preserve">
     <value>锁定和解锁时显示动画</value>
@@ -298,10 +298,10 @@
     <value>高级</value>
   </data>
   <data name="PasswordUnlock" xml:space="preserve">
-    <value>密码解锁</value>
+    <value>启用密码解锁</value>
   </data>
   <data name="HotkeyUnlock" xml:space="preserve">
-    <value>快捷键解锁</value>
+    <value>启用快捷键解锁</value>
   </data>
   <data name="UnlockHotkey" xml:space="preserve">
     <value>解锁快捷键</value>
@@ -367,7 +367,7 @@
 	  <value>启用软件渲染</value>
   </data>
   <data name="EnableSoftwareRenderingRemark" xml:space="preserve">
-	  <value>启用时可减少内存占用，但可能影响动画流畅性</value>
+	  <value>默认启用以减少内存占用。如遇动画卡顿，可尝试关闭以提升流畅度。</value>
   </data>
   <data name="LockStatusDisplayDotTopLeft" xml:space="preserve">
 	  <value>左上角圆点</value>
@@ -383,5 +383,33 @@
   </data>
   <data name="LockTipsRemark" xml:space="preserve">
 	  <value>快捷键解锁时，按下键盘不会提示</value>
+  </data>
+  <!-- 分组标题 -->
+  <data name="General_Group_Startup" xml:space="preserve">
+    <value>启动与窗口行为</value>
+  </data>
+  <data name="General_Group_Appearance" xml:space="preserve">
+    <value>渲染与外观</value>
+  </data>
+  <data name="General_Group_Logs" xml:space="preserve">
+    <value>日志管理</value>
+  </data>
+  <data name="General_Group_Advanced" xml:space="preserve">
+    <value>高级</value>
+  </data>
+  <data name="Lock_Group_Behavior" xml:space="preserve">
+    <value>锁定行为</value>
+  </data>
+  <data name="Lock_Group_WindowsIntegration" xml:space="preserve">
+    <value>Windows 集成</value>
+  </data>
+  <data name="Lock_Group_Display" xml:space="preserve">
+    <value>显示与交互</value>
+  </data>
+  <data name="Lock_Group_Tips" xml:space="preserve">
+    <value>解锁提示</value>
+  </data>
+  <data name="AutoLockTip" xml:space="preserve">
+    <value>分钟，0 表示不启用</value>
   </data>
 </root>

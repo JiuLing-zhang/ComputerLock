@@ -1,0 +1,46 @@
+﻿.unlock-card {
+    position: relative;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+}
+
+    .unlock-card.selected {
+        box-shadow: 0 0 0 2px #ff8a65;
+        border-radius: 8px;
+    }
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    min-height: 32px;
+}
+
+.card-title {
+    font-weight: 500;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+}
+
+.card-content {
+    position: relative;
+}
+
+.card-mask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255,255,255,0.6);
+    z-index: 10;
+    border-radius: 8px;
+    pointer-events: all;
+    transition: background 0.2s;
+}
+
+.dark-mode .card-mask {
+    background: rgba(30,30,30,0.5);
+}

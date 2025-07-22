@@ -32,6 +32,15 @@ public partial class UnlockSettings
         _keyboardDownChecked = (AppSettings.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.KeyboardDown) == PasswordBoxActiveMethodEnum.KeyboardDown;
         _mouseDownChecked = (AppSettings.PasswordBoxActiveMethod & PasswordBoxActiveMethodEnum.MouseDown) == PasswordBoxActiveMethodEnum.MouseDown;
     }
+    private void SelectUnlockMethod(ScreenUnlockMethods method)
+    {
+        if (AppSettings.ScreenUnlockMethod != method)
+        {
+            AppSettings.ScreenUnlockMethod = method;
+            SaveSettings();
+        }
+    }
+
     private void SaveSettings()
     {
         AppSettingsProvider.SaveSettings(AppSettings);

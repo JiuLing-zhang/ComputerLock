@@ -235,7 +235,7 @@
     <value>Locked</value>
   </data>
   <data name="AutoLock" xml:space="preserve">
-    <value>Idle Auto Lock (min, 0 off)</value>
+    <value>Idle Auto Lock</value>
   </data>
   <data name="LockAnimation" xml:space="preserve">
     <value>Show animation when locked</value>
@@ -386,5 +386,33 @@
   </data>
   <data name="LockTipsRemark" xml:space="preserve">
 	  <value>No prompt on keyboard when using shortcut unlock</value>
+  </data>
+  <!-- Group Titles -->
+  <data name="General_Group_Startup" xml:space="preserve">
+    <value>Startup &amp; Window Behavior</value>
+  </data>
+  <data name="General_Group_Appearance" xml:space="preserve">
+    <value>Rendering &amp; Appearance</value>
+  </data>
+  <data name="General_Group_Logs" xml:space="preserve">
+    <value>Log Management</value>
+  </data>
+  <data name="General_Group_Advanced" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
+  <data name="Lock_Group_Behavior" xml:space="preserve">
+    <value>Lock Behavior</value>
+  </data>
+  <data name="Lock_Group_WindowsIntegration" xml:space="preserve">
+    <value>Windows Integration</value>
+  </data>
+  <data name="Lock_Group_Display" xml:space="preserve">
+    <value>Display &amp; Interaction</value>
+  </data>
+  <data name="Lock_Group_Tips" xml:space="preserve">
+    <value>Unlock Tips</value>
+  </data>
+  <data name="AutoLockTip" xml:space="preserve">
+    <value>Minutes (0 to disable)</value>
   </data>
 </root>

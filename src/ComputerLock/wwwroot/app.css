@@ -61,3 +61,34 @@ body,
     background-color: #E81123 !important;
     color: #FFFFFF !important;
 }
+
+/* 分组标题样式 */
+.group-title {
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.02em !important;
+    color: #888888 !important;
+    margin-bottom: 1.3rem !important;
+}
+
+.dark-mode .group-title {
+    color: #BBBBBB !important;
+}
+
+
+.no-left-padding {
+    margin-left: -6px !important;
+}
+
+.max-width-fix {
+    max-width: fit-content !important;
+}
+
+.input-title {
+    margin-bottom: 2px !important;
+    opacity: 0.8;
+}
+
+.input-tip {
+    opacity: 0.6;
+}

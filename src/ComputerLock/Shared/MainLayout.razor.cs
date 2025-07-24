@@ -120,7 +120,7 @@ public partial class MainLayout
     {
         _isDarkMode = theme switch
         {
-            ThemeEnum.System => await _mudThemeProvider.GetSystemPreference(),
+            ThemeEnum.System => await _mudThemeProvider.GetSystemDarkModeAsync(),
             ThemeEnum.Light => false,
             ThemeEnum.Dark => true,
             _ => _isDarkMode
@@ -151,14 +151,14 @@ public partial class MainLayout
             {
                 if (!GlobalLockService.IsLocked)
                 {
-                    Logger.Write("快捷键锁定");
+                    Logger.Info("快捷键锁定");
                     GlobalLockService.Lock();
                 }
                 else
                 {
                     if (AppSettings.ScreenUnlockMethod == ScreenUnlockMethods.Hotkey && AppSettings.IsUnlockUseLockHotkey)
                     {
-                        Logger.Write("快捷键解锁");
+                        Logger.Info("快捷键解锁");
                         GlobalLockService.Unlock();
                     }
                 }
@@ -167,7 +167,7 @@ public partial class MainLayout
             {
                 if (GlobalLockService.IsLocked)
                 {
-                    Logger.Write("快捷键解锁（独立解锁）");
+                    Logger.Info("快捷键解锁（独立解锁）");
                     GlobalLockService.Unlock();
                 }
             }
@@ -196,13 +196,13 @@ public partial class MainLayout
         {
             if (AppSettings.LockHotkey != null)
             {
-                Logger.Write("注册锁屏热键");
+                Logger.Info("注册锁屏热键");
                 HotkeyHook.Register((int)HotkeyType.Lock, AppSettings.LockHotkey);
             }
         }
         catch (Exception ex)
         {
-            Logger.Write($"绑定锁屏热键失败：{ex.Message}。{ex.StackTrace}");
+            Logger.Error($"绑定锁屏热键失败", ex);
             Snackbar.Add($"{Lang["ExRegistFailed"]}{ex.Message}", Severity.Error);
         }
     }
@@ -213,13 +213,13 @@ public partial class MainLayout
         {
             if (AppSettings.UnlockHotkey != null)
             {
-                Logger.Write("注册解锁热键");
+                Logger.Info("注册解锁热键");
                 HotkeyHook.Register((int)HotkeyType.Unlock, AppSettings.UnlockHotkey);
             }
         }
         catch (Exception ex)
         {
-            Logger.Write($"绑定解锁热键失败：{ex.Message}。{ex.StackTrace}");
+            Logger.Error($"绑定解锁热键失败", ex);
             Snackbar.Add($"{Lang["ExRegistFailed"]}{ex.Message}", Severity.Error);
         }
     }

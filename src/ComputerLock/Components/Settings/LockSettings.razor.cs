@@ -67,13 +67,13 @@ public partial class LockSettings
         {
             if (AppSettings.LockHotkey != null)
             {
-                Logger.Write("注册锁屏热键");
+                Logger.Info("注册锁屏热键");
                 HotkeyHook.Register((int)HotkeyType.Lock, AppSettings.LockHotkey);
             }
         }
         catch (Exception ex)
         {
-            Logger.Write($"绑定锁屏热键失败：{ex.Message}。{ex.StackTrace}");
+            Logger.Error($"绑定锁屏热键失败", ex);
             Snackbar.Add($"{Lang["ExRegistFailed"]}{ex.Message}", Severity.Error);
         }
     }
@@ -81,12 +81,12 @@ public partial class LockSettings
     {
         try
         {
-            Logger.Write("释放锁屏热键");
+            Logger.Info("释放锁屏热键");
             HotkeyHook.Unregister((int)HotkeyType.Lock);
         }
         catch (Exception ex)
         {
-            Logger.Write($"释放锁屏热键失败：{ex.Message}。{ex.StackTrace}");
+            Logger.Error($"释放锁屏热键失败", ex);
             //MessageBoxUtils.ShowError($"取消快捷键失败：{ex.Message}");
         }
     }

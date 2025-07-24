@@ -18,7 +18,7 @@ public class PopupService(ILogger logger)
     {
         Application.Current.Dispatcher.Invoke(() =>
         {
-            logger.Write($"弹窗服务 -> 显示消息：{message}");
+            logger.Info($"弹窗服务 -> 显示消息：{message}");
             var popup = new WindowPopup(message);
             double primaryScreenWidth = SystemParameters.PrimaryScreenWidth;
             double primaryScreenHeight = SystemParameters.PrimaryScreenHeight;

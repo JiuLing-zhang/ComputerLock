@@ -14,23 +14,23 @@ internal class PasswordScreenLockService(IServiceProvider serviceProvider, IStri
     public override bool Lock(bool showAnimation)
     {
         _showAnimation = showAnimation;
-        logger.Write("密码屏幕锁定 -> 准备锁定");
+        logger.Info("密码屏幕锁定 -> 准备锁定");
         var primaryScreen = Screen.PrimaryScreen;
         if (primaryScreen == null)
         {
-            logger.Write("密码屏幕锁定 -> 没有检测到屏幕");
+            logger.Info("密码屏幕锁定 -> 没有检测到屏幕");
             return false;
         }
 
         if (_showAnimation)
         {
-            logger.Write("密码屏幕锁定 -> 锁定动画");
+            logger.Info("密码屏幕锁定 -> 锁定动画");
             popupService.ShowMessage(lang["Locked"]);
         }
 
         if (_blankScreens.Count > 0)
         {
-            logger.Write("密码屏幕锁定 -> 准备处理副屏");
+            logger.Info("密码屏幕锁定 -> 准备处理副屏");
             _blankScreens.Clear();
         }
 
@@ -42,7 +42,7 @@ internal class PasswordScreenLockService(IServiceProvider serviceProvider, IStri
             {
                 _windowLockScreen.OnUnlock -= FmLockScreen_OnUnlock;
             };
-            logger.Write("密码屏幕锁定 -> 激活功能屏幕");
+            logger.Info("密码屏幕锁定 -> 激活功能屏幕");
             ShowWindowOnScreen(_windowLockScreen, primaryScreen);
 
             for (var i = 0; i <= Screen.AllScreens.Length - 1; i++)
@@ -52,10 +52,10 @@ internal class PasswordScreenLockService(IServiceProvider serviceProvider, IStri
                 {
                     continue;
                 }
-                logger.Write($"密码屏幕锁定 -> 准备空白屏幕{i}");
+                logger.Info($"密码屏幕锁定 -> 准备空白屏幕{i}");
                 var blankScreen = serviceProvider.GetRequiredService<WindowBlankScreen>();
                 blankScreen.OnDeviceInput += BlankScreen_OnDeviceInput;
-                logger.Write($"密码屏幕锁定 -> 激活空白屏幕{i}");
+                logger.Info($"密码屏幕锁定 -> 激活空白屏幕{i}");
                 ShowWindowOnScreen(blankScreen, screen);
                 _blankScreens.Add(blankScreen);
             }
@@ -65,12 +65,12 @@ internal class PasswordScreenLockService(IServiceProvider serviceProvider, IStri
 
     public override void Unlock()
     {
-        logger.Write("密码屏幕锁定 -> 功能屏幕准备解锁");
+        logger.Info("密码屏幕锁定 -> 功能屏幕准备解锁");
         _windowLockScreen!.Close();
 
         foreach (var screen in _blankScreens)
         {
-            logger.Write("密码屏幕锁定 -> 释放空白屏幕资源");
+            logger.Info("密码屏幕锁定 -> 释放空白屏幕资源");
             screen.OnDeviceInput -= BlankScreen_OnDeviceInput;
             screen.Unlock();
             screen.Close();
@@ -78,19 +78,19 @@ internal class PasswordScreenLockService(IServiceProvider serviceProvider, IStri
 
         if (_showAnimation)
         {
-            logger.Write("密码屏幕锁定 -> 解锁动画");
+            logger.Info("密码屏幕锁定 -> 解锁动画");
             popupService.ShowMessage(lang["UnLocked"]);
         }
     }
 
     private void FmLockScreen_OnUnlock(object? sender, EventArgs e)
     {
-        logger.Write("密码屏幕锁定 -> 通知解锁");
+        logger.Info("密码屏幕锁定 -> 通知解锁");
         OnUnlock?.Invoke(this, EventArgs.Empty);
     }
     private void BlankScreen_OnDeviceInput(object? sender, EventArgs e)
     {
-        logger.Write("密码屏幕锁定 -> 收到副屏解锁通知");
+        logger.Info("密码屏幕锁定 -> 收到副屏解锁通知");
         _windowLockScreen?.ShowPassword();
     }
 }

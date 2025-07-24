@@ -141,13 +141,13 @@ public partial class UnlockSettings
         {
             if (AppSettings.UnlockHotkey != null)
             {
-                Logger.Write("注册解锁热键");
+                Logger.Info("注册解锁热键");
                 HotkeyHook.Register((int)HotkeyType.Unlock, AppSettings.UnlockHotkey);
             }
         }
         catch (Exception ex)
         {
-            Logger.Write($"绑定解锁热键失败：{ex.Message}。{ex.StackTrace}");
+            Logger.Error($"绑定解锁热键失败", ex);
             Snackbar.Add($"{Lang["ExRegistFailed"]}{ex.Message}", Severity.Error);
         }
     }
@@ -155,12 +155,12 @@ public partial class UnlockSettings
     {
         try
         {
-            Logger.Write("释放解锁热键");
+            Logger.Info("释放解锁热键");
             HotkeyHook.Unregister((int)HotkeyType.Unlock);
         }
         catch (Exception ex)
         {
-            Logger.Write($"释放解锁热键失败：{ex.Message}。{ex.StackTrace}");
+            Logger.Error($"释放解锁热键失败", ex);
             //MessageBoxUtils.ShowError($"取消快捷键失败：{ex.Message}");
         }
     }

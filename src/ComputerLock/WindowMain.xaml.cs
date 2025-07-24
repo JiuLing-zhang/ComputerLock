@@ -21,11 +21,11 @@ public partial class WindowMain : Window, IDisposable
         _logger = logger;
 
         InitializeNotifyIcon();
-        _logger.Write("系统启动");
+        _logger.Info("系统启动");
 
         if (_appSettings.LockOnStartup)
         {
-            _logger.Write("程序启动时锁定屏幕");
+            _logger.Info("程序启动时锁定屏幕");
             _globalLockService.Lock();
         }
     }
@@ -46,7 +46,7 @@ public partial class WindowMain : Window, IDisposable
         var btnLock = new ToolStripMenuItem(Lang.DoLock);
         btnLock.Click += (_, _) =>
         {
-            _logger.Write("托盘锁定");
+            _logger.Info("托盘锁定");
             _globalLockService.Lock();
         };
         _contextMenuStrip.Items.Add(btnLock);
@@ -54,7 +54,7 @@ public partial class WindowMain : Window, IDisposable
         var btnClose = new ToolStripMenuItem(Lang.Exit);
         btnClose.Click += (_, _) =>
         {
-            _logger.Write("托盘关闭");
+            _logger.Info("托盘关闭");
             System.Windows.Application.Current.Shutdown();
         };
         _contextMenuStrip.Items.Add(btnClose);
@@ -111,7 +111,7 @@ public partial class WindowMain : Window, IDisposable
     }
     public void Dispose()
     {
-        _logger.Write("系统资源释放，系统关闭");
+        _logger.Info("系统资源释放，系统关闭");
         _notifyIcon.Dispose();
         _globalLockService.Dispose();
     }

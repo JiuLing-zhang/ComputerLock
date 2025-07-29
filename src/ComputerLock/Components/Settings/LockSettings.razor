@@ -88,8 +88,8 @@
                             SelectedValue="AppSettings.AutoPowerActionType"
                             SelectedValueChanged="PowerActionTypeChanged"
                             SelectionMode="SelectionMode.SingleSelection">
-                    <MudChip Value="@PowerActionType.Shutdown" SelectedColor="Color.Secondary" Variant="Variant.Outlined">关机</MudChip>
-                    <MudChip Value="@PowerActionType.Hibernate" SelectedColor="Color.Secondary" Variant="Variant.Outlined">休眠</MudChip>
+                    <MudChip Value="@PowerActionType.Shutdown" SelectedColor="Color.Secondary" Variant="Variant.Outlined">@(Lang["Shutdown"])</MudChip>
+                    <MudChip Value="@PowerActionType.Hibernate" SelectedColor="Color.Secondary" Variant="Variant.Outlined">@(Lang["Hibernate"])</MudChip>
                 </MudChipSet>
             </MudStack>
         </div>

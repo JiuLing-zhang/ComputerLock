@@ -124,13 +124,13 @@
     <value>Minimize to pallet after startup</value>
   </data>
   <data name="HideWindowWhenClose" xml:space="preserve">
-	  <value>Minimize to tray when window is closed</value>
+    <value>Minimize to tray when window is closed</value>
   </data>
   <data name="AutoCheckUpdate" xml:space="preserve">
     <value>Automatic update</value>
   </data>
   <data name="CheckUpdate" xml:space="preserve">
-	  <value>Check for Updates</value>
+    <value>Check for Updates</value>
   </data>
   <data name="Autostart" xml:space="preserve">
     <value>Starts automatically on startup</value>
@@ -222,12 +222,6 @@
   <data name="Title" xml:space="preserve">
     <value>Transparent Lock Screen</value>
   </data>
-  <data name="TimerPrefix" xml:space="preserve">
-    <value>Hide after </value>
-  </data>
-  <data name="TimerPostfix" xml:space="preserve">
-    <value> second</value>
-  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
@@ -274,13 +268,13 @@
     <value>Lock screen on startup</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
-	  <value>Light Theme</value>
+    <value>Light Theme</value>
   </data>
   <data name="DarkTheme" xml:space="preserve">
-	  <value>Dark Theme</value>
+    <value>Dark Theme</value>
   </data>
   <data name="SystemTheme" xml:space="preserve">
-	  <value>Follow System</value>
+    <value>Follow System</value>
   </data>
   <data name="DisableWindowsRemark" xml:space="preserve">
     <value>Prevent Windows auto-lock by moving the mouse</value>
@@ -331,63 +325,62 @@
     <value>Suggested to Enable</value>
   </data>
   <data name="LockStatusDisplay" xml:space="preserve">
-	  <value>Lock Screen Indicator</value>
+    <value>Lock Screen Indicator</value>
   </data>
   <data name="LockStatusDisplayNone" xml:space="preserve">
-	  <value>None</value>
+    <value>None</value>
   </data>
   <data name="LockStatusDisplayBreathingTop" xml:space="preserve">
-	  <value>BreathingTop</value>
+    <value>BreathingTop</value>
   </data>
   <data name="HomePage" xml:space="preserve">
-	  <value>Home Page</value>
+    <value>Home Page</value>
   </data>
   <data name="SetPassword" xml:space="preserve">
-	  <value>Set Password</value>
+    <value>Set Password</value>
   </data>
   <data name="Donate" xml:space="preserve">
-	  <value>Buy Me a Coffee</value>
+    <value>Buy Me a Coffee</value>
   </data>
   <data name="LockOptions" xml:space="preserve">
-	  <value>Lock Options</value>
+    <value>Lock Options</value>
   </data>
   <data name="UnlockOptions" xml:space="preserve">
-	  <value>Unlock Options</value>
+    <value>Unlock Options</value>
   </data>
   <data name="GeneralSettings" xml:space="preserve">
-	  <value>General Settings</value>
+    <value>General Settings</value>
   </data>
   <data name="About" xml:space="preserve">
-	  <value>About</value>
+    <value>About</value>
   </data>
   <data name="Appearance" xml:space="preserve">
-	  <value>Appearance</value>
+    <value>Appearance</value>
   </data>
   <data name="HideWindowWhenEsc" xml:space="preserve">
-	  <value>Minimize to tray on pressing ESC</value>
+    <value>Minimize to tray on pressing ESC</value>
   </data>
   <data name="EnableSoftwareRendering" xml:space="preserve">
-	  <value>Enable Software Rendering</value>
+    <value>Enable Software Rendering</value>
   </data>
   <data name="EnableSoftwareRenderingRemark" xml:space="preserve">
-	  <value>Reduces memory usage when enabled, but may affect animation smoothness.</value>
+    <value>Reduces memory usage when enabled, but may affect animation smoothness.</value>
   </data>
   <data name="LockStatusDisplayDotTopLeft" xml:space="preserve">
-	  <value>Top-left Dot</value>
+    <value>Top-left Dot</value>
   </data>
   <data name="LockStatusDisplayDotTopRight" xml:space="preserve">
-	  <value>Top-right Dot</value>
+    <value>Top-right Dot</value>
   </data>
   <data name="LockTipsValue" xml:space="preserve">
-	  <value>Unlock required</value>
+    <value>Unlock required</value>
   </data>
   <data name="LockTips" xml:space="preserve">
-	  <value>Prompt tips on input when locked</value>
+    <value>Prompt tips on input when locked</value>
   </data>
   <data name="LockTipsRemark" xml:space="preserve">
-	  <value>No prompt on keyboard when using shortcut unlock</value>
+    <value>No prompt on keyboard when using shortcut unlock</value>
   </data>
-  <!-- Group Titles -->
   <data name="General_Group_Startup" xml:space="preserve">
     <value>Startup &amp; Window Behavior</value>
   </data>
@@ -423,5 +416,14 @@
   </data>
   <data name="MinAfter" xml:space="preserve">
     <value>min</value>
+  </data>
+  <data name="Shutdown" xml:space="preserve">
+    <value>Shutdown</value>
+  </data>
+  <data name="Hibernate" xml:space="preserve">
+    <value>Hibernate</value>
+  </data>
+  <data name="HideAfterXSecond" xml:space="preserve">
+    <value>Hide after {0} second</value>
   </data>
 </root>

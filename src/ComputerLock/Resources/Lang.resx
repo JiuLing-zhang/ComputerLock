@@ -118,328 +118,312 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ConfigFilePathError" xml:space="preserve">
-    <value />
+    <value>配置文件路径异常</value>
   </data>
   <data name="HideWindowWhenLaunch" xml:space="preserve">
-    <value />
+    <value>启动后最小化到托盘</value>
   </data>
   <data name="HideWindowWhenClose" xml:space="preserve">
-    <value />
+    <value>关闭窗口时最小化到托盘</value>
   </data>
   <data name="AutoCheckUpdate" xml:space="preserve">
-    <value />
+    <value>自动检查更新</value>
   </data>
   <data name="CheckUpdate" xml:space="preserve">
-    <value />
+    <value>检查更新</value>
   </data>
   <data name="Autostart" xml:space="preserve">
-    <value />
+    <value>开机时自动启动</value>
   </data>
   <data name="DisableWindowsLock" xml:space="preserve">
-    <value />
+    <value>程序锁定时禁用 Windows 自动屏幕锁定</value>
   </data>
   <data name="HidePasswordWindow" xml:space="preserve">
-    <value />
+    <value>无操作时自动隐藏密码框</value>
   </data>
   <data name="KeyboardDownActivePwd" xml:space="preserve">
-    <value />
+    <value>按下 ESC 键显示密码框</value>
   </data>
   <data name="MouseDownActivePwd" xml:space="preserve">
-    <value />
+    <value>鼠标点击密码框位置时显示</value>
   </data>
   <data name="ActiveMethodEmpty" xml:space="preserve">
-    <value />
+    <value>至少需要为密码框启用一种激活方式</value>
   </data>
   <data name="PwdLocation" xml:space="preserve">
-    <value />
+    <value>密码框位置</value>
   </data>
   <data name="TopLeft" xml:space="preserve">
-    <value />
+    <value>左上</value>
   </data>
   <data name="TopRight" xml:space="preserve">
-    <value />
+    <value>右上</value>
   </data>
   <data name="BottomLeft" xml:space="preserve">
-    <value />
+    <value>左下</value>
   </data>
   <data name="BottomRight" xml:space="preserve">
-    <value />
+    <value>右下</value>
   </data>
   <data name="Center" xml:space="preserve">
-    <value />
+    <value>居中</value>
   </data>
   <data name="LockHotkey" xml:space="preserve">
-    <value />
+    <value>锁屏快捷键</value>
   </data>
   <data name="Invalid" xml:space="preserve">
-    <value />
+    <value>未设置</value>
   </data>
   <data name="ExRegistFailed" xml:space="preserve">
-    <value />
+    <value>锁屏快捷键注册失败:</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value />
+    <value>确定</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value />
+    <value>取消</value>
   </data>
   <data name="EnterShortcutKey" xml:space="preserve">
-    <value />
-  </data>
-  <data name="DefaultPasswordTip" xml:space="preserve">
-    <value />
+    <value>请直接在键盘上输入新的快捷键</value>
   </data>
   <data name="ResetPassword" xml:space="preserve">
-    <value />
+    <value>修改密码</value>
   </data>
   <data name="CurrentPassword" xml:space="preserve">
-    <value />
+    <value>当前密码</value>
   </data>
   <data name="NewPassword" xml:space="preserve">
-    <value />
+    <value>新密码</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
-    <value />
+    <value>确认密码</value>
   </data>
   <data name="WrongPassword" xml:space="preserve">
-    <value />
+    <value>密码错误</value>
   </data>
   <data name="PasswordInconsistent" xml:space="preserve">
-    <value />
+    <value>新密码与确认密码不一致</value>
   </data>
   <data name="PasswordEmpty" xml:space="preserve">
-    <value />
+    <value>密码不能为空</value>
   </data>
   <data name="SaveOk" xml:space="preserve">
-    <value />
+    <value>设置成功</value>
   </data>
   <data name="ShowMainWindow" xml:space="preserve">
-    <value />
+    <value>显示主窗口</value>
   </data>
   <data name="DoLock" xml:space="preserve">
-    <value />
+    <value>屏幕锁定</value>
   </data>
   <data name="Exit" xml:space="preserve">
-    <value />
+    <value>退出</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TimerPrefix" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TimerPostfix" xml:space="preserve">
-    <value />
+    <value>透明锁屏</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value />
+    <value>密码</value>
   </data>
   <data name="Locked" xml:space="preserve">
-    <value />
+    <value>已锁定</value>
   </data>
   <data name="AutoLock" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Minute1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Minute2" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Minute3" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Minute5" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Minute10" xml:space="preserve">
-    <value />
+    <value>无操作时自动锁定</value>
   </data>
   <data name="LockAnimation" xml:space="preserve">
-    <value />
+    <value>锁定和解锁时显示动画</value>
   </data>
   <data name="EnablePasswordBox" xml:space="preserve">
-    <value />
+    <value>显示密码框</value>
   </data>
   <data name="UnLocked" xml:space="preserve">
-    <value />
+    <value>已解锁</value>
   </data>
   <data name="EnablePasswordBoxTips" xml:space="preserve">
-    <value />
+    <value>锁屏状态下，先按 ESC 键，然后输入密码即可解锁</value>
   </data>
   <data name="LogFiles" xml:space="preserve">
-    <value />
+    <value>日志文件</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value />
+    <value>查看文件</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value />
+    <value>删除</value>
   </data>
   <data name="RemoveLogsConfirm" xml:space="preserve">
-    <value />
+    <value>确认要删除所有日志吗？</value>
   </data>
   <data name="RemoveLogsOk" xml:space="preserve">
-    <value />
+    <value>日志已删除</value>
   </data>
   <data name="ResetSettings" xml:space="preserve">
-    <value />
+    <value>重置程序设置</value>
   </data>
   <data name="ResetSettingsMessage" xml:space="preserve">
-    <value />
+    <value>确定要重置所有设置并重启程序吗？</value>
   </data>
   <data name="LockOnStartup" xml:space="preserve">
-    <value />
+    <value>程序启动时锁定屏幕</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
-    <value />
+    <value>浅色</value>
   </data>
   <data name="DarkTheme" xml:space="preserve">
-    <value />
+    <value>深色</value>
   </data>
   <data name="SystemTheme" xml:space="preserve">
-    <value />
+    <value>跟随系统</value>
   </data>
   <data name="DisableWindowsRemark" xml:space="preserve">
-    <value />
+    <value>通过移动鼠标来防止 Windows 自动锁屏</value>
   </data>
   <data name="SetPasswordInput" xml:space="preserve">
-    <value />
+    <value>请输入密码</value>
   </data>
   <data name="SetPasswordFinished" xml:space="preserve">
-    <value />
+    <value>完成</value>
   </data>
   <data name="HideMouseCursor" xml:space="preserve">
-    <value />
+    <value>锁定时隐藏鼠标光标</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value />
+    <value>当前版本</value>
   </data>
   <data name="Advanced" xml:space="preserve">
-    <value />
+    <value>高级</value>
   </data>
   <data name="PasswordUnlock" xml:space="preserve">
-    <value />
+    <value>启用密码解锁</value>
   </data>
   <data name="HotkeyUnlock" xml:space="preserve">
-    <value />
+    <value>启用快捷键解锁</value>
   </data>
   <data name="UnlockHotkey" xml:space="preserve">
-    <value />
+    <value>解锁快捷键</value>
   </data>
   <data name="UseLockHotkey" xml:space="preserve">
-    <value />
+    <value>使用锁屏快捷键</value>
   </data>
   <data name="VersionHistory" xml:space="preserve">
-    <value />
+    <value>更新记录</value>
   </data>
   <data name="LockHotkeyUndefined" xml:space="preserve">
-    <value />
+    <value>锁屏失败：请先设置锁屏快捷键</value>
   </data>
   <data name="UnlockHotkeyUndefined" xml:space="preserve">
-    <value />
+    <value>锁屏失败：请先设置解锁快捷键</value>
   </data>
   <data name="UnlockPasswordUndefined" xml:space="preserve">
-    <value />
+    <value>锁屏失败：请先设置解锁密码</value>
   </data>
   <data name="IdleWhenWindowsLock" xml:space="preserve">
-    <value />
+    <value>Windows 屏幕锁定时停止程序锁定服务</value>
   </data>
   <data name="SuggestedToEnable" xml:space="preserve">
-    <value />
+    <value>建议开启</value>
   </data>
   <data name="LockStatusDisplay" xml:space="preserve">
-	  <value />
+    <value>锁屏状态提示方式</value>
   </data>
   <data name="LockStatusDisplayNone" xml:space="preserve">
-	  <value />
+    <value>不提示</value>
   </data>
   <data name="LockStatusDisplayBreathingTop" xml:space="preserve">
-	  <value />
+    <value>顶部呼吸灯</value>
   </data>
   <data name="HomePage" xml:space="preserve">
-	  <value />
+    <value>主页</value>
   </data>
   <data name="SetPassword" xml:space="preserve">
-	  <value />
+    <value>设置密码</value>
   </data>
   <data name="Donate" xml:space="preserve">
-	  <value />
+    <value>支持作者</value>
   </data>
   <data name="LockOptions" xml:space="preserve">
-	  <value />
+    <value>锁屏设置</value>
   </data>
   <data name="UnlockOptions" xml:space="preserve">
-	  <value />
+    <value>解锁方式</value>
   </data>
   <data name="GeneralSettings" xml:space="preserve">
-	  <value />
+    <value>通用设置</value>
   </data>
   <data name="About" xml:space="preserve">
-	  <value />
+    <value>关于</value>
   </data>
   <data name="Appearance" xml:space="preserve">
-	  <value />
+    <value>外观</value>
   </data>
   <data name="HideWindowWhenEsc" xml:space="preserve">
-	  <value />
+    <value>按下 ESC 键后最小化到托盘</value>
   </data>
   <data name="EnableSoftwareRendering" xml:space="preserve">
-	  <value />
+    <value>启用软件渲染</value>
   </data>
   <data name="EnableSoftwareRenderingRemark" xml:space="preserve">
-	  <value />
+    <value>默认启用以减少内存占用。如遇动画卡顿，可尝试关闭以提升流畅度。</value>
   </data>
   <data name="LockStatusDisplayDotTopLeft" xml:space="preserve">
-	  <value />
+    <value>左上角圆点</value>
   </data>
   <data name="LockStatusDisplayDotTopRight" xml:space="preserve">
-	  <value />
+    <value>右上角圆点</value>
   </data>
   <data name="LockTipsValue" xml:space="preserve">
-	  <value />
+    <value>请先解锁</value>
   </data>
   <data name="LockTips" xml:space="preserve">
-	  <value />
+    <value>程序锁定时操作电脑显示解锁提示</value>
   </data>
   <data name="LockTipsRemark" xml:space="preserve">
-	  <value />
+    <value>快捷键解锁时，按下键盘不会提示</value>
   </data>
-  <!-- Group Titles -->
   <data name="General_Group_Startup" xml:space="preserve">
-    <value />
+    <value>启动与窗口行为</value>
   </data>
   <data name="General_Group_Appearance" xml:space="preserve">
-    <value />
+    <value>渲染与外观</value>
   </data>
   <data name="General_Group_Logs" xml:space="preserve">
-    <value />
+    <value>日志管理</value>
   </data>
   <data name="General_Group_Advanced" xml:space="preserve">
-    <value />
+    <value>高级</value>
   </data>
   <data name="Lock_Group_Behavior" xml:space="preserve">
-    <value />
+    <value>锁定行为</value>
   </data>
   <data name="Lock_Group_WindowsIntegration" xml:space="preserve">
-    <value />
+    <value>Windows 集成</value>
   </data>
   <data name="Lock_Group_Display" xml:space="preserve">
-    <value />
+    <value>显示与交互</value>
   </data>
   <data name="Lock_Group_Tips" xml:space="preserve">
-    <value />
+    <value>解锁提示</value>
   </data>
   <data name="MinSetTip" xml:space="preserve">
-    <value></value>
+    <value>（0 表示不启用）</value>
   </data>
   <data name="Min" xml:space="preserve">
-    <value></value>
+    <value>分钟</value>
   </data>
   <data name="AutoPower" xml:space="preserve">
-    <value></value>
+    <value>锁定后自动执行</value>
   </data>
   <data name="MinAfter" xml:space="preserve">
-    <value></value>
+    <value>分钟后</value>
+  </data>
+  <data name="Shutdown" xml:space="preserve">
+    <value>关机</value>
+  </data>
+  <data name="Hibernate" xml:space="preserve">
+    <value>休眠</value>
+  </data>
+  <data name="HideAfterXSecond" xml:space="preserve">
+    <value>{0} 秒后隐藏</value>
   </data>
 </root>

@@ -42,7 +42,7 @@ public partial class WindowLockScreen : Window
             if (_appSettings.IsHidePasswordWindow)
             {
                 LblMessage.Visibility = Visibility.Visible;
-                LblMessage.Content = $"{_lang["TimerPrefix"]}{_hideSelfSecond}{_lang["TimerPostfix"]}";
+                LblMessage.Content = string.Format(_lang["HideAfterXSecond"], _hideSelfSecond);
             }
             RefreshHideSelfTime();
         }
@@ -126,7 +126,7 @@ public partial class WindowLockScreen : Window
                 if (_appSettings.IsHidePasswordWindow)
                 {
                     var hideCountdown = Convert.ToInt32(_hideSelfTime.Subtract(time).TotalSeconds);
-                    LblMessage.Content = $"{_lang["TimerPrefix"]}{hideCountdown}{_lang["TimerPostfix"]}";
+                    LblMessage.Content = string.Format(_lang["HideAfterXSecond"], hideCountdown);
                     if (hideCountdown == 0)
                     {
                         _logger.Info("功能屏幕 -> 准备自动隐藏密码框");
@@ -185,7 +185,7 @@ public partial class WindowLockScreen : Window
         _hideSelfTime = DateTime.Now.AddSeconds(_hideSelfSecond);
         this.Dispatcher.BeginInvoke(new Action(() =>
         {
-            LblMessage.Content = $"{_lang["TimerPrefix"]}{_hideSelfSecond}{_lang["TimerPostfix"]}";
+            LblMessage.Content = string.Format(_lang["HideAfterXSecond"], _hideSelfSecond);
         }));
     }
 

@@ -61,7 +61,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 关于 的本地化字符串。
         /// </summary>
         public static string About {
             get {
@@ -70,7 +70,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 至少需要为密码框启用一种激活方式 的本地化字符串。
         /// </summary>
         public static string ActiveMethodEmpty {
             get {
@@ -79,7 +79,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 高级 的本地化字符串。
         /// </summary>
         public static string Advanced {
             get {
@@ -88,7 +88,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 外观 的本地化字符串。
         /// </summary>
         public static string Appearance {
             get {
@@ -97,7 +97,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 自动检查更新 的本地化字符串。
         /// </summary>
         public static string AutoCheckUpdate {
             get {
@@ -106,7 +106,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 无操作时自动锁定 的本地化字符串。
         /// </summary>
         public static string AutoLock {
             get {
@@ -115,7 +115,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 锁定后自动执行 的本地化字符串。
         /// </summary>
         public static string AutoPower {
             get {
@@ -124,7 +124,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 开机时自动启动 的本地化字符串。
         /// </summary>
         public static string Autostart {
             get {
@@ -133,7 +133,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 左下 的本地化字符串。
         /// </summary>
         public static string BottomLeft {
             get {
@@ -142,7 +142,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 右下 的本地化字符串。
         /// </summary>
         public static string BottomRight {
             get {
@@ -151,7 +151,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 取消 的本地化字符串。
         /// </summary>
         public static string Cancel {
             get {
@@ -160,7 +160,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 居中 的本地化字符串。
         /// </summary>
         public static string Center {
             get {
@@ -169,7 +169,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 检查更新 的本地化字符串。
         /// </summary>
         public static string CheckUpdate {
             get {
@@ -178,7 +178,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 配置文件路径异常 的本地化字符串。
         /// </summary>
         public static string ConfigFilePathError {
             get {
@@ -187,7 +187,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 确认密码 的本地化字符串。
         /// </summary>
         public static string ConfirmPassword {
             get {
@@ -196,7 +196,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 当前密码 的本地化字符串。
         /// </summary>
         public static string CurrentPassword {
             get {
@@ -205,7 +205,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 深色 的本地化字符串。
         /// </summary>
         public static string DarkTheme {
             get {
@@ -214,16 +214,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        public static string DefaultPasswordTip {
-            get {
-                return ResourceManager.GetString("DefaultPasswordTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 删除 的本地化字符串。
         /// </summary>
         public static string Delete {
             get {
@@ -232,7 +223,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 程序锁定时禁用 Windows 自动屏幕锁定 的本地化字符串。
         /// </summary>
         public static string DisableWindowsLock {
             get {
@@ -241,7 +232,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 通过移动鼠标来防止 Windows 自动锁屏 的本地化字符串。
         /// </summary>
         public static string DisableWindowsRemark {
             get {
@@ -250,7 +241,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 屏幕锁定 的本地化字符串。
         /// </summary>
         public static string DoLock {
             get {
@@ -259,7 +250,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 支持作者 的本地化字符串。
         /// </summary>
         public static string Donate {
             get {
@@ -268,7 +259,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 显示密码框 的本地化字符串。
         /// </summary>
         public static string EnablePasswordBox {
             get {
@@ -277,7 +268,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 锁屏状态下，先按 ESC 键，然后输入密码即可解锁 的本地化字符串。
         /// </summary>
         public static string EnablePasswordBoxTips {
             get {
@@ -286,7 +277,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 启用软件渲染 的本地化字符串。
         /// </summary>
         public static string EnableSoftwareRendering {
             get {
@@ -295,7 +286,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 默认启用以减少内存占用。如遇动画卡顿，可尝试关闭以提升流畅度。 的本地化字符串。
         /// </summary>
         public static string EnableSoftwareRenderingRemark {
             get {
@@ -304,7 +295,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 请直接在键盘上输入新的快捷键 的本地化字符串。
         /// </summary>
         public static string EnterShortcutKey {
             get {
@@ -313,7 +304,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 退出 的本地化字符串。
         /// </summary>
         public static string Exit {
             get {
@@ -322,7 +313,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 锁屏快捷键注册失败: 的本地化字符串。
         /// </summary>
         public static string ExRegistFailed {
             get {
@@ -331,7 +322,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 高级 的本地化字符串。
         /// </summary>
         public static string General_Group_Advanced {
             get {
@@ -340,7 +331,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 渲染与外观 的本地化字符串。
         /// </summary>
         public static string General_Group_Appearance {
             get {
@@ -349,7 +340,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 日志管理 的本地化字符串。
         /// </summary>
         public static string General_Group_Logs {
             get {
@@ -358,7 +349,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 启动与窗口行为 的本地化字符串。
         /// </summary>
         public static string General_Group_Startup {
             get {
@@ -367,7 +358,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 通用设置 的本地化字符串。
         /// </summary>
         public static string GeneralSettings {
             get {
@@ -376,7 +367,25 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 休眠 的本地化字符串。
+        /// </summary>
+        public static string Hibernate {
+            get {
+                return ResourceManager.GetString("Hibernate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 {0} 秒后隐藏 的本地化字符串。
+        /// </summary>
+        public static string HideAfterXSecond {
+            get {
+                return ResourceManager.GetString("HideAfterXSecond", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 锁定时隐藏鼠标光标 的本地化字符串。
         /// </summary>
         public static string HideMouseCursor {
             get {
@@ -385,7 +394,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 无操作时自动隐藏密码框 的本地化字符串。
         /// </summary>
         public static string HidePasswordWindow {
             get {
@@ -394,7 +403,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 关闭窗口时最小化到托盘 的本地化字符串。
         /// </summary>
         public static string HideWindowWhenClose {
             get {
@@ -403,7 +412,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 按下 ESC 键后最小化到托盘 的本地化字符串。
         /// </summary>
         public static string HideWindowWhenEsc {
             get {
@@ -412,7 +421,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 启动后最小化到托盘 的本地化字符串。
         /// </summary>
         public static string HideWindowWhenLaunch {
             get {
@@ -421,7 +430,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 主页 的本地化字符串。
         /// </summary>
         public static string HomePage {
             get {
@@ -430,7 +439,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 启用快捷键解锁 的本地化字符串。
         /// </summary>
         public static string HotkeyUnlock {
             get {
@@ -439,7 +448,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 Windows 屏幕锁定时停止程序锁定服务 的本地化字符串。
         /// </summary>
         public static string IdleWhenWindowsLock {
             get {
@@ -448,7 +457,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 未设置 的本地化字符串。
         /// </summary>
         public static string Invalid {
             get {
@@ -457,7 +466,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 按下 ESC 键显示密码框 的本地化字符串。
         /// </summary>
         public static string KeyboardDownActivePwd {
             get {
@@ -466,7 +475,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 浅色 的本地化字符串。
         /// </summary>
         public static string LightTheme {
             get {
@@ -475,7 +484,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 锁定行为 的本地化字符串。
         /// </summary>
         public static string Lock_Group_Behavior {
             get {
@@ -484,7 +493,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 显示与交互 的本地化字符串。
         /// </summary>
         public static string Lock_Group_Display {
             get {
@@ -493,7 +502,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 解锁提示 的本地化字符串。
         /// </summary>
         public static string Lock_Group_Tips {
             get {
@@ -502,7 +511,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 Windows 集成 的本地化字符串。
         /// </summary>
         public static string Lock_Group_WindowsIntegration {
             get {
@@ -511,7 +520,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 锁定和解锁时显示动画 的本地化字符串。
         /// </summary>
         public static string LockAnimation {
             get {
@@ -520,7 +529,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 已锁定 的本地化字符串。
         /// </summary>
         public static string Locked {
             get {
@@ -529,7 +538,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 锁屏快捷键 的本地化字符串。
         /// </summary>
         public static string LockHotkey {
             get {
@@ -538,7 +547,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 锁屏失败：请先设置锁屏快捷键 的本地化字符串。
         /// </summary>
         public static string LockHotkeyUndefined {
             get {
@@ -547,7 +556,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 程序启动时锁定屏幕 的本地化字符串。
         /// </summary>
         public static string LockOnStartup {
             get {
@@ -556,7 +565,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 锁屏设置 的本地化字符串。
         /// </summary>
         public static string LockOptions {
             get {
@@ -565,7 +574,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 锁屏状态提示方式 的本地化字符串。
         /// </summary>
         public static string LockStatusDisplay {
             get {
@@ -574,7 +583,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 顶部呼吸灯 的本地化字符串。
         /// </summary>
         public static string LockStatusDisplayBreathingTop {
             get {
@@ -583,7 +592,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 左上角圆点 的本地化字符串。
         /// </summary>
         public static string LockStatusDisplayDotTopLeft {
             get {
@@ -592,7 +601,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 右上角圆点 的本地化字符串。
         /// </summary>
         public static string LockStatusDisplayDotTopRight {
             get {
@@ -601,7 +610,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 不提示 的本地化字符串。
         /// </summary>
         public static string LockStatusDisplayNone {
             get {
@@ -610,7 +619,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 程序锁定时操作电脑显示解锁提示 的本地化字符串。
         /// </summary>
         public static string LockTips {
             get {
@@ -619,7 +628,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 快捷键解锁时，按下键盘不会提示 的本地化字符串。
         /// </summary>
         public static string LockTipsRemark {
             get {
@@ -628,7 +637,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 请先解锁 的本地化字符串。
         /// </summary>
         public static string LockTipsValue {
             get {
@@ -637,7 +646,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 日志文件 的本地化字符串。
         /// </summary>
         public static string LogFiles {
             get {
@@ -646,7 +655,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 分钟 的本地化字符串。
         /// </summary>
         public static string Min {
             get {
@@ -655,7 +664,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 分钟后 的本地化字符串。
         /// </summary>
         public static string MinAfter {
             get {
@@ -664,7 +673,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 （0 表示不启用） 的本地化字符串。
         /// </summary>
         public static string MinSetTip {
             get {
@@ -673,52 +682,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        public static string Minute1 {
-            get {
-                return ResourceManager.GetString("Minute1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        public static string Minute10 {
-            get {
-                return ResourceManager.GetString("Minute10", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        public static string Minute2 {
-            get {
-                return ResourceManager.GetString("Minute2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        public static string Minute3 {
-            get {
-                return ResourceManager.GetString("Minute3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        public static string Minute5 {
-            get {
-                return ResourceManager.GetString("Minute5", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 鼠标点击密码框位置时显示 的本地化字符串。
         /// </summary>
         public static string MouseDownActivePwd {
             get {
@@ -727,7 +691,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 新密码 的本地化字符串。
         /// </summary>
         public static string NewPassword {
             get {
@@ -736,7 +700,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 查看文件 的本地化字符串。
         /// </summary>
         public static string OpenLogs {
             get {
@@ -745,7 +709,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 密码 的本地化字符串。
         /// </summary>
         public static string Password {
             get {
@@ -754,7 +718,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 密码不能为空 的本地化字符串。
         /// </summary>
         public static string PasswordEmpty {
             get {
@@ -763,7 +727,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 新密码与确认密码不一致 的本地化字符串。
         /// </summary>
         public static string PasswordInconsistent {
             get {
@@ -772,7 +736,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 启用密码解锁 的本地化字符串。
         /// </summary>
         public static string PasswordUnlock {
             get {
@@ -781,7 +745,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 密码框位置 的本地化字符串。
         /// </summary>
         public static string PwdLocation {
             get {
@@ -790,7 +754,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 确认要删除所有日志吗？ 的本地化字符串。
         /// </summary>
         public static string RemoveLogsConfirm {
             get {
@@ -799,7 +763,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 日志已删除 的本地化字符串。
         /// </summary>
         public static string RemoveLogsOk {
             get {
@@ -808,7 +772,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 修改密码 的本地化字符串。
         /// </summary>
         public static string ResetPassword {
             get {
@@ -817,7 +781,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 重置程序设置 的本地化字符串。
         /// </summary>
         public static string ResetSettings {
             get {
@@ -826,7 +790,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 确定要重置所有设置并重启程序吗？ 的本地化字符串。
         /// </summary>
         public static string ResetSettingsMessage {
             get {
@@ -835,7 +799,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 确定 的本地化字符串。
         /// </summary>
         public static string Save {
             get {
@@ -844,7 +808,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 设置成功 的本地化字符串。
         /// </summary>
         public static string SaveOk {
             get {
@@ -853,7 +817,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 设置密码 的本地化字符串。
         /// </summary>
         public static string SetPassword {
             get {
@@ -862,7 +826,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 完成 的本地化字符串。
         /// </summary>
         public static string SetPasswordFinished {
             get {
@@ -871,7 +835,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 请输入密码 的本地化字符串。
         /// </summary>
         public static string SetPasswordInput {
             get {
@@ -880,7 +844,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 显示主窗口 的本地化字符串。
         /// </summary>
         public static string ShowMainWindow {
             get {
@@ -889,7 +853,16 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 关机 的本地化字符串。
+        /// </summary>
+        public static string Shutdown {
+            get {
+                return ResourceManager.GetString("Shutdown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 建议开启 的本地化字符串。
         /// </summary>
         public static string SuggestedToEnable {
             get {
@@ -898,7 +871,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 跟随系统 的本地化字符串。
         /// </summary>
         public static string SystemTheme {
             get {
@@ -907,25 +880,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        public static string TimerPostfix {
-            get {
-                return ResourceManager.GetString("TimerPostfix", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        public static string TimerPrefix {
-            get {
-                return ResourceManager.GetString("TimerPrefix", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 透明锁屏 的本地化字符串。
         /// </summary>
         public static string Title {
             get {
@@ -934,7 +889,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 左上 的本地化字符串。
         /// </summary>
         public static string TopLeft {
             get {
@@ -943,7 +898,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 右上 的本地化字符串。
         /// </summary>
         public static string TopRight {
             get {
@@ -952,7 +907,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 已解锁 的本地化字符串。
         /// </summary>
         public static string UnLocked {
             get {
@@ -961,7 +916,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 解锁快捷键 的本地化字符串。
         /// </summary>
         public static string UnlockHotkey {
             get {
@@ -970,7 +925,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 锁屏失败：请先设置解锁快捷键 的本地化字符串。
         /// </summary>
         public static string UnlockHotkeyUndefined {
             get {
@@ -979,7 +934,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 解锁方式 的本地化字符串。
         /// </summary>
         public static string UnlockOptions {
             get {
@@ -988,7 +943,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 锁屏失败：请先设置解锁密码 的本地化字符串。
         /// </summary>
         public static string UnlockPasswordUndefined {
             get {
@@ -997,7 +952,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 使用锁屏快捷键 的本地化字符串。
         /// </summary>
         public static string UseLockHotkey {
             get {
@@ -1006,7 +961,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 当前版本 的本地化字符串。
         /// </summary>
         public static string Version {
             get {
@@ -1015,7 +970,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 更新记录 的本地化字符串。
         /// </summary>
         public static string VersionHistory {
             get {
@@ -1024,7 +979,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 密码错误 的本地化字符串。
         /// </summary>
         public static string WrongPassword {
             get {

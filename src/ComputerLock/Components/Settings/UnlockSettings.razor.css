@@ -9,6 +9,14 @@
         border-radius: 8px;
     }
 
+.unlock-card:not(.selected):hover {
+    cursor: pointer;
+}
+
+.unlock-card-wrapper:not(.selected):hover {
+    cursor: pointer;
+}
+
 .card-header {
     display: flex;
     align-items: center;
@@ -39,6 +47,7 @@
     border-radius: 8px;
     pointer-events: all;
     transition: background 0.2s;
+    cursor: pointer;
 }
 
 .dark-mode .card-mask {

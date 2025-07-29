@@ -9,7 +9,7 @@
 
 <MudText Typo="Typo.h6" Class="mb-4">@(Lang["UnlockOptions"])</MudText>
 
-<div @onclick="@(() => SelectUnlockMethod(ScreenUnlockMethods.Hotkey))" style="position:relative;">
+<div class="unlock-card-wrapper@(isHotkeySelected ? " selected" : "")" @onclick="@(() => SelectUnlockMethod(ScreenUnlockMethods.Hotkey))" style="position:relative;">
     <MudPaper Class="@hotkeyCardClass" Elevation="5">
         <div class="card-header">
             <span class="card-title">@($"{Lang["HotkeyUnlock"]} ⚡")</span>
@@ -39,7 +39,7 @@
     </MudPaper>
 </div>
 
-<div @onclick="@(() => SelectUnlockMethod(ScreenUnlockMethods.Password))" style="position:relative;">
+<div class="unlock-card-wrapper@(isPasswordSelected ? " selected" : "")" @onclick="@(() => SelectUnlockMethod(ScreenUnlockMethods.Password))" style="position:relative;">
     <MudPaper Class="@passwordCardClass" Elevation="5">
         <div class="card-header">
             <span class="card-title">@($"{Lang["PasswordUnlock"]} 🧩")</span>

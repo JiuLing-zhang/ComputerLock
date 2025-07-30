@@ -354,7 +354,7 @@ internal class GlobalLockService : IGlobalLockService
             _logger.Info("系统解锁 -> 恢复鼠标光标");
             _mouseHook.ResetCursorState();
         }
-
+        _mouseHook.Dispose();
         _systemKeyHook.Dispose();
 
         if (_cts != null)

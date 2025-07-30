@@ -84,9 +84,8 @@ internal class MouseHook : WindowsInputHook
             return;
         }
 
-        // 只处理鼠标按下和释放事件
-        if (wParam == WinApi.WM_LBUTTONDOWN || wParam == WinApi.WM_LBUTTONUP ||
-            wParam == WinApi.WM_RBUTTONDOWN || wParam == WinApi.WM_RBUTTONUP)
+        // 只处理鼠标按下事件
+        if (wParam == WinApi.WM_LBUTTONDOWN || wParam == WinApi.WM_RBUTTONDOWN)
         {
             OnUserInput?.Invoke(this, EventArgs.Empty);
         }

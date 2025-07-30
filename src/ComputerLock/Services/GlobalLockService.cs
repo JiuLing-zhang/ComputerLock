@@ -34,10 +34,7 @@ internal class GlobalLockService : IGlobalLockService
         _hotkeyHook = hotkeyHook;
         _taskManagerHook = taskManagerHook;
 
-        // 防止锁屏时系统崩溃、重启等问题导致任务栏被禁用
-        // 启动时默认启用一次        
-        // TODO 这里需要重新设计，不应该在这里启用任务管理器，因为有可能任务管理器是被其他程序主动禁用的
-        _taskManagerHook.EnabledTaskManager();
+        _taskManagerHook.RecoverFromCrash();
         _mouseHook = mouseHook;
         _systemKeyHook = systemKeyHook;
         _serviceProvider = serviceProvider;
@@ -69,6 +66,7 @@ internal class GlobalLockService : IGlobalLockService
 
     private void InitUserInputHandling()
     {
+        _logger.Info("系统 -> 准备监听用户输入状态");
         _systemKeyHook.OnUserInput += (_, _) =>
         {
             if (_appSettings.LockTips && IsLocked)
@@ -191,7 +189,7 @@ internal class GlobalLockService : IGlobalLockService
         _activityMonitor.StopMonitoring();
 
         _logger.Info("全局锁定 -> 禁用任务管理器和系统键");
-        _taskManagerHook.DisabledTaskManager();
+        _taskManagerHook.Lock();
 
         if (_appSettings.IsHideMouseCursor)
         {
@@ -349,7 +347,7 @@ internal class GlobalLockService : IGlobalLockService
         AutoLockStart();
 
         _logger.Info("系统解锁 -> 恢复任务管理器和系统键");
-        _taskManagerHook.EnabledTaskManager();
+        _taskManagerHook.Unlock();
 
         if (_appSettings.IsHideMouseCursor)
         {

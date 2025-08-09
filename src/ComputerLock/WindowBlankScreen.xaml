@@ -11,6 +11,8 @@
         AllowsTransparency="True"
         Height="450"
         Width="800"
+        InputMethod.IsInputMethodEnabled="False"
+        InputMethod.PreferredImeState="Off"
         Loaded="Window_Loaded"
         KeyDown="Window_KeyDown"
         Closing="Window_Closing">

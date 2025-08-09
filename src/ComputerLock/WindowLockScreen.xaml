@@ -11,6 +11,8 @@
         ShowInTaskbar="False"
         Height="450"
         Width="800"
+        InputMethod.IsInputMethodEnabled="False"
+        InputMethod.PreferredImeState="Off"
         Loaded="Window_Loaded"
         SizeChanged="Window_SizeChanged"
         Closing="Window_Closing"
@@ -55,7 +57,7 @@
                 VerticalAlignment="Top"
                 Margin="2"
                 Visibility="Collapsed" />
-        
+
         <Border MouseDown="PasswordBlock_MouseDown" 
                 x:Name="PasswordBlock" 
                 Width="230" 
@@ -87,11 +89,13 @@
                        Foreground="#000000" 
                        Opacity="0.5"/>
                 <PasswordBox PasswordChanged="TxtPassword_PasswordChanged" 
-                             KeyDown="TxtPassword_KeyDown" 
+                             KeyDown="TxtPassword_KeyDown"
                              x:Name="TxtPassword"
                              Grid.Row="2"
-                             Grid.Column="0" 
+                             Grid.Column="0"
                              Grid.ColumnSpan="3"
+                             InputMethod.IsInputMethodEnabled="False"
+                             InputMethod.PreferredImeState="Off"
                              Style="{StaticResource CustomPasswordBoxStyle}"/>
             </Grid>
         </Border>

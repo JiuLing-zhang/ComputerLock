@@ -426,4 +426,7 @@
   <data name="HideAfterXSecond" xml:space="preserve">
     <value>Hide after {0} second</value>
   </data>
+  <data name="NetworkRequestFailed" xml:space="preserve">
+	  <value>Network request failed.</value>
+  </data>
 </root>

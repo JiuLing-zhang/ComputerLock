@@ -691,6 +691,15 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
+        ///   查找类似 网络请求失败，请稍后再试。 的本地化字符串。
+        /// </summary>
+        public static string NetworkRequestFailed {
+            get {
+                return ResourceManager.GetString("NetworkRequestFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 新密码 的本地化字符串。
         /// </summary>
         public static string NewPassword {

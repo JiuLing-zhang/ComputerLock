@@ -4,6 +4,7 @@
 ![](https://img.shields.io/github/license/JiuLing-zhang/ComputerLock)
 ![](https://img.shields.io/github/actions/workflow/status/JiuLing-zhang/ComputerLock/build.yml)
 [![](https://img.shields.io/github/v/release/JiuLing-zhang/ComputerLock)](https://github.com/JiuLing-zhang/ComputerLock/releases)
+👉👉[English Version](./README_en.md)
 
 </div>
 
@@ -13,8 +14,6 @@
 
 > **透明锁屏** 了解一下。  
 
-👉👉[English Version](./README_en.md)  
-
 <img src="https://github.com/JiuLing-zhang/ComputerLock/raw/main/resources/app.png" width="50%">
 
 ## 功能特点  
@@ -22,6 +21,7 @@
 * ⚡ **打破单调**：告别枯燥的系统锁屏界面，打造独一无二的锁屏风格。
 * 🌈 **防止休眠**：锁屏状态下，系统可保持唤醒状态，避免因休眠中断下载、传输等重要任务。
 * 🌀 **自动锁屏**：离开后无需手动操作，系统将根据设置自动锁定屏幕，有效防止他人窥探您的隐私。
+* 🔋 **智能关机**：锁屏状态下，经过指定时间后自动执行关机、休眠操作，避免长时间锁屏浪费资源。
 
 ## 适用场景  
 * 🎈 **商务展示**：会议演示、产品展示时，避免误操作，确保展示流畅进行。

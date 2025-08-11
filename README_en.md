@@ -4,6 +4,7 @@
 ![](https://img.shields.io/github/license/JiuLing-zhang/ComputerLock)
 ![](https://img.shields.io/github/actions/workflow/status/JiuLing-zhang/ComputerLock/release.yml)
 [![](https://img.shields.io/github/v/release/JiuLing-zhang/ComputerLock)](https://github.com/JiuLing-zhang/ComputerLock/releases)
+👉👉[中文版](./README.md)
 
 </div>
 
@@ -13,8 +14,6 @@
 
 > Transparent Lock Screen is here to help.  
 
-👉👉[中文版](./README.md)  
-
 <img src="https://github.com/JiuLing-zhang/ComputerLock/raw/main/resources/app_en.png" width="50%">
 
 ## Features  
@@ -22,6 +21,7 @@
 * ⚡ Break the Monotony: Say goodbye to boring system lock screens and create a unique lock screen style.
 * 🌈 Prevent Sleep Mode: Keep your system awake while locked, avoiding interruptions to downloads, transfers, or other important tasks.
 * 🌀 Auto Lock: No need to manually lock your screen—the system will automatically lock it based on your settings, effectively preventing others from accessing your private information.
+* 🔋 Smart Shutdown: Automatically execute shutdown or hibernation after a specified time while locked, preventing resource waste from prolonged lock screen states.
 
 ## Use Cases  
 * 🎈 Business Presentations: Ensure smooth presentations during meetings or product demos by avoiding accidental interruptions.

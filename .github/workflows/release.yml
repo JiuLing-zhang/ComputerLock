@@ -14,9 +14,9 @@ jobs:
         uses: actions/checkout@v4
         
       - name: Setup .NET
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 9.0.x
 
       - name: Restore dependencies
         run: dotnet restore .\src
@@ -28,7 +28,7 @@ jobs:
         run: dotnet publish .\src -c Release -r win-x64 -p:PublishReadyToRun=true --self-contained false
 
       - name: Get version
-        uses: olegtarasov/get-tag@v2.1
+        uses: olegtarasov/get-tag@v2.1.4
         id: tagName
 
       - name: Create zip

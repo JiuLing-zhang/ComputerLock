@@ -9,9 +9,9 @@
         border-radius: 8px;
     }
 
-.unlock-card:not(.selected):hover {
-    cursor: pointer;
-}
+    .unlock-card:not(.selected):hover {
+        cursor: pointer;
+    }
 
 .unlock-card-wrapper:not(.selected):hover {
     cursor: pointer;
@@ -38,11 +38,11 @@
 
 .card-mask {
     position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255,255,255,0.6);
+    left: -8px;
+    top: -8px;
+    right: -8px;
+    bottom: -8px;
+    background: rgba(255,255,255,0.5);
     z-index: 10;
     border-radius: 8px;
     pointer-events: all;
@@ -51,5 +51,5 @@
 }
 
 .dark-mode .card-mask {
-    background: rgba(30,30,30,0.5);
+    background: rgba(50,50,50,0.5);
 }

@@ -13,8 +13,8 @@
     <MudPaper Class="@hotkeyCardClass" Elevation="5">
         <div class="card-header">
             <span class="card-title">@($"{Lang["HotkeyUnlock"]} ⚡")</span>
-            <MudIcon Icon="@(isHotkeySelected? Icons.Material.Filled.RadioButtonChecked : Icons.Material.Filled.RadioButtonUnchecked)"
-                     Color="@(isHotkeySelected ? Color.Primary : Color.Default)" Size="Size.Small" />
+            <MudIcon Icon="@(isHotkeySelected? Icons.Material.Filled.CheckCircle : Icons.Material.Filled.RadioButtonUnchecked)"
+                     Color="@(isHotkeySelected ? Color.Secondary : Color.Default)" />
         </div>
         <div class="card-content">
             <MudCheckBox @bind-Value="@(AppSettings.IsUnlockUseLockHotkey)"
@@ -43,8 +43,8 @@
     <MudPaper Class="@passwordCardClass" Elevation="5">
         <div class="card-header">
             <span class="card-title">@($"{Lang["PasswordUnlock"]} 🧩")</span>
-            <MudIcon Icon="@(isPasswordSelected? Icons.Material.Filled.RadioButtonChecked : Icons.Material.Filled.RadioButtonUnchecked)"
-                     Color="@(isPasswordSelected ? Color.Primary : Color.Default)" Size="Size.Small" />
+            <MudIcon Icon="@(isPasswordSelected? Icons.Material.Filled.CheckCircle : Icons.Material.Filled.RadioButtonUnchecked)"
+                     Color="@(isPasswordSelected ? Color.Secondary : Color.Default)" />
         </div>
         <div class="card-content">
             <MudButton Color="Color.Secondary"

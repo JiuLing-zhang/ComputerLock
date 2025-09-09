@@ -25,7 +25,7 @@ public partial class Donation
         await base.OnInitializedAsync();
         try
         {
-            var json = await HttpClient.GetStringAsync("https://www.jiuling.cc/api/donation/list2");
+            var json = await HttpClient.GetStringAsync(Resource.DonationListPath);
             using JsonDocument doc = JsonDocument.Parse(json);
             if (doc.RootElement.ValueKind == JsonValueKind.Array)
             {

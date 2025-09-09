@@ -63,33 +63,18 @@
                          Dense="true"
                          Class="no-left-padding max-width-fix"
                          Disabled="@(!isPasswordSelected)" />
-            <MudCollapse Expanded="@(!AppSettings.EnablePasswordBox)">
-                <MudText Typo="Typo.caption" Class="input-tip ml-7">
+            <MudText Typo="Typo.body2" Color="Color.Secondary" Class="input-tip ml-7" Style="opacity: 1">
+                @if (AppSettings.EnablePasswordBox)
+                {
+                    @(Lang["DisablePasswordBoxTips"])
+                }
+                else
+                {
                     @(Lang["EnablePasswordBoxTips"])
-                </MudText>
-            </MudCollapse>
+                }
+            </MudText>
+
             <MudStack Class="ml-4 mt-4" Spacing="4">
-                <MudCheckBox @bind-Value="@(AppSettings.IsHidePasswordWindow)"
-                             @bind-Value:after="SaveSettings"
-                             Disabled="@(!AppSettings.EnablePasswordBox || !isPasswordSelected)"
-                             Label="@(Lang["HidePasswordWindow"])"
-                             Color="Color.Primary"
-                             Class="no-left-padding max-width-fix"
-                             Dense="true" />
-                <MudCheckBox @bind-Value="@(_keyboardDownChecked)"
-                             @bind-Value:after="KeyboardDownChecked"
-                             Disabled="@(!AppSettings.EnablePasswordBox || !isPasswordSelected)"
-                             Label="@(Lang["KeyboardDownActivePwd"])"
-                             Color="Color.Primary"
-                             Class="no-left-padding max-width-fix"
-                             Dense="true" />
-                <MudCheckBox @bind-Value="@(_mouseDownChecked)"
-                             @bind-Value:after="MouseDownChecked"
-                             Disabled="@(!AppSettings.EnablePasswordBox || !isPasswordSelected)"
-                             Label="@(Lang["MouseDownActivePwd"])"
-                             Color="Color.Primary"
-                             Class="no-left-padding max-width-fix"
-                             Dense="true" />
                 <div>
                     <MudText Typo="Typo.subtitle2" Class="input-title">@(Lang["PwdLocation"])</MudText>
                     <MudSelect T="ScreenLocationEnum"
@@ -109,6 +94,27 @@
                         <MudSelectItem Value="@(ScreenLocationEnum.BottomRight)">@(Lang["BottomRight"])</MudSelectItem>
                     </MudSelect>
                 </div>
+                <MudCheckBox @bind-Value="@(_keyboardDownChecked)"
+                             @bind-Value:after="KeyboardDownChecked"
+                             Disabled="@(!AppSettings.EnablePasswordBox || !isPasswordSelected)"
+                             Label="@(Lang["KeyboardDownActivePwd"])"
+                             Color="Color.Primary"
+                             Class="no-left-padding max-width-fix"
+                             Dense="true" />
+                <MudCheckBox @bind-Value="@(_mouseDownChecked)"
+                             @bind-Value:after="MouseDownChecked"
+                             Disabled="@(!AppSettings.EnablePasswordBox || !isPasswordSelected)"
+                             Label="@(Lang["MouseDownActivePwd"])"
+                             Color="Color.Primary"
+                             Class="no-left-padding max-width-fix"
+                             Dense="true" />
+                <MudCheckBox @bind-Value="@(AppSettings.IsHidePasswordWindow)"
+                             @bind-Value:after="SaveSettings"
+                             Disabled="@(!AppSettings.EnablePasswordBox || !isPasswordSelected)"
+                             Label="@(Lang["HidePasswordWindow"])"
+                             Color="Color.Primary"
+                             Class="no-left-padding max-width-fix"
+                             Dense="true" />
 
             </MudStack>
             @if (!isPasswordSelected)

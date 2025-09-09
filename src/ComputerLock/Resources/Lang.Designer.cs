@@ -223,6 +223,15 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
+        ///   查找类似 解锁方式：按 [ESC] 键 或 鼠标点击密码框位置显示密码框 的本地化字符串。
+        /// </summary>
+        public static string DisablePasswordBoxTips {
+            get {
+                return ResourceManager.GetString("DisablePasswordBoxTips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 程序锁定时禁用 Windows 自动屏幕锁定 的本地化字符串。
         /// </summary>
         public static string DisableWindowsLock {
@@ -259,7 +268,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似 显示密码框 的本地化字符串。
+        ///   查找类似 显示解锁密码框 的本地化字符串。
         /// </summary>
         public static string EnablePasswordBox {
             get {
@@ -268,7 +277,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似 锁屏状态下，先按 ESC 键，然后输入密码即可解锁 的本地化字符串。
+        ///   查找类似 解锁方式：按 [ESC] 键，然后直接输入密码 的本地化字符串。
         /// </summary>
         public static string EnablePasswordBoxTips {
             get {
@@ -682,7 +691,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似 鼠标点击密码框位置时显示 的本地化字符串。
+        ///   查找类似 点击屏幕上设置的密码框位置显示密码框 的本地化字符串。
         /// </summary>
         public static string MouseDownActivePwd {
             get {
@@ -754,7 +763,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似 密码框位置 的本地化字符串。
+        ///   查找类似 密码框在主屏幕中的位置 的本地化字符串。
         /// </summary>
         public static string PwdLocation {
             get {

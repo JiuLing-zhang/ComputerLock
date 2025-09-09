@@ -429,4 +429,7 @@
   <data name="NetworkRequestFailed" xml:space="preserve">
 	  <value>Network request failed.</value>
   </data>
+  <data name="DisablePasswordBoxTips" xml:space="preserve">
+	  <value>Unlock method: Press [ESC] key or click with mouse to show password box</value>
+  </data>
 </root>

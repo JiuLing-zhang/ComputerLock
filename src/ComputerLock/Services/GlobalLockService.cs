@@ -218,6 +218,11 @@ internal class GlobalLockService : IGlobalLockService
                 }
             }
         }
+        else if (_appSettings.ScreenUnlockMethod == ScreenUnlockMethods.Password)
+        {
+            _logger.Info("全局锁定 -> 密码解锁，准备放行非系统按键");
+            _systemKeyHook.SetIgnoreHotkey(null);
+        }
         _systemKeyHook.InstallHook();
 
         if (_appSettings.IsDisableWindowsLock)

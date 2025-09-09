@@ -145,13 +145,13 @@
     <value>按下 ESC 键显示密码框</value>
   </data>
   <data name="MouseDownActivePwd" xml:space="preserve">
-    <value>鼠标点击密码框位置时显示</value>
+	  <value>点击屏幕上设置的密码框位置显示密码框</value>
   </data>
   <data name="ActiveMethodEmpty" xml:space="preserve">
     <value>至少需要为密码框启用一种激活方式</value>
   </data>
   <data name="PwdLocation" xml:space="preserve">
-    <value>密码框位置</value>
+	  <value>密码框在主屏幕中的位置</value>
   </data>
   <data name="TopLeft" xml:space="preserve">
     <value>左上</value>
@@ -235,13 +235,13 @@
     <value>锁定和解锁时显示动画</value>
   </data>
   <data name="EnablePasswordBox" xml:space="preserve">
-    <value>显示密码框</value>
+	  <value>显示解锁密码框</value>
   </data>
   <data name="UnLocked" xml:space="preserve">
     <value>已解锁</value>
   </data>
   <data name="EnablePasswordBoxTips" xml:space="preserve">
-    <value>锁屏状态下，先按 ESC 键，然后输入密码即可解锁</value>
+	  <value>解锁方式：按 [ESC] 键，然后直接输入密码</value>
   </data>
   <data name="LogFiles" xml:space="preserve">
     <value>日志文件</value>
@@ -428,5 +428,8 @@
   </data>
   <data name="NetworkRequestFailed" xml:space="preserve">
 	  <value>网络请求失败，请稍后再试。</value>
+  </data>
+  <data name="DisablePasswordBoxTips" xml:space="preserve">
+	  <value>解锁方式：按 [ESC] 键 或 鼠标点击密码框位置显示密码框</value>
   </data>
 </root>

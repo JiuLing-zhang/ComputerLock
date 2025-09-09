@@ -12,7 +12,7 @@ internal class SystemKeyHook : WindowsInputHook
 
     public event EventHandler? OnUserInput;
 
-    public void SetIgnoreHotkey(Hotkey hotKey)
+    public void SetIgnoreHotkey(Hotkey? hotKey)
     {
         _ignoreHotkey = hotKey;
     }

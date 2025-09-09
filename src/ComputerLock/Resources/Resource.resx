@@ -120,10 +120,16 @@
   <data name="AutoUpgradePath" xml:space="preserve">
     <value>https://jiuling.cc/api/app/check-update/cdbd0b29d200c61ace8a1ff74605b775/windows</value>
   </data>
+  <data name="DonationListPath" xml:space="preserve">
+    <value>https://www.jiuling.cc/api/donation/list</value>
+  </data>
+  <data name="DonationPath" xml:space="preserve">
+    <value>https://jiuling.cc/donation</value>
+  </data>
   <data name="GitHubUrl" xml:space="preserve">
     <value>https://github.com/JiuLing-zhang/ComputerLock</value>
   </data>
   <data name="HomePage" xml:space="preserve">
-	  <value>https://jiuling.cc/computer-lock</value>
+    <value>https://jiuling.cc/computer-lock</value>
   </data>
 </root>

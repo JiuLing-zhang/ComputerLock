@@ -70,6 +70,24 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
+        ///   查找类似 https://www.jiuling.cc/api/donation/list 的本地化字符串。
+        /// </summary>
+        internal static string DonationListPath {
+            get {
+                return ResourceManager.GetString("DonationListPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 https://jiuling.cc/donation 的本地化字符串。
+        /// </summary>
+        internal static string DonationPath {
+            get {
+                return ResourceManager.GetString("DonationPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 https://github.com/JiuLing-zhang/ComputerLock 的本地化字符串。
         /// </summary>
         internal static string GitHubUrl {

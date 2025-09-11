@@ -1,10 +1,8 @@
-﻿using System.Runtime.InteropServices;
-
-namespace ComputerLock.Platforms;
+﻿namespace ComputerLock.Platforms;
 internal class MouseHook : WindowsInputHook
 {
-    private int _cursorCount = 0;
-    private Random _random = new Random();
+    private int _cursorCount;
+    private readonly Random _random = new();
     private bool _isAutoInput;
     protected override int HookType => WinApi.WH_MOUSE_LL;
 
@@ -65,12 +63,25 @@ internal class MouseHook : WindowsInputHook
     public void MoveAndClick()
     {
         _isAutoInput = true;
-        var x = _random.Next(0, 100);
-        var y = _random.Next(0, 100);
+        if (!WinApi.GetCursorPos(out var current))
+        {
+            _isAutoInput = false;
+            return;
+        }
 
-        var p = new Point(x, y);
-        WinApi.SetCursorPos((int)p.X, (int)p.Y);
-        WinApi.mouse_event(WinApi.MOUSEEVENTF_RIGHTDOWN | WinApi.MOUSEEVENTF_RIGHTUP, x, y, 0, 0);
+        // 生成一个很小的偏移量，避免明显跳动
+        var dx = _random.Next(-2, 3);
+        var dy = _random.Next(-2, 3);
+        if (dx == 0 && dy == 0)
+        {
+            dx = 1;
+        }
+
+        var targetX = current.X + dx;
+        var targetY = current.Y + dy;
+
+        WinApi.SetCursorPos(targetX, targetY);
+        WinApi.mouse_event(WinApi.MOUSEEVENTF_RIGHTDOWN | WinApi.MOUSEEVENTF_RIGHTUP, targetX, targetY, 0, 0);
         _isAutoInput = false;
     }
 

@@ -223,7 +223,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似 解锁方式：按 [ESC] 键 或 鼠标点击密码框位置显示密码框 的本地化字符串。
+        ///   查找类似 当前解锁方式：按 [ESC] 键 或 鼠标点击密码框位置显示密码框 的本地化字符串。
         /// </summary>
         public static string DisablePasswordBoxTips {
             get {
@@ -277,7 +277,7 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似 解锁方式：按 [ESC] 键，然后直接输入密码 的本地化字符串。
+        ///   查找类似 当前解锁方式：按 [ESC] 键，然后直接输入密码 的本地化字符串。
         /// </summary>
         public static string EnablePasswordBoxTips {
             get {

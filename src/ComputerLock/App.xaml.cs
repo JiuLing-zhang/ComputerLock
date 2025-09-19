@@ -83,6 +83,9 @@ public partial class App : Application
         var sp = services.BuildServiceProvider();
         Resources.Add("services", sp);
 
+        // 自动启动迁移：在应用启动时执行一次注册表 -> 计划任务的迁移
+        sp.GetRequiredService<AutostartHook>().MigrateRegistryToTaskIfNeeded();
+
         var cultureInfo = new CultureInfo(sp.GetRequiredService<AppSettings>().Lang.ToString());
         CultureInfo.CurrentCulture = cultureInfo;
         Thread.CurrentThread.CurrentCulture = cultureInfo;

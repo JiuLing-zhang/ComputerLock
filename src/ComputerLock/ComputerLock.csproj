@@ -23,8 +23,9 @@
 		<PackageReference Include="JiuLing.TitleBarKit" Version="1.0.3" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="8.0.100" />
 		<PackageReference Include="ModernWpfUI" Version="0.9.6" />
-		<PackageReference Include="MudBlazor" Version="8.10.0" />
-		<PackageReference Include="MudBlazor.Markdown" Version="8.9.0" />
+		<PackageReference Include="MudBlazor" Version="8.12.0" />
+		<PackageReference Include="MudBlazor.Markdown" Version="8.11.0" />
+		<PackageReference Include="TaskScheduler" Version="2.12.2" />
 	</ItemGroup>
 
 	<ItemGroup>

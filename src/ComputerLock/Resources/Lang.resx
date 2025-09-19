@@ -241,7 +241,7 @@
     <value>已解锁</value>
   </data>
   <data name="EnablePasswordBoxTips" xml:space="preserve">
-	  <value>解锁方式：按 [ESC] 键，然后直接输入密码</value>
+	  <value>当前解锁方式：按 [ESC] 键，然后直接输入密码</value>
   </data>
   <data name="LogFiles" xml:space="preserve">
     <value>日志文件</value>
@@ -430,6 +430,6 @@
 	  <value>网络请求失败，请稍后再试。</value>
   </data>
   <data name="DisablePasswordBoxTips" xml:space="preserve">
-	  <value>解锁方式：按 [ESC] 键 或 鼠标点击密码框位置显示密码框</value>
+	  <value>当前解锁方式：按 [ESC] 键 或 鼠标点击密码框位置显示密码框</value>
   </data>
 </root>

@@ -47,6 +47,18 @@
                      Color="@(isPasswordSelected ? Color.Secondary : Color.Default)" />
         </div>
         <div class="card-content">
+
+            <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mb-4">
+                @if (AppSettings.EnablePasswordBox)
+                {
+                    @(Lang["DisablePasswordBoxTips"])
+                }
+                else
+                {
+                    @(Lang["EnablePasswordBoxTips"])
+                }
+            </MudText>
+
             <MudButton Color="Color.Secondary"
                        Variant="Variant.Outlined"
                        Class="mb-2"
@@ -63,16 +75,6 @@
                          Dense="true"
                          Class="no-left-padding max-width-fix"
                          Disabled="@(!isPasswordSelected)" />
-            <MudText Typo="Typo.body2" Color="Color.Secondary" Class="input-tip ml-7" Style="opacity: 1">
-                @if (AppSettings.EnablePasswordBox)
-                {
-                    @(Lang["DisablePasswordBoxTips"])
-                }
-                else
-                {
-                    @(Lang["EnablePasswordBoxTips"])
-                }
-            </MudText>
 
             <MudStack Class="ml-4 mt-4" Spacing="4">
                 <div>

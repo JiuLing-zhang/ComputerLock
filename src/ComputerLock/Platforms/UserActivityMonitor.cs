@@ -11,6 +11,8 @@ namespace ComputerLock.Platforms
         private bool _isMonitoring;
         private readonly Dispatcher _dispatcher;
         private bool _disposed;
+        // 记录开始监控的时间，用来延迟解锁后的检测空闲
+        private long _lastStartTime;
 
         public event EventHandler? OnIdle;
 
@@ -35,6 +37,7 @@ namespace ComputerLock.Platforms
             RunOnUIThread(() =>
             {
                 _isMonitoring = true;
+                _lastStartTime = Environment.TickCount64;
             });
         }
 
@@ -53,12 +56,21 @@ namespace ComputerLock.Platforms
                 return;
             }
 
+            // 检查是否已经监控了足够长的时间（至少2秒）
+            long currentTime = Environment.TickCount64;
+            long monitoringDuration = currentTime - _lastStartTime;
+            if (monitoringDuration < 5000)
+            {
+                // 重新启动监控时，延迟 5 秒后再开始检测空闲
+                return;
+            }
+
             var lastInputInfo = new WinApi.LastInputInfo();
             lastInputInfo.cbSize = (uint)Marshal.SizeOf(lastInputInfo);
 
             if (WinApi.GetLastInputInfo(ref lastInputInfo))
             {
-                long elapsedMillisecond = Environment.TickCount64 - lastInputInfo.dwTime;
+                long elapsedMillisecond = currentTime - lastInputInfo.dwTime;
                 if (elapsedMillisecond > _autoLockMillisecond)
                 {
                     OnIdle?.Invoke(this, EventArgs.Empty);

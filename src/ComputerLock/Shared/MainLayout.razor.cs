@@ -64,7 +64,7 @@ public partial class MainLayout
                 AppbarText = "#FFA500",
                 Background = "#FFFFFF",
                 Surface = "#FFFFFF",
-                LinesDefault = "#E0E0E0",
+                LinesDefault = "#E0E0E0",                
 
                 Success = "#43A047",
                 Error = "#E53935",
@@ -108,7 +108,15 @@ public partial class MainLayout
 
         if (await VersionLogChecker.CheckShowUpdateLogAsync())
         {
-            await Dialog.ShowAsync<VersionHistoryDialog>("");
+            var options = new DialogOptions
+            {
+                CloseButton = true,
+                CloseOnEscapeKey = false,
+                BackdropClick = false,
+                BackgroundClass = "dialog-backdrop-filter",
+                FullWidth = true
+            };
+            await Dialog.ShowAsync<VersionHistoryDialog>(Lang["VersionHistory"], options);
         }
 
         await SwitchThemeAsync(AppSettings.AppTheme);

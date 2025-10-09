@@ -24,7 +24,7 @@ internal class AppBase
     /// <summary>
     /// 版本文件路径
     /// </summary>
-    public static string VersionFilePath { get; } = Path.Combine(DataPath, FriendlyName, "version");
+    public static string VersionFilePath { get; } = Path.Combine(DataPath, FriendlyName, "current_version");
 
     /// <summary>
     /// 版本号

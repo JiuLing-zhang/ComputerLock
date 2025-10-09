@@ -64,7 +64,7 @@ public partial class MainLayout
                 AppbarText = "#FFA500",
                 Background = "#FFFFFF",
                 Surface = "#FFFFFF",
-                LinesDefault = "#E0E0E0",                
+                LinesDefault = "#E0E0E0",
 
                 Success = "#43A047",
                 Error = "#E53935",

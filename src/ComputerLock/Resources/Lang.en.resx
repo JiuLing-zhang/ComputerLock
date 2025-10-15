@@ -432,4 +432,7 @@
   <data name="DisablePasswordBoxTips" xml:space="preserve">
 	  <value>Unlock method: Press [ESC] key or click with mouse to show password box</value>
   </data>
+  <data name="HotkeyDuplicateError" xml:space="preserve">
+	  <value>Lock screen hotkey and unlock hotkey cannot be the same</value>
+  </data>
 </root>

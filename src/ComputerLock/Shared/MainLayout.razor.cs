@@ -148,10 +148,6 @@ public partial class MainLayout
         {
             RegisterLockHotkey();
         }
-        if (AppSettings.UnlockHotkeyString.IsNotEmpty())
-        {
-            RegisterUnlockHotkey();
-        }
 
         HotkeyHook.HotkeyPressed += (id) =>
         {
@@ -211,23 +207,6 @@ public partial class MainLayout
         catch (Exception ex)
         {
             Logger.Error($"绑定锁屏热键失败", ex);
-            Snackbar.Add($"{Lang["ExRegistFailed"]}{ex.Message}", Severity.Error);
-        }
-    }
-
-    public void RegisterUnlockHotkey()
-    {
-        try
-        {
-            if (AppSettings.UnlockHotkey != null)
-            {
-                Logger.Info("注册解锁热键");
-                HotkeyHook.Register((int)HotkeyType.Unlock, AppSettings.UnlockHotkey);
-            }
-        }
-        catch (Exception ex)
-        {
-            Logger.Error($"绑定解锁热键失败", ex);
             Snackbar.Add($"{Lang["ExRegistFailed"]}{ex.Message}", Severity.Error);
         }
     }

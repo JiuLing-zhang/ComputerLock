@@ -23,9 +23,15 @@ internal class SystemKeyHook : WindowsInputHook
         {
             int vkCode = Marshal.ReadInt32(lParam);
 
+            // 仅在按下阶段进行拦截判断；抬起阶段放行避免影响 WM_HOTKEY 触发
+            if (!(wParam == WinApi.WM_KEYDOWN || wParam == WinApi.WM_SYSKEYDOWN))
+            {
+                return WinApi.CallNextHookEx(_hookId, nCode, wParam, lParam);
+            }
+
             if (_ignoreHotkey == null)
             {
-                if (IsSystemKey(vkCode) && (wParam == WinApi.WM_KEYDOWN || wParam == WinApi.WM_SYSKEYDOWN))
+                if (IsSystemKey(vkCode))
                 {
                     OnUserInput?.Invoke(this, EventArgs.Empty);
                     return 1; // 阻止事件传递
@@ -33,18 +39,23 @@ internal class SystemKeyHook : WindowsInputHook
                 return WinApi.CallNextHookEx(_hookId, nCode, wParam, lParam); // 其他按键放行
             }
 
-            if (!IsPartOfIgnoreHotkey(vkCode))
+            // 属于需要放行的热键组成部分（修饰键或主键）则放行
+            if (IsPartOfIgnoreHotkey(vkCode))
             {
-                if (IsModifierKey(vkCode) && !IsModifierRequired(vkCode))
-                {
-                    return 1; // 阻止事件传递
-                }
-                else if (vkCode != (int)_ignoreHotkey.Key)
-                {
-                    return 1; // 阻止事件传递
-                }
+                return WinApi.CallNextHookEx(_hookId, nCode, wParam, lParam);
             }
-            return WinApi.CallNextHookEx(_hookId, nCode, wParam, lParam); // 放行
+
+            // 拦截非必要修饰键
+            if (IsModifierKey(vkCode) && !IsModifierRequired(vkCode))
+            {
+                return 1; // 阻止事件传递
+            }
+
+            // 不是忽略热键
+            if (vkCode != (int)_ignoreHotkey.Key)
+            {
+                return 1; // 阻止事件传递
+            }
         }
         return WinApi.CallNextHookEx(_hookId, nCode, wParam, lParam);
     }

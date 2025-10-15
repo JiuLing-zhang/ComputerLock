@@ -432,4 +432,7 @@
   <data name="DisablePasswordBoxTips" xml:space="preserve">
 	  <value>当前解锁方式：按 [ESC] 键 或 鼠标点击密码框位置显示密码框</value>
   </data>
+  <data name="HotkeyDuplicateError" xml:space="preserve">
+	  <value>锁屏快捷键和解锁快捷键不能相同</value>
+  </data>
 </root>

@@ -120,48 +120,25 @@ public partial class UnlockSettings
         SaveSettings();
     }
 
+    // ========= 热键的注册和注销交给锁定服务处理（仅当锁定时热键才生效）这里只保存设置 ============
     private Task SetUnlockHotkey(string hotkey)
     {
+        // 检查快捷键是否与锁屏快捷键相同
+        if (hotkey.IsNotEmpty() && hotkey == AppSettings.LockHotkeyString)
+        {
+            Snackbar.Add(Lang["HotkeyDuplicateError"], Severity.Error);
+            return Task.CompletedTask;
+        }
+
         AppSettings.UnlockHotkeyString = hotkey;
         SaveSettings();
-        RegisterUnlockHotkey();
         return Task.CompletedTask;
     }
     private Task ClearUnlockHotkey()
     {
         AppSettings.UnlockHotkeyString = "";
         SaveSettings();
-        UnregisterUnlockHotkey();
         return Task.CompletedTask;
     }
-
-    public void RegisterUnlockHotkey()
-    {
-        try
-        {
-            if (AppSettings.UnlockHotkey != null)
-            {
-                Logger.Info("注册解锁热键");
-                HotkeyHook.Register((int)HotkeyType.Unlock, AppSettings.UnlockHotkey);
-            }
-        }
-        catch (Exception ex)
-        {
-            Logger.Error($"绑定解锁热键失败", ex);
-            Snackbar.Add($"{Lang["ExRegistFailed"]}{ex.Message}", Severity.Error);
-        }
-    }
-    public void UnregisterUnlockHotkey()
-    {
-        try
-        {
-            Logger.Info("释放解锁热键");
-            HotkeyHook.Unregister((int)HotkeyType.Unlock);
-        }
-        catch (Exception ex)
-        {
-            Logger.Error($"释放解锁热键失败", ex);
-            //MessageBoxUtils.ShowError($"取消快捷键失败：{ex.Message}");
-        }
-    }
+    // ================================================================================
 }

@@ -215,6 +215,16 @@ internal class GlobalLockService : IGlobalLockService
                 if (_appSettings.UnlockHotkey != null)
                 {
                     _systemKeyHook.SetIgnoreHotkey(_appSettings.UnlockHotkey);
+
+                    try
+                    {
+                        _logger.Info("全局锁定 -> 锁定时注册解锁快捷键");
+                        _hotkeyHook.Register((int)HotkeyType.Unlock, _appSettings.UnlockHotkey);
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.Error("注册解锁快捷键失败", ex);
+                    }
                 }
             }
         }
@@ -361,6 +371,19 @@ internal class GlobalLockService : IGlobalLockService
         }
         _mouseHook.Dispose();
         _systemKeyHook.Dispose();
+
+        // 释放解锁快捷键
+        if (_appSettings.UnlockHotkey != null)
+        {
+            try
+            {
+                _hotkeyHook.Unregister((int)HotkeyType.Unlock);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"释放解锁热键失败", ex);
+            }
+        }
 
         if (_cts != null)
         {

@@ -47,6 +47,7 @@ public class HotkeyHook : IDisposable
         if (ids.Contains(id))
         {
             Unregister(id);
+            ids.Remove(id);
         }
 
         var success = WinApi.RegisterHotKey(_nativeWindow.Handle, id, (uint)hotKey.Modifiers, (uint)hotKey.Key);
@@ -64,6 +65,10 @@ public class HotkeyHook : IDisposable
     public void Unregister(int id)
     {
         WinApi.UnregisterHotKey(_nativeWindow.Handle, id);
+        if (ids.Contains(id))
+        {
+            ids.Remove(id);
+        }
     }
 
     public void Dispose()

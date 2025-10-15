@@ -47,6 +47,13 @@ public partial class LockSettings
     }
     private Task SetLockHotkey(string hotkey)
     {
+        // 检查快捷键是否与解锁快捷键相同
+        if (hotkey.IsNotEmpty() && hotkey == AppSettings.UnlockHotkeyString)
+        {
+            Snackbar.Add(Lang["HotkeyDuplicateError"], Severity.Error);
+            return Task.CompletedTask;
+        }
+
         AppSettings.LockHotkeyString = hotkey;
         SaveSettings();
         RegisterLockHotkey();

@@ -13,20 +13,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 获取所有标签和历史记录
         
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 9.0.x
+          dotnet-version: 8.0.x
 
       - name: Restore dependencies
         run: dotnet restore .\src
 
       - name: Build
-        run: dotnet build .\src --no-restore -c release
+        run: dotnet build .\src --no-restore -c Release
 
       - name: Publish
-        run: dotnet publish .\src -c Release -r win-x64 -p:PublishReadyToRun=true --self-contained false
+        run: dotnet publish .\src\ComputerLock\ComputerLock.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o ./publish
 
       - name: Get version
         uses: olegtarasov/get-tag@v2.1.4
@@ -34,11 +36,13 @@ jobs:
 
       - name: Create zip
         shell: pwsh
-        run: Compress-Archive -Path ${{github.workspace}}\src\ComputerLock\bin\Release\net8.0-windows\win-x64\publish\* -DestinationPath ${{github.workspace}}\src\ComputerLock\bin\Release\ComputerLock_${{ steps.tagName.outputs.tag }}_win_x64.zip
+        run: Compress-Archive -Path ${{github.workspace}}\publish\* -DestinationPath ${{github.workspace}}\ComputerLock_${{ steps.tagName.outputs.tag }}_win_x64.zip
 
       - name: Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
         with:
+          tag_name: ${{ github.ref_name }} # 明确指定标签名
+          name: Release ${{ github.ref_name }}
           body_path: ${{github.workspace}}\CHANGELOG.md
-          files: ${{github.workspace}}\src\ComputerLock\bin\Release\ComputerLock_${{ steps.tagName.outputs.tag }}_win_x64.zip
+          files: ${{github.workspace}}\ComputerLock_${{ steps.tagName.outputs.tag }}_win_x64.zip

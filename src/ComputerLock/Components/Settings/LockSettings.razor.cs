@@ -1,5 +1,7 @@
 ﻿using ComputerLock.Interfaces;
 using Microsoft.Win32;
+// 显式指定 OpenFileDialog 使用 Microsoft.Win32 命名空间
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 
 namespace ComputerLock.Components.Settings;
 

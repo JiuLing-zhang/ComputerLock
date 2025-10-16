@@ -4,6 +4,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.Windows.Threading;
+// 显式指定使用System.Windows.Media下的类型以避免与System.Drawing和MudBlazor冲突
 using Color = System.Windows.Media.Color;
 using Colors = System.Windows.Media.Colors;
 using ColorConverter = System.Windows.Media.ColorConverter;
@@ -248,7 +249,7 @@ public partial class WindowLockScreen : Window
                 BackgroundImage.Source = bitmap;
                 BackgroundImage.Visibility = Visibility.Visible;
                 // 隐藏纯色背景
-                BackgroundColorBrush.Color = Colors.Transparent;
+                BackgroundColorBrush.Color = System.Windows.Media.Colors.Transparent;
             }
             // 如果设置了背景颜色
             else if (!string.IsNullOrEmpty(_appSettings.LockScreenBackgroundColor))
@@ -258,19 +259,19 @@ public partial class WindowLockScreen : Window
                 // 设置纯色背景
                 if (_appSettings.LockScreenBackgroundColor.StartsWith("#"))
                 {
-                    var color = (Color)ColorConverter.ConvertFromString(_appSettings.LockScreenBackgroundColor);
+                    var color = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(_appSettings.LockScreenBackgroundColor);
                     BackgroundColorBrush.Color = color;
                 }
                 else
                 {
-                    BackgroundColorBrush.Color = Colors.Black;
+                    BackgroundColorBrush.Color = System.Windows.Media.Colors.Black;
                 }
             }
             else
             {
                 // 默认背景
                 BackgroundImage.Visibility = Visibility.Collapsed;
-                BackgroundColorBrush.Color = Color.FromArgb(1, 0, 0, 0);
+                BackgroundColorBrush.Color = System.Windows.Media.Color.FromArgb(1, 0, 0, 0);
             }
         }
         catch (Exception ex)
@@ -278,7 +279,7 @@ public partial class WindowLockScreen : Window
             _logger.Error($"设置锁屏背景时出错: {ex.Message}", ex);
             // 出错时使用默认背景
             BackgroundImage.Visibility = Visibility.Collapsed;
-            BackgroundColorBrush.Color = Color.FromArgb(1, 0, 0, 0);
+            BackgroundColorBrush.Color = System.Windows.Media.Color.FromArgb(1, 0, 0, 0);
         }
     }
 }

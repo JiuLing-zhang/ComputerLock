@@ -172,11 +172,6 @@ public class AppSettings
     public PowerActionType AutoPowerActionType { get; set; } = PowerActionType.Shutdown;
 
     /// <summary>
-    /// 锁屏背景颜色
-    /// </summary>
-    public string LockScreenBackgroundColor { get; set; } = "#01000000";
-
-    /// <summary>
     /// 锁屏背景图片路径
     /// </summary>
     public string LockScreenBackgroundImage { get; set; } = "";

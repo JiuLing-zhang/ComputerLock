@@ -249,37 +249,21 @@ public partial class WindowLockScreen : Window
                 BackgroundImage.Source = bitmap;
                 BackgroundImage.Visibility = Visibility.Visible;
                 // 隐藏纯色背景
-                BackgroundColorBrush.Color = System.Windows.Media.Colors.Transparent;
-            }
-            // 如果设置了背景颜色
-            else if (!string.IsNullOrEmpty(_appSettings.LockScreenBackgroundColor))
-            {
-                // 隐藏背景图片
-                BackgroundImage.Visibility = Visibility.Collapsed;
-                // 设置纯色背景
-                if (_appSettings.LockScreenBackgroundColor.StartsWith("#"))
-                {
-                    var color = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(_appSettings.LockScreenBackgroundColor);
-                    BackgroundColorBrush.Color = color;
-                }
-                else
-                {
-                    BackgroundColorBrush.Color = System.Windows.Media.Colors.Black;
-                }
+                BackgroundColorBrush.Color = Colors.Transparent;
             }
             else
             {
-                // 默认背景
+                // 固定黑色背景
                 BackgroundImage.Visibility = Visibility.Collapsed;
-                BackgroundColorBrush.Color = System.Windows.Media.Color.FromArgb(1, 0, 0, 0);
+                BackgroundColorBrush.Color = Colors.Black;
             }
         }
         catch (Exception ex)
         {
             _logger.Error($"设置锁屏背景时出错: {ex.Message}", ex);
-            // 出错时使用默认背景
+            // 出错时使用黑色背景
             BackgroundImage.Visibility = Visibility.Collapsed;
-            BackgroundColorBrush.Color = System.Windows.Media.Color.FromArgb(1, 0, 0, 0);
+            BackgroundColorBrush.Color = Colors.Black;
         }
     }
 }

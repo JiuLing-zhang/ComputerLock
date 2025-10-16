@@ -118,12 +118,6 @@ public partial class LockSettings
         SaveSettings();
     }
 
-    private void SetBackgroundColor(string color)
-    {
-        AppSettings.LockScreenBackgroundColor = color;
-        SaveSettings();
-    }
-
     private void SelectBackgroundImage()
     {
         var openFileDialog = new OpenFileDialog

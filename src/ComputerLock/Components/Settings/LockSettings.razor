@@ -1,4 +1,4 @@
-﻿@page "/lock-settings"
+﻿﻿@page "/lock-settings"
 
 <MudText Typo="Typo.h6" Class="mb-4">@(Lang["LockOptions"])</MudText>
 
@@ -146,31 +146,10 @@
         <div>
             <MudText Typo="Typo.subtitle2" Class="input-title">@(Lang["LockScreenBackground"])</MudText>
             
-            <!-- 背景颜色选择 -->
+            <!-- 固定黑色背景说明 -->
             <MudStack Spacing="2">
                 <MudText Typo="Typo.caption">@(Lang["BackgroundColor"])</MudText>
-                <MudTextField @bind-Value="@(AppSettings.LockScreenBackgroundColor)"
-                              @bind-Value:after="SaveSettings"
-                              Variant="Variant.Outlined"
-                              Margin="Margin.Dense"
-                              Class="max-width-fix"
-                              Placeholder="#01000000" />
-                
-                <!-- 预设颜色按钮 -->
-                <MudStack Row="true" Spacing="2">
-                    <MudButton Variant="Variant.Outlined" 
-                               Style="background-color: #01000000; min-width: 40px; height: 40px; border: 1px solid #ccc;"
-                               OnClick="@(e => SetBackgroundColor("#01000000"))" />
-                    <MudButton Variant="Variant.Outlined" 
-                               Style="background-color: #80000000; min-width: 40px; height: 40px; border: 1px solid #ccc;"
-                               OnClick="@(e => SetBackgroundColor("#80000000"))" />
-                    <MudButton Variant="Variant.Outlined" 
-                               Style="background-color: #40000000; min-width: 40px; height: 40px; border: 1px solid #ccc;"
-                               OnClick="@(e => SetBackgroundColor("#40000000"))" />
-                    <MudButton Variant="Variant.Outlined" 
-                               Style="background-color: #20000000; min-width: 40px; height: 40px; border: 1px solid #ccc;"
-                               OnClick="@(e => SetBackgroundColor("#20000000"))" />
-                </MudStack>
+                <MudText Typo="Typo.body2">背景颜色已固定为黑色</MudText>
             </MudStack>
             
             <!-- 背景图片选择 -->

@@ -1,5 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.IO;
 
 namespace ComputerLock
 {
@@ -23,6 +26,9 @@ namespace ComputerLock
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _logger.Info("空白屏幕 -> 准备锁定");
+            // 设置背景
+            SetBackground();
+            
             if (_appSettings.LockStatusDisplay.HasFlag(LockStatusDisplay.BreathingTop))
             {
                 _logger.Info("空白屏幕 -> 启用顶部呼吸灯");
@@ -37,6 +43,35 @@ namespace ComputerLock
             {
                 _logger.Info("空白屏幕 -> 启用右上角圆点");
                 BreathingLightHelper.InitializeBreathingLight(DotTopRight);
+            }
+        }
+
+        private void SetBackground()
+        {
+            try
+            {
+                // 如果设置了背景图片且文件存在
+                if (!string.IsNullOrEmpty(_appSettings.LockScreenBackgroundImage) && File.Exists(_appSettings.LockScreenBackgroundImage))
+                {
+                    var bitmap = new BitmapImage(new Uri(_appSettings.LockScreenBackgroundImage));
+                    BackgroundImage.Source = bitmap;
+                    BackgroundImage.Visibility = Visibility.Visible;
+                    // 隐藏纯色背景
+                    BackgroundColorBrush.Color = Colors.Transparent;
+                }
+                else
+                {
+                    // 固定黑色背景
+                    BackgroundImage.Visibility = Visibility.Collapsed;
+                    BackgroundColorBrush.Color = Colors.Black;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"设置锁屏背景时出错: {ex.Message}", ex);
+                // 出错时使用黑色背景
+                BackgroundImage.Visibility = Visibility.Collapsed;
+                BackgroundColorBrush.Color = Colors.Black;
             }
         }
 

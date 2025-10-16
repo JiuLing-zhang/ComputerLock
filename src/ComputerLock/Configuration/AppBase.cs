@@ -8,7 +8,7 @@ internal class AppBase
     /// <summary>
     /// App路径（包含文件名）
     /// </summary>
-    public static string ExecutablePath { get; } = Process.GetCurrentProcess().MainModule.FileName;
+    public static string ExecutablePath { get; } = Process.GetCurrentProcess().MainModule?.FileName ?? string.Empty;
 
     public static string FriendlyName { get; } = AppDomain.CurrentDomain.FriendlyName;
 
@@ -29,6 +29,6 @@ internal class AppBase
     /// <summary>
     /// 版本号
     /// </summary>
-    public static Version Version { get; } = Assembly.GetExecutingAssembly().GetName().Version ?? throw new InvalidOperationException("App Version");
+    public static Version Version { get; } = Assembly.GetExecutingAssembly().GetName().Version ?? new Version(1, 0, 0, 0);
     public static string VersionString { get; } = Version.ToString();
 }

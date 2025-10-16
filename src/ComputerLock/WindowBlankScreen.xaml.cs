@@ -3,6 +3,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.IO;
+// 显式指定使用System.Windows.Media下的类型以避免与MudBlazor冲突
+using Colors = System.Windows.Media.Colors;
 
 namespace ComputerLock
 {

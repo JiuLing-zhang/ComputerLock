@@ -27,7 +27,7 @@ public partial class App : Application
             return;
         }
 
-        Environment.CurrentDirectory = Path.GetDirectoryName(AppBase.ExecutablePath);
+        Environment.CurrentDirectory = Path.GetDirectoryName(AppBase.ExecutablePath) ?? Environment.CurrentDirectory;
 
         Init();
         base.OnStartup(e);

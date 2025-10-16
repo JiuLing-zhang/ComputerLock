@@ -4,6 +4,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.Windows.Threading;
+using Color = System.Windows.Media.Color;
+using Colors = System.Windows.Media.Colors;
+using ColorConverter = System.Windows.Media.ColorConverter;
 
 namespace ComputerLock;
 /// <summary>

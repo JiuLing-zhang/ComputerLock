@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - "v*.*.*"
+  workflow_dispatch: # ✅ 支持手动触发
 
 jobs:
   build:
@@ -33,14 +34,11 @@ jobs:
 
       - name: Create zip
         shell: pwsh
-        # 配置【编译后的文件地址】
         run: Compress-Archive -Path ${{github.workspace}}\src\ComputerLock\bin\Release\net8.0-windows\win-x64\publish\* -DestinationPath ${{github.workspace}}\src\ComputerLock\bin\Release\ComputerLock_${{ steps.tagName.outputs.tag }}_win_x64.zip
 
       - name: Release
         uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/tags/')
+        if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
         with:
-          # 配置【README地址】
           body_path: ${{github.workspace}}\CHANGELOG.md
-          # 配置【zip文件地址】
           files: ${{github.workspace}}\src\ComputerLock\bin\Release\ComputerLock_${{ steps.tagName.outputs.tag }}_win_x64.zip

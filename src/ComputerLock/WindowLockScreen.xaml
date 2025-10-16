@@ -26,10 +26,14 @@
         </Style>
     </Window.Resources>
 
-    <Grid>
-        <Panel.Background>
-            <SolidColorBrush Color="#01000000"/>
-        </Panel.Background>
+    <Grid x:Name="MainGrid">
+        <!-- 背景容器 -->
+        <Grid.Background>
+            <SolidColorBrush Color="#01000000" x:Name="BackgroundColorBrush"/>
+        </Grid.Background>
+        
+        <!-- 背景图片 -->
+        <Image x:Name="BackgroundImage" Stretch="UniformToFill" Visibility="Collapsed"/>
 
         <!-- 顶部呼吸灯，默认隐藏 -->
         <Grid VerticalAlignment="Top">

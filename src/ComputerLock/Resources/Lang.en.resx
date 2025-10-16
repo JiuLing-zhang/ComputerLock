@@ -435,4 +435,22 @@
   <data name="HotkeyDuplicateError" xml:space="preserve">
 	  <value>Lock screen hotkey and unlock hotkey cannot be the same</value>
   </data>
+  <data name="LockScreenBackground" xml:space="preserve">
+    <value>Lock Screen Background</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Background Color</value>
+  </data>
+  <data name="BackgroundImage" xml:space="preserve">
+    <value>Background Image</value>
+  </data>
+  <data name="ImagePathPlaceholder" xml:space="preserve">
+    <value>Please select an image file</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
 </root>

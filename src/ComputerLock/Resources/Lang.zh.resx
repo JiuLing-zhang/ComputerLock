@@ -435,4 +435,22 @@
   <data name="HotkeyDuplicateError" xml:space="preserve">
 	  <value>锁屏快捷键和解锁快捷键不能相同</value>
   </data>
+  <data name="LockScreenBackground" xml:space="preserve">
+    <value>锁屏背景</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>背景颜色</value>
+  </data>
+  <data name="BackgroundImage" xml:space="preserve">
+    <value>背景图片</value>
+  </data>
+  <data name="ImagePathPlaceholder" xml:space="preserve">
+    <value>请选择图片文件</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>浏览</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>清除</value>
+  </data>
 </root>

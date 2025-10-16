@@ -141,5 +141,60 @@
                 <MudSelectItem Value="@(LockStatusDisplay.DotTopRight)">@($"🔴 {Lang["LockStatusDisplayDotTopRight"]}")</MudSelectItem>
             </MudSelect>
         </div>
+
+        <!-- 背景设置 -->
+        <div>
+            <MudText Typo="Typo.subtitle2" Class="input-title">@(Lang["LockScreenBackground"])</MudText>
+            
+            <!-- 背景颜色选择 -->
+            <MudStack Spacing="2">
+                <MudText Typo="Typo.caption">@(Lang["BackgroundColor"])</MudText>
+                <MudTextField @bind-Value="@(AppSettings.LockScreenBackgroundColor)"
+                              @bind-Value:after="SaveSettings"
+                              Variant="Variant.Outlined"
+                              Margin="Margin.Dense"
+                              Class="max-width-fix"
+                              Placeholder="#01000000" />
+                
+                <!-- 预设颜色按钮 -->
+                <MudStack Row="true" Spacing="2">
+                    <MudButton Variant="Variant.Outlined" 
+                               Style="background-color: #01000000; min-width: 40px; height: 40px; border: 1px solid #ccc;"
+                               OnClick="@(e => SetBackgroundColor("#01000000"))" />
+                    <MudButton Variant="Variant.Outlined" 
+                               Style="background-color: #80000000; min-width: 40px; height: 40px; border: 1px solid #ccc;"
+                               OnClick="@(e => SetBackgroundColor("#80000000"))" />
+                    <MudButton Variant="Variant.Outlined" 
+                               Style="background-color: #40000000; min-width: 40px; height: 40px; border: 1px solid #ccc;"
+                               OnClick="@(e => SetBackgroundColor("#40000000"))" />
+                    <MudButton Variant="Variant.Outlined" 
+                               Style="background-color: #20000000; min-width: 40px; height: 40px; border: 1px solid #ccc;"
+                               OnClick="@(e => SetBackgroundColor("#20000000"))" />
+                </MudStack>
+            </MudStack>
+            
+            <!-- 背景图片选择 -->
+            <MudStack Spacing="2" Class="mt-4">
+                <MudText Typo="Typo.caption">@(Lang["BackgroundImage"])</MudText>
+                <MudStack Row="true" Spacing="2" AlignItems="AlignItems.Center">
+                    <MudTextField @bind-Value="@(AppSettings.LockScreenBackgroundImage)"
+                                  @bind-Value:after="SaveSettings"
+                                  Variant="Variant.Outlined"
+                                  Margin="Margin.Dense"
+                                  Class="max-width-fix"
+                                  Style="flex: 1;"
+                                  Placeholder="@(Lang["ImagePathPlaceholder"])" />
+                    <MudButton Variant="Variant.Filled" 
+                               Color="Color.Primary"
+                               OnClick="SelectBackgroundImage">
+                        @(Lang["Browse"])
+                    </MudButton>
+                    <MudButton Variant="Variant.Outlined" 
+                               OnClick="ClearBackgroundImage">
+                        @(Lang["Clear"])
+                    </MudButton>
+                </MudStack>
+            </MudStack>
+        </div>
     </MudStack>
 </MudPaper>

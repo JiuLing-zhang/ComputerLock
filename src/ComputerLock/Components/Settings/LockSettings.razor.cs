@@ -1,4 +1,5 @@
 ﻿using ComputerLock.Interfaces;
+using Microsoft.Win32;
 
 namespace ComputerLock.Components.Settings;
 
@@ -112,6 +113,33 @@ public partial class LockSettings
             return;
         }
         AppSettings.AutoPowerActionType = powerActionType;
+        SaveSettings();
+    }
+
+    private void SetBackgroundColor(string color)
+    {
+        AppSettings.LockScreenBackgroundColor = color;
+        SaveSettings();
+    }
+
+    private void SelectBackgroundImage()
+    {
+        var openFileDialog = new OpenFileDialog
+        {
+            Filter = "Image files (*.jpg, *.jpeg, *.png, *.bmp)|*.jpg;*.jpeg;*.png;*.bmp|All files (*.*)|*.*",
+            Title = "Select Background Image"
+        };
+
+        if (openFileDialog.ShowDialog() == true)
+        {
+            AppSettings.LockScreenBackgroundImage = openFileDialog.FileName;
+            SaveSettings();
+        }
+    }
+
+    private void ClearBackgroundImage()
+    {
+        AppSettings.LockScreenBackgroundImage = "";
         SaveSettings();
     }
 }

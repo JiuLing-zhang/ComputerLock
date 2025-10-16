@@ -1,5 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.IO;
 using System.Windows.Threading;
 
 namespace ComputerLock;
@@ -34,6 +37,9 @@ public partial class WindowLockScreen : Window
     {
         _logger.Info("功能屏幕 -> 准备锁定");
         LblPassword.Content = _lang["Password"];
+
+        // 设置背景
+        SetBackground();
 
         _logger.Info($"功能屏幕 -> 启用密码框：{_appSettings.EnablePasswordBox}");
         if (_appSettings.EnablePasswordBox)
@@ -226,5 +232,50 @@ public partial class WindowLockScreen : Window
         }
         _logger.Info("功能屏幕 -> 准备执行解锁");
         ShowPassword();
+    }
+
+    private void SetBackground()
+    {
+        try
+        {
+            // 如果设置了背景图片且文件存在
+            if (!string.IsNullOrEmpty(_appSettings.LockScreenBackgroundImage) && File.Exists(_appSettings.LockScreenBackgroundImage))
+            {
+                var bitmap = new BitmapImage(new Uri(_appSettings.LockScreenBackgroundImage));
+                BackgroundImage.Source = bitmap;
+                BackgroundImage.Visibility = Visibility.Visible;
+                // 隐藏纯色背景
+                BackgroundColorBrush.Color = Colors.Transparent;
+            }
+            // 如果设置了背景颜色
+            else if (!string.IsNullOrEmpty(_appSettings.LockScreenBackgroundColor))
+            {
+                // 隐藏背景图片
+                BackgroundImage.Visibility = Visibility.Collapsed;
+                // 设置纯色背景
+                if (_appSettings.LockScreenBackgroundColor.StartsWith("#"))
+                {
+                    var color = (Color)ColorConverter.ConvertFromString(_appSettings.LockScreenBackgroundColor);
+                    BackgroundColorBrush.Color = color;
+                }
+                else
+                {
+                    BackgroundColorBrush.Color = Colors.Black;
+                }
+            }
+            else
+            {
+                // 默认背景
+                BackgroundImage.Visibility = Visibility.Collapsed;
+                BackgroundColorBrush.Color = Color.FromArgb(1, 0, 0, 0);
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.Error($"设置锁屏背景时出错: {ex.Message}", ex);
+            // 出错时使用默认背景
+            BackgroundImage.Visibility = Visibility.Collapsed;
+            BackgroundColorBrush.Color = Color.FromArgb(1, 0, 0, 0);
+        }
     }
 }

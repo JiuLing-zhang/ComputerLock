@@ -146,4 +146,26 @@ internal static class WinApi
     public const uint SE_PRIVILEGE_ENABLED = 0x00000002;
 
     #endregion
+
+    #region 消息相关
+    [StructLayout(LayoutKind.Sequential)]
+    public struct ApiMessage
+    {
+        public IntPtr hwnd;
+        public uint message;
+        public IntPtr wParam;
+        public IntPtr lParam;
+        public uint time;
+        public Point pt;
+    }
+
+    [DllImport("user32.dll")]
+    public static extern bool GetMessage(out ApiMessage lpMsg, IntPtr hWnd, uint wMsgFilterMin, uint wMsgFilterMax);
+
+    [DllImport("user32.dll")]
+    public static extern bool TranslateMessage([In] ref ApiMessage lpMsg);
+
+    [DllImport("user32.dll")]
+    public static extern IntPtr DispatchMessage([In] ref ApiMessage lpMsg);
+    #endregion
 }

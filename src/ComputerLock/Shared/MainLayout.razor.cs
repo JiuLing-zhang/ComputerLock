@@ -3,6 +3,7 @@ using ComputerLock.Update;
 using JiuLing.TitleBarKit;
 
 namespace ComputerLock.Shared;
+
 public partial class MainLayout
 {
     private bool _isDarkMode;
@@ -30,9 +31,6 @@ public partial class MainLayout
 
     [Inject]
     private IGlobalLockService GlobalLockService { get; set; } = null!;
-
-    [Inject]
-    private HotkeyHook HotkeyHook { get; set; } = null!;
 
     [Inject]
     private ILogger Logger { get; set; } = null!;
@@ -144,39 +142,6 @@ public partial class MainLayout
         }
         _isInitialized = true;
 
-        if (AppSettings.LockHotkeyString.IsNotEmpty())
-        {
-            RegisterLockHotkey();
-        }
-
-        HotkeyHook.HotkeyPressed += (id) =>
-        {
-            if (id == (int)HotkeyType.Lock)
-            {
-                if (!GlobalLockService.IsLocked)
-                {
-                    Logger.Info("快捷键锁定");
-                    GlobalLockService.Lock();
-                }
-                else
-                {
-                    if (AppSettings.ScreenUnlockMethod == ScreenUnlockMethods.Hotkey && AppSettings.IsUnlockUseLockHotkey)
-                    {
-                        Logger.Info("快捷键解锁");
-                        GlobalLockService.Unlock();
-                    }
-                }
-            }
-            else if (id == (int)HotkeyType.Unlock)
-            {
-                if (GlobalLockService.IsLocked)
-                {
-                    Logger.Info("快捷键解锁（独立解锁）");
-                    GlobalLockService.Unlock();
-                }
-            }
-        };
-
         ThemeSwitchService.OnThemeChanged += async theme =>
         {
             await SwitchThemeAsync(theme);
@@ -194,20 +159,5 @@ public partial class MainLayout
         await Dialog.ShowAsync<Donation>("", options);
     }
 
-    public void RegisterLockHotkey()
-    {
-        try
-        {
-            if (AppSettings.LockHotkey != null)
-            {
-                Logger.Info("注册锁屏热键");
-                HotkeyHook.Register((int)HotkeyType.Lock, AppSettings.LockHotkey);
-            }
-        }
-        catch (Exception ex)
-        {
-            Logger.Error($"绑定锁屏热键失败", ex);
-            Snackbar.Add($"{Lang["ExRegistFailed"]}{ex.Message}", Severity.Error);
-        }
-    }
+
 }

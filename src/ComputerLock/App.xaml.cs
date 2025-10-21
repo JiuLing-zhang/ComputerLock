@@ -1,12 +1,12 @@
-﻿using System.Globalization;
-using System.IO;
-using Microsoft.Extensions.DependencyInjection;
-using MudBlazor.Services;
-using System.Windows;
-using ComputerLock.Interfaces;
+﻿using ComputerLock.Interfaces;
 using ComputerLock.Update;
 using JiuLing.TitleBarKit;
+using Microsoft.Extensions.DependencyInjection;
+using MudBlazor.Services;
 using MudExtensions.Services;
+using System.Globalization;
+using System.IO;
+using System.Windows;
 using Application = System.Windows.Application;
 
 namespace ComputerLock;
@@ -17,8 +17,11 @@ public partial class App : Application
 {
     private static Mutex _mutex = default!;
     private WindowMain? _mainWindow;
+    private ILogger _logger;
     protected override void OnStartup(StartupEventArgs e)
     {
+        base.OnStartup(e);
+
         _mutex = new Mutex(true, AppBase.FriendlyName);
         if (!_mutex.WaitOne(0, false))
         {
@@ -30,7 +33,6 @@ public partial class App : Application
         Environment.CurrentDirectory = Path.GetDirectoryName(AppBase.ExecutablePath);
 
         Init();
-        base.OnStartup(e);
     }
 
     private void Init()
@@ -96,9 +98,34 @@ public partial class App : Application
             System.Windows.Media.RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;
         }
 
+        _logger = sp.GetRequiredService<ILogger>();
+        // 确保 HotkeyHook 已被创建
+        sp.GetRequiredService<HotkeyHook>();
+        KeepMessageLive();
+
         _mainWindow = sp.GetRequiredService<WindowMain>();
         Application.Current.MainWindow = _mainWindow;
         _mainWindow.Show();
+    }
+
+    private void KeepMessageLive()
+    {
+        // 启动后台消息循环，防止主线程被挂起
+        Task.Run(() =>
+        {
+            try
+            {
+                while (WinApi.GetMessage(out var msg, IntPtr.Zero, 0, 0))
+                {
+                    WinApi.TranslateMessage(ref msg);
+                    WinApi.DispatchMessage(ref msg);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error("热键消息保活服务异常", ex);
+            }
+        });
     }
 
     protected override void OnExit(ExitEventArgs e)

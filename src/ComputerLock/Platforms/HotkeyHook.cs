@@ -47,7 +47,6 @@ public class HotkeyHook : IDisposable
         if (ids.Contains(id))
         {
             Unregister(id);
-            ids.Remove(id);
         }
 
         var success = WinApi.RegisterHotKey(_nativeWindow.Handle, id, (uint)hotKey.Modifiers, (uint)hotKey.Key);
@@ -71,6 +70,18 @@ public class HotkeyHook : IDisposable
         }
     }
 
+    /// <summary>
+    /// 注销所有快捷键
+    /// </summary>
+    public void UnregisterAll()
+    {
+        foreach (var id in ids)
+        {
+            WinApi.UnregisterHotKey(_nativeWindow.Handle, id);
+        }
+        ids.Clear();
+    }
+
     public void Dispose()
     {
         Dispose(true);
@@ -84,10 +95,7 @@ public class HotkeyHook : IDisposable
             return;
         }
 
-        foreach (var id in ids)
-        {
-            Unregister(id);
-        }
+        UnregisterAll();
         _nativeWindow.DestroyHandle();
     }
 

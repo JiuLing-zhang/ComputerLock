@@ -25,12 +25,20 @@
                      Color="Color.Primary"
                      Class="no-left-padding max-width-fix"
                      Dense="true" />
-        <MudCheckBox @bind-Value="@(AppSettings.IsHideWindowWhenClose)"
-                     @bind-Value:after="SaveSettings"
-                     Label="@(Lang["HideWindowWhenClose"])"
-                     Color="Color.Primary"
-                     Class="no-left-padding max-width-fix"
-                     Dense="true" />
+        <div>
+            <MudText Typo="Typo.subtitle2" Class="input-title">@(Lang["CloseMainWindow"])</MudText>
+            <MudSelect T="CloseWindowAction"
+                       Dense="true"
+                       Label=""
+                       Variant="Variant.Outlined"
+                       Value="@(CloseWindowActionValue)"
+                       ValueChanged="CloseWindowActionChanged"
+                       Margin="Margin.Dense"
+                       Style="width:230px; max-width:230px;">
+                <MudSelectItem Value="@(CloseWindowAction.MinimizeToTray)">@(Lang["MinimizeToSystemTray"])</MudSelectItem>
+                <MudSelectItem Value="@(CloseWindowAction.Exit)">@(Lang["ExitProgram"])</MudSelectItem>
+            </MudSelect>
+        </div>
     </MudStack>
 </MudPaper>
 
@@ -61,7 +69,7 @@
                        Value="@(AppSettings.AppTheme)"
                        ValueChanged="ThemeChanged"
                        Margin="Margin.Dense"
-                       Style="width:150px; max-width:150px;">
+                       Style="width:210px; max-width:210px;">
                 <MudSelectItem Value="@(ThemeEnum.System)">@($"🌓 {Lang["SystemTheme"]}")</MudSelectItem>
                 <MudSelectItem Value="@(ThemeEnum.Light)">@($"☀️ {Lang["LightTheme"]}")</MudSelectItem>
                 <MudSelectItem Value="@(ThemeEnum.Dark)">@($"🌙 {Lang["DarkTheme"]}")</MudSelectItem>

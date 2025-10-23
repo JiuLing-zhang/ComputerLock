@@ -178,6 +178,15 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
+        ///   查找类似 关闭主面板 的本地化字符串。
+        /// </summary>
+        public static string CloseMainWindow {
+            get {
+                return ResourceManager.GetString("CloseMainWindow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 配置文件路径异常 的本地化字符串。
         /// </summary>
         public static string ConfigFilePathError {
@@ -322,6 +331,15 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
+        ///   查找类似 退出程序 的本地化字符串。
+        /// </summary>
+        public static string ExitProgram {
+            get {
+                return ResourceManager.GetString("ExitProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 锁屏快捷键注册失败: 的本地化字符串。
         /// </summary>
         public static string ExRegistFailed {
@@ -412,15 +430,6 @@ namespace ComputerLock.Resources {
         }
         
         /// <summary>
-        ///   查找类似 关闭窗口时最小化到托盘 的本地化字符串。
-        /// </summary>
-        public static string HideWindowWhenClose {
-            get {
-                return ResourceManager.GetString("HideWindowWhenClose", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 按下 ESC 键后最小化到托盘 的本地化字符串。
         /// </summary>
         public static string HideWindowWhenEsc {
@@ -444,6 +453,15 @@ namespace ComputerLock.Resources {
         public static string HomePage {
             get {
                 return ResourceManager.GetString("HomePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 锁屏快捷键和解锁快捷键不能相同 的本地化字符串。
+        /// </summary>
+        public static string HotkeyDuplicateError {
+            get {
+                return ResourceManager.GetString("HotkeyDuplicateError", resourceCulture);
             }
         }
         
@@ -678,6 +696,15 @@ namespace ComputerLock.Resources {
         public static string MinAfter {
             get {
                 return ResourceManager.GetString("MinAfter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 最小化到托盘 的本地化字符串。
+        /// </summary>
+        public static string MinimizeToSystemTray {
+            get {
+                return ResourceManager.GetString("MinimizeToSystemTray", resourceCulture);
             }
         }
         

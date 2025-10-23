@@ -123,9 +123,6 @@
   <data name="HideWindowWhenLaunch" xml:space="preserve">
     <value>Minimize to pallet after startup</value>
   </data>
-  <data name="HideWindowWhenClose" xml:space="preserve">
-    <value>Minimize to tray when window is closed</value>
-  </data>
   <data name="AutoCheckUpdate" xml:space="preserve">
     <value>Automatic update</value>
   </data>
@@ -434,5 +431,14 @@
   </data>
   <data name="HotkeyDuplicateError" xml:space="preserve">
 	  <value>Lock screen hotkey and unlock hotkey cannot be the same</value>
+  </data>
+  <data name="CloseMainWindow" xml:space="preserve">
+	  <value>Close Main Window</value>
+  </data>
+  <data name="MinimizeToSystemTray" xml:space="preserve">
+	  <value>Minimize to System Tray</value>
+  </data>
+  <data name="ExitProgram" xml:space="preserve">
+	  <value>Exit Program</value>
   </data>
 </root>

@@ -123,9 +123,6 @@
   <data name="HideWindowWhenLaunch" xml:space="preserve">
     <value>启动后最小化到托盘</value>
   </data>
-  <data name="HideWindowWhenClose" xml:space="preserve">
-    <value>关闭窗口时最小化到托盘</value>
-  </data>
   <data name="AutoCheckUpdate" xml:space="preserve">
     <value>自动检查更新</value>
   </data>
@@ -434,5 +431,14 @@
   </data>
   <data name="HotkeyDuplicateError" xml:space="preserve">
 	  <value>锁屏快捷键和解锁快捷键不能相同</value>
+  </data>
+  <data name="CloseMainWindow" xml:space="preserve">
+	  <value>关闭主面板</value>
+  </data>
+  <data name="MinimizeToSystemTray" xml:space="preserve">
+	  <value>最小化到托盘</value>
+  </data>
+  <data name="ExitProgram" xml:space="preserve">
+	  <value>退出程序</value>
   </data>
 </root>

@@ -57,6 +57,14 @@ public partial class GeneralSettings
         AppSettingsProvider.SaveSettings(AppSettings);
     }
 
+    private CloseWindowAction CloseWindowActionValue => AppSettings.IsHideWindowWhenClose ? CloseWindowAction.MinimizeToTray : CloseWindowAction.Exit;
+
+    private void CloseWindowActionChanged(CloseWindowAction action)
+    {
+        AppSettings.IsHideWindowWhenClose = action == CloseWindowAction.MinimizeToTray;
+        SaveSettings();
+    }
+
     private void ThemeChanged(ThemeEnum theme)
     {
         AppSettings.AppTheme = theme;

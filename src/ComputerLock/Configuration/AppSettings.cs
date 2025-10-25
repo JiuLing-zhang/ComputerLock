@@ -53,6 +53,11 @@ public class AppSettings
     public bool LockTips { get; set; } = false;
 
     /// <summary>
+    /// 自定义锁定提示文案
+    /// </summary>
+    public string? LockTipsMessage { get; set; }
+
+    /// <summary>
     /// 程序启动时锁定
     /// </summary>
     public bool LockOnStartup { get; set; } = false;

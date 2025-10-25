@@ -441,4 +441,7 @@
   <data name="ExitProgram" xml:space="preserve">
 	  <value>Exit Program</value>
   </data>
+  <data name="LockHintText" xml:space="preserve">
+	  <value>Hint Text</value>
+  </data>
 </root>

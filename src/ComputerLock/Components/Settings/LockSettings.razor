@@ -120,11 +120,34 @@
                          Color="Color.Primary"
                          Class="no-left-padding max-width-fix"
                          Dense="true" />
-            <MudText Typo="Typo.caption" Class="input-tip ml-7">
-                @(Lang["LockTipsRemark"])
-            </MudText>
+            <MudCollapse Expanded="@(AppSettings.LockTips)">
+                <MudStack Row="true" AlignItems="AlignItems.Start" Class="ml-7">
+                    <MudTextFieldExtended T="string"
+                                          @ref="_textTipsMessageRef"
+                                          @bind-Value="@(LockTipsMessage)"
+                                          Disabled="@(!_lockTipsMessageEdit)"
+                                          OnBlur="TipsMessageBlur"
+                                          OnKeyDown="TipsMessageKeyDown"
+                                          Immediate="true"
+                                          Label=""
+                                          Variant="Variant.Text"
+                                          Margin="Margin.Dense"
+                                          HelperText="@(Lang["LockTipsRemark"])">
+                        <AdornmentStart>
+                            <div style="opacity:0.5; font-size:13px;">
+                                @(Lang["LockHintText"])
+                            </div>
+                        </AdornmentStart>
+                    </MudTextFieldExtended>
+                    <MudIconButton Icon="@Icons.Material.Filled.Edit"
+                                   Variant="Variant.Outlined"
+                                   Color="Color.Primary"
+                                   Size="Size.Small"
+                                   OnClick="EnableTipsMessageEditing"
+                                   Disabled="_lockTipsMessageEdit" />
+                </MudStack>
+            </MudCollapse>
         </div>
-
         <div>
             <MudText Typo="Typo.subtitle2" Class="input-title">@(Lang["LockStatusDisplay"])</MudText>
             <MudSelect T="LockStatusDisplay"

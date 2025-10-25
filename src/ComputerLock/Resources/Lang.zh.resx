@@ -441,4 +441,7 @@
   <data name="ExitProgram" xml:space="preserve">
 	  <value>退出程序</value>
   </data>
+  <data name="LockHintText" xml:space="preserve">
+	  <value>提示文字</value>
+  </data>
 </root>

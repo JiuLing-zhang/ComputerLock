@@ -72,7 +72,7 @@ internal class GlobalLockService : IGlobalLockService
             if (_appSettings.LockTips && IsLocked)
             {
                 _logger.Info("用户输入 -> 检测到键盘输入");
-                _popupService.ShowMessage(_lang["LockTipsValue"]);
+                _popupService.ShowMessage(GetLockTipsMessage());
             }
         };
 
@@ -81,9 +81,20 @@ internal class GlobalLockService : IGlobalLockService
             if (_appSettings.LockTips && IsLocked)
             {
                 _logger.Info("用户输入 -> 检测到鼠标输入");
-                _popupService.ShowMessage(_lang["LockTipsValue"]);
+                _popupService.ShowMessage(GetLockTipsMessage());
             }
         };
+    }
+
+    /// <summary>
+    /// 获取锁定提示文案
+    /// </summary>
+    /// <returns></returns>
+    private string GetLockTipsMessage()
+    {
+        return _appSettings.LockTipsMessage.IsEmpty()
+            ? _lang["LockTipsValue"]
+            : _appSettings.LockTipsMessage;
     }
 
     /// <summary>

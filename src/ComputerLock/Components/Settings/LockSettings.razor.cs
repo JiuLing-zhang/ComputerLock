@@ -1,4 +1,6 @@
 ﻿using ComputerLock.Interfaces;
+using Microsoft.AspNetCore.Components.Web;
+using MudExtensions;
 
 namespace ComputerLock.Components.Settings;
 
@@ -28,6 +30,44 @@ public partial class LockSettings
 
     [Inject]
     private PowerManager PowerManager { get; set; } = null!;
+
+    private MudTextFieldExtended<string>? _textTipsMessageRef;
+    private bool _lockTipsMessageEdit;
+    public string LockTipsMessage
+    {
+        get => AppSettings.LockTipsMessage.IsEmpty()
+            ? Lang["LockTipsValue"] // 显示默认文案
+            : AppSettings.LockTipsMessage;
+        set => AppSettings.LockTipsMessage = value;
+    }
+    private async Task EnableTipsMessageEditing()
+    {
+        _lockTipsMessageEdit = true;
+        // 等待渲染后再聚焦，否则焦点可能丢失
+        await Task.Delay(1);
+        _textTipsMessageRef?.FocusAsync();
+    }
+
+    private void TipsMessageBlur(FocusEventArgs args)
+    {
+        TipsMessageFinishEditing();
+    }
+    private void TipsMessageKeyDown(KeyboardEventArgs args)
+    {
+        if (args.Key == "Enter")
+        {
+            TipsMessageFinishEditing();
+        }
+    }
+    private void TipsMessageFinishEditing()
+    {
+        if (!_lockTipsMessageEdit)
+        {
+            return;
+        }
+        _lockTipsMessageEdit = false;
+    }
+
     private void SaveSettings()
     {
         AppSettingsProvider.SaveSettings(AppSettings);

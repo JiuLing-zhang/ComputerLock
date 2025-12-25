@@ -1,4 +1,5 @@
 ﻿namespace ComputerLock.Enums;
+
 [Flags]
 public enum PasswordBoxActiveMethodEnum
 {

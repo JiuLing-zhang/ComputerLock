@@ -1,6 +1,7 @@
 ﻿using DialogResult = MudBlazor.DialogResult;
 
 namespace ComputerLock.Components;
+
 public partial class SetPassword
 {
     [CascadingParameter]

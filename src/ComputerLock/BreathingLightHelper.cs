@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Animation;
 
 namespace ComputerLock;
+
 public static class BreathingLightHelper
 {
     public static void InitializeBreathingLight(UIElement element)

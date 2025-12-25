@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 
 namespace ComputerLock.Configuration;
+
 internal class AppBase
 {
     /// <summary>

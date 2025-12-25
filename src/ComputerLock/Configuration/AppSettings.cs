@@ -1,6 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 
 namespace ComputerLock.Configuration;
+
 public class AppSettings
 {
     [JsonIgnore]

@@ -4,6 +4,7 @@ using System.IO;
 using ThemeEnum = JiuLing.AutoUpgrade.Shared.ThemeEnum;
 
 namespace ComputerLock.Update;
+
 internal class UpdateHelper(AppSettings appSettings)
 {
     public async Task DoAsync(bool isBackgroundCheck)

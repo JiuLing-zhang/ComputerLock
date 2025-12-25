@@ -1,4 +1,5 @@
 ﻿namespace ComputerLock.Components.Settings;
+
 public partial class UnlockSettings
 {
     [Inject]

@@ -1,6 +1,7 @@
 ﻿using ComputerLock.Interfaces;
 
 namespace ComputerLock.Platforms;
+
 internal class WindowsMessageBox(IStringLocalizer<Lang> lang) : IWindowsMessageBox
 {
     public void Show(string text)

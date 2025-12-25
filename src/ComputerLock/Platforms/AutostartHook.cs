@@ -3,6 +3,7 @@ using Microsoft.Win32.TaskScheduler;
 using System.IO;
 
 namespace ComputerLock.Platforms;
+
 internal class AutostartHook(ILogger logger)
 {
     private const string TaskName = "ComputerLockAutoStart";

@@ -1,4 +1,5 @@
 ﻿namespace ComputerLock.Platforms;
+
 internal class MouseHook : WindowsInputHook
 {
     private int _cursorCount;

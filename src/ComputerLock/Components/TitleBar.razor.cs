@@ -1,6 +1,7 @@
 ﻿using JiuLing.TitleBarKit;
 
 namespace ComputerLock.Components;
+
 public partial class TitleBar
 {
     [Parameter]

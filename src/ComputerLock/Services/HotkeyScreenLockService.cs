@@ -2,6 +2,7 @@
 using Application = System.Windows.Application;
 
 namespace ComputerLock.Services;
+
 internal class HotkeyScreenLockService(
     IServiceProvider serviceProvider,
     IStringLocalizer<Lang> lang,

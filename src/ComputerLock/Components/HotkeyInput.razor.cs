@@ -1,4 +1,5 @@
 ﻿namespace ComputerLock.Components;
+
 public partial class HotkeyInput
 {
     private string _lockHotkeyDisplay => HotkeyTools.StringKeyToDisplay(Hotkey) ?? "";

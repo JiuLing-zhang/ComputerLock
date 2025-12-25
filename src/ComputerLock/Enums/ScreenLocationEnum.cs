@@ -1,4 +1,5 @@
 ﻿namespace ComputerLock.Enums;
+
 public enum ScreenLocationEnum
 {
     Center = 0,

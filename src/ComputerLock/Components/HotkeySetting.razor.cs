@@ -3,6 +3,7 @@ using System.Text;
 using DialogResult = MudBlazor.DialogResult;
 
 namespace ComputerLock.Components;
+
 public partial class HotkeySetting
 {
     [CascadingParameter]

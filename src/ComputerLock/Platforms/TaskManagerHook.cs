@@ -2,6 +2,7 @@
 using System.IO;
 
 namespace ComputerLock.Platforms;
+
 internal class TaskManagerHook
 {
     private static readonly string OriginalStateFilePath = Path.Combine(Path.GetTempPath(), $"{AppBase.FriendlyName}_OriginalTaskMgr");

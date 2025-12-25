@@ -1,4 +1,5 @@
 ﻿namespace ComputerLock.Platforms;
+
 internal class PowerManager
 {
     private void AdjustPrivileges()

@@ -1,5 +1,4 @@
 ﻿using ComputerLock.Interfaces;
-using ComputerLock.Update;
 using JiuLing.TitleBarKit;
 
 namespace ComputerLock.Shared;
@@ -24,10 +23,6 @@ public partial class MainLayout
 
     [Inject]
     private VersionLogChecker VersionLogChecker { get; set; } = null!;
-
-
-    [Inject]
-    private UpdateHelper UpdateHelper { get; set; } = null!;
 
     [Inject]
     private IGlobalLockService GlobalLockService { get; set; } = null!;
@@ -99,11 +94,6 @@ public partial class MainLayout
             }
         };
 
-        if (AppSettings.IsAutoCheckUpdate)
-        {
-            await UpdateHelper.DoAsync(true);
-        }
-
         if (await VersionLogChecker.CheckShowUpdateLogAsync())
         {
             var options = new DialogOptions
@@ -158,6 +148,5 @@ public partial class MainLayout
         var options = new DialogOptions { NoHeader = true, CloseOnEscapeKey = false, BackdropClick = false, BackgroundClass = "dialog-backdrop-filter" };
         await Dialog.ShowAsync<Donation>("", options);
     }
-
 
 }

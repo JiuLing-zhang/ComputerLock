@@ -1,5 +1,4 @@
 ﻿using ComputerLock.Interfaces;
-using ComputerLock.Update;
 using JiuLing.TitleBarKit;
 using Microsoft.Extensions.DependencyInjection;
 using MudBlazor.Services;
@@ -51,7 +50,6 @@ public partial class App : Application
         services.AddSingleton(LogManager.GetLogger());
         services.AddSingleton<HotkeyHook>();
         services.AddSingleton<MouseHook>();
-        services.AddSingleton<UpdateHelper>();
         services.AddSingleton<AutostartHook>();
         services.AddSingleton<TaskManagerHook>();
         services.AddSingleton<UserActivityMonitor>();

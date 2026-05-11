@@ -32,4 +32,34 @@ internal class AppBase
     /// </summary>
     public static Version Version { get; } = Assembly.GetExecutingAssembly().GetName().Version ?? throw new InvalidOperationException("App Version");
     public static string VersionString { get; } = Version.ToString();
+
+    /// <summary>
+    /// 首次运行标志文件路径
+    /// </summary>
+    private static string FirstRunFilePath { get; } = Path.Combine(DataPath, FriendlyName, "first_run_flag");
+
+    private static bool? _isFirstRun = null;
+    /// <summary>
+    /// 是否为首次运行
+    /// </summary>
+    public static bool IsFirstRun
+    {
+        get
+        {
+            if (_isFirstRun == null)
+            {
+                // 文件不存在 = 首次运行
+                _isFirstRun = !File.Exists(FirstRunFilePath);
+
+                // 如果是首次运行，立即创建标记文件，确保本次运行期间再次读取仍为 true
+                if (_isFirstRun == true)
+                {
+                    // 确保目录存在
+                    Directory.CreateDirectory(Path.GetDirectoryName(FirstRunFilePath));
+                    File.WriteAllText(FirstRunFilePath, DateTime.Now.ToString());
+                }
+            }
+            return _isFirstRun.Value;
+        }
+    }
 }

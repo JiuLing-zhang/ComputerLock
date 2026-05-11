@@ -1,4 +1,5 @@
-﻿using ComputerLock.Update;
+﻿using System.IO;
+using Microsoft.JSInterop;
 
 namespace ComputerLock.Components;
 
@@ -12,9 +13,23 @@ public partial class About
     [Inject]
     private IStringLocalizer<Lang> Lang { get; set; } = null!;
     [Inject]
-    private UpdateHelper UpdateHelper { get; set; } = null!;
-    [Inject]
     private IDialogService DialogService { get; set; } = null!;
+
+    [Inject]
+    private IJSRuntime JS { get; set; } = null!;
+
+    [Inject]
+    private ISnackbar Snackbar { get; set; } = null!;
+
+
+    private static readonly MudMarkdownStyling Styling = new()
+    {
+        Table =
+        {
+            IsBordered= false,
+            Dense=true
+        },
+    };
 
     protected override async Task OnInitializedAsync()
     {
@@ -33,15 +48,5 @@ public partial class About
             FullWidth = true
         };
         await DialogService.ShowAsync<VersionHistoryDialog>(Lang["VersionHistory"], options);
-    }
-
-    private async Task CheckUpdateAsync()
-    {
-        await UpdateHelper.DoAsync(false);
-    }
-
-    private void SaveSettings()
-    {
-        AppSettingsProvider.SaveSettings(AppSettings);
     }
 }

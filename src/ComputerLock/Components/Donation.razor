@@ -1,10 +1,10 @@
-﻿<MudDialog>
+﻿﻿<MudDialog>
     <DialogContent>
         <MudPaper Elevation="0" Class="d-flex flex-column align-center">
 
             <MudPaper Class="d-flex justify-center mb-2" Elevation="0" Style="position: relative; width: 100%;">
                 <MudText Typo="Typo.subtitle1" Color="Color.Secondary">
-                    如果你喜欢这款软件，不妨支持一下作者！
+                    支持作者
                 </MudText>
                 <MudIconButton Icon="@Icons.Material.Filled.Close"
                                Color="Color.Inherit"
@@ -12,38 +12,31 @@
                                OnClick="Close"
                                Style="position: absolute; top: -5px; right: -20px;" />
             </MudPaper>
+             
+            <div style="width:200px; height:200px; overflow:hidden;">
+                <MudImage Src="images/wxPay.jpg"
+                          Elevation="4"
+                          style="
+                width: 443px;      /* 原图1329 缩小到 1/3（因为600→200=1/3） */
+                height: 443px;
+                margin-left: -123px; /* 370/3  定位偏移（自动跟着缩放）*/
+                margin-top: -63px;   /* 190/3  定位偏移 */
+                object-fit: none;
+                border-radius:4px;
+                " />
+            </div>
+            
+            <MudText Typo="Typo.body2" Class="mt-3 mb-6" Style="color: #07C160">
+                微信官方赞赏码
+            </MudText>
+            
+            <MudText Typo="Typo.body1" Class="my-2">
+                扫一扫，输入任意金额赞赏
+            </MudText>
 
-            <MudPaper Class="py-2 mb-3" Width="320px" Style="background-color: rgba(255, 165, 0, 0.15); border-radius: 8px;">
-                <MudText Typo="Typo.body1" Style="color: #FF7043;" Align="Align.Center">
-                    💖 请使用 <strong>微信</strong> 扫码 💖
-                </MudText>
-            </MudPaper>
-
-            <MudImage Src="images/wxPay.jpg"
-                      Width="400" Height="400"
-                      Elevation="4"
-                      Class="rounded-lg" />
-
-            <MudDivider Class="my-2" />
-
-            <MudStack Row="true" Spacing="6" AlignItems="AlignItems.Center">
-                <MudText Typo="Typo.subtitle1" Color="Color.Secondary">
-                    已有
-                    <strong>
-                        @if (_donationCount.HasValue)
-                        {
-                            @_donationCount
-                        }
-                        else
-                        {
-                            @("loading")
-                        }
-                    </strong>
-                    人支持
-                </MudText>
-
-                <MudLink Href="@Resource.DonationPath" Color="Color.Secondary" Underline="Underline.None">查看赞赏记录</MudLink>
-            </MudStack>
+            <MudText Typo="Typo.subtitle2" Class="my-2" Style="opacity: 0.7">
+                由衷感谢每一份支持
+            </MudText>
         </MudPaper>
     </DialogContent>
 </MudDialog>

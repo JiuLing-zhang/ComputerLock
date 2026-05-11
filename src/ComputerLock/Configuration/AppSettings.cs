@@ -123,11 +123,6 @@ public class AppSettings
     public Hotkey? UnlockHotkey => _hotkeyTools?.StringKeyToHotkey(UnlockHotkeyString);
 
     /// <summary>
-    /// 自动检查更新
-    /// </summary>
-    public bool IsAutoCheckUpdate { get; set; } = true;
-
-    /// <summary>
     /// 启用密码框
     /// </summary>
     public bool EnablePasswordBox { get; set; } = true;

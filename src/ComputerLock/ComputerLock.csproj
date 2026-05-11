@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<Authors>九零</Authors>
 		<Product>透明锁屏</Product>
-		<Version>2.3.8</Version>
+		<Version>2.3.9</Version>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net8.0-windows</TargetFramework>
 		<Nullable>enable</Nullable>
@@ -18,7 +18,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="CodeBeam.MudBlazor.Extensions" Version="8.2.4" />
-		<PackageReference Include="JiuLing.AutoUpgrade" Version="2.3.0" />
 		<PackageReference Include="JiuLing.CommonLibs" Version="1.7.7" />
 		<PackageReference Include="JiuLing.TitleBarKit" Version="1.0.3" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="8.0.100" />
@@ -38,21 +37,12 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Lang.resx</DependentUpon>
 		</Compile>
-		<Compile Update="Resources\Resource.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>Resource.resx</DependentUpon>
-		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
 		<EmbeddedResource Update="Resources\Lang.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>Lang.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-		<EmbeddedResource Update="Resources\Resource.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>Resource.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
 
@@ -67,5 +57,4 @@
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
-
 </Project>

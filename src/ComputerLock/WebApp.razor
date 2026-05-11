@@ -5,7 +5,14 @@
     </Found>
     <NotFound>
         @{
-            Navigation.NavigateTo("/lock-settings");
+            if (AppBase.IsFirstRun)
+            {
+                Navigation.NavigateTo("/about");
+            }
+            else
+            {
+                Navigation.NavigateTo("/lock-settings");
+            }
         }
     </NotFound>
 </Router>

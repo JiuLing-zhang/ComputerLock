@@ -1,8 +1,0 @@
-<Solution>
-  <Folder Name="/docs/">
-    <File Path="../CHANGELOG.md" />
-    <File Path="../README.md" />
-    <File Path="../VERSION_HISTORY.md" />
-  </Folder>
-  <Project Path="ComputerLock/ComputerLock.csproj" />
-</Solution>
